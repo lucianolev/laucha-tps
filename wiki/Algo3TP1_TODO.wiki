@@ -1,7 +1,5 @@
 Pongamos acá que es lo que falta y en que está trabajando cada uno. Una vez que hayan terminado con algo, suban los cambios y después borrenlo/cambienlo de acá.
 
-- Aclaraciones generales de implementacion - *Lucho*
-
 ==Ej1==
 
 ===Informe:===
@@ -30,7 +28,7 @@ Pongamos acá que es lo que falta y en que está trabajando cada uno. Una vez qu
 ==Ej3==
 
 ===Informe:===
-- Graficos y analisis
+- Graficos y analisis - *Mati*
 
 - Conclusiones
 
