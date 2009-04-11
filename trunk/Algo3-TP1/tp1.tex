@@ -23,8 +23,9 @@ Antes de comenzar el an\'alisis de cada ejercicio, cabe mencionar lo siguiente:
 
 \begin{itemize}
  \item La implementaci\'on de los 3 algoritmos se realiz\'o en \textbf{lenguaje C++}, haciendo uso de las librer\'ias est\'andar del mismo.
+ \item Para varios de los experimentos realizados se utiliz\'o un rango de n\'umeros acotado cuyo m\'aximo valor es $2^{31}-1$, ya que este es el valor m\'aximo del tipo de datos \textit{int}, utilizado para representar los n\'umeros naturales y enteros en las implementaciones propuestas.
  \item Para el c\'alculo de tiempo de los algoritmos se utiliz\'o la funci\'on \textbf{gettimeofday()} del est\'andar POSIX.
- \item Par\'a verificar la paridad o divisibilidad de un n\'umero se utiliz\'o el \textbf{operador \%} de lenguaje.
+ \item Para verificar la paridad o divisibilidad de un n\'umero se utiliz\'o el \textbf{operador \%} de lenguaje.
  \item El c\'odigo fuente de los algoritmos aqui analizados se encuentran en los archivos \textit{encontrarPrimos.cpp} (Ej 1), \textit{puzzleConPoda.cpp} (Ej 2) y \textit{mediana.cpp} (Ej 3).
  \item El c\'odigo fuente de los programas encargados de hacer uso de los algoritmos (funciones \textit{main}), junto con la lectura y escritura de los archivos de entrada y salida tal como indica el enunciado se encuentran en los archivos \textit{mainPrimos.cpp} (Ej 1), \textit{mainPuzzle.cpp} (Ej 2) y \textit{mainMediana.cpp} (Ej 3). 
  \item Para la lectura y escritura de los datos se implement\'o una clase \textit{Archivo} que abstrae las operaciones de manejo de archivo provistas por el lenguaje con el fin de facilitar el uso y la comprensi\'on de los algoritmos. No se har\'a referencia a estos algoritmos ya que no resultan de inter\'es para el trabajo aqui presentado.
@@ -34,7 +35,7 @@ Antes de comenzar el an\'alisis de cada ejercicio, cabe mencionar lo siguiente:
     \item \underline{Ej 2:} ???
     \item \underline{Ej 3:} ???
   \end{itemize}
- \item Los gr\'aficos se realizaron con \textbf{GNUPlot} y las tablas con \textbf{OpenOffice Calc}.
+ \item Los gr\'aficos se realizaron con \textbf{GNUPlot} y las tablas con \textbf{OpenOffice Calc}. En los casos considerados pertinentes, se utiliz\'o una escala logar\'itmica con el fin de poder visualizar mejor los resultados.
 \end{itemize}
 
 \begin{center}
@@ -95,7 +96,7 @@ existe al menos un divisor d tal que $2 \leq d < \sqrt{n}$.
 
 Con respecto al algoritmo relativo al problema en s\'i, la idea consiste en
 recorrer todos los n\'umeros impares comprendidos entre $3$ y $n-3$ de a pares
-cuya suma equivalgan a $n$. Los pares $i, n - i$ satisfacen trivialmente esta condici\'on, ya que $i + (n-i) = n$. Del mismo modo, es f\'acil ver que para generar todos los n\'umeros del rango mencionado, basta con variar i tal que $3 \le i \le n/2$. De esta forma se ve claramente que esPrimo(i) comprende el rango $3..n/2$, y $esPrimo(n-i)$ el rango $n/2..n-3$. De este modo, cuando se satisface que $esPrimo(i) \& esPrimo(n-i) == true$ se puede afirmar que se ha encontrado el par de n\'umeros que cumplen con la conjetura: dos n\'umeros primos cuya suma es $n$. En caso de que no hallar dicha tupla detro del rango propuesto, se puede concluir que la conjetura de Goldbach era falsa, retornando la tupla (0,0) en este caso.  
+cuya suma equivalgan a $n$. Los pares $i, n - i$ satisfacen trivialmente esta condici\'on, ya que $i + (n-i) = n$. Del mismo modo, es f\'acil ver que para generar todos los n\'umeros del rango mencionado, basta con variar i tal que $3 \le i \le n/2$. De esta forma se ve claramente que esPrimo(i) comprende el rango $3..n/2$, y $esPrimo(n-i)$ el rango $n/2..n-3$. De este modo, cuando se satisface que $esPrimo(i) \& esPrimo(n-i) == true$ se puede afirmar que se ha encontrado el par de n\'umeros que cumplen con la conjetura: dos n\'umeros primos cuya suma es $n$. En caso de que no hallar dicha tupla dentro del rango propuesto, se puede concluir que la conjetura de Goldbach era falsa, retornando la tupla (0,0) en este caso.  
 
 \section*{Complejidad}
 
@@ -109,7 +110,7 @@ Nota: En el siguiente an\'alisis se hara referencia a funciones propias de la im
 En este modelo el an\'alisis no esta centrado en el tama\~{n}o de los operandos
 por lo que el tiempo de ejecuci\'on de cada operaci\'on se considera constante.
 
-En la funci\'on esPrimo todas las operaciones y asignaciones utilizadas se
+En la funci\'on \textit{esPrimo} todas las operaciones y asignaciones utilizadas se
 logran en tiempo constante por lo mencinado anteriormente, de esta manera la
 complejidad de esta funci\'on depende del ciclo que contiene. Como itera sobre
 \textit{i} entre 3 (valor de inicializaci\'on) y $\sqrt{n}+1$, y ademas en cada
@@ -119,7 +120,7 @@ recorre aproximadamente $\sqrt{n}/2$ veces. De esta manera concluimos que $T(n)
 \in O(\sqrt{n})$.
 
 En cuanto a la complejidad de las operaciones y asignaciones realizadas en la
-funci\'on encontrarPrimos el caso es el mismo al de esPrimo debido al modelo de
+funci\'on \textit{encontrarPrimos} el caso es el mismo al de \textit{esPrimo} debido al modelo de
 computo. La unica operaci\'on dentro del pseudocodigo de encontrarPrimos de
 complejidad superior a constante es la analizada anteriormente y dicha operacion se
 encuentra dentro del \'unico ciclo de la funci\'on por lo que concentraremos el
@@ -136,7 +137,7 @@ En este modelo de computo si nos concentraremos en el tama\~{n}o de la entrada y
 el costo de las operaciones en funci\'on de la cantidad de bits de sus
 operandos.
 
-En la funci\'on esPrimo se puede apreciar que las operaci\'ones que mayor
+En la funci\'on \textit{esPrimo} se puede apreciar que las operaci\'ones que mayor
 complejidad conllevan son $\sqrt{n}$ y $n$ mod $i$. Como ambas son llamadas
 dentro del \'unico ciclo de la funci\'on, la complejidad estar\'a determinada
 por dicho ciclo.
@@ -150,21 +151,21 @@ $$= \sqrt{n}(3\log(n)+2\log(n)^{2}) \Longrightarrow T(n) \in O(\sqrt{n}*\log(n)^
 
 \bigskip
 
-Con respecto a la funci\'on encontrarPrimos sucede lo mismo con respecto a que
+Con respecto a la funci\'on \textit{encontrarPrimos} sucede lo mismo con respecto a que
 las operaciones de mayor complejidad son realizadas dentro del ciclo por lo que
 en este caso la complejidad total de la funci\'on tambi\'en estar\'a determinada
 por dicho ciclo.
 
 La funci\'on de complejidad es 
 $$ T(n) = \sum
-[\log(i)+\sqrt{i}\log(i)^{2}+\sqrt{n-i}\log(n-i)^{2}+\log(n)+\log(n)+\log(i)] $$
-$$ \leq \sum [\log(n)+\sqrt{n}\log(n)^{2}+\sqrt{n}\log(n)^{2}+\log(n)+\log(n)+\log(n)] $$
-$$ =n(4\log(n)+2\sqrt{n}\log(n)^{2}) \Longrightarrow T(n) \in O(n^{3/2}*\log(n)^{2}) $$
+[\log(i)+\sqrt{i}*\log(i)^{2}+\sqrt{n-i}*\log(n-i)^{2}+\log(n)+\log(n)+\log(i)] $$
+$$ \leq \sum [\log(n)+\sqrt{n}*\log(n)^{2}+\sqrt{n}*\log(n)^{2}+\log(n)+\log(n)+\log(n)] $$
+$$ = n*(4*\log(n)+2*\sqrt{n}\*log(n)^{2}) \Longrightarrow T(n) \in O(n^{3/2}*\log(n)^{2}) $$
 
 \bigskip
 
 Por \'ultimo analizaremos tambi\'en la complejidad en funci\'on del tama\~{n}o
-de la entrada para los dos modelos de computo vistos. Como la funci\'on
+de la entrada para los dos modelos de c\'omputo vistos. Como la funci\'on
 encontrarPrimos toma unicamente un natural \textit{n}, si llamamos \textit{t} al
 tama\~{n}o de entrada tenemos que $t = \log(n) \Longrightarrow 2^{t} = n$. De
 esta manera, reemplazando $n$ en las complejidades calculadas previamente
@@ -181,7 +182,7 @@ O((2^{t})^{3/2}(\log(2^{t}))^{2}) = O((2^{3t/2}t^{2})$$
 
 \section*{An\'alisis de resultados}
 
-Con el fin de analizar la eficiencia del algoritmo propuesto se realizaron diversas pruebas. En primer lugar, se hicieron experimentos orientados a estudiar el tiempo de ejecuci\'on del mismo en relaci\'on al par\'ametro ingresado (de ahora ne adelante, Prueba 1). Para tal prop\'osito se procedi\'o a la creaci\'on de un programa de prueba (ver pseudoc\'odigo debajo) que calcula el tiempo de ejecuci\'on de la funci\'on \textit{encontrarPrimos} para valores entre $4$ y $2^{31}-4$. Al tratarse de una cantidad de n\'umeros tan grande, como veremos m\'as adelante, la ejecuci\'on real de dicha prueba demorar\'ia en exceso (a\~{n}os). Por tal motivo se decidi\'o tomar n\'umeros pares separados por una distancia aleatoria entre $10^{4}..2*10^{4}$. La raz\'on del uso de un par\'ametro aleatorio radica en poder conseguir una buena muestra representativa del rango propuesto anteriormente y evitando as\'i casos patol\'ogicos.
+Con el fin de analizar la eficiencia del algoritmo propuesto se realizaron diversas pruebas. En primer lugar, se hicieron experimentos orientados a estudiar el tiempo de ejecuci\'on del mismo en relaci\'on al par\'ametro ingresado (de ahora en adelante, Prueba 1). Para tal prop\'osito se procedi\'o a la creaci\'on de un programa de prueba (ver pseudoc\'odigo debajo) que calcula el tiempo de ejecuci\'on de la funci\'on \textit{encontrarPrimos} para valores entre $4$ y $2^{31}-4$. Al tratarse de una cantidad de n\'umeros tan grande, como veremos m\'as adelante, la ejecuci\'on real de dicha prueba demorar\'ia en exceso (a\~{n}os). Por tal motivo se decidi\'o tomar n\'umeros pares separados por una distancia aleatoria entre $10^{4}$ y $2*10^{4}$. La raz\'on del uso de un par\'ametro aleatorio radica en poder conseguir una buena muestra representativa del rango propuesto anteriormente y evitando as\'i casos patol\'ogicos.
 
 \begin{verbatim}
 Prueba 1
@@ -207,12 +208,12 @@ para j desde 0 hasta 20
       peor_caso_primo1 = primo1
       peor_caso_primo2 = primo2
 
-    i = i + 10000 + numero aleatorio par entre 0 y 10000
+    i = i + 100000 + numero aleatorio par entre 0 y 100000
 
   guardar en Ej1-MayoresPrimos.txt la linea "peor_caso peor_caso_primo1 peor_caso_primo2"
 \end{verbatim}
 
-Por \'ultimo, con el fin de observar m\'as en detalle el comportamiento del algoritmo se decidi\'o extraer los peores casos de la Prueba 1 y estudiarlos en profundidad (Prueba 3). Para realizar esta tarea, se implement\'o una sencilla aplicaci\'on (ver pseudoc\'odigo debajo) que tomalrededor de 200 secuencias consecutivas de 1000 n\'umeros aleatorios comprendidas entre $4$ y $2^{31}-4$ utilizando el mismo criterio que en el caso anterior. Luego, obtiene el m\'aximo tiempo de ejecuci\'on entre todos los n\'umeros de cada secuencia. 
+Por \'ultimo, con el fin de observar m\'as en detalle el comportamiento del algoritmo se decidi\'o extraer los peores casos de la Prueba 1 y estudiarlos en profundidad (Prueba 3). Para realizar esta tarea, se implement\'o una sencilla aplicaci\'on (ver pseudoc\'odigo debajo) que toma alrededor de 200 secuencias consecutivas de 1000 n\'umeros aleatorios comprendidas entre $4$ y $2^{31}-4$ utilizando el mismo criterio que en el caso anterior. Luego, obtiene el m\'aximo tiempo de ejecuci\'on entre todos los n\'umeros de cada secuencia. 
 
 \begin{verbatim}
 Prueba 3
@@ -302,13 +303,13 @@ TODO
 \bigskip
 \section*{Introducci\'on}
 
-EL problema que plantea este ejercicio es calcular la mediana entre dos vectores de n\'umeros enteros, es decir, el elemento que, una vez concatenados y ordenados los vectores, deja a ambos lados la misma cantidad de elementos. Seg\'un lo especificado en el problema, ambos vectores tienen la misma longitud y est\'an ordenados.
+El problema que plantea este ejercicio es calcular la mediana entre dos vectores de n\'umeros enteros, es decir, el elemento que, una vez concatenados y ordenados los vectores, deja a ambos lados la misma cantidad de elementos. Seg\'un lo especificado en el problema, ambos vectores tienen la misma longitud y est\'an ordenados.
 
 En principio, la soluci\'on trivial del problema fue descartada ya que el costo de realizarla era excesivo para los fines del ejercicio. Esta soluci\'on consist\'ia en concatenar ambos vectores, ordenarlos y posteriormente obtener la mediana a partir del elemento medio de dicha secuencia.
 
 Descartada esta opci\'on, surgi\'o la idea de desechar una gran cantidad de elementos, cuando sea posible, para poder realizar los c\'alculos sobre una cantidad de n\'umeros considerablemente inferior a la inicial. De esta manera, la complejidad resultar\'ia del costo de descartar los elementos apropiados y luego hacer el c\'alculo con una cantidad peque\~{n}a de elementos. Evidentemente, nuestro algoritmo seguir\'ia el concepto de Divide and Conquer cl\'asico.
 
-Con las ideas m\'as claras, notamos que descartando la misma cantidad de elementos mayores o iguales a la mediana, que menores o iguales a ella, \'esta se manten\'ia como valor medio de los vectores generados a partir de los elementos no descartados. R\'apidamente, nos dimos cuenta que la mediana de concatenar dos vectores ordenados, se encuentra entre los elementos mayores a la mediana del vector con menor valor medio y los elementos menores a la mediana del vector con mayor valor medio(conjetura que luego se demostrar\'a).
+Con las ideas m\'as claras, notamos que descartando la misma cantidad de elementos mayores o iguales a la mediana, que menores o iguales a ella, \'esta se manten\'ia como valor medio de los vectores generados a partir de los elementos no descartados. R\'apidamente, nos dimos cuenta que la mediana de concatenar dos vectores ordenados, se encuentra entre los elementos mayores a la mediana del vector con menor valor medio y los elementos menores a la mediana del vector con mayor valor medio (conjetura que luego se demostrar\'a).
 
 Planteado todo esto, result\'o sencillo escribir el pseudoc\'odigo de nuestro algoritmo. 
 
@@ -350,9 +351,9 @@ medianaRecursiva (vector x[0..n-1], vector y[0..n-1])
       devolver medianaRecursiva(x[medio..n-1], y[0..n/2]);
 \end{verbatim}
 
-Con respecto a la implementaci\'on del algoritmo, la misma result\'o bastante sencilla de realizar en el lenguaje C++, utilizando las operaciones b\'asicas que provee el lenguaje y usando arreglos b\'asicos para la reprentaci\'on de los vectores. La \'unica parte no trivial radica en el uso de punteros para lograr llamar recursivamente a la func\'on con las ``mitades'' correspondientes de cada arreglo. Tambi\'en, cabe notar que en la implementaci\'on fue necesario pasar como par\'ametro extra el tamaño de los arreglos que reprentan a los vectores por cuestiones intr\'insicas al manejo de arreglos din\'amicos en C++.
+Con respecto a la implementaci\'on del algoritmo, la misma result\'o bastante sencilla de realizar en el lenguaje C++, utilizando las operaciones b\'asicas que provee el lenguaje y usando arreglos b\'asicos para la reprentaci\'on de los vectores. La \'unica parte no trivial radica en el uso de punteros para lograr llamar recursivamente a la func\'on con las ``mitades'' correspondientes de cada arreglo. Tambi\'en, cabe notar que en la implementaci\'on fue necesario pasar como par\'ametro extra el tama\~{n}o de los arreglos que reprentan a los vectores por cuestiones intr\'insicas al manejo de arreglos din\'amicos en C++.
 
-Como se puede apreciar el algoritmo sigue los pasos de un algoritmo cl\'asico de \textit{divide and conquer} dividiendo el problema en arreglos de menor tama\~{n}o al ir desccartando elementos mayores y menores a la mediana. De esta manera, si logramos mostrar que en cada llamado recursivo la mediana original es la misma que la de los dos nuevos arreglos, entonces podremos asegurar que el algoritmo es correcto. Para mostrar esto primero veremos que en cada paso la mediana sigue estando dentro de alguno de los arreglos, y luego que los n\'umeros menores o iguales a la mediana descartados son la misma cantidad que los n\'umeros mayores o iguales a la misma que se descartan.
+Como se puede apreciar, el algoritmo sigue los pasos de un algoritmo cl\'asico de \textit{divide and conquer} dividiendo el problema en arreglos de menor tama\~{n}o al ir descartando elementos mayores y menores a la mediana. De esta manera, si logramos mostrar que en cada llamado recursivo la mediana original es la misma que la de los dos nuevos arreglos, entonces podremos asegurar que el algoritmo es correcto. Para mostrar esto primero veremos que en cada paso la mediana sigue estando dentro de alguno de los arreglos, y luego que los n\'umeros menores o iguales a la mediana descartados son la misma cantidad que los n\'umeros mayores o iguales a la misma que se descartan.
 
 \subsection*{Demostraci\'on de que la mediana se encuentra en el pr\'oximo llamado recursivo}
 
@@ -459,9 +460,9 @@ Juntando ambas demostraciones podemos afirmar que en cada llamado recursivo la m
  
 En la siguiente secci\'on se calcular\'a la complejidad en el peor caso del algoritmo presentado bas\'andose en el modelo de c\'omputo uniforme.
 
-La funci\'on presenta dos casos base que se dan cuando n (variable que indica la longitud de los arreglos) toma los valores 1 \'o 2. En ambos casos el algoritmo s\'olo realiza comparaciones entre elementos y retorna un resultado, sin entrar en ning\'un ciclo.
+La funci\'on presenta dos casos base que se dan cuando $n$ (variable que indica la longitud de los arreglos) toma los valores 1 \'o 2. En ambos casos el algoritmo s\'olo realiza comparaciones entre elementos y retorna un resultado, sin entrar en ning\'un ciclo.
 
-Si n es mayor a 2 primero se realizan asignaciones y operaciones simples (tiempo constante) para luego efectuar un llamado recursivo. En el caso en que el tama\~{n}o de los arreglos es par, se toma $n=n/2$ como nuevo par\'ametro de longitud. En el caso impar, la longitud de los arreglos ser\'a $n+1/2$. De esta manera, cuando n es potencia de 2, el algoritmo ejecuta $\log(n)$ llamados recursivos hasta llegar a un caso base. De lo contrario se producen $\log(n)+1$ llamadas (se refiere a la parte entera de $\log(n)$).
+Si n es mayor a 2 primero se realizan asignaciones y operaciones simples (tiempo constante) para luego efectuar un llamado recursivo. En el caso en que el tama\~{n}o de los arreglos es par, se toma $n=n/2$ como nuevo par\'ametro de longitud. En el caso impar, la longitud de los arreglos ser\'a $(n+1)/2$. De esta manera, cuando n es potencia de 2, el algoritmo ejecuta $\log(n)$ llamados recursivos hasta llegar a un caso base. De lo contrario se producen $\log(n)+1$ llamadas (se refiere a la parte entera de $\log(n)$).
 
 Por lo tanto la funci\'on que determina la complejidad es:
 
@@ -481,14 +482,5 @@ TODO
 \section*{Conclusiones}
 
 TODO
-
-\section*{Referencias}
-\begin{itemize}
- \item Articulo sobre el formato JPG de Wikipedia:
-\textit{http://es.wikipedia.org/wiki/JPG}.
-\end{itemize}
-\begin{itemize}
- \item Manuales de Intel de la Arquitectura IA32, Vol\'umenes 2A y 2B.
-\end{itemize}
 
 \end{document}
