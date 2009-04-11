@@ -221,16 +221,14 @@ Figura 1.1
 \end{center}
 \end{center}
 
-Este gr\'afico muestra la comparaci\'on entre las mediciones de tiempo de la primera prueba realizada y la complejidad te\'orica expuesta anteriormente. Llamaremos $f$ a la funci\'on que relaciona el tiempo de ejecuci\'on con el tama\~{n}o de entrada. Como se puede apreciar, el crecimiento de $f$ es mucho menor que la complejidad te\'orica, por lo cual el algoritmo resulta mucho m\'as eficiente que lo esperado. Sin embargo, a pesar de su comportamiento altamente irregular, se puede apreciar que el tiempo de ejecuci\'on aumenta a medida que crece el tama\~{n}o de la entrada. La raz\'on de la discrepancia entre ambas funciones reside un hecho que denominaremos ``el lema de la aproximaci\'on asintotica natural en el anillo conmutativo modelado implicitamente por los numeros primos y sus respectivas operaciones''. La raz\'on de la discrepancia entre ambas funciones reside en el hecho de que el algoritmo implementado encuentra dos n\'umeros primos que cumplen con la conjetura en una muy baja cantidad de operaciones en relaci\'on al taman\~{n}o de la entrada. Si bien se desconoce el motivo de este fen\'omeno, hemos probado emp\'iricamente que esto se cumple como se puede notar en el siguiente gr\'afico (Prueba 2).
+Este gr\'afico muestra la comparaci\'on entre las mediciones de tiempo de la primera prueba realizada y la complejidad te\'orica expuesta anteriormente. Llamaremos $f$ a la funci\'on que relaciona el tiempo de ejecuci\'on con el tama\~{n}o de entrada. Como se puede apreciar, el crecimiento de $f$ es mucho menor que la complejidad te\'orica, por lo cual el algoritmo resulta mucho m\'as eficiente que lo esperado. Sin embargo, a pesar de su comportamiento altamente irregular, se puede apreciar que el tiempo de ejecuci\'on aumenta a medida que crece el tama\~{n}o de la entrada. La raz\'on de la discrepancia entre ambas funciones reside un hecho que denominaremos ``el lema de la aproximaci\'on asintotica natural en el anillo conmutativo modelado implicitamente por los numeros primos y sus respectivas operaciones''. La raz\'on de la discrepancia entre ambas funciones reside en el hecho de que el algoritmo implementado encuentra dos n\'umeros primos que cumplen con la conjetura en una muy baja cantidad de operaciones en relaci\'on al taman\~{n}o de la entrada. Si bien se desconoce el motivo de este fen\'omeno, hemos probado emp\'iricamente que esto se cumple como se puede notar en la siguiente tabla (Prueba 2).
 
-GRAFICO
-
-% \begin{center}
-%  \includegraphics[width=0.7\textwidth]{Plots/Ej1-cosa.png}
-% \begin{center}
-% Figura 1.2
-% \end{center}
-% \end{center}
+\begin{center}
+ \includegraphics[width=0.5\textwidth]{Plots/Ej1-MayoresPrimos.png}
+\begin{center}
+Figura 1.2
+\end{center}
+\end{center}
 
 Como se observa en la Figura 1.2, para los peores casos la diferencia entre cada uno de los primos soluci\'on es muy alta, muy cercana al par\'ametro de entrada $n$. Esto explica que la complejidad te\'orica no se corresponda con el tiempo de ejecuci\'on.
 
