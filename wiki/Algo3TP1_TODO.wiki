@@ -3,8 +3,8 @@ Pongamos acá que es lo que falta y en que está trabajando cada uno. Una vez qu
 ==Ej1==
 
 ==Informe:==
-- Histograma de la Prueba 2 - *Lucho*
-- Conclusiones
+Histograma de la Prueba 2 - *Lucho*
+Conclusiones
 
 ==Ej2==
 
