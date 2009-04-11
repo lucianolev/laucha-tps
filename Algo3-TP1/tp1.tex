@@ -16,6 +16,27 @@
 
 \maketitle
 
+\bigskip
+\section*{Aclaraci\'ones generales}
+
+Antes de comenzar el an\'alisis de cada ejercicio, cabe mencionar lo siguiente:
+
+\begin{itemize}
+ \item La implementaci\'on de los 3 algoritmos se realiz\'o en \textbf{lenguaje C++}, haciendo uso de las librer\'ias est\'andar del mismo.
+ \item Para el c\'alculo de tiempo de los algoritmos se utiliz\'o la funci\'on \textbf{gettimeofday()} del est\'andar POSIX.
+ \item Par\'a verificar la paridad o divisibilidad de un n\'umero se utiliz\'o el \textbf{operador \%} de lenguaje.
+ \item El c\'odigo fuente de los algoritmos aqui analizados se encuentran en los archivos \textit{encontrarPrimos.cpp} (Ej 1), \textit{puzzleConPoda.cpp} (Ej 2) y \textit{mediana.cpp} (Ej 3).
+ \item El c\'odigo fuente de los programas encargados de hacer uso de los algoritmos (funciones \textit{main}), junto con la lectura y escritura de los archivos de entrada y salida tal como indica el enunciado se encuentran en los archivos \textit{mainPrimos.cpp} (Ej 1), \textit{mainPuzzle.cpp} (Ej 2) y \textit{mainMediana.cpp} (Ej 3). 
+ \item Para la lectura y escritura de los datos se implement\'o una clase \textit{Archivo} que abstrae las operaciones de manejo de archivo provistas por el lenguaje con el fin de facilitar el uso y la comprensi\'on de los algoritmos. No se har\'a referencia a estos algoritmos ya que no resultan de inter\'es para el trabajo aqui presentado.
+ \item Los archivos fuente de los programas encargados de generar los datos para la realizaci\'on de los gr\'aficos, seg\'un el ejercicio, son:
+  \begin{itemize}
+    \item \underline{Ej 1:} mainPruebaPrimos1.cpp (Figura 1.1), mainPruebaPrimos2.cpp (Figura 1.2) y mainPruebaPrimos3.cpp (Figura 1.3).
+    \item \underline{Ej 2:} ???
+    \item \underline{Ej 3:} ???
+  \end{itemize}
+ \item Los gr\'aficos se realizaron con \textbf{GNUPlot} y las tablas con \textbf{OpenOffice Calc}.
+\end{itemize}
+
 \begin{center}
 \section*{Ejercicio 1: La conjetura de Goldbach}
 \end{center}
@@ -296,8 +317,40 @@ Planteado todo esto, result\'o sencillo escribir el pseudoc\'odigo de nuestro al
 A continuaci\'on se mostrar\'a el pseudoc\'odigo del algoritmo implementado seguido de una demostraci\'on de su correctitud.
 
 \begin{verbatim}
- pseudocodigo
+medianaRecursiva (vector x[0..n-1], vector y[0..n-1])
+
+  si n == 1
+    si x[0] > y[0]
+      devolver y[0]
+    sino
+      devolver x[0]
+
+  si n == 2
+    si x[0] == y[0]
+      devolver x[0]
+    si x[0] > y[0]
+      si x[0] > y[1]
+        devolver y[1]
+      sino
+        devolver x[0]
+    sino
+      si x[1] > y[0]
+        devolver y[0]
+      sino
+        devolver x[1]
+
+  si n > 2
+    si n es impar
+      medio = n / 2
+    sino
+      medio = n / 2 - 1;
+    si x[medio] > y[n/2]
+      devolver medianaRecursiva(x[0..medio], y[n/2..n-1]);
+    sino
+      devolver medianaRecursiva(x[medio..n-1], y[0..n/2]);
 \end{verbatim}
+
+Con respecto a la implementaci\'on del algoritmo, la misma result\'o bastante sencilla de realizar en el lenguaje C++, utilizando las operaciones b\'asicas que provee el lenguaje y usando arreglos b\'asicos para la reprentaci\'on de los vectores. La \'unica parte no trivial radica en el uso de punteros para lograr llamar recursivamente a la func\'on con las ``mitades'' correspondientes de cada arreglo. Tambi\'en, cabe notar que en la implementaci\'on fue necesario pasar como par\'ametro extra el tamaño de los arreglos que reprentan a los vectores por cuestiones intr\'insicas al manejo de arreglos din\'amicos en C++.
 
 Como se puede apreciar el algoritmo sigue los pasos de un algoritmo cl\'asico de \textit{divide and conquer} dividiendo el problema en arreglos de menor tama\~{n}o al ir desccartando elementos mayores y menores a la mediana. De esta manera, si logramos mostrar que en cada llamado recursivo la mediana original es la misma que la de los dos nuevos arreglos, entonces podremos asegurar que el algoritmo es correcto. Para mostrar esto primero veremos que en cada paso la mediana sigue estando dentro de alguno de los arreglos, y luego que los n\'umeros menores o iguales a la mediana descartados son la misma cantidad que los n\'umeros mayores o iguales a la misma que se descartan.
 
