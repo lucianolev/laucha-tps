@@ -1,10 +1,10 @@
 Pongamos acá que es lo que falta y en que está trabajando cada uno. Una vez que hayan terminado con algo, suban los cambios y después borrenlo/cambienlo de acá.
 
+- Aclaraciones generales de implementacion - *Lucho*
+
 ==Ej1==
 
 ===Informe:===
-- Histograma de la Prueba 2 - *Lucho*
-
 - Conclusiones
 
 ==Ej2==
@@ -30,10 +30,6 @@ Pongamos acá que es lo que falta y en que está trabajando cada uno. Una vez qu
 ==Ej3==
 
 ===Informe:===
-- Terminar la intro - *Fede*
-
-- Algoritmo - Pseudocodigo y explicar la implentacion? - *Lucho*
-
 - Graficos y analisis
 
 - Conclusiones
