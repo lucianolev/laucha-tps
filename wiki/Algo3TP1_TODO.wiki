@@ -2,30 +2,40 @@ Pongamos acá que es lo que falta y en que está trabajando cada uno. Una vez qu
 
 ==Ej1==
 
-==Informe:==
-Histograma de la Prueba 2 - *Lucho*
-Conclusiones
+===Informe:===
+- Histograma de la Prueba 2 - *Lucho*
+
+- Conclusiones
 
 ==Ej2==
 
 ===Informe:===
 - Introduccion
+
 - Algoritmo: Explicacion, "correctitud" y pseudocodigo
+
 - Complejidad?
+
 - Graficos y analisis
+
 - Conclusiones
 
 ===Código:===
 - Terminar el codigo con la poda - *Fede*
+
 - Programa que testee el algoritmo
+
 - Programa para hacer las pruebas
 
 ==Ej3==
 
 ===Informe:===
 - Terminar la intro - *Fede*
+
 - Algoritmo - Pseudocodigo y explicar la implentacion? - *Lucho*
+
 - Graficos y analisis
+
 - Conclusiones
 
 ===Código:===
