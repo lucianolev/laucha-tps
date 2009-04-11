@@ -24,6 +24,9 @@ void Jardinero::agregarFicha(Ficha unaFicha) {
 }
 
 bool Jardinero::puedoPodar(Jardinero* otroJardinero) {
+	if(m_primero == NULL || otroJardinero->m_primero == NULL) {
+	  return true;
+	}
 	Nodo* cursor1 = m_primero;
 	Nodo* cursor2 = otroJardinero->m_primero;
 	while(cursor1 != NULL) {
