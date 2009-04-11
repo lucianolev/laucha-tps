@@ -22,19 +22,25 @@ int main() {
 			entrada.leerDato(fichas[i].der);
 		}
 		Ficha** matriz = resolverPuzzle(fichas, n);
-		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < n; j++) {
-				salida.escribirDato(matriz[i][j].arriba);
-				salida.escribirDato(" ");
-				salida.escribirDato(matriz[i][j].abajo);
-				salida.escribirDato(" ");
-				salida.escribirDato(matriz[i][j].izq);
-				salida.escribirDato(" ");
-				salida.escribirDato(matriz[i][j].der);
-				salida.nuevaLinea();
-			}
-			delete matriz[i];
+		if(matriz != 0){
+		  for (int i = 0; i < n; i++) {
+			  for (int j = 0; j < n; j++) {
+				  salida.escribirDato(matriz[i][j].arriba);
+				  salida.escribirDato(" ");
+				  salida.escribirDato(matriz[i][j].abajo);
+				  salida.escribirDato(" ");
+				  salida.escribirDato(matriz[i][j].izq);
+				  salida.escribirDato(" ");
+				  salida.escribirDato(matriz[i][j].der);
+				  salida.nuevaLinea();
+			  }
+			  delete matriz[i];
+		  }
 		}
+		else {
+		  cout << "ouch" << endl;
+		}
+
 		delete matriz;
 		entrada.leerDato(n);
 	}

@@ -27,20 +27,23 @@ Ficha** resolverPuzzle(Ficha* fichas, int n) {
 	
 	int i = 0;
 	int j = 0;
-	Jardinero* jardineroViejo;
-	Jardinero* jardineroNuevo;
+
+	Jardinero* jardineroViejo = new Jardinero();
+	Jardinero* jardineroNuevo = new Jardinero();
 	bool metio;
 	
 
 	while( i < n ) {
-	
+		
 		//Si estoy en un borde, asesino al los jardineros porque empiezo nueva jardineria
 		if (j == 0) {
-
+		
 		}
 		//Si no estoy en un borde entonces el jardinero nuevo se hizo viejo, entonces el nuevo no existe
 		else {
-			jardineroViejo = jardineroNuevo;
+			delete jardineroViejo;
+			jardineroViejo = new Jardinero();
+			*jardineroViejo = *jardineroNuevo;
 
 		}	
 		
@@ -52,6 +55,7 @@ Ficha** resolverPuzzle(Ficha* fichas, int n) {
 		{ //Si puedo poner la ficha...
 			
 			if (i != n-1) {
+				delete jardineroNuevo;
 				//Creo un jardinero nuevo y lo lleno con fichas
 				jardineroNuevo = new Jardinero();
 				for(int k = 0; k < n; k++) {
@@ -60,9 +64,7 @@ Ficha** resolverPuzzle(Ficha* fichas, int n) {
 					}
 				}
 			}
-			
-			if (0 == 0 || !jardineroViejo->puedoPodar(jardineroNuevo)) {
-			}
+
 
 
 			//Si estoy en un borde o si no puedo poder entonces meto la ficha y avanzo
@@ -85,8 +87,9 @@ Ficha** resolverPuzzle(Ficha* fichas, int n) {
 			
 		}
 		if (!metio) {
-
-			jardineroNuevo = jardineroViejo;
+			delete jardineroNuevo;
+			jardineroNuevo = new Jardinero();
+			*jardineroNuevo = *jardineroViejo;
 
 			while( (fichaActualEn[i][j] == (n*n - 1))) {
 				if (i == 0 && j == 0) { //No hay solucion
@@ -103,7 +106,7 @@ Ficha** resolverPuzzle(Ficha* fichas, int n) {
 				fichasPuestas[fichaActualEn[i][j]] = false;
 				//***cuando se vuelve hay que crear un jardinero que va a ser el viejo
 				if (j != 0 and i != n-1 ){
-
+					delete jardineroNuevo;
 					//Creo un jardinero nuevo y lo lleno con fichas
 					jardineroNuevo = new Jardinero();
 					for(int k = 0; k < n*n; k++) {
@@ -116,6 +119,9 @@ Ficha** resolverPuzzle(Ficha* fichas, int n) {
 			fichaActualEn[i][j]++;
 		}
 	}
+	delete jardineroNuevo;
+	delete jardineroViejo;
+	
 
 	return tablero;
 }
