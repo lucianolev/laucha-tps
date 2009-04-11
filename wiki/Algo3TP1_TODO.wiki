@@ -1,34 +1,32 @@
 Pongamos acá que es lo que falta y en que está trabajando cada uno. Una vez que hayan terminado con algo, suban los cambios y después borrenlo/cambienlo de acá.
 
-=Ej1=
+==Ej1==
 
 ==Informe:==
-* Histograma de la Prueba 2 - *Lucho*
-* Conclusiones
+*Histograma de la Prueba 2 - *Lucho*
+*Conclusiones
 
-=Ej2=
+==Ej2==
 
-==Informe:==
-* Introduccion
-* Algoritmo: Explicacion, "correctitud" y pseudocodigo
-* Complejidad?
-* Graficos y analisis
-* Conclusiones
+===Informe:===
+-Introduccion
+-Algoritmo: Explicacion, "correctitud" y pseudocodigo
+-Complejidad?
+-Graficos y analisis
+-Conclusiones
 
-==Código:==
-* Terminar el codigo con la poda - *Fede*
-* Programa que testee el algoritmo
-* Programa para hacer las pruebas
+===Código:===
+- Terminar el codigo con la poda - *Fede*
+- Programa que testee el algoritmo
+- Programa para hacer las pruebas
 
-==
+==Ej3==
 
-=Ej3=
+===Informe:===
+- Terminar la intro - *Fede*
+- Algoritmo - Pseudocodigo y explicar la implentacion? - *Lucho*
+- Graficos y analisis
+- Conclusiones
 
-==Informe:==
-* Terminar la intro - *Fede*
-* Algoritmo - Pseudocodigo y explicar la implentacion? - *Lucho*
-* Graficos y analisis
-* Conclusiones
-
-==Código:==
-* Programa para hacer las pruebas/graficos - *Mati*
+===Código:===
+- Programa para hacer las pruebas/graficos - *Mati*
