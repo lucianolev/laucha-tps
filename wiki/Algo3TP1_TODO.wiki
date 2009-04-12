@@ -8,7 +8,7 @@ Pongamos acá que es lo que falta y en que está trabajando cada uno. Una vez qu
 ==Ej2==
 
 ===Informe:===
-- Introduccion - *Agus*
+- Introduccion - *Agus* - *Listoooo*
 
 - Algoritmo: Explicacion, "correctitud" y pseudocodigo
 
@@ -28,9 +28,9 @@ Pongamos acá que es lo que falta y en que está trabajando cada uno. Una vez qu
 ==Ej3==
 
 ===Informe:===
-- Graficos y analisis - *Mati*
+- Graficos y analisis - *Mati* - *Listooo*
 
-- Conclusiones - *Fede*
+- Conclusiones - *Fede* - *Listooo*
 
 ===Código:===
-- Programa para hacer las pruebas/graficos - *Mati*
+- Programa para hacer las pruebas/graficos - *Mati* - *Listooo*
