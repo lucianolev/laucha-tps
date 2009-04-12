@@ -477,9 +477,38 @@ $$=\log(n)+2n>\log(n)$$
 
 \section*{An\'alisis de resultados}
 
-TODO
+Con el prop\'osito de analizar la eficiencia del algoritmo propuesto se construy\'o una simple aplicaci\'on de prueba (ver pseudoc\'odigo debajo) que calcula el tiempo de ejecucion de la funci\'on \textit{medianaRecursiva} para vectores aleatorios de tama\~{n}o variable entre $2$ y $2*10^{8}$. En principio, las pruebas realizadas difer\'ian de las mencionadas anteriormente, ya que el tama\~{n}o de las instancias probadas era mucho menor (entre $1$ y $10^{4}$). Sin embargo, como se ver\'a m\'as adelante, los resultados para este tipo de pruebas no reflejaba datos significativos para el an\'alisis del algoritmo y su complejidad.
 
-\section*{Conclusiones}
+\begin{verbatim}
+para i desde 2 hasta 2*10^8
+	vector x[1..i]
+	vector y[1..i]
+
+	x[1] = numero aleatorio entre 0 y 20
+	y[1] = numero aleatorio entre 0 y 20
+	
+	para j desde 2 hasta i
+		x[j] = x[j-1] + numero aleatorio entre 0 y 20
+		y[j] = y[j-1] + numero aleatorio entre 0 y 20
+
+	T = tiempo que tarda la funcion medianaRecursiva(x,y,i) en microsegundos
+
+	guardar en Ej3-Complejidad.txt la linea "i T"
+	i = i*2
+\end{verbatim}
+
+A continuaci\'on se presentan los resultados de la prueba realizada.
+
+\begin{center}
+ \includegraphics[width=0.7\textwidth]{Plots/Ej3-Complejidad.png}
+\begin{center}
+Figura 3.1
+\end{center}
+\end{center}
+
+Como se puede observar en el gr\'afico, los tiempos de ejecuci\'on del algoritmo son muy bajos en relaci\'on al tama\~{n}o de la entrada. Esta fue la raz\'on por la que se descart\'o probar s\'olo casos peque\~{n}os para verificar la eficiencia del algoritmo y se opt\'o por analizar casos en el que el tama\~{n}o de la entrada creciera exponencialmente. A simple vista se puede observar que el gr\'afico de la funci\'on que mide el tiempo tiene el mismo comportamiento que la funci\'on de complejidad te\'orica. De este modo, adem\'as de la demostraci\'on te\'orica de la complejidad, se obtiene una prueba emp\'irica de que esta misma es correcta.
+
+\section*{Conclusiones}*
 
 TODO
 
