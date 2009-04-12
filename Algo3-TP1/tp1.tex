@@ -144,9 +144,9 @@ por dicho ciclo.
 
 Entonces tenemos 
 
-$$ T(n) = \sum
+$$ T(n) = \sum_{i=3,i\,mod\,2=1}^{\sqrt{n}}
 [\log(\sqrt{n}+1)+\log(n)^{2}+\log(n)^{2}+\log(n\,mod\,i)+\log(i)] $$
-$$\leq \sum [\log(n)+2\log(n)^{2}+\log(n)+\log(n)] $$
+$$\leq \sum_{i=1}^{\sqrt{n}} [\log(n)+2\log(n)^{2}+\log(n)+\log(n)] $$
 $$= \sqrt{n}(3\log(n)+2\log(n)^{2}) \Longrightarrow T(n) \in O(\sqrt{n}*\log(n)^{2})$$
 
 \bigskip
@@ -157,9 +157,9 @@ en este caso la complejidad total de la funci\'on tambi\'en estar\'a determinada
 por dicho ciclo.
 
 La funci\'on de complejidad es 
-$$ T(n) = \sum
+$$ T(n) = \sum_{i=3,i\,mod\,2=1}^{n/2}
 [\log(i)+\sqrt{i}*\log(i)^{2}+\sqrt{n-i}*\log(n-i)^{2}+\log(n)+\log(n)+\log(i)] $$
-$$ \leq \sum [\log(n)+\sqrt{n}*\log(n)^{2}+\sqrt{n}*\log(n)^{2}+\log(n)+\log(n)+\log(n)] $$
+$$ \leq \sum_{i=1}^{n} [\log(n)+\sqrt{n}*\log(n)^{2}+\sqrt{n}*\log(n)^{2}+\log(n)+\log(n)+\log(n)] $$
 $$ = n*(4*\log(n)+2*\sqrt{n}\*log(n)^{2}) \Longrightarrow T(n) \in O(n^{3/2}*\log(n)^{2}) $$
 
 \bigskip
@@ -173,10 +173,10 @@ obtendremos el costo de los dos algoritmos.
 
 \begin{itemize}
 \item Modelo Uniforme: 
-$$T(n) \in O(n\sqrt{n}) = O(n^{3/2}) = O((2^{t})^{3/2}) =
+$$T(n) \in O(n\sqrt{n}) = O(n^{3/2}) \Longrightarrow T(t) = O((2^{t})^{3/2}) =
 O(2^{3t/2})$$
 \item Modelo Logar\'itmico: 
-$$T(n) \in O(n^{3/2}\log(n)^{2}) =
+$$T(n) \in O(n^{3/2}\log(n)^{2}) \Longrightarrow T(t) =
 O((2^{t})^{3/2}(\log(2^{t}))^{2}) = O((2^{3t/2}t^{2})$$
 \end{itemize}
 
@@ -269,7 +269,13 @@ La idea de este gr\'afico es mostrar c\'uan irregular es el tiempo de ejecuci\'o
 
 \section*{Conclusiones}
 
-TODO
+Este ejercicio nos mostr\'o un caso representativo en el que el tiempo de ejecuci\'on difiere notablemente a la complejidad calculada para el peor caso.
+
+Para este algoritmo en particular se debe a que la funci\'on \textit{encontrarPrimos} alcanzar\'ia dicho peor caso si la conjetura de Goldbach fuese falsa, cuesti\'on que no sucede para ning\'un n\'umero que pueda tomar la func\'on (es decir, hasta el n\'umero mas grande almacenable en un \textit{int}). M\'as aun, esta demostrado que para n\'umeros mucho mas grandes que los testeados la conjetura se sigue cumpliendo (ver secci\'on Referencias para m\'as detalles) por lo que en el \'ambito cient\'ifico se cree que es cierta.
+
+Tambi\'en vimos casos en los que entre n\'umeros cercanos tomados por la funci\'on, el tiempo de ejecuci\'on difiere considerablemente. Adem\'as notamos que a medida que el tama\~{n}o del par\'ametro de entrada crece el tiempo tamb\'ien lo hace, pero siempre muy lejos de los peores casos para dichas entradas. Estas situaciones se deben a la desconocida distribuci\'on de los n\'umeros primos entre los naturales, por lo que no podemos dar una explicaci\'on general que incluya todos los casos reales. Sin embargo, en base a todos los an\'alisis realizados, podemos concluir que para todos los casos computables por nuestro algoritmo el tiempo de ejecuci\'on ser\'a mas que aceptable.
+
+\bigskip
 
 \begin{center}
 \section*{Ejercicio 2: Resolucion de Puzzle}
