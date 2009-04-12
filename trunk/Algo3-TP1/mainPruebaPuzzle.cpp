@@ -58,14 +58,14 @@ void generarTableroConSolucion (Ficha* fichas, int n) {
 }
 
 int main() {
+	timeval inicio;
+	timeval fin;
+	int tiempo;
+	Archivo salida("Ej2-Complejidad.txt");
 
 	for(int n = 1; n <= 16; n++) {
 		Ficha x[n*n];
-		timeval inicio;
-		timeval fin;
-		int tiempo;
-		Archivo salida("Ej2-Complejidad.txt");
-
+		
 		generarTableroConSolucion(x,n);
 
 		gettimeofday(&inicio, NULL);
