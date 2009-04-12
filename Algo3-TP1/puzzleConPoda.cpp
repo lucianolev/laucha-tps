@@ -34,17 +34,12 @@ Ficha** resolverPuzzle(Ficha* fichas, int n) {
 	
 
 	while( i < n ) {
-		
-		//Si estoy en un borde, asesino al los jardineros porque empiezo nueva jardineria
-		if (j == 0) {
-		
-		}
+
 		//Si no estoy en un borde entonces el jardinero nuevo se hizo viejo, entonces el nuevo no existe
-		else {
+		if (j != 0)
 			delete jardineroViejo;
 			jardineroViejo = new Jardinero();
 			*jardineroViejo = *jardineroNuevo;
-
 		}	
 		
 		metio = false;
@@ -64,9 +59,6 @@ Ficha** resolverPuzzle(Ficha* fichas, int n) {
 					}
 				}
 			}
-
-
-
 			//Si estoy en un borde o si no puedo poder entonces meto la ficha y avanzo
 			if (j == 0 || i == n-1 || !jardineroViejo->puedoPodar(jardineroNuevo)) {
 				tablero[i][j] = fichas[fichaActualEn[i][j]];
