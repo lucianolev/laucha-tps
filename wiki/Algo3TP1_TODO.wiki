@@ -19,7 +19,7 @@ Pongamos acá que es lo que falta y en que está trabajando cada uno. Una vez qu
 - Conclusiones
 
 ===Código:===
-- Terminar el codigo con la poda - *Fede*
+- Terminar el codigo con la poda - *Lucho*
 
 - Programa que testee el algoritmo
 
