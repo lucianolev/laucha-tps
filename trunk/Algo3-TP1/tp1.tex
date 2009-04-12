@@ -284,7 +284,9 @@ Tambi\'en vimos casos en los que entre n\'umeros cercanos tomados por la funci\'
 \bigskip
 \section*{Introducci\'on}
 
-TODO
+El objetivo del siguiente ejercicio es diseñar un algoritmo que, dado un tablero de tama\~{n}o $n$ y $n^{2}$ fichas, determine si existe una manera de colcar las fichas en el tablero, y en tal caso, retornarla. La condici\'on que determina si una ficha puede ser colocada es que, en cada uno de sus lados, contenga el mismo n\'umero que tiene la ficha con la que limita. Vale aclarar que las fichas no pueden ser rotadas y que los que lados limitan con un borde pueden tener cualquier n\'umero.
+
+Cuando empezamos a pensar el ejercicio surgi\'o la solución trivial, tan simple como ineficiente, utilizando un algoritmo de fuerza bruta que prueba todas las permutaciones posibles de las fichas en el tablero. Rapidamente se descart\'o esta opci\'on pues su costo es factorial. Se opt\'o entonces por aplicar la idea de \textit{backtracking} en la funci\'on, de esta manera, se toma una ficha del conjunto restante y se chequea si puede ser colocada en la pr\'oxima posici\'on. En caso afirmativo la ficha se coloca en dicha posici\'on y se realiza el mismo procedimiento para la siguiente casilla del tablero, sino se sigue buscando hasta encontrar una ficha que pueda ser colocada. Si ninguna de las fichas restantes puede ser colocada en el tablero entonces se regresa a la posici\'on anterior (aqu\'i queda explicita la idea de \textit{backtracking}) y se prueba con otra. Por \'ultimo, se plante\'o el uso de diversas podas para mejorar el rendimiento del algoritmo. Se dejaron de lado distintas opciones, ya sea por dificultad de implementaci\'on o exceso de complejidad temporal o espacial, tomando finalmente la poda que mejor se ajust\'o a los requerimientos necesarios.
 
 \section*{Algoritmo}
 
