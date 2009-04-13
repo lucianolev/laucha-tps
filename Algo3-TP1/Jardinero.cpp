@@ -17,7 +17,10 @@ Jardinero::~Jardinero() {
 
 void Jardinero::agregarFicha(Ficha unaFicha) {
 	Nodo* nuevo = new Nodo();
-	nuevo->f = unaFicha;
+	nuevo->f.arriba = unaFicha.arriba;
+	nuevo->f.abajo = unaFicha.abajo;
+	nuevo->f.der = unaFicha.der;
+	nuevo->f.izq = unaFicha.izq;
 	nuevo->siguiente = m_primero;
 	m_primero = nuevo;
 	m_longitud++;

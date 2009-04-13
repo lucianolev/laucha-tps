@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
-#include "puzzleSinPoda.cpp"
+#include "PuzzleConPodaMati.cpp"
 #include "Archivo.h"
 #include <sys/time.h>
 
@@ -63,7 +63,7 @@ int main() {
 	int tiempo;
 	Archivo salida("Ej2-Complejidad.txt");
 
-	for(int n = 1; n <= 16; n++) {
+	for(int n = 1; n <= 10; n++) {
 		Ficha x[n*n];
 		
 		generarTableroConSolucion(x,n);
@@ -73,18 +73,18 @@ int main() {
 		gettimeofday(&fin, NULL);
 		tiempo = fin.tv_sec - inicio.tv_sec;
 
-// 		cout << "RESULTADO PARA TABLERO " << n << "x" << n <<endl;
-// 		cout << "--------------------------" << endl;
-// 
-// 		for(int i = 0; i < n; i++) {
-// 			for(int j = 0; j < n; j++) {
-// 				cout << resultado[i][j].arriba << " ";
-// 				cout << resultado[i][j].abajo << " ";
-// 				cout << resultado[i][j].izq << " ";
-// 				cout << resultado[i][j].der << " ";
-// 				cout << endl;
-// 			}
-// 		}
+		cout << "RESULTADO PARA TABLERO " << n << "x" << n <<endl;
+		cout << "--------------------------" << endl;
+
+		for(int i = 0; i < n; i++) {
+			for(int j = 0; j < n; j++) {
+				cout << resultado[i][j].arriba << " ";
+				cout << resultado[i][j].abajo << " ";
+				cout << resultado[i][j].izq << " ";
+				cout << resultado[i][j].der << " ";
+				cout << endl;
+			}
+		}
 		salida.escribirDato(n);
 		salida.escribirDato(" ");
 		salida.escribirDato(tiempo);
