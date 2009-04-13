@@ -92,9 +92,9 @@ Ficha** resolverPuzzle(Ficha* fichas, int n) {
 		}
 		if (!metio) {
 			
-// 			if(jardineroNuevo != jardineroViejo){
-// 			 // delete jardineroNuevo;
-// 			}
+			if(jardineroNuevo != jardineroViejo){
+			 // delete jardineroNuevo;
+			}
 			jardineroNuevo = new Jardinero();
 			jardineroNuevo = jardineroViejo;
 
