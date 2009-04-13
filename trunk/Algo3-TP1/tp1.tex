@@ -407,7 +407,27 @@ TODO
 
 \section*{An\'alisis de resultados}
 
-TODO
+En la siguiente secci\'on se mostrar\'an los an\'alisis realizados para tableros de distinto tama\~{n}o. El enfoque principal de las pruebas radica en estudiar los tiempos de ejecuci\'on del algoritmo con y sin la poda. Para esto se implement\'o un algoritmo que genera tableros aleatorios de un tama\~{n}o $n$ pasado como par\'ametro. De esta manera, utilizando dicho algoritmo para distintos valores de $n$, se contrastaron ambos metodos (con y sin poda) con la cota estudiada ($n!$) arrojando los siguientes resultados. Vale aclarar que se utiliz\'o una escala logar\'itmica sobre el eje de ordenadas ya que los tiempos de ejecuci\'on toman valores muy altos, adem\'as, para realizar los gr\'aficos expuestos, se utilizaron tableros hasta un tama\~{n}o de $n=15$ pues para mayores valores los tiempos son excesivos.
+
+\begin{center}
+ \includegraphics[width=0.7\textwidth]{Plots/Ej2-Complejidad2.png}
+\begin{center}
+Figura 2.1
+\end{center}
+\end{center}
+
+\begin{center}
+ \includegraphics[width=0.7\textwidth]{Plots/Ej2-Complejidad1.png}
+\begin{center}
+Figura 2.2
+\end{center}
+\end{center}
+
+Como se puede apreciar en ambos gr\'aficos, los tiempos de ejecuci\'on de los dos algoritmos son sensiblemente menores que los de la complejidad teorica calculada para el peor caso ($O(n!)$). Esto concuerda con lo esperado ya que como se dijo en anteriores secciones, salvo en casos patol\'ogicos, en la pr\'actica el metodo de \textit{backtracking} aplicado a este problema es mucho m\'as eficiente.
+
+Con respecto a las diferentes resultados obtenidos con los dos m\'etodos, vemos reflejado que efectivamente la poda produce una importante mejora en el rendimiento. Si bien para tableros peque\~{n}os el rendimiento es similar (es m\'as, en la mayor\'ia de los casos para $n$ chicos el m\'etodo que utiliza la poda suele ser menos eficaz), esto no es de importancia ya que en dichos casos, al no manejar gran cantidad de datos, el tiempo de ejecuci\'on no alcanza valores muy altos. Por el contrario, cuando tomamos valores de $n$ mas grandes (aprox $n\geq10$), se puede apreciar que la poda descarta gran cantidad de soluciones no posibles, lo que incide directamente en la eficiencia de la aplicaci\'on. De hecho, cuando se analizaron tableros de tama\~{n}o mayor que 15, el tiempo que llev\'o a cabo el algoritmo sin la poda para buscar una soluci\'on result\'o excesivo, situaci\'on que no ocurre cuando se utiliza la poda para tableros de hasta $n=25$.
+
+Por \'ultimo, cabe notar que el tiempo de ejecuci\'on real no est\'a estrictamente relacionado con el tama\~{n}o de entrada. Podemos apreciarlo en la \textit{Figura 2.2}, donde la ejecuci\'on de el algoritmo con y sin la poda tom\'o m\'as tiempo para $n=14$ que para $n=15$. Esto se debe a que, adem\'as de depender de la dimensi\'on del tablero, la eficiencia del algoritmo estar\'a relacionada con la distribuci\'on de las fichas recibidas.
 
 \section*{Conclusiones}
 
