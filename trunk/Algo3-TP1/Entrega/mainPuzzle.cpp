@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
-#include "puzzlee.cpp"
+#include "puzzle.cpp"
 #include "Archivo.h"
 
 using namespace std;
@@ -38,7 +38,7 @@ int main() {
 		  }
 		}
 		else {
-		  cout << "ouch" << endl;
+		  salida.escribirDato("No hay solucion");
 		}
 
 		delete matriz;
