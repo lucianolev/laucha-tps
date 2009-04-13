@@ -75,7 +75,7 @@ Ficha** resolverPuzzle(Ficha* fichas, int n) {
 			if (j == 0 || i == n-1 || !jardineroViejo->puedoPodar(jardineroNuevo)) {
 				tablero[i][j] = fichas[fichaActualEn[i][j]];
 				fichasPuestas[fichaActualEn[i][j]] = true;
-				bool metio = true;
+				metio = true;
 				//Avanzo
 				if (j == n-1) {
 					i++;
@@ -120,7 +120,7 @@ Ficha** resolverPuzzle(Ficha* fichas, int n) {
 					//Creo un jardinero nuevo y lo lleno con fichas
 					jardineroNuevo = new Jardinero();
 					for(int k = 0; k < n*n; k++) {
-						if(fichas[k].arriba == tablero[i][j-1].abajo && !fichasPuestas[k]){
+						if(fichas[k].arriba == (fichas[fichaActualEn[i][j-1]]).abajo && !fichasPuestas[k]){
 							jardineroNuevo->agregarFicha(fichas[k]);
 						}
 					}
@@ -129,6 +129,7 @@ Ficha** resolverPuzzle(Ficha* fichas, int n) {
 			fichaActualEn[i][j]++;
 		}
 	}
+
 // 	delete jardineroNuevo;
 // 	delete jardineroViejo;
 // 	
