@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Ficha** resolverPuzzle(Ficha* fichas, int n) {
+Ficha** resolverPuzzleConPoda(Ficha* fichas, int n) {
 
 	Ficha** tablero = new Ficha*[n];
 	for(int i = 0; i < n; i++) {
@@ -64,7 +64,7 @@ Ficha** resolverPuzzle(Ficha* fichas, int n) {
 				else {
 					if (i != n-1) { //Si no estoy en el borde de abajo borro el jardinero viejo y ahora el viejo es el que acabo de crear
 						delete jardineroViejo;
-						if (i != n-1) jardineroViejo = jardineroNuevo;
+						jardineroViejo = jardineroNuevo;
 					}
 				}
 
@@ -118,7 +118,7 @@ Ficha** resolverPuzzle(Ficha* fichas, int n) {
 // 					delete jardineroViejo;
 				if (i_ant != n-1)
 					delete jardineroViejo;
-				if ((j_ant >= 0 && i_ant >= 0) && (i_ant != n-1)) {
+				if ((i != 0 || j != 0) && (i_ant != n-1)) {
 					//Creo un jardinero viejo y lo lleno con fichas
 					jardineroViejo = new Jardinero();
 					for(int k = 0; k < n*n; k++) {
@@ -132,7 +132,7 @@ Ficha** resolverPuzzle(Ficha* fichas, int n) {
 			fichaActualEn[i][j]++;
 		}
 	}
-	//delete jardineroViejo; //Borro el jardinero de [n-2][n-1] que nunca borre
+// 	delete jardineroViejo; //Borro el jardinero de [n-2][n-1] que nunca borre
 
 	return tablero;
 }

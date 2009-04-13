@@ -1,11 +1,5 @@
 #include <iostream>
-
-struct Ficha {
-	int arriba;
-	int abajo;
-	int izq;
-	int der;
-};
+#include "Ficha.h"
 
 struct Nodo {
 	Ficha f;
