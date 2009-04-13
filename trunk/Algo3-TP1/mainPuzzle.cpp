@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
-#include "puzzleConPoda.cpp"
+#include "puzzleConPodaFede.cpp"
 #include "Archivo.h"
 
 using namespace std;
