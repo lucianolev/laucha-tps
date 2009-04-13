@@ -318,9 +318,8 @@ resolverPuzzle(fichas[0..n^2-1], n)
 
   mientras i < n
 
-    si !fichasPuestas[fichaActualEn[i][j]] y
-      (i = 0 ó abajo(tablero[i-1][j]) = arriba(fichas[fichaActualEn[i][j]])) y
-      (j = 0 ó derecha(tablero[i][j-1]) = izquierda(fichas[fichaActualEn[i][j]]))
+    si !fichasPuestas[fichaActualEn[i][j]] 
+    y encaja(fichas[fichaActualEn[i][j]], tablero, i, j)
 
       si i != n-1
         vaciar(jardineroNuevo)
@@ -328,7 +327,7 @@ resolverPuzzle(fichas[0..n^2-1], n)
           si arriba(fichas[k]) = abajo(fichas[fichaActualEn[i][j]]) y !fichasPuestas[k]
             jardineroNuevo = jardineroNuevo U fichas[k]
 
-      si j = 0 ó i = n-1 ó !puedoPodar(jardineroViejo, jardineroNuevo)
+      si j = 0 o i = n-1 o !puedoPodar(jardineroViejo, jardineroNuevo)
 
         si i != n-1
           jardineroViejo = jardineroNuevo
@@ -367,11 +366,12 @@ resolverPuzzle(fichas[0..n^2-1], n)
           i_ant = i
           j_ant = j-1
 
-        si (j_ant != 0 ó i_ant != 0) y (i_ant != n-1)
+        si (j_ant != 0 o i_ant != 0) y (i_ant != n-1)
           vaciar(jardineroViejo)
-        para k desde 0 hasta n^2-1
-          si arriba(fichas[k]) = abajo(fichas[fichaActualEn[i_ant][j_ant]]) y !fichasPuestas[k]
-            jardineroViejo = jardineroViejo U fichas[k]
+          para k desde 0 hasta n^2-1
+            si arriba(fichas[k]) = abajo(fichas[fichaActualEn[i_ant][j_ant]]) 
+            y !fichasPuestas[k]
+              jardineroViejo = jardineroViejo U fichas[k]
 
       fichaActualEn[i][j] = fichaActualEn[i][j] + 1
 
@@ -381,15 +381,19 @@ resolverPuzzle(fichas[0..n^2-1], n)
 puedoPodar(lista1, lista2)
   devolver interseccion(lista1, lista2) != vacio
 
+encaja(ficha, tablero, i, j)
+  (i = 0 o abajo(tablero[i-1][j]) = arriba(ficha)) y
+  (j = 0 o derecha(tablero[i][j-1]) = izquierda(ficha))
+
 \end{verbatim}
 
-En primer lugar, para la implementaci\'on se utilizaron las siguientes estructuras:
+Antes de comenzar, para la implementaci\'on se utilizaron las siguientes estructuras:
 \begin{itemize}
- \item tablero: es la matriz en donde se ir\'an colocando las fichas que son posible soluci\'on hasta un paso determinado. Fue implementada mediante un arreglo de arreglos.
-\item fichas: es el arreglo que contiene todas las fichas de entrada del algoritmo (provenientes de Tp1Ej2.in).
-\item fichaActualEn: cada posici\'on de esta matriz contiene la posici\'on en el arreglo fichas de la ficha actual (la ficha que est\'a siendo evaluada como soluci\'on del tablero en un paso del algoritmo) para cada una de las casillas del tablero. Al igual que tablero, esta estructura est\'a implementada con un arreglo de arreglos.
-\item fichasPuestas: es un arreglo de datos \textit{booleanos} del mismo tama\~{n}o que fichas, que indica si una determinada ficha est\'a colocada en el tablero.
-\item jardineroViejo/Nuevo: estructura implementada a trav\'es de una lista enlazada, que se utiliza, como veremos m\'as adelante, para aplicar las podas del algoritmo.
+ \item \textbf{tablero:} es la matriz en donde se ir\'an colocando las fichas que son posible soluci\'on hasta un paso determinado. Fue implementada mediante un arreglo de arreglos.
+\item \textbf{fichas:} es el arreglo que contiene todas las fichas de entrada del algoritmo (provenientes de Tp1Ej2.in).
+\item \textbf{fichaActualEn:} cada posici\'on de esta matriz contiene la posici\'on en el arreglo fichas de la ficha actual (la ficha que est\'a siendo evaluada como soluci\'on del tablero en un paso del algoritmo) para cada una de las casillas del tablero. Al igual que tablero, esta estructura est\'a implementada con un arreglo de arreglos.
+\item \textbf{fichasPuestas:} es un arreglo de datos \textit{booleanos} del mismo tama\~{n}o que fichas, que indica si una determinada ficha est\'a colocada en el tablero.
+\item \textbf{jardineroViejo/Nuevo:} estructura implementada a trav\'es de una lista enlazada, que se utiliza, como veremos m\'as adelante, para aplicar las podas del algoritmo.
 \end{itemize}
 
 Luego de inicializar las estructuras, comienza el ciclo principal que intentar\'a colocar las fichas de una en una en el tablero finalizando una vez que este se complete (es decir, cuando $i = n$). En primer lugar se verifica que la ficha actual, apuntada por fichaActualEn[i][j], encaje en la posici\'on (i,j) del tablero y que la misma no pertenezca al conjunto de fichas puestas. En caso afirmativo, se procede a evaluar si se puede realizar una poda (posteriormente explicada en la secci\'on Poda). De no ser factible esta \'ultima, se coloca la ficha en el tablero y se avanza a la siguiente posici\'on del mismo. Si se llega a aplicar la poda, la ficha no se inserta.
@@ -398,7 +402,15 @@ En caso de que no se haya insertado una ficha en alg\'un paso del algoritmo, se 
 
 \subsection*{Poda}
 
+Con el fin de optimizar el rendimiento del algoritmo se aplicó el concepto de \textit{poda} visto en clase, relativo a todo algoritmo de \textit{backtracking}. La poda propuesta consiste en la siguiente idea que veremos a continuaci\'on. Cabe aclarar que esta poda no se aplica a los bordes izquierdo e inferior del tablero, ya que idea en cuesti\'on no es aplicable en dichas posici\'ones.
 
+En primer lugar, cada vez que se desea añadir una ficha, se genera un conjunto determinado de fichas relacionadas a la misma que llamaremos ``jardinero''. Un ``jardinero`` est\'a conformado por todas las fichas que pueden unirse por debajo con la ficha a la cual est\'a asociada el jardinero. . Como se puede ver en el pseudoc\'odigo, una vez que se verific\'o que la ficha actual es candidata para ser insertada en el tablero (aquella que encaja en la posici\'on actual seg\'un lo visto antes) se crea el jardinero asociado a esa ficha que denominaremos \textit{jardineroNuevo}. En el caso de encontrarse en el borde izquierdo del tablero, la poda no se aplica y simplemente \textit{jardineroNuevo} pasa a ser \textit{jardineroViejo}. Este \'ultimo siempre va a ser el jardinero asociado a la ficha anterior a la posici\'on actual del tablero. 
+
+Para los casos no pertenecientes al borde izquierdo (ni inferior), se evalua si se puede realizar la poda mediante la func\'ion \textit{puedoPodar(jardineroViejo, jardineroNuevo)}. Tal como muestra el pseudoc\'odigo, la misma verifica si hay intersecci\'on entre ambos jardineros, es decir, si alguna de las fichas de un jardinero puede encajar con alguna ficha del otro. Si ninguna encaja, implica que la ficha actual (\textit{fichas[fichaActualEn[i][j]]}) que se estaba por insertar no puede ir junto con la ficha anterior (ficha a su izquierda) en esa ubicaci\'on del tablero (quiz\'as si pueden formar parte del borde inferior). Observando este hecho desde el punto de vista de un algoritmo de \textit{backtracking}, al descartar esta posible soluci\'on se evita tener que ver todas las soluciones que involucren el haber insertado tal ficha en el tablero, evitando as\'i tener que analizar esa ''rama`` del \'arbol k-ario de posibles soluciones. Por este motivo, podemos afirmar que este procedimiento realizado constituye una \textit{poda} del \'arbol de \textit{backtracking}.
+
+Para poder mantener el invariante de tener siempre un jardinero asociado a la ficha anterior a la actual (\textit{jardineroViejo}) es necesario contemplar el caso en el que se retrocede a posiciones anteriores del tablero y se retira fichas insertadas anteriormente. En tal caso, como se puede ver en el pseudoc\'odigo, se genera un \textit{jardineroViejo} que se asocia la posici\'on anterior a la actual (es decir, la posici\'on (i\_ant, j\_ant)). De este modo, al iterar nuevamente, el jardinero de la nueva ficha a insertar (jardineroNuevo) puede evaluarse con el jardineroViejo para ver si se puede realizar una nueva poda.
+
+Como veremos enseguida, esta poda resulta efectiva en la pr\'actica, disminuyendo notoriamente los tiempos de ejecuci\'on.
 
 \section*{Complejidad}
 
