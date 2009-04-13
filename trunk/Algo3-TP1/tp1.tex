@@ -32,8 +32,8 @@ Antes de comenzar el an\'alisis de cada ejercicio, cabe mencionar lo siguiente:
  \item Los archivos fuente de los programas encargados de generar los datos para la realizaci\'on de los gr\'aficos, seg\'un el ejercicio, son:
   \begin{itemize}
     \item \underline{Ej 1:} mainPruebaPrimos1.cpp (Figura 1.1), mainPruebaPrimos2.cpp (Figura 1.2) y mainPruebaPrimos3.cpp (Figura 1.3).
-    \item \underline{Ej 2:} ???
-    \item \underline{Ej 3:} ???
+    \item \underline{Ej 2:} mainPruebaPuzzle.cpp
+    \item \underline{Ej 3:} mainPruebaMediana.cpp
   \end{itemize}
  \item Los gr\'aficos se realizaron con \textbf{GNUPlot} y las tablas con \textbf{OpenOffice Calc}. En los casos considerados pertinentes, se utiliz\'o una escala logar\'itmica con el fin de poder visualizar mejor los resultados.
 \end{itemize}
@@ -101,7 +101,7 @@ cuya suma equivalgan a $n$. Los pares $i, n - i$ satisfacen trivialmente esta co
 \section*{Complejidad}
 
 A continuaci\'on se analizara la complejidad de peor caso sobre los modelos
-uniforme y logaritmico. 
+uniforme y logaritmico.
 
 Nota: En el siguiente an\'alisis se hara referencia a funciones propias de la implementaci\'on de los algoritmos. Puede ver el c\'odigo fuente del mismo en la secci\'on \textit{Anexos}.
 
@@ -278,15 +278,15 @@ Tambi\'en vimos casos en los que entre n\'umeros cercanos tomados por la funci\'
 \bigskip
 
 \begin{center}
-\section*{Ejercicio 2: Resolucion de Puzzle}
+\section*{Ejercicio 2: Resoluci\'on de Puzzle}
 \end{center}
 
 \bigskip
 \section*{Introducci\'on}
 
-El objetivo del siguiente ejercicio es diseñar un algoritmo que, dado un tablero de tama\~{n}o $n$ y $n^{2}$ fichas, determine si existe una manera de colcar las fichas en el tablero, y en tal caso, retornarla. La condici\'on que determina si una ficha puede ser colocada es que, en cada uno de sus lados, contenga el mismo n\'umero que tiene la ficha con la que limita. Vale aclarar que las fichas no pueden ser rotadas y que los que lados limitan con un borde pueden tener cualquier n\'umero.
+El objetivo del siguiente ejercicio es diseñar un algoritmo que, dado un tablero de tama\~{n}o $n$ y $n^{2}$ fichas, determinar si existe una manera de colocar las fichas en el tablero, y en tal caso, retornarla. La condici\'on que determina si una ficha puede ser colocada es que, en cada uno de sus lados, contenga el mismo n\'umero que tiene la ficha con la que limita. Vale aclarar que las fichas no pueden ser rotadas y que los que lados limitan con un borde pueden tener cualquier n\'umero.
 
-Cuando empezamos a pensar el ejercicio surgi\'o la solución trivial, tan simple como ineficiente, utilizando un algoritmo de fuerza bruta que prueba todas las permutaciones posibles de las fichas en el tablero. Rapidamente se descart\'o esta opci\'on pues su costo es factorial. Se opt\'o entonces por aplicar la idea de \textit{backtracking} en la funci\'on, de esta manera, se toma una ficha del conjunto restante y se chequea si puede ser colocada en la pr\'oxima posici\'on. En caso afirmativo la ficha se coloca en dicha posici\'on y se realiza el mismo procedimiento para la siguiente casilla del tablero, sino se sigue buscando hasta encontrar una ficha que pueda ser colocada. Si ninguna de las fichas restantes puede ser colocada en el tablero entonces se regresa a la posici\'on anterior (aqu\'i queda explicita la idea de \textit{backtracking}) y se prueba con otra. Por \'ultimo, se plante\'o el uso de diversas podas para mejorar el rendimiento del algoritmo. Se dejaron de lado distintas opciones, ya sea por dificultad de implementaci\'on o exceso de complejidad temporal o espacial, tomando finalmente la poda que mejor se ajust\'o a los requerimientos necesarios.
+Cuando empezamos a pensar el ejercicio surgi\'o la soluci\'on trivial, tan simple como ineficiente, utilizando un algoritmo de fuerza bruta que prueba todas las permutaciones posibles de las fichas en el tablero. R\'apidamente se descart\'o esta opci\'on pues su costo es factorial. Se opt\'o entonces por aplicar la idea de \textit{backtracking} en la funci\'on, de esta manera, se toma una ficha del conjunto restante y se chequea si puede ser colocada en la pr\'oxima posici\'on. En caso afirmativo, la ficha se coloca en dicha posici\'on y se realiza el mismo procedimiento para la siguiente casilla del tablero, sino se sigue buscando hasta encontrar una ficha que pueda ser colocada. Si ninguna de las fichas restantes puede ser colocada en el tablero entonces se regresa a la posici\'on anterior (aqu\'i queda explicita la idea de \textit{backtracking}) y se prueba con otra. Por \'ultimo, se plante\'o el uso de diversas podas para mejorar el rendimiento del algoritmo. Se dejaron de lado distintas opciones, ya sea por dificultad de implementaci\'on o exceso de complejidad temporal o espacial, tomando finalmente la poda que mejor se ajust\'o a los requerimientos necesarios.
 
 \section*{Algoritmo}
 
@@ -400,10 +400,9 @@ En caso de que no se haya insertado una ficha en alg\'un paso del algoritmo, se 
 
 
 
-
 \section*{Complejidad}
 
-TODO
+Como el algoritmo propuesto se basa en la t\'ecnica de \textit{backtracking}, la complejidad del mismo en el peor caso es similar a la de un algoritmo de fuerza bruta. En este tipo de algoritmos, se generan todas las soluciones posibles y se eval\'uan para determinar si cumplen con el problema a resolver. La complejidad de generar y revisar todas las soluciones posibles es exponencial y, en particular, el algoritmo de fuerza bruta aplicado al problema presentado ser\'ia $O(n!)$, con $n$ la cantidad de fichas del tablero. A pesar de que los algoritmos de \textit{backtracking} descartan gran cantidad de casos y aplican podas para reducir el tiempo de ejecuci\'on, existen casos patol\'ogicos en que pocas de estas optimizaciones pueden ser utilizadas y, por lo tanto, se recorran todas las ramas de soluciones. Estos casos hacen que la complejidad en el peor caso del algoritmo presentado sea la misma que la de un algoritmo de fuerza bruta, es decir $O(n!)$ (siendo $n$ la cantidad de fichas totales del tablero). Sin embargo, como estudiaremos en posteriores secciones, el tiempo de ejecuci\'on del algoritmo difiere significativamente del tiempo del algoritmo de fuerza bruta.
 
 \section*{An\'alisis de resultados}
 
@@ -431,7 +430,13 @@ Por \'ultimo, cabe notar que el tiempo de ejecuci\'on real no est\'a estrictamen
 
 \section*{Conclusiones}
 
-TODO
+A lo largo del desarrollo del ejercicio, se experimentaron las particularidades de un algoritmo de \textit{backtracking}. Nos encontramos con diversas dificultades en la implementaci\'on, a pesar de que la idea intuitiva del algoritmo es relativamente simple. Adem\'as, llegamos a la conclusi\'on de que, si bien la complejidad en peor caso es muy elevada, el algoritmo en general suele ser mucho m\'as eficiente que algoritmos que utilizan la t\'ecnica de fuerza bruta para resolver este tipo de problemas. 
+
+Los principales incovenientes que surgen al implementar un algoritmo de \textit{backtracking} tienen que ver con la elecci\'on de la poda. Al momento de dicha elecci\'on, se deben considerar los aspectos de eficiencia, dificultad en la implementaci\'on y sobre todo, los beneficios (en relaci\'on al tiempo de ejecuci\'on) que esta provocar\'ia. Al pensar en detalle cada uno de las posibles podas, estos factores fueron determinantes para tomar una decisi\'on; podas que parec\'ian muy eficientes en principio, resultaban muy dif\'iciles de implementar y no aportaban cambios significativos que justifiquen su uso. A su vez, podas que parec\'ian descartar muchos casos, terminaban empeorando el tiempo de ejecuci\'on.
+
+Es importante destacar que al aplicar la poda propuesta, el algoritmo mejora considerablemente en promedio. Esta situaci\'on resultaba esperable y pudo ser comprobada emp\'iricamente en las pruebas realizadas. Tambi\'en, se not\'o una relaci\'on entre la distribuci\'on de fichas de entrada y el tiempo de ejecuci\'on del algoritmo presentado. Por ejemplo, existen casos en los que la disposici\'on de las fichas no permitan hacer podas y otros en los que no sea necesario tener que reemplazar alguna ficha.
+
+En conclusi\'on, la eficiencia del algoritmo de \textit{backtracking} depende fuertemente de las podas que se realicen y de la distribuci\'on probabil\'istica de los par\'ametros de entrada para casos promedio. Por esta raz\'on, la implementaci\'on de podas es determinante y justifica el tiempo invertido en idear las mismas.
 
 \begin{center}
 \section*{Ejercicio 3: C\'alculo de la mediana entre dos vectores}
@@ -595,7 +600,7 @@ Juntando ambas demostraciones podemos afirmar que en cada llamado recursivo la m
 
 \section*{Complejidad}
  
-En la siguiente secci\'on se calcular\'a la complejidad en el peor caso del algoritmo presentado bas\'andose en el modelo de c\'omputo uniforme.
+En la presente secci\'on se calcular\'a la complejidad en el peor caso del algoritmo presentado bas\'andose en el modelo de c\'omputo uniforme.
 
 La funci\'on presenta dos casos base que se dan cuando $n$ (variable que indica la longitud de los arreglos) toma los valores 1 \'o 2. En ambos casos el algoritmo s\'olo realiza comparaciones entre elementos y retorna un resultado, sin entrar en ning\'un ciclo.
 
