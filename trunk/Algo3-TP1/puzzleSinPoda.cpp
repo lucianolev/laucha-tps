@@ -1,13 +1,8 @@
-struct Ficha {
-	int arriba;
-	int abajo;
-	int izq;
-	int der;
-};
+#include "Ficha.h"
 
 using namespace std;
 
-Ficha** resolverPuzzle(Ficha* fichas, int n) {
+Ficha** resolverPuzzleSinPoda(Ficha* fichas, int n) {
 
 	Ficha** tablero = new Ficha*[n];
 	for(int i = 0; i < n; i++) {
