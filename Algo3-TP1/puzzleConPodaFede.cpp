@@ -28,51 +28,46 @@ Ficha** resolverPuzzle(Ficha* fichas, int n) {
 	int i = 0;
 	int j = 0;
 
-	Jardinero* jardineroViejo = new Jardinero();
-	Jardinero* jardineroNuevo = new Jardinero();
+	Jardinero* jardineroViejo;
+	Jardinero* jardineroNuevo;
 	bool metio;
-	
+	bool volviolgunavez;
+	int i_ant;
+	int j_ant;
 
 	while( i < n ) {
 		
-// 		Si estoy en un borde, asesino al los jardineros porque empiezo nueva jardineria
-		if (j == 0) {
-		
-		}
-// 		Si no estoy en un borde entonces el jardinero nuevo se hizo viejo, entonces el nuevo no existe
-		else {
-			if(jardineroNuevo != jardineroViejo){
-			}
-			
-			jardineroViejo = new Jardinero();
-			jardineroViejo = jardineroNuevo;
-
-		}	
-		
 		metio = false;
-		
 		if( (!fichasPuestas[fichaActualEn[i][j]]) &&
 			(i == 0 || (tablero[i-1][j]).abajo == (fichas[fichaActualEn[i][j]]).arriba) &&
 			(j == 0 || (tablero[i][j-1]).der == (fichas[fichaActualEn[i][j]]).izq))
 		{ //Si puedo poner la ficha...
-			
-			if (i != n-1) {
-// 				if(jardineroNuevo != jardineroViejo){
-// 				  //delete jardineroNuevo;
-// 				}
-				//Creo un jardinero nuevo y lo lleno con fichas
+
+			//Si no estoy en el borde de abajo creo un jardinero nuevo
+			if (i != n-1)
+			{
 				jardineroNuevo = new Jardinero();
-				for(int k = 0; k < n; k++) {
-					if(fichas[k].arriba == (fichas[fichaActualEn[i][j]]).abajo && !fichasPuestas[k]){
+				for(int k = 0; k < n*n; k++) {
+					if(fichas[k].arriba == (fichas[fichaActualEn[i][j]]).abajo && !fichasPuestas[k]) {
 						jardineroNuevo->agregarFicha(fichas[k]);
 					}
 				}
 			}
 
+			//Si estoy en borde izquierdo/abajo o si no puedo podar -> meto la ficha y avanzo
+			if (j == 0 || i == n-1 || !jardineroViejo->puedoPodar(jardineroNuevo)) 
+			{
+				//Si estoy en la primera posicion entonces el jardinero viejo es el nuevo q cree
+				if (j == 0 && i == 0) {
+					jardineroViejo = jardineroNuevo;
+				}
+				else {
+					if (i != n-1) { //Si no estoy en el borde de abajo borro el jardinero viejo y ahora el viejo es el que acabo de crear
+						delete jardineroViejo;
+						if (i != n-1) jardineroViejo = jardineroNuevo;
+					}
+				}
 
-
-			//Si estoy en un borde o si no puedo poder entonces meto la ficha y avanzo
-			if (j == 0 || i == n-1 || !jardineroViejo->puedoPodar(jardineroNuevo)) {
 				tablero[i][j] = fichas[fichaActualEn[i][j]];
 				fichasPuestas[fichaActualEn[i][j]] = true;
 				metio = true;
@@ -84,21 +79,17 @@ Ficha** resolverPuzzle(Ficha* fichas, int n) {
 				else {
 					j++;
 				}
-				//***lo muevo porque sino se rompe cuando poda o no puede meter la ficha por otra razon
-				//Asesino al jardinero viejo porque ya no me sirve
-
 			}
-			
+			else {
+				delete jardineroNuevo; //Si no meti nada tengo q borrar el jardinero nuevo que cree.
+			}
 		}
+
 		if (!metio) {
 			
-			if(jardineroNuevo != jardineroViejo){
-			 // delete jardineroNuevo;
-			}
-			jardineroNuevo = new Jardinero();
-			jardineroNuevo = jardineroViejo;
-
-			while( (fichaActualEn[i][j] == (n*n - 1))) {
+			volviolgunavez = false;
+			while (fichaActualEn[i][j] == (n*n - 1)) 
+			{
 				if (i == 0 && j == 0) { //No hay solucion
 					return 0;
 				}
@@ -111,28 +102,37 @@ Ficha** resolverPuzzle(Ficha* fichas, int n) {
 					j--;
 				}
 				fichasPuestas[fichaActualEn[i][j]] = false;
-				//***cuando se vuelve hay que crear un jardinero que va a ser el viejo
-				if (j != 0 and i != n-1 ){
-					if(jardineroNuevo != jardineroViejo){
-				//	  delete jardineroNuevo;
-					}
-					
-					//Creo un jardinero nuevo y lo lleno con fichas
-					jardineroNuevo = new Jardinero();
+				volviolgunavez = true;
+			}
+
+			if(volviolgunavez) {
+				if (j == 0) {
+					i_ant = i-1;
+					j_ant = n-1;
+				}
+				else {
+					i_ant = i;
+					j_ant = j-1;
+				}
+// 				if ((i_ant != n-1) && !(i_ant == n-2 && j_ant == n-1))
+// 					delete jardineroViejo;
+				if (i_ant != n-1)
+					delete jardineroViejo;
+				if ((j_ant >= 0 && i_ant >= 0) && (i_ant != n-1)) {
+					//Creo un jardinero viejo y lo lleno con fichas
+					jardineroViejo = new Jardinero();
 					for(int k = 0; k < n*n; k++) {
-						if(fichas[k].arriba == (fichas[fichaActualEn[i][j-1]]).abajo && !fichasPuestas[k]){
-							jardineroNuevo->agregarFicha(fichas[k]);
+						if(fichas[k].arriba == (fichas[fichaActualEn[i_ant][j_ant]]).abajo && !fichasPuestas[k]) {
+							jardineroViejo->agregarFicha(fichas[k]);
 						}
 					}
 				}
 			}
+
 			fichaActualEn[i][j]++;
 		}
 	}
-
-// 	delete jardineroNuevo;
-// 	delete jardineroViejo;
-// 	
+	//delete jardineroViejo; //Borro el jardinero de [n-2][n-1] que nunca borre
 
 	return tablero;
 }
