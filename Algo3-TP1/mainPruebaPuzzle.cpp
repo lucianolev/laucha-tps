@@ -1,8 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
+<<<<<<< .mine
+//#include "PuzzleConPodaMati.cpp"
+#include "puzzleConPodaFede.cpp"
+=======
 #include "puzzleConPodaFede.cpp"
 #include "puzzleSinPoda.cpp"
+>>>>>>> .r42
 #include "Archivo.h"
 #include <sys/time.h>
 
@@ -118,9 +123,17 @@ int main() {
 		salida.nuevaLinea();
 
 		for(int i = 0; i < n; i++)
+<<<<<<< .mine
+			delete [] resultado[i];
+=======
 			delete [] resultadoSP[i];
+>>>>>>> .r42
 		
+<<<<<<< .mine
+		delete [] resultado;
+=======
 		delete [] resultadoSP;
+>>>>>>> .r42
 		
 		for(int i = 0; i < n; i++)
 			delete [] resultadoCP[i];

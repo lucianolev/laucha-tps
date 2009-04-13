@@ -243,7 +243,7 @@ Figura 1.1
 \end{center}
 \end{center}
 
-Este gr\'afico muestra la comparaci\'on entre las mediciones de tiempo de la primera prueba realizada y la complejidad te\'orica expuesta anteriormente. Llamaremos $f$ a la funci\'on que relaciona el tiempo de ejecuci\'on con el tama\~{n}o de entrada. Como se puede apreciar, el crecimiento de $f$ es mucho menor que la complejidad te\'orica, por lo cual el algoritmo resulta mucho m\'as eficiente que lo esperado. Sin embargo, a pesar de su comportamiento altamente irregular, se puede apreciar que el tiempo de ejecuci\'on aumenta a medida que crece el tama\~{n}o de la entrada. La raz\'on de la discrepancia entre ambas funciones reside un hecho que denominaremos ``el lema de la aproximaci\'on asintotica natural en el anillo conmutativo modelado implicitamente por los numeros primos y sus respectivas operaciones''. La raz\'on de la discrepancia entre ambas funciones reside en el hecho de que el algoritmo implementado encuentra dos n\'umeros primos que cumplen con la conjetura en una muy baja cantidad de operaciones en relaci\'on al taman\~{n}o de la entrada. Si bien se desconoce el motivo de este fen\'omeno, hemos probado emp\'iricamente que esto se cumple como se puede notar en la siguiente tabla (Prueba 2).
+Este gr\'afico muestra la comparaci\'on entre las mediciones de tiempo de la primera prueba realizada y la complejidad te\'orica expuesta anteriormente. Llamaremos $f$ a la funci\'on que relaciona el tiempo de ejecuci\'on con el tama\~{n}o de entrada. Como se puede apreciar, el crecimiento de $f$ es mucho menor que la complejidad te\'orica, por lo cual el algoritmo resulta mucho m\'as eficiente que lo esperado. Sin embargo, a pesar de su comportamiento altamente irregular, se puede apreciar que el tiempo de ejecuci\'on aumenta a medida que crece el tama\~{n}o de la entrada. La raz\'on de la discrepancia entre ambas funciones reside en el hecho de que el algoritmo implementado encuentra dos n\'umeros primos que cumplen con la conjetura en una muy baja cantidad de operaciones en relaci\'on al taman\~{n}o de la entrada. Si bien se desconoce el motivo de este fen\'omeno, hemos probado emp\'iricamente que esto se cumple como se puede notar en la siguiente tabla (Prueba 2).
 
 \begin{center}
  \includegraphics[width=0.5\textwidth]{Plots/Ej1-MayoresPrimos.png}
@@ -290,7 +290,116 @@ Cuando empezamos a pensar el ejercicio surgi\'o la solución trivial, tan simple
 
 \section*{Algoritmo}
 
-TODO
+A continuaci\'on se presenta el pseudoc\'odigo del algoritmo para resolver el problema propuesto.
+
+\begin{verbatim}
+resolverPuzzle(fichas[0..n^2-1], n) 
+
+  tablero[n][n]
+
+  fichaActualEn[n][n]
+  para i desde 0 hasta n-1
+    para j desde 0 hasta n-1
+      fichaActualEn[i][j] = 0
+
+  fichasPuestas[0..n^2-1]
+  para i desde 0 hasta n^2-1
+    fichasPuestas[i] = false
+
+  i = 0
+  j = 0
+
+  lista jardineroViejo = lista vacia
+  lista jardineroNuevo = lista vacia
+  metio = false
+  volviolgunavez = false
+  i_ant = 0
+  j_ant = 0
+
+  mientras i < n
+
+    si !fichasPuestas[fichaActualEn[i][j]] y
+      (i = 0 ó abajo(tablero[i-1][j]) = arriba(fichas[fichaActualEn[i][j]])) y
+      (j = 0 ó derecha(tablero[i][j-1]) = izquierda(fichas[fichaActualEn[i][j]]))
+
+      si i != n-1
+        vaciar(jardineroNuevo)
+        para k desde 0 hasta n^2-1
+          si arriba(fichas[k]) = abajo(fichas[fichaActualEn[i][j]]) y !fichasPuestas[k]
+            jardineroNuevo = jardineroNuevo U fichas[k]
+
+      si j = 0 ó i = n-1 ó !puedoPodar(jardineroViejo, jardineroNuevo)
+
+        si i != n-1
+          jardineroViejo = jardineroNuevo
+
+        tablero[i][j] = fichas[fichaActualEn[i][j]]
+        fichasPuestas[fichaActualEn[i][j]] = true
+        metio = true
+        si j = n-1
+          i = i + 1
+          j = 0;
+        sino
+          j = j + 1
+
+    si !metio
+
+      volviolgunavez = false;
+      mientras fichaActualEn[i][j] = n^2-1
+
+        si i = 0 y j = 0
+          devolver "No hay solucion"
+        fichaActualEn[i][j] = 0
+        si j = 0
+          i = i - 1
+          j = n-1
+        sino
+          j = j - 1
+
+        fichasPuestas[fichaActualEn[i][j]] = false
+        volviolgunavez = true
+
+      si volviolgunavez = true
+        si j = 0
+          i_ant = i-1
+          j_ant = n-1
+        sino
+          i_ant = i
+          j_ant = j-1
+
+        si (j_ant != 0 ó i_ant != 0) y (i_ant != n-1)
+          vaciar(jardineroViejo)
+        para k desde 0 hasta n^2-1
+          si arriba(fichas[k]) = abajo(fichas[fichaActualEn[i_ant][j_ant]]) y !fichasPuestas[k]
+            jardineroViejo = jardineroViejo U fichas[k]
+
+      fichaActualEn[i][j] = fichaActualEn[i][j] + 1
+
+  devolver tablero
+
+
+puedoPodar(lista1, lista2)
+  devolver interseccion(lista1, lista2) != vacio
+
+\end{verbatim}
+
+En primer lugar, para la implementaci\'on se utilizaron las siguientes estructuras:
+\begin{itemize}
+ \item tablero: es la matriz en donde se ir\'an colocando las fichas que son posible soluci\'on hasta un paso determinado. Fue implementada mediante un arreglo de arreglos.
+\item fichas: es el arreglo que contiene todas las fichas de entrada del algoritmo (provenientes de Tp1Ej2.in).
+\item fichaActualEn: cada posici\'on de esta matriz contiene la posici\'on en el arreglo fichas de la ficha actual (la ficha que est\'a siendo evaluada como soluci\'on del tablero en un paso del algoritmo) para cada una de las casillas del tablero. Al igual que tablero, esta estructura est\'a implementada con un arreglo de arreglos.
+\item fichasPuestas: es un arreglo de datos \textit{booleanos} del mismo tama\~{n}o que fichas, que indica si una determinada ficha est\'a colocada en el tablero.
+\item jardineroViejo/Nuevo: estructura implementada a trav\'es de una lista enlazada, que se utiliza, como veremos m\'as adelante, para aplicar las podas del algoritmo.
+\end{itemize}
+
+Luego de inicializar las estructuras, comienza el ciclo principal que intentar\'a colocar las fichas de una en una en el tablero finalizando una vez que este se complete (es decir, cuando $i = n$). En primer lugar se verifica que la ficha actual, apuntada por fichaActualEn[i][j], encaje en la posici\'on (i,j) del tablero y que la misma no pertenezca al conjunto de fichas puestas. En caso afirmativo, se procede a evaluar si se puede realizar una poda (posteriormente explicada en la secci\'on Poda). De no ser factible esta \'ultima, se coloca la ficha en el tablero y se avanza a la siguiente posici\'on del mismo. Si se llega a aplicar la poda, la ficha no se inserta.
+
+En caso de que no se haya insertado una ficha en alg\'un paso del algoritmo, se intentar\'a colocar la siguiente ficha (es decir, se aumenta fichaActualEn[i][j]). Si la ficha revisada resulta ser la \'ultima por revisar, se retrocede hasta la posici\'on del tablero m\'as cercana que tenga fichas por revisar a\'un. Como se sugiri\'o anteriormente, dicha comprobaci\'on se realiza por medio de la matriz fichaActualEn. Si se intentara retroceder de la posici\'on inicial (0,0) la instancia recibida no tiene soluci\'on y, por lo tanto, el algoritmo finaliza informando tal evento.
+
+\subsection*{Poda}
+
+
+
 
 \section*{Complejidad}
 
