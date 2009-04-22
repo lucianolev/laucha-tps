@@ -1,14 +1,12 @@
-import Dengue;
-
-import java.util.LinkedList;
+import java.io.IOException;
 
 class MainDengue {
 
-	public static void main(String argv[]) {
+	public static void main(String argv[]) throws IOException {
 		Dengue dengue = new Dengue();
-		LinkedList listaDeInstancias = dengue.leerDatosDeArchivo("Tp2Ej1.in");
-		dengue.resolverInstancias(listaDeInstancias);
-		dengue.guardarResultados("Tp2Ej1.out");
+		dengue.cargarDatosDeArchivo("Tp2Ej1.in");
+ 		dengue.resolverInstanciasCargadas();
+ 		dengue.guardarResultados("Tp2Ej1.out");
 	}
 
 }
