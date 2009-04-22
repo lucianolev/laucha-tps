@@ -1,4 +1,4 @@
-class InstanciaDengue {
+public class InstanciaDengue {
 
 	public InstanciaDengue() {
 		zonas = 0;
