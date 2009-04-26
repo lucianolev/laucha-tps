@@ -1,0 +1,14 @@
+== Ej1 ==
+
+=== Código ===
+  * Pensar los algoritmos - *LISTO*
+  * Implementación funcional de los algoritmos - *LISTO*
+  * Generador de instancias - *Lucho*
+  * Programa para generar resultados para las pruebas. - *Lucho*
+
+=== Informe ===
+  * Introducción - *Lucho*
+  * Algoritmo: Pseudocódigo, implementación y correctitud. - *Fede y Mati*
+  * Complejidad - *Agustin?*
+  * Análisis de resultados - *Lucho*
+  * Conclusiones
