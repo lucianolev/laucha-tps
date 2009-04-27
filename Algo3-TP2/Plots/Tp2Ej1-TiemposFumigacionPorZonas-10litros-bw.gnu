@@ -4,4 +4,4 @@ set ylabel "Tiempo de Ejecucion (en microsegs)"
 set xlabel "Cantidad de Zonas"
 set yrange [0:15000]
 set output "Tp2Ej1-TiemposFumigacionPorZonas-10litros-bw.png"
-plot "Tp2Ej1-Tiempos-10litros.out" using 1:3 with lines title "T(n)" lc rgb "grey", x lc rgb "black"
+plot "Tp2Ej1-Tiempos-10litros.out" using 1:3 with lines title "T(n)" lc rgb "grey", x/1.1 title "n/1.1" lc rgb "black"
