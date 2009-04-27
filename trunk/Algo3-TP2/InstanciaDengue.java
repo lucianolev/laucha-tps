@@ -13,14 +13,14 @@ public class InstanciaDengue {
 		maxMosquitosMuertos = 0;
 	}
 
-	public void generarInstanciaRandom(int paramZonas, int paramLitros) {
+	public void generarInstanciaRandom(int paramZonas, int paramLitros, int rangoRandom) {
 		zonas = paramZonas;
 		litros = paramLitros;
 		mosquitosMuertos = new int[zonas][litros+1];
 		for (int i = 0; i < paramZonas; i++) {
 			mosquitosMuertos[i][0] = 0; //el litro 0 es 0 para cada zona
 			for (int j = 1; j <= paramLitros; j++) {
-				mosquitosMuertos[i][j] = (int)(Math.random()*100);
+				mosquitosMuertos[i][j] = (int)(Math.random()*rangoRandom);
 			}
 		}
 	}

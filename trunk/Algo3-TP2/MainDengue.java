@@ -5,7 +5,7 @@ import java.util.ArrayList;
 class MainDengue {
 
 	public static void main(String[] args) throws IOException {
-		System.out.println("Modo de Uso: java MainDengue (-in <archivoentrada>) || (-random <limite> <esparcimiento> [-fijarparametro <cantidad> (litros || zonas)]) [-out <archivosalida>] [-guardartiempos <archivosalida>]");
+		System.out.println("Modo de Uso: java MainDengue (-in <archivoentrada>) || (-random <limite> <esparcimiento> <rangorandom> [-fijarparametro <cantidad> (litros || zonas)]) [-out <archivosalida>] [-guardartiempos <archivosalida>]");
 		System.out.println();
 
 		Dengue dengue = new Dengue();
@@ -26,19 +26,20 @@ class MainDengue {
 			} else if((indexRandom = argslist.indexOf("-random")) >= 0) {
 				int limite = Integer.parseInt(args[indexRandom+1]);
 				int esparcimiento = Integer.parseInt(args[indexRandom+2]);
+				int rangoRandom = Integer.parseInt(args[indexRandom+3]);
 				if((indexFijarParametro = argslist.indexOf("-fijarparametro")) >= 0) {
 					int cantidad = Integer.parseInt(args[indexFijarParametro+1]);
 					if (args[indexFijarParametro+2].equals("litros")) {
-						dengue.cargarInstanciasRandomConLitrosFijoHasta(cantidad, limite, esparcimiento);
+						dengue.cargarInstanciasRandomConLitrosFijoHasta(cantidad, limite, esparcimiento, rangoRandom);
 					}
 					else if (args[indexFijarParametro+2].equals("zonas")) {
-						dengue.cargarInstanciasRandomConZonasFijoHasta(cantidad, limite, esparcimiento);
+						dengue.cargarInstanciasRandomConZonasFijoHasta(cantidad, limite, esparcimiento, rangoRandom);
 					} else {
 						ArrayIndexOutOfBoundsException e = new ArrayIndexOutOfBoundsException();
 						throw e;
 					}
 				} else {
-					dengue.cargarInstanciasRandomHasta(limite, esparcimiento);
+					dengue.cargarInstanciasRandomHasta(limite, esparcimiento, rangoRandom);
 				}
 				dengue.resolverInstanciasCargadas();
 			}
