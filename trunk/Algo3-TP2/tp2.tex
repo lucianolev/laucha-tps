@@ -60,44 +60,53 @@ com\'un. A partir de esto, se realiz\'o la siguiente conjetura: ``Sea $p$ el may
 
 A continuaci\'on se encuentra el pseudoc\'odigo relativo al algoritmo propuesto
 que resuelve el problema, seguido de una breve explicaci\'on acerca del
-funcionamiento y correctitud del mismo.
+funcionamiento del mismo.
 
 \begin{verbatim}
-esPrimo(n)
-  si n = 2 
-    devolver true
-  si n es divisible por 2
-    devolver false
-  para todo i par desde 3 hasta raiz de n
-    si n es divisible por i
-      devolver false
-  devolver true
+maxMMParcial[0..zonas][0..litros]
 
-encontrarPrimos(n)
-  si n = 4
-    devolver (2,2)
-  para todo i par desde 3 hasta n/2
-    si esPrimo(i) y esPrimo(n-i)
-      devolver (i,n-i)
-  devolver (0,0)
+para j desde 0 hasta litros
+  maxMMParcial[0][j] = 0
+
+para i desde 0 hasta zonas
+  para j desde 0 hasta litros
+    max_parcial = M[i-1,j]
+    k = 1
+    mientras k <= j
+      max_parcial = maximo(max_parcial, M[i-1,j-k] + MM[i][k])
+    maxMMParcial[i][j] = max_parcial
+
+litrosPorZona[0..zonas-1]
+litrosRestantes = litros
+j = litrosRestantes
+para i desde zonas hasta 1
+  mientras j >= 0 y (maxMMParcial[i][litrosRestantes] - MM[i-1][litrosRestantes - j]) != maxMMParcial[i-1][j]
+    j = j - 1
+  litrosPorZona[i-1] = litrosRestantes - j
+  litrosRestantes = j
+
+guardar en Tp2Ej1.out la linea "maxMMParcial[zonas][litros]"
+para i desde 0 hasta zonas-1
+  guardar en Tp2Ej1.out el valor "litrosPorZona[i]"
+
 \end{verbatim}
 
-En primer lugar, se encuentr\'a la definici\'on de la funci\'on \textit{esPrimo}
-que, tal como su nombre indica, retorna \textit{true} en caso de que el n\'umero
-pasado como par\'amentro sea un n\'umero primo y \textit{false} en caso
-contrario. El algoritmo en cuesti\'on consiste en un m\'etodo simple pero
-efectivo: En primer lugar, hay 2 casos base, el primero retorna \textit{true} en caso de
-tratarse del n\'umero 2 y el segundo evalua si el numero es par (divisible por
-2), retornando \textit{false} en este caso, ya que todo numero par mayor que 2
-no es primo. Luego, el ciclo principal evalua si el par\'ametro $n$ es divisible
-por alg\'un n\'umero impar $i$ con $3 \leq i \leq \sqrt{n}$, retornando
-\textit{false} en tal caso. La correctitud de tal procedimiento se desprende
-directamente del teorema que predica que si $n$ es un n\'umero primo entonces
-existe al menos un divisor d tal que $2 \leq d < \sqrt{n}$.
-
-Con respecto al algoritmo relativo al problema en s\'i, la idea consiste en
-recorrer todos los n\'umeros impares comprendidos entre $3$ y $n-3$ de a pares
-cuya suma equivalgan a $n$. Los pares $i, n - i$ satisfacen trivialmente esta condici\'on, ya que $i + (n-i) = n$. Del mismo modo, es f\'acil ver que para generar todos los n\'umeros del rango mencionado, basta con variar i tal que $3 \le i \le n/2$. De esta forma se ve claramente que esPrimo(i) comprende el rango $3..n/2$, y $esPrimo(n-i)$ el rango $n/2..n-3$. De este modo, cuando se satisface que $esPrimo(i) \& esPrimo(n-i) == true$ se puede afirmar que se ha encontrado el par de n\'umeros que cumplen con la conjetura: dos n\'umeros primos cuya suma es $n$. En caso de que no hallar dicha tupla dentro del rango propuesto, se puede concluir que la conjetura de Goldbach era falsa, retornando la tupla (0,0) en este caso.  
+% En primer lugar, se encuentr\'a la definici\'on de la funci\'on \textit{esPrimo}
+% que, tal como su nombre indica, retorna \textit{true} en caso de que el n\'umero
+% pasado como par\'amentro sea un n\'umero primo y \textit{false} en caso
+% contrario. El algoritmo en cuesti\'on consiste en un m\'etodo simple pero
+% efectivo: En primer lugar, hay 2 casos base, el primero retorna \textit{true} en caso de
+% tratarse del n\'umero 2 y el segundo evalua si el numero es par (divisible por
+% 2), retornando \textit{false} en este caso, ya que todo numero par mayor que 2
+% no es primo. Luego, el ciclo principal evalua si el par\'ametro $n$ es divisible
+% por alg\'un n\'umero impar $i$ con $3 \leq i \leq \sqrt{n}$, retornando
+% \textit{false} en tal caso. La correctitud de tal procedimiento se desprende
+% directamente del teorema que predica que si $n$ es un n\'umero primo entonces
+% existe al menos un divisor d tal que $2 \leq d < \sqrt{n}$.
+% 
+% Con respecto al algoritmo relativo al problema en s\'i, la idea consiste en
+% recorrer todos los n\'umeros impares comprendidos entre $3$ y $n-3$ de a pares
+% cuya suma equivalgan a $n$. Los pares $i, n - i$ satisfacen trivialmente esta condici\'on, ya que $i + (n-i) = n$. Del mismo modo, es f\'acil ver que para generar todos los n\'umeros del rango mencionado, basta con variar i tal que $3 \le i \le n/2$. De esta forma se ve claramente que esPrimo(i) comprende el rango $3..n/2$, y $esPrimo(n-i)$ el rango $n/2..n-3$. De este modo, cuando se satisface que $esPrimo(i) \& esPrimo(n-i) == true$ se puede afirmar que se ha encontrado el par de n\'umeros que cumplen con la conjetura: dos n\'umeros primos cuya suma es $n$. En caso de que no hallar dicha tupla dentro del rango propuesto, se puede concluir que la conjetura de Goldbach era falsa, retornando la tupla (0,0) en este caso.  
 
 \section*{Correctitud}
 
@@ -115,7 +124,7 @@ $R + cantMM(n,k) > Q + cantMM(n,k) = P \Rightarrow R + cantMM(n,k) > P$
 
 Esto es un absurdo ya que supusimos que $P$ era la cantidad \'optima. Este absurdo surge de suponer que la cantidad de mosquitos muertos hasta la zona $n-1$ con $l-k$ litros no era \'optima. Entonces queda demostrado que vale el principio de optimalidad para el problema planteado.
 
-\subsection*{Demostraci\'on de la correctitud}
+\subsection*{Demostraci\'on de correctitud}
 
 A partir de la idea presentada en la secci\'on anterior se puede plantear la siguiente funci\'on recursiva para resolver el problema.
 
