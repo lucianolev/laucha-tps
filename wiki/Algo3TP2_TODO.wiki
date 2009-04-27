@@ -3,12 +3,12 @@
 === Código ===
   * Pensar los algoritmos - *LISTO*
   * Implementación funcional de los algoritmos - *LISTO*
-  * Generador de instancias - *Lucho*
-  * Programa para generar resultados para las pruebas. - *Lucho*
+  * Generador de instancias - *LISTO*
+  * Programa para generar resultados para las pruebas. - *LISTO*
 
 === Informe ===
-  * Introducción - *Lucho*
+  * Introducción
   * Algoritmo: Pseudocódigo, implementación y correctitud. - *Fede y Mati*
-  * Complejidad - *Agustin?*
-  * Análisis de resultados - *Lucho*
+  * Complejidad - *Agustin*
+  * Análisis de resultados: Graficos e analisis - *Lucho*
   * Conclusiones
