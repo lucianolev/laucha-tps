@@ -99,6 +99,54 @@ Con respecto al algoritmo relativo al problema en s\'i, la idea consiste en
 recorrer todos los n\'umeros impares comprendidos entre $3$ y $n-3$ de a pares
 cuya suma equivalgan a $n$. Los pares $i, n - i$ satisfacen trivialmente esta condici\'on, ya que $i + (n-i) = n$. Del mismo modo, es f\'acil ver que para generar todos los n\'umeros del rango mencionado, basta con variar i tal que $3 \le i \le n/2$. De esta forma se ve claramente que esPrimo(i) comprende el rango $3..n/2$, y $esPrimo(n-i)$ el rango $n/2..n-3$. De este modo, cuando se satisface que $esPrimo(i) \& esPrimo(n-i) == true$ se puede afirmar que se ha encontrado el par de n\'umeros que cumplen con la conjetura: dos n\'umeros primos cuya suma es $n$. En caso de que no hallar dicha tupla dentro del rango propuesto, se puede concluir que la conjetura de Goldbach era falsa, retornando la tupla (0,0) en este caso.  
 
+\section*{Correctitud}
+
+En esta secci\'on se analizar\'a en detalle la validez del algoritmo propuesto anteriormente. En primer lugar, se mostrar\'a c\'omo aplica el principio de optimalidad al problema dado. En segundo lugar, se demostrar\'a la correctitud del algoritmo expres\'andolo de forma recursiva para facilitar dicha demostraci\'on. Finalmente, se mostrar\'a que la forma recursiva del algoritmo y la versi\'on presentada en anteriores secciones son equivalentes en t\'erminos de correctitud por lo que quedar\'a demostrada la correctitud del algoritmo propuesto.
+  
+\subsection*{Principio de optimalidad}
+
+Demostraremos por qu\'e vale el principio de optimilidad en este problema por el absurdo.
+
+Sean $n$ y $l$ la cantidad de zonas y litros disponibles respectivamente y que las zonas se numeran de $1$ a $n$. Suponemos que la cantidad de mosquitos muertos con $l$ litros hasta la zona $n$ es \'optima y llamaremos $P$ a dicha cantidad. Sea $k$ la cantidad de litros usados en la zona $n$, suponemos que hasta la zona $n-1$ usando $l-k$ litros la cantidad de mosquitos muertos ($Q$) no es \'optima y se intenta llegar a un absurdo.
+
+Si hasta la zona $n-1$ la cantidad de mosquitos muertos no es \'optima (para $l-k$ litros), existe otra forma de distribuir los $l-k$ litros entre las zonas $1$ a $n-1$ que hace que la nueva cantidad, a la que llamaremos $R$, sea \'optima (es decir, $R > Q$). Entonces tenemos que
+
+$R + cantMM(n,k) > Q + cantMM(n,k) = P \Rightarrow R + cantMM(n,k) > P$
+
+Esto es un absurdo ya que supusimos que $P$ era la cantidad \'optima. Este absurdo surge de suponer que la cantidad de mosquitos muertos hasta la zona $n-1$ con $l-k$ litros no era \'optima. Entonces queda demostrado que vale el principio de optimalidad para el problema planteado.
+
+\subsection*{Demostraci\'on de la correctitud}
+
+A partir de la idea presentada en la secci\'on anterior se puede plantear la siguiente funci\'on recursiva para resolver el problema.
+
+$\\ f(1,l) = max_{1 \leq j \leq l} (MM[1][j]) \\
+ f(i,l) = max_{0 \leq k \leq l} (f(i-1, l-k) + MM[i][k]) \;\;\;\; $ si $i > 1
+$ \\
+
+Siendo $MM[i][j]$ la matriz que contiene la cantidad de mosquitos muertos por litro, de cada zona. La soluci\'on al problema ser\'ia $f(n,l)$ con $n$ la cantidad de zonas y $l$ la cantidad de litros disponibles.
+
+Para demostrar que la funci\'on presentada es correcta utilizaremos inducci\'on en la cantidad de zonas manteniendo la cantidad $l$ de litros fija. Es decir, queremos probar la siguiente proposición. \\
+
+P(n): $f(n, i)$ es la cantidad máxima de mosquitos muertos hasta la zona $n$ con $i$ litros. ($0 \leq i \leq l$) \\
+
+\textbf{Caso Base ($P(1)$)}
+
+$f(1,i) = max_{1 \leq j \leq i} (MM[1][j]) \;\;\;\; $ con $i \leq 1$
+
+Entonces, como se puede notar, $f(1,i)$ es trivialmente la cantidad máxima de mosquitos muertos de la primera zona con $i$ litros. \\
+
+\textbf{Paso inductivo ($P(n) \Rightarrow P(n+1)$)}
+
+Supongo que $f(n,i)$ es la máxima cantidad de mosquitos muertos hasta la zona $n$ con $i$ litros ($0 \leq i \leq l$) y demuestro que $f(n+1,i)$ es la cantidad máxima hasta la zona $n+1$.
+Como $n+1 > 1$ tenemos que \\
+
+$f(n+1,i) = max_{0 \leq k \leq i} (f(n, i-k) + MM[n+1][k])$ \\
+
+Como $i - k \leq l$ para cualquier $k \leq i$ puedo aplicar la hipótesis inductiva, es decir, $f(n,i-k)$ es la máxima cantidad hasta la zona $n$ con $i-k$ litros. Entonces con $max_{0 \leq k \leq i} (f(n, i-k) + MM[n+1][k])$ obtengo la máxima cantidad de mosquitos muertos hasta la zona $n+1$ con $i$ litros pues $f(n,i-k)$ es máxima y se calcula el máximo para todas las cantidades $k$ de litros posibles para dicha zona. Entonces, como vale $P(1)$ y $P(n) \Rightarrow P(n+1)$ por principio de inducci\'on queda demostrada la proposici\'on.
+
+\subsection*{Equivalencia entre la función recursiva y el algoritmo presentado}
+
+
 \section*{Complejidad}
 
 A continuaci\'on se analizara la complejidad de peor caso sobre los modelos
