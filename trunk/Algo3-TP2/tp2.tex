@@ -157,76 +157,32 @@ Como $i - k \leq l$ para cualquier $k \leq i$ puedo aplicar la hipótesis induct
 
 \section*{Complejidad}
 
-A continuaci\'on se analizara la complejidad de peor caso sobre los modelos
-uniforme y logaritmico.
+En la presente secci\'on se calcular\'a la complejidad en el peor caso del algoritmo \textit{fumigar} bas\'andose en el modelo de c\'omputo uniforme. Para esto se dividir\'a el analisis en el estudio de las dos partes de la funci\'on: \textit{fumigaci\'on} y \textit{c\'alculo de litros por zona}
 
-Nota: En el siguiente an\'alisis se hara referencia a funciones propias de la implementaci\'on de los algoritmos. Puede ver el c\'odigo fuente del mismo en la secci\'on \textit{Anexos}.
+En la funci\'on \textit{fumigaci\'on} todas las operaciones y asignaciones utilizadas se logran en tiempo constante. Esto se debe al mencionado modelo de c\'omputo utilizado, en donde las operaciones presentes en el algoritmo no dependen del tama\~{n}o de los par\'ametros de entrada. De esta manera, la complejidad de esta funci\'on estar\'a supeditada al comportamiento de los ciclos que contiene. Llamaremos $a$ $b$ y $c$ a los ciclos, donde $a$ contiene a $b$ y este \'ultimo contiene a $c$. Se puede apreciar claramente que b itera $m$ veces (donde $m$ es la cantidad de litros) y que en cada iteraci\'on de b, se realiza una vez el ciclo c. El l\'imite de este ciclo esta dado por la variable de iteraci\'on de b (en el pseudoc\'odigo se llamada $j$), de manera que, en cada iteraci\'on de b, la cantidad de vueltas del ciclo c aumenta en uno, comenzando desde cero (valor de inicio de la variable $j$) hasta $m$. La complejidad del ciclo b sera entonces:
 
-\subsection*{Modelo Uniforme:}
+$$\sum_{j=0}^{m}j=\sum_{j=1}^{m}j=(m+1)m/2\ \in O(m^{2})  $$
 
-En este modelo el an\'alisis no esta centrado en el tama\~{n}o de los operandos
-por lo que el tiempo de ejecuci\'on de cada operaci\'on se considera constante.
+El ciclo analizado se encuentra dentro de $a$, este \'ultimo se recorre $n$ veces (donde $n$ es la cantidad de zonas) debido a que su variable de iteraci\'on (en el pseudoc\'odigo llamada $i$) es inicializada en cero y aumentada en uno hasta llegar al valor $n$. Finalmente podemos concluir que la complejidad de la funci\'on \textit{fumigaci\'on} es:
 
-En la funci\'on \textit{esPrimo} todas las operaciones y asignaciones utilizadas se
-logran en tiempo constante por lo mencinado anteriormente, de esta manera la
-complejidad de esta funci\'on depende del ciclo que contiene. Como itera sobre
-\textit{i} entre 3 (valor de inicializaci\'on) y $\sqrt{n}+1$, y ademas en cada
-vuelta del ciclo la variable es aumentada en 2, claramente se aprecia que en el
-peor caso (es decir que nunca se cumpla la condici\'on n mod i = 0) el ciclo se
-recorre aproximadamente $\sqrt{n}/2$ veces. De esta manera concluimos que $T(n)
-\in O(\sqrt{n})$.
+$$T(n,m)=n((m+1)m/2)\ \in O(nm^{2})$$
 
-En cuanto a la complejidad de las operaciones y asignaciones realizadas en la
-funci\'on \textit{encontrarPrimos} el caso es el mismo al de \textit{esPrimo} debido al modelo de
-computo. La unica operaci\'on dentro del pseudocodigo de encontrarPrimos de
-complejidad superior a constante es la analizada anteriormente y dicha operacion se
-encuentra dentro del \'unico ciclo de la funci\'on por lo que concentraremos el
-an\'alisis de complejidad aqui. En este caso iteramos sobre el mismo valor de
-inicio pero el limite del ciclo esta dado por $n/2$. Tambien aqui la variable
-\textit{i} es aumentada en 2 en cada iteraci\'on lo que determina que en el peor
-caso se iterar\'a aproximada mente $(n/2)/2 = n/4$ veces. Como dentro del ciclo
-se llama a esPrimo (complejidad $\sqrt{n}$) la complejidad final de la funci\'on
-encontrarPrimos es $T(n) \in O(n*\sqrt{n})$.
 
-\subsection*{Modelo Logar\'itmico:}
+Por otro lado, analizaremos la complejidad en peor caso de la otra parte del algoritmo: \textit{c\'alculo de litros por zona}. En cuanto a los costos de las operaciones matem\'aticas y asignaciones, sucede lo mismo que en el caso anterior por lo que nuevamente el estudio de la complejidad se concentrar\'a en los ciclos. En este caso tenemos dos ciclos. Se puede apreciar facilmente que el ciclo externo realiza $n$ iteraciones ya que la variable $i$ utilizada para iterar es inicializada en $n$ y es decrementada hasta llegar a 1. Como muestra el pseudoc\'odigo, el limite del ciclo interno esta dado por una condici\'on por lo que la cantidad de iteraciones que realize var\'ia cada vez que es ejecutado. Lo que si se puede ver es que, en total (es decir, para las $n$ iteraciones del ciclo externo), el ciclo ser\'a recorrido $m$ veces. Esto se debe a que en caso de cumplir con la condici\'on mencionada, la variable de iteraci\'on del ciclo $j$ es decrementada en 1, y nunca es reiniciada. Como dicha variable es inicializada con la cantidad de litros y en cada vuelta del ciclo interno se corrobora que su valor sea mayor o igual que cero, podemos concluir que dicho ciclo ser\'a recorrido $m$ veces en total (ya que si se cumple la condici\'on, $j$ es decrementado, y si no se satisface la guarda, no se entra al ciclo). Por estos, motivos la segunda parte del algoritmo de \textit{fumigar} tiene complejidad $T(n)\ \in O(n+m)$.
 
-En este modelo de computo si nos concentraremos en el tama\~{n}o de la entrada y
-el costo de las operaciones en funci\'on de la cantidad de bits de sus
-operandos.
 
-En la funci\'on \textit{esPrimo} se puede apreciar que las operaci\'ones que mayor
-complejidad conllevan son $\sqrt{n}$ y $n$ mod $i$. Como ambas son llamadas
-dentro del \'unico ciclo de la funci\'on, la complejidad estar\'a determinada
-por dicho ciclo.
-
-Entonces tenemos 
-
-$$ T(n) = \sum_{i=3,i\,mod\,2=1}^{\sqrt{n}}
-[\log(\sqrt{n}+1)+\log(n)^{2}+\log(n)^{2}+\log(n\,mod\,i)+\log(i)] $$
-$$\leq \sum_{i=1}^{\sqrt{n}} [\log(n)+2\log(n)^{2}+\log(n)+\log(n)] $$
-$$= \sqrt{n}(3\log(n)+2\log(n)^{2}) \Longrightarrow T(n) \in O(\sqrt{n}*\log(n)^{2})$$
+Finalmente, como la complejidad de la primer parte de la funci\'on pertenece a $O(nm^{2})$, la segunda pertenece a $O(n+m)$ y $O(n+m)\ \in O(nm^{2})$, concluimos que la complejidad en peor caso del algoritmo \textit{fumigar} es $$T(n,m) \in O(nm^{2})$$
 
 \bigskip
 
-Con respecto a la funci\'on \textit{encontrarPrimos} sucede lo mismo con respecto a que
-las operaciones de mayor complejidad son realizadas dentro del ciclo por lo que
-en este caso la complejidad total de la funci\'on tambi\'en estar\'a determinada
-por dicho ciclo.
+%TODO: en funcion del tamaño de entrada
 
-La funci\'on de complejidad es 
-$$ T(n) = \sum_{i=3,i\,mod\,2=1}^{n/2}
-[\log(i)+\sqrt{i}*\log(i)^{2}+\sqrt{n-i}*\log(n-i)^{2}+\log(n)+\log(n)+\log(i)] $$
-$$ \leq \sum_{i=1}^{n} [\log(n)+\sqrt{n}*\log(n)^{2}+\sqrt{n}*\log(n)^{2}+\log(n)+\log(n)+\log(n)] $$
-$$ = n*(4*\log(n)+2*\sqrt{n}\*log(n)^{2}) \Longrightarrow T(n) \in O(n^{3/2}*\log(n)^{2}) $$
-
-\bigskip
-
-Por \'ultimo analizaremos tambi\'en la complejidad en funci\'on del tama\~{n}o
-de la entrada para los dos modelos de c\'omputo vistos. Como la funci\'on
-encontrarPrimos toma unicamente un natural \textit{n}, si llamamos \textit{t} al
-tama\~{n}o de entrada tenemos que $t = \log(n) \Longrightarrow 2^{t} = n$. De
-esta manera, reemplazando $n$ en las complejidades calculadas previamente
-obtendremos el costo de los dos algoritmos.
+% Por \'ultimo analizaremos tambi\'en la complejidad en funci\'on del tama\~{n}o
+% de la entrada para los dos modelos de c\'omputo vistos. Como la funci\'on
+% encontrarPrimos toma unicamente un natural \textit{n}, si llamamos \textit{t} al
+% tama\~{n}o de entrada tenemos que $t = \log(n) \Longrightarrow 2^{t} = n$. De
+% esta manera, reemplazando $n$ en las complejidades calculadas previamente
+% obtendremos el costo de los dos algoritmos.
 
 \begin{itemize}
 \item Modelo Uniforme: 

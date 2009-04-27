@@ -14,6 +14,6 @@ class Jardinero {
 		bool puedoPodar(Jardinero* j);
 
 	private: 
-	 	Nodo* m_primero;
+		Nodo* m_primero;
 		unsigned int m_longitud;
 };
