@@ -1,4 +1,6 @@
 \documentclass[a4paper,10pt] {article}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
 \usepackage{caratula}
 \usepackage{a4wide}
 \usepackage{graphicx}
@@ -22,7 +24,7 @@
 Antes de comenzar el an\'alisis de cada ejercicio, cabe mencionar lo siguiente:
 
 \begin{itemize}
- \item La implementaci\'on de los 3 algoritmos se realiz\'o en \textbf{lenguaje Java}, haciendo uso de las librer\'ias est\'andar del mismo.
+ \item La implementaci\'on de los 3 algoritmos se realizó en \textbf{lenguaje Java}, haciendo uso de las librer\'ias est\'andar del mismo.
  \item Para varios de los experimentos realizados se utiliz\'o un rango de n\'umeros acotado cuyo m\'aximo valor es $2^{31}-1$, ya que este es el valor m\'aximo del tipo de datos \textit{int}, utilizado para representar los n\'umeros naturales y enteros en las implementaciones propuestas.
  \item Para el c\'alculo de tiempo de los algoritmos se utiliz\'o la funci\'on \textbf{nanoTime()} de la clase System de Java.
  \item El c\'odigo fuente de los algoritmos aqui analizados se encuentran en los archivos \textit{Dengue.java} (Ej 1), \textit{...} (Ej 2) y \textit{...} (Ej 3).
@@ -181,7 +183,7 @@ O((2^{t})^{3/2}(\log(2^{t}))^{2}) = O((2^{3t/2}t^{2})$$
 
 \section*{An\'alisis de resultados}
 
-Con el fin de analizar la complejidad del algoritmo propuesto se realizaron algunas pruebas. En primer lugar, se hicieron experimentos orientados a estudiar el tiempo de ejecuci\'on del mismo en relaci\'on al par\'ametro ingresado (de ahora en adelante, Prueba 1). Para tal prop\'osito se procedi\'o a la creaci\'on de un programa de prueba (ver pseudoc\'odigo debajo) que calcula el tiempo de ejecuci\'on de la funci\'on \textit{encontrarPrimos} para valores entre $4$ y $2^{31}-4$. Al tratarse de una cantidad de n\'umeros tan grande, como veremos m\'as adelante, la ejecuci\'on real de dicha prueba demorar\'ia en exceso (a\~{n}os). Por tal motivo se decidi\'o tomar n\'umeros pares separados por una distancia aleatoria entre $10^{4}$ y $2*10^{4}$. La raz\'on del uso de un par\'ametro aleatorio radica en poder conseguir una buena muestra representativa del rango propuesto anteriormente y evitando as\'i casos patol\'ogicos.
+Con el fin de analizar la complejidad del algoritmo propuesto se realizaron algunas pruebas. Estos experimentos están orientados a estudiar el tiempo de ejecución del mismo en relaci\'on al par\'ametro ingresado (de ahora en adelante, Prueba 1). Para tal prop\'osito se procedi\'o a la creaci\'on de un programa de prueba (ver pseudoc\'odigo debajo) que calcula el tiempo de ejecuci\'on de la funci\'on \textit{encontrarPrimos} para valores entre $4$ y $2^{31}-4$. Al tratarse de una cantidad de n\'umeros tan grande, como veremos m\'as adelante, la ejecuci\'on real de dicha prueba demorar\'ia en exceso (a\~{n}os). Por tal motivo se decidi\'o tomar n\'umeros pares separados por una distancia aleatoria entre $10^{4}$ y $2*10^{4}$. La raz\'on del uso de un par\'ametro aleatorio radica en poder conseguir una buena muestra representativa del rango propuesto anteriormente y evitando as\'i casos patol\'ogicos.
 
 \begin{verbatim}
 Prueba 1
@@ -235,30 +237,30 @@ mientras i <= 2^31-4
 
 A continuaci\'on se presentan los resultados relativos a la primera aplicaci\'on (Prueba 1).
 
-\begin{center}
- \includegraphics[width=0.7\textwidth]{Plots/Ej1-Complejidad.png}
-\begin{center}
-Figura 1.1
-\end{center}
-\end{center}
+% \begin{center}
+%  \includegraphics[width=0.7\textwidth]{Plots/Ej1-Complejidad.png}
+% \begin{center}
+% Figura 1.1
+% \end{center}
+% \end{center}
 
 Este gr\'afico muestra la comparaci\'on entre las mediciones de tiempo de la primera prueba realizada y la complejidad te\'orica expuesta anteriormente. Llamaremos $f$ a la funci\'on que relaciona el tiempo de ejecuci\'on con el tama\~{n}o de entrada. Como se puede apreciar, el crecimiento de $f$ es mucho menor que la complejidad te\'orica, por lo cual el algoritmo resulta mucho m\'as eficiente que lo esperado. Sin embargo, a pesar de su comportamiento altamente irregular, se puede apreciar que el tiempo de ejecuci\'on aumenta a medida que crece el tama\~{n}o de la entrada. La raz\'on de la discrepancia entre ambas funciones reside en el hecho de que el algoritmo implementado encuentra dos n\'umeros primos que cumplen con la conjetura en una muy baja cantidad de operaciones en relaci\'on al taman\~{n}o de la entrada. Si bien se desconoce el motivo de este fen\'omeno, hemos probado emp\'iricamente que esto se cumple como se puede notar en la siguiente tabla (Prueba 2).
 
-\begin{center}
- \includegraphics[width=0.5\textwidth]{Plots/Ej1-MayoresPrimos.png}
-\begin{center}
-Figura 1.2
-\end{center}
-\end{center}
+% \begin{center}
+%  \includegraphics[width=0.5\textwidth]{Plots/Ej1-MayoresPrimos.png}
+% \begin{center}
+% Figura 1.2
+% \end{center}
+% \end{center}
 
 Como se observa en la Figura 1.2, para los peores casos la diferencia entre cada uno de los primos soluci\'on es muy alta, muy cercana al par\'ametro de entrada $n$. Esto explica que la complejidad te\'orica no se corresponda con el tiempo de ejecuci\'on.
 
-\begin{center}
- \includegraphics[width=0.7\textwidth]{Plots/Ej1-PeoresCasos.png}
-\begin{center}
-Figura 1.3
-\end{center}
-\end{center}
+% \begin{center}
+%  \includegraphics[width=0.7\textwidth]{Plots/Ej1-PeoresCasos.png}
+% \begin{center}
+% Figura 1.3
+% \end{center}
+% \end{center}
 
 La idea de este gr\'afico es mostrar c\'uan irregular es el tiempo de ejecuci\'on del algoritmo. A pesar de haber hecho el esfuerzo de buscar los peores casos (mediante la aplicaci\'on de la Prueba 3), el tiempo que demoran los mismos difieren entre ellos considerablemente. Esto muestra que los peores casos no tienen una ralaci\'on directa con el tama\~{n}o de la entrada sino mas bien con la distribuci\'on desconocida de los n\'umeros primos pertenecientes al intervalo estudiado.
 
@@ -283,7 +285,7 @@ Tambi\'en vimos casos en los que entre n\'umeros cercanos tomados por la funci\'
 \bigskip
 \section*{Introducci\'on}
 
-El objetivo del siguiente ejercicio es diseñar un algoritmo que, dado un tablero de tama\~{n}o $n$ y $n^{2}$ fichas, determinar si existe una manera de colocar las fichas en el tablero, y en tal caso, retornarla. La condici\'on que determina si una ficha puede ser colocada es que, en cada uno de sus lados, contenga el mismo n\'umero que tiene la ficha con la que limita. Vale aclarar que las fichas no pueden ser rotadas y que los que lados limitan con un borde pueden tener cualquier n\'umero.
+El objetivo del siguiente ejercicio es dise\~{n}ar un algoritmo que, dado un tablero de tama\~{n}o $n$ y $n^{2}$ fichas, determinar si existe una manera de colocar las fichas en el tablero, y en tal caso, retornarla. La condici\'on que determina si una ficha puede ser colocada es que, en cada uno de sus lados, contenga el mismo n\'umero que tiene la ficha con la que limita. Vale aclarar que las fichas no pueden ser rotadas y que los que lados limitan con un borde pueden tener cualquier n\'umero.
 
 Cuando empezamos a pensar el ejercicio surgi\'o la soluci\'on trivial, tan simple como ineficiente, utilizando un algoritmo de fuerza bruta que prueba todas las permutaciones posibles de las fichas en el tablero. R\'apidamente se descart\'o esta opci\'on pues su costo es factorial. Se opt\'o entonces por aplicar la idea de \textit{backtracking} en la funci\'on, de esta manera, se toma una ficha del conjunto restante y se chequea si puede ser colocada en la pr\'oxima posici\'on. En caso afirmativo, la ficha se coloca en dicha posici\'on y se realiza el mismo procedimiento para la siguiente casilla del tablero, sino se sigue buscando hasta encontrar una ficha que pueda ser colocada. Si ninguna de las fichas restantes puede ser colocada en el tablero entonces se regresa a la posici\'on anterior (aqu\'i queda explicita la idea de \textit{backtracking}) y se prueba con otra. Por \'ultimo, se plante\'o el uso de diversas podas para mejorar el rendimiento del algoritmo. Se dejaron de lado distintas opciones, ya sea por dificultad de implementaci\'on o exceso de complejidad temporal o espacial, tomando finalmente la poda que mejor se ajust\'o a los requerimientos necesarios.
 
@@ -419,19 +421,19 @@ Como el algoritmo propuesto se basa en la t\'ecnica de \textit{backtracking}, la
 
 En la siguiente secci\'on se mostrar\'an los an\'alisis realizados para tableros de distinto tama\~{n}o. El enfoque principal de las pruebas radica en estudiar los tiempos de ejecuci\'on del algoritmo con y sin la poda. Para esto se implement\'o un algoritmo que genera tableros aleatorios de un tama\~{n}o $n$ pasado como par\'ametro. De esta manera, utilizando dicho algoritmo para distintos valores de $n$, se contrastaron ambos metodos (con y sin poda) con la cota estudiada ($n!$) arrojando los siguientes resultados. Vale aclarar que se utiliz\'o una escala logar\'itmica sobre el eje de ordenadas ya que los tiempos de ejecuci\'on toman valores muy altos, adem\'as, para realizar los gr\'aficos expuestos, se utilizaron tableros hasta un tama\~{n}o de $n=15$ pues para mayores valores los tiempos son excesivos.
 
-\begin{center}
- \includegraphics[width=0.7\textwidth]{Plots/Ej2-Complejidad2.png}
-\begin{center}
-Figura 2.1
-\end{center}
-\end{center}
-
-\begin{center}
- \includegraphics[width=0.7\textwidth]{Plots/Ej2-Complejidad1.png}
-\begin{center}
-Figura 2.2
-\end{center}
-\end{center}
+% \begin{center}
+%  \includegraphics[width=0.7\textwidth]{Plots/Ej2-Complejidad2.png}
+% \begin{center}
+% Figura 2.1
+% \end{center}
+% \end{center}
+% 
+% \begin{center}
+%  \includegraphics[width=0.7\textwidth]{Plots/Ej2-Complejidad1.png}
+% \begin{center}
+% Figura 2.2
+% \end{center}
+% \end{center}
 
 Como se puede apreciar en ambos gr\'aficos, los tiempos de ejecuci\'on de los dos algoritmos son sensiblemente menores que los de la complejidad teorica calculada para el peor caso ($O(n!)$). Esto concuerda con lo esperado ya que como se dijo en anteriores secciones, salvo en casos patol\'ogicos, en la pr\'actica el metodo de \textit{backtracking} aplicado a este problema es mucho m\'as eficiente.
 
@@ -652,12 +654,12 @@ para i desde 2 hasta 2*10^8
 
 A continuaci\'on se presentan los resultados de la prueba realizada.
 
-\begin{center}
- \includegraphics[width=0.7\textwidth]{Plots/Ej3-Complejidad.png}
-\begin{center}
-Figura 3.1
-\end{center}
-\end{center}
+% \begin{center}
+%  \includegraphics[width=0.7\textwidth]{Plots/Ej3-Complejidad.png}
+% \begin{center}
+% Figura 3.1
+% \end{center}
+% \end{center}
 
 Como se puede observar en el gr\'afico, los tiempos de ejecuci\'on del algoritmo son muy bajos en relaci\'on al tama\~{n}o de la entrada. Esta fue la raz\'on por la que se descart\'o probar s\'olo casos peque\~{n}os para verificar la eficiencia del algoritmo y se opt\'o por analizar casos en el que el tama\~{n}o de la entrada creciera exponencialmente. A simple vista se puede observar que el gr\'afico de la funci\'on que mide el tiempo tiene el mismo comportamiento que la funci\'on de complejidad te\'orica. De este modo, adem\'as de la demostraci\'on te\'orica de la complejidad, se obtiene una prueba emp\'irica de que esta misma es correcta.
 
