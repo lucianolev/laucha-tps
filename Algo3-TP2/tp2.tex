@@ -240,7 +240,16 @@ O((2^{t})^{3/2}(\log(2^{t}))^{2}) = O((2^{3t/2}t^{2})$$
 
 \section*{An\'alisis de resultados}
 
-Con el fin de analizar la complejidad del algoritmo propuesto se realizaron algunas pruebas. Estos experimentos están orientados a estudiar el tiempo de ejecución del mismo en relaci\'on al par\'ametro ingresado (de ahora en adelante, Prueba 1). Para tal prop\'osito se procedi\'o a la creaci\'on de un programa de prueba (ver pseudoc\'odigo debajo) que calcula el tiempo de ejecuci\'on de la funci\'on \textit{encontrarPrimos} para valores entre $4$ y $2^{31}-4$. Al tratarse de una cantidad de n\'umeros tan grande, como veremos m\'as adelante, la ejecuci\'on real de dicha prueba demorar\'ia en exceso (a\~{n}os). Por tal motivo se decidi\'o tomar n\'umeros pares separados por una distancia aleatoria entre $10^{4}$ y $2*10^{4}$. La raz\'on del uso de un par\'ametro aleatorio radica en poder conseguir una buena muestra representativa del rango propuesto anteriormente y evitando as\'i casos patol\'ogicos.
+%TODO: matrices generadas aleatoriamente
+
+Con el fin de analizar la complejidad del algoritmo propuesto se realizaron algunas pruebas. Estos experimentos están orientados a estudiar el tiempo de ejecución del mismo en relaci\'on a los datos de entrada, comparando el costo real del algoritmo junto con su complejidad teórica calculada. Debido a que el algoritmo en cuestión depende de dos parámetros de entrada, se realizaron pruebas separadas para cada uno de los parámetros. Las primeras dos pruebas analizan el costo de lo que anteriormente denominamos \textit{fumigación} en base a la cantidad de zonas en primer término y en segundo lugar a la cantidad de litros. La tercer y última prueba mostrará el tiempo de cálculo de los litros empleados por cada zona.|
+
+En primer lugar, se hicieron cálculos en utilizando como variable la cantidad de zonas a fumigar, fijando en $10$ los litros disponibles. El rango de zonas analizados es desde $1$ hasta $10000$ zonas, de a intervalos de tamaño $10$. La elección de estos valores fue producto del análisis de 2 cuestiones importantes: que números permitirían tomar muestras utiles para la realización de los gráficos y cual era la máxima cantidad de datos que nuestra aplicación podría manejar, acotada por el tiempo disponible para realizar las pruebas y las limitacion propias de la máquina en cuestión. Empiricamente, se comprobó que dicho rango de zonas permitía correr la aplicación en un tiempo razonable y al mismo tiempo proveer datos interesantes para el análisis en cuestión. Del mismo modo, fijar en 10 los litros aseguró que sea la cantidad de zonas el parámetro ponderante en el cálculo de tiempo de ejecución.
+
+La segunda prueba resulta muy similar a la anterior en cuanto al rango de valores utilizados. La diferencia radica en que ahora el parámetro fijado es la cantidad de zonas, variando los litros en el rango $1$ hasta $10000$, de a intervalos de tamaño $10$ (al igual que en la prueba anterior).
+
+Por último, la última prueba consistió en comparar la compledijidad teórica del algortimo que calcula los litros utilizados para fumigar cada zona que maximizan la cantidad de mosquitos muertos. Para esto, 
+
 
 \begin{verbatim}
 Prueba 1

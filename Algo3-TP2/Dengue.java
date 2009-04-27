@@ -17,7 +17,7 @@ public class Dengue {
 	}
 
 	//Genero limite^2 instancias random, desde zonas = 1, litros = 1 hasta zonas = limite, litros = limite y las cargo en la clase
-	public void cargarInstanciasRandomHasta(int limite, int esparcimiento) {
+	public void cargarInstanciasRandomHasta(int limite, int esparcimiento, int rangoRandom) {
 		System.out.println("Generando instancias aleatorias...");
 
 		int i = 1;
@@ -25,7 +25,7 @@ public class Dengue {
 		int c = 0;
 		while (j <= limite) {
 			InstanciaDengue instancia = new InstanciaDengue();
-			instancia.generarInstanciaRandom(i, j);
+			instancia.generarInstanciaRandom(i, j, rangoRandom);
 			listaDeInstancias.add(instancia);
 			if (i >= limite) {
 				j += esparcimiento;
@@ -39,14 +39,14 @@ public class Dengue {
 		System.out.println("Se han generado "+c+" instancias aleatorias!");
 	}
 
-	public void cargarInstanciasRandomConZonasFijoHasta(int zonas, int limiteLitros, int esparcimiento) {
+	public void cargarInstanciasRandomConZonasFijoHasta(int zonas, int limiteLitros, int esparcimiento, int rangoRandom) {
 		System.out.println("Generando instancias aleatorias...");
 
 		int j = 1;
 		int c = 0;
 		while (j <= limiteLitros) {
 			InstanciaDengue instancia = new InstanciaDengue();
-			instancia.generarInstanciaRandom(zonas, j);
+			instancia.generarInstanciaRandom(zonas, j, rangoRandom);
 			listaDeInstancias.add(instancia);
 			j += esparcimiento;
 			c++;
@@ -55,14 +55,14 @@ public class Dengue {
 		System.out.println("Se han generado "+c+" instancias aleatorias!");
 	}
 
-	public void cargarInstanciasRandomConLitrosFijoHasta(int litros, int limiteZonas, int esparcimiento) {
+	public void cargarInstanciasRandomConLitrosFijoHasta(int litros, int limiteZonas, int esparcimiento, int rangoRandom) {
 		System.out.println("Generando instancias aleatorias...");
 
 		int i = 1;
 		int c = 0;
 		while (i <= limiteZonas) {
 			InstanciaDengue instancia = new InstanciaDengue();
-			instancia.generarInstanciaRandom(i, litros);
+			instancia.generarInstanciaRandom(i, litros, rangoRandom);
 			listaDeInstancias.add(instancia);
 			i += esparcimiento;
 			c++;
