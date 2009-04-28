@@ -157,7 +157,7 @@ Como $i - k \leq l$ para cualquier $k \leq i$ puedo aplicar la hipótesis induct
 
 \section*{Complejidad}
 
-En la presente secci\'on se calcular\'a la complejidad en el peor caso del algoritmo \textit{fumigar} bas\'andose en el modelo de c\'omputo uniforme. Para esto se dividir\'a el analisis en el estudio de las dos partes de la funci\'on: \textit{fumigaci\'on} y \textit{c\'alculo de litros por zona}
+En la presente secci\'on se calcular\'a la complejidad en el peor caso del algoritmo \textit{fumigar} bas\'andose en el modelo de c\'omputo uniforme. Esto se debe a que este ejercicio no se basa en el tama\~{n}o de los elementos de la matriz recibida como par\'ametro, sino en las dimensiones de dicha matriz, por lo que no se trabajar\'a con valores muy altos. Para realizar los c\'alculos de manera m\'as clara, se dividir\'a el analisis en el estudio de las dos partes que conforman la funci\'on: \textit{fumigaci\'on} y \textit{c\'alculo de litros por zona}
 
 En la funci\'on \textit{fumigaci\'on} todas las operaciones y asignaciones utilizadas se logran en tiempo constante. Esto se debe al mencionado modelo de c\'omputo utilizado, en donde las operaciones presentes en el algoritmo no dependen del tama\~{n}o de los par\'ametros de entrada. De esta manera, la complejidad de esta funci\'on estar\'a supeditada al comportamiento de los ciclos que contiene. Llamaremos $a$ $b$ y $c$ a los ciclos, donde $a$ contiene a $b$ y este \'ultimo contiene a $c$. Se puede apreciar claramente que b itera $m$ veces (donde $m$ es la cantidad de litros) y que en cada iteraci\'on de b, se realiza una vez el ciclo c. El l\'imite de este ciclo esta dado por la variable de iteraci\'on de b (en el pseudoc\'odigo se llamada $j$), de manera que, en cada iteraci\'on de b, la cantidad de vueltas del ciclo c aumenta en uno, comenzando desde cero (valor de inicio de la variable $j$) hasta $m$. La complejidad del ciclo b sera entonces:
 
@@ -168,30 +168,19 @@ El ciclo analizado se encuentra dentro de $a$, este \'ultimo se recorre $n$ vece
 $$T(n,m)=n((m+1)m/2)\ \in O(nm^{2})$$
 
 
-Por otro lado, analizaremos la complejidad en peor caso de la otra parte del algoritmo: \textit{c\'alculo de litros por zona}. En cuanto a los costos de las operaciones matem\'aticas y asignaciones, sucede lo mismo que en el caso anterior por lo que nuevamente el estudio de la complejidad se concentrar\'a en los ciclos. En este caso tenemos dos ciclos. Se puede apreciar facilmente que el ciclo externo realiza $n$ iteraciones ya que la variable $i$ utilizada para iterar es inicializada en $n$ y es decrementada hasta llegar a 1. Como muestra el pseudoc\'odigo, el limite del ciclo interno esta dado por una condici\'on por lo que la cantidad de iteraciones que realize var\'ia cada vez que es ejecutado. Lo que si se puede ver es que, en total (es decir, para las $n$ iteraciones del ciclo externo), el ciclo ser\'a recorrido $m$ veces. Esto se debe a que en caso de cumplir con la condici\'on mencionada, la variable de iteraci\'on del ciclo $j$ es decrementada en 1, y nunca es reiniciada. Como dicha variable es inicializada con la cantidad de litros y en cada vuelta del ciclo interno se corrobora que su valor sea mayor o igual que cero, podemos concluir que dicho ciclo ser\'a recorrido $m$ veces en total (ya que si se cumple la condici\'on, $j$ es decrementado, y si no se satisface la guarda, no se entra al ciclo). Por estos, motivos la segunda parte del algoritmo de \textit{fumigar} tiene complejidad $T(n)\ \in O(n+m)$.
+Por otro lado, analizaremos la complejidad en peor caso de la otra parte del algoritmo: \textit{c\'alculo de litros por zona}. En cuanto a los costos de las operaciones matem\'aticas y asignaciones, sucede lo mismo que en el caso anterior por lo que nuevamente el estudio de la complejidad se concentrar\'a en los ciclos. En este caso tenemos dos ciclos. Se puede apreciar facilmente que el ciclo externo realiza $n$ iteraciones ya que la variable $i$ utilizada para iterar es inicializada en $n$ y es decrementada hasta llegar a 1. Como muestra el pseudoc\'odigo, el limite del ciclo interno esta dado por una condici\'on por lo que la cantidad de iteraciones que realize var\'ia cada vez que es ejecutado. Lo que si se puede ver es que, en total (es decir, para las $n$ iteraciones del ciclo externo), el ciclo ser\'a recorrido $m$ veces. Esto se debe a que en caso de cumplir con la condici\'on mencionada, la variable de iteraci\'on del ciclo $j$ es decrementada en 1, y nunca es reiniciada. Como dicha variable es inicializada con la cantidad de litros y en cada vuelta del ciclo interno se corrobora que su valor sea mayor o igual que cero, podemos concluir que dicho ciclo ser\'a recorrido $m$ veces en total (ya que si se cumple la condici\'on, $j$ es decrementado, y si no se satisface la guarda, no se entra al ciclo). Por estos motivos la segunda parte del algoritmo de \textit{fumigar} tiene complejidad $T(n)\ \in O(n+m)$.
 
 
-Finalmente, como la complejidad de la primer parte de la funci\'on pertenece a $O(nm^{2})$, la segunda pertenece a $O(n+m)$ y $O(n+m)\ \in O(nm^{2})$, concluimos que la complejidad en peor caso del algoritmo \textit{fumigar} es $$T(n,m) \in O(nm^{2})$$
+De esta manera, como la complejidad de la primer parte de la funci\'on pertenece a $O(nm^{2})$, la segunda pertenece a $O(n+m)$ y $O(n+m)\ \in O(nm^{2})$, concluimos que la complejidad en peor caso del algoritmo \textit{fumigar} es $$T(n,m) \in O(nm^{2})$$
 
-\bigskip
 
-%TODO: en funcion del tamaño de entrada
+Finalmente estudiaremos la complejidad en funci\'on del tama\~{n}o de la entrada. Sea $t$ el tama\~{n}o de la entrada, $n$, $m$ y $M$ la cantidad de zonas, litros y la matriz pasados como par\'ametros respectivamente. Tenemos entonces que:
 
-% Por \'ultimo analizaremos tambi\'en la complejidad en funci\'on del tama\~{n}o
-% de la entrada para los dos modelos de c\'omputo vistos. Como la funci\'on
-% encontrarPrimos toma unicamente un natural \textit{n}, si llamamos \textit{t} al
-% tama\~{n}o de entrada tenemos que $t = \log(n) \Longrightarrow 2^{t} = n$. De
-% esta manera, reemplazando $n$ en las complejidades calculadas previamente
-% obtendremos el costo de los dos algoritmos.
+$$t=\log(n)+\log(m)+\sum_{i=1}^{n}\sum_{j=1}^{m}\log(M_{i,j})>\log(n)+\log(m)+\sum_{i=1}^{n}\sum_{j=1}^{m}1>\log(n)+\log(m)+nm>nm$$
 
-\begin{itemize}
-\item Modelo Uniforme: 
-$$T(n) \in O(n\sqrt{n}) = O(n^{3/2}) \Longrightarrow T(t) = O((2^{t})^{3/2}) =
-O(2^{3t/2})$$
-\item Modelo Logar\'itmico: 
-$$T(n) \in O(n^{3/2}\log(n)^{2}) \Longrightarrow T(t) =
-O((2^{t})^{3/2}(\log(2^{t}))^{2}) = O((2^{3t/2}t^{2})$$
-\end{itemize}
+
+\hspace{45pt} $\Longrightarrow$ como $T(n,m) \in O(nm^{2})$ y $nm^{2}<(nm)^{2}<t^{2} \Longrightarrow T(t) \in O(t^{2})$
+
 
 \section*{An\'alisis de resultados}
 
