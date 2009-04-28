@@ -185,15 +185,21 @@ $$t=\log(n)+\log(m)+\sum_{i=1}^{n}\sum_{j=1}^{m}\log(M_{i,j})>\log(n)+\log(m)+\s
 
 Con el fin de analizar la complejidad de los algoritmos propuestos (fumigación y cálculo de litros por zona) se realizaron varias pruebas. Estos experimentos están orientados a estudiar el tiempo de ejecución del mismo en relaci\'on a los datos de entrada, comparando el costo real de los algoritmos junto con su complejidad teórica calculada. Para cada algoritmo se verán 3 gráficos distintos. El primero de ellos servirá para analizar la complejidad con respecto a los litros, es decir, fijando la cantidad de zonas. Reciprocamente, el segundo será en base a la cantidad de zonas con una cantidad fija de litros. Por último, el tercer gráfico en 3 dimensiones mostrará como se comporta el algoritmo considerando ambas variables en conjunto.
 
-Para las instancias de prueba se utilizó una función \textit{random} del lenguaje para generar matrices de \textit{mosquitosMuertos}) de tamaño $zonas*litros$ con valores aleatorios comprendidos entre $1$ y $10000$ con el fin de garantizar que las pruebas resulten lo suficientemente genéricas como para poder obtener resultados ``interesantes''.
+A continuación se describirán las características de las instancias utilizadas para las pruebas así como las particularidades de cada experimento. Dichas cuestiones son comunes al analisis de ambos algoritmos por lo que no haremos referencia a ninguno en particular. Más adelante analizaremos resultados de estos experimentos aplicado a cada uno de los algoritmos.
+
+Para las instancias de prueba se utilizó la función \textit{random} del lenguaje para generar matrices de \textit{mosquitosMuertos}) de tamaño $zonas*litros$ con valores aleatorios comprendidos entre $1$ y $10000$ con el fin de garantizar que las pruebas resulten lo suficientemente genéricas como para poder obtener resultados ``interesantes''.
 
 En primer lugar, se hicieron cálculos utilizando como variable la cantidad de zonas a fumigar, fijando en $10$ los litros disponibles. El rango de zonas analizados es desde $1$ hasta $10000$ zonas, de a intervalos de tamaño $10$. La elección de estos valores fue producto del análisis de 2 cuestiones importantes: que números permitirían tomar muestras utiles para la realización de los gráficos y cual era la máxima cantidad de datos que nuestra aplicación podría manejar, acotada por el tiempo disponible para realizar las pruebas y las limitacion propias de la máquina en cuestión. Empiricamente, se comprobó que dicho rango de zonas permitía correr la aplicación en un tiempo razonable y al mismo tiempo proveer datos interesantes para el análisis en cuestión. Del mismo modo, fijar en 10 los litros aseguró que sea la cantidad de zonas el parámetro ponderante en el cálculo de tiempo de ejecución.
 
 La segunda prueba resulta muy similar a la anterior en cuanto al rango de valores utilizados. La diferencia radica en que ahora el parámetro fijado es la cantidad de zonas en vez de la cantidad de litros, variando los litros en el rango $1$ hasta $10000$, de a intervalos de tamaño $10$ (al igual que en la prueba anterior).
 
-La tercera y la cuarta prueba consistieron en comparar la compledijidad teórica del algortimo que calcula los litros utilizados para fumigar cada zona que maximizan la cantidad de mosquitos muertos. Para ambas pruebas, se utilizaron los mismos datos de entrada que los utilizados en las primeras dos pruebas anteriores, con el fin de ver como repercuten ambos parámetros en la complejidad de este algoritmo, con la diferencia de que ahora se realizaron mediciones sobre el tiempo de ejecución de la parte del algoritmo relevante a la prueba.
+La tercer y última prueba consistió en analizar el algoritmo considerando ambas variables en conjunto, de modo de poder comparar el tiempo de ejecución para distintos valores de zonas y litros junto con la complejidad teórica que depende de estos dos parámetros. Para esta prueba se tomaron valores de zonas y litros entre $1$ y $1000$, de a intervalos de tamaño $100$ (10 valores posibles). Luego, se calcularon los tiempos de ejecución de todas las permutaciones de los 10 elementos pertenecientes a dicho conjunto de manera tal de obtener resultados para las combinaciones de litros y zonas dentro del intervalo mencionado.
 
-A continuaci\'on se presentan los resultados relativos a la primer y segunda prueba.
+A continuación se presentarán los gráficos realizados para cada algoritmo utilizando estas 3 pruebas descriptas.
+
+\subsection*{Fumigación}
+
+Como se vió anteriormente, la primer parte del problema consistía en calcular la máxima cantidad de mosquitos muertos para una instancia determinada. Los siguientes gráficos muestran el comportamiento de este algoritmo en base a los dos parámetros de entrada de manera independiente:
 
 \begin{center}
  \includegraphics[width=0.7\textwidth]{Plots/Tp2Ej1-TiemposFumigacionPorLitros-10zonas-bw.png}
@@ -206,7 +212,13 @@ Figura 1.2
 \end{center}
 \end{center}
 
-Ambos gráficos permiten observar algunas cuestiones interesantes. La Figura 1.1 muestra como la función T(n) que representa el tiempo de ejecución se comporta prácticamente igual que la función $f(n) = n^2/19$. Este hecho demuestra empíricamente que la complejidad con respecto a la cantidad de litros es cuadrática al realizar la fumigación tal como se había analizado anteriormente.
+Ambos gráficos permiten observar algunas cuestiones interesantes. La Figura 1.1 muestra como la función T(n) que representa el tiempo de ejecución se comporta prácticamente igual que la función $f(n) = n^2/19 \in O(n^2)$. Este hecho demuestra empíricamente que la complejidad con respecto a la cantidad de litros es cuadrática al realizar la fumigación tal como se había analizado anteriormente. Del mismo modo, la Figura 1.2 el
+
+%TODO
+
+\subsection*{Cálculo de Litros Por Zona}
+
+%TODO
 
 \section*{Conclusiones}
 
