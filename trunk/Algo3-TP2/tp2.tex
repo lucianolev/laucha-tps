@@ -68,7 +68,7 @@ Esto es un absurdo ya que supusimos que $P$ era la cantidad \'optima. Este absur
 A partir de la idea presentada en la secci\'on anterior se puede plantear la siguiente funci\'on recursiva para resolver el problema.
 $\\ f(0, l) = 0 \\$
 $ f(i,l) = max \left\{ \begin{array}{ll}
-         f(i-1,l-k) & \mbox{$$}\\
+         f(i-1,l) & \mbox{$$}\\
         f(i-1, l-k) + MM[i][k] & \mbox{con $1 \leq k \leq l$}\end{array} \right. $
 
 
@@ -112,22 +112,47 @@ para i desde 1 hasta zonas
       max_parcial = maximo(max_parcial, maxMMParcial[i-1,j-k] + MM[i][k])
     maxMMParcial[i][j] = max_parcial
 
-litrosPorZona[zonas]
-
-litrosRestantes = litros
-j = litrosRestantes
-para i desde zonas hasta 1
-  mientras j >= 0 y (maxMMParcial[i][litrosRestantes] - MM[i-1][litrosRestantes - j]) != maxMMParcial[i-1][j]
-    j = j - 1
-  litrosPorZona[i-1] = litrosRestantes - j
-  litrosRestantes = j
-
 guardar en Tp2Ej1.out la linea "maxMMParcial[zonas][litros]"
-guardar en Tp2Ej1.out litrosPorZona
+
 
 \end{verbatim}
 
-Este algoritmo está basado en la función recursiva presentada en la sección anterior
+% litrosPorZona[zonas]
+% 
+% litrosRestantes = litros
+% j = litrosRestantes
+% para i desde zonas hasta 1
+%   mientras j >= 0 y (maxMMParcial[i][litrosRestantes] - MM[i-1][litrosRestantes - j]) != maxMMParcial[i-1][j]
+%     j = j - 1
+%   litrosPorZona[i-1] = litrosRestantes - j
+%   litrosRestantes = j
+
+% guardar en Tp2Ej1.out litrosPorZona
+
+Este algoritmo está basado en la función recursiva presentada en la sección anterior, pero usando una estrategia \textit{Bottom-up} para calcular el resultado. Dicha estrategia se basa en el uso de una matriz para almacenar los resultados ya calculados y, a partir de ellos, construir las distintas etapas de la solución. Esta matriz tiene la siguiente forma:
+
+\begin{center}
+litros
+\end{center}
+\[ zonas \left( \begin{array}{ccccc}
+0 & 0 & 0 & \cdots & 0 \\
+0 & f(1,1) & f(1,2) & \cdots & f(1,l)  \\
+0 & f(2,1) & f(2,2) & \cdots & f(2,l)	\\
+\vdots & \vdots & \vdots & \ddots & \vdots \\
+0 & f(n,1) & f(n,2) & \cdots & f(n,l) \end{array} \right)\]
+
+En el algoritmo presentado cada fila de esta matriz se construye a partir de la fila anterior, por lo que la primer fila (que representa el caso base de $f$) debe ser 0 al comienzo del procedimiento. Además, en este cálculo también es necesario utilizar los valores de la matriz de entrada (MM) que contiene la cantidad de mosquitos muertos según la cantidad de zonas y litros.
+Esto se corresponde a la definición recursiva de la función $f$ ya que el valor que retorna $f$ para cada zona $i$ se construye a partir de la zona $i-1$. 
+
+Como se puede apreciar en el pseudocódigo cada elemento de la matriz se construye de la siguiente manera:
+
+$ maxMMParcial[i][j] = max \left\{ \begin{array}{ll}
+         maxMMParcial[i-1][j] & \mbox{$$}\\
+        maxMMParcial[i-1][j-k] + MM[i][k] & \mbox{con $1 \leq k \leq j$}\end{array} \right. $
+
+
+Esta definición muestra claramente la relación que existe entre el algoritmo que utiliza programación dinámica y la función que resuelve el problema de manera recursiva. Cada posición de la matriz se calcula de la misma manera que $f$, por lo que, si el caso base es el mismo, se obtendrán los mismos resultados. Por esta razón, al terminar de calcular toda la matriz (hasta la posición $n$ y $l$) se obtiene $f(n,l)$, es decir, la solución para la instancia del problema.
+
 
 \section*{Complejidad}
 
