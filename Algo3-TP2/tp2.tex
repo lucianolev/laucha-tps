@@ -45,72 +45,13 @@ Antes de comenzar el an\'alisis de cada ejercicio, cabe mencionar lo siguiente:
 \bigskip
 \section*{Introducci\'on}
 
-La idea de este ejercicio es intentar demostrar de manera emp\'irica la
-conjetura de Goldbach. Esta misma predica que todo n\'umero par positivo mayor
-que dos se puede escribir como la suma de dos n\'umeros primos. Con este
-objetivo se procedi\'o a la implementaci\'on de un algoritmo iterativo que, dado
-un n\'umero par mayor que dos, retorna dos n\'umeros primos que satisfacen dicha
-conjetura.
-
-En principio, se probaron distintos casos aleatorios para encontrar un patr\'on
-com\'un. A partir de esto, se realiz\'o la siguiente conjetura: ``Sea $p$ el mayor primo comprendido en el rango $3..n-2$ entonces $p$ y $n-p$ son dos n\'umeros primos cuya suma es $n$''. De ser cierta esta conjetura, bastar\'ia con hallar el primo m\'as cercano a $n-2$ para obtener, mediante operaciones ba\'asicas, el resultado esperado. Sin embargo, al poco tiempo se encontr\'o un contraejemplo ($128 = 119 + 9$, pero 9 no es primo) que falseaba la conjetura. A pesar de esto, la idea sirvi\'o para encontrar una soluci\'on al problema. En la secci\'on siguiente veremos el algoritmo en cuesti\'on.
+%mencionar que esta hecho con prog dinamica (jua era obvio)
+%fumigacion, calculo de los litros por zona
 
 \section*{Algoritmo}
 
-A continuaci\'on se encuentra el pseudoc\'odigo relativo al algoritmo propuesto
-que resuelve el problema, seguido de una breve explicaci\'on acerca del
-funcionamiento del mismo.
+En la presente sección presentaremos todos los pasos que se siguieron para lograr la implementación del algoritmo que resuelve el problema. Como se mencionó anteriormente, el problema será resuelto por medio de la técnica de programación dinámica por lo que presentaremos las demostraciones de todos los pasos que implica construir un algoritmo de esa manera. En primer lugar, se demostrará cómo aplica el principio de optimalidad en el problema dado. En segundo lugar, plantearemos una función recursiva que resuelva el problema y demostraremos su correctitud. Finalmente, mostraremos el algoritmo construido con programación dinámica, explicando detalladamente por qué resuelve el problema de manera más eficiente que la solución recursiva.
 
-\begin{verbatim}
-maxMMParcial[0..zonas][0..litros]
-
-para j desde 0 hasta litros
-  maxMMParcial[0][j] = 0
-
-para i desde 0 hasta zonas
-  para j desde 0 hasta litros
-    max_parcial = M[i-1,j]
-    k = 1
-    mientras k <= j
-      max_parcial = maximo(max_parcial, M[i-1,j-k] + MM[i][k])
-    maxMMParcial[i][j] = max_parcial
-
-litrosPorZona[0..zonas-1]
-litrosRestantes = litros
-j = litrosRestantes
-para i desde zonas hasta 1
-  mientras j >= 0 y (maxMMParcial[i][litrosRestantes] - MM[i-1][litrosRestantes - j]) != maxMMParcial[i-1][j]
-    j = j - 1
-  litrosPorZona[i-1] = litrosRestantes - j
-  litrosRestantes = j
-
-guardar en Tp2Ej1.out la linea "maxMMParcial[zonas][litros]"
-para i desde 0 hasta zonas-1
-  guardar en Tp2Ej1.out el valor "litrosPorZona[i]"
-
-\end{verbatim}
-
-% En primer lugar, se encuentr\'a la definici\'on de la funci\'on \textit{esPrimo}
-% que, tal como su nombre indica, retorna \textit{true} en caso de que el n\'umero
-% pasado como par\'amentro sea un n\'umero primo y \textit{false} en caso
-% contrario. El algoritmo en cuesti\'on consiste en un m\'etodo simple pero
-% efectivo: En primer lugar, hay 2 casos base, el primero retorna \textit{true} en caso de
-% tratarse del n\'umero 2 y el segundo evalua si el numero es par (divisible por
-% 2), retornando \textit{false} en este caso, ya que todo numero par mayor que 2
-% no es primo. Luego, el ciclo principal evalua si el par\'ametro $n$ es divisible
-% por alg\'un n\'umero impar $i$ con $3 \leq i \leq \sqrt{n}$, retornando
-% \textit{false} en tal caso. La correctitud de tal procedimiento se desprende
-% directamente del teorema que predica que si $n$ es un n\'umero primo entonces
-% existe al menos un divisor d tal que $2 \leq d < \sqrt{n}$.
-% 
-% Con respecto al algoritmo relativo al problema en s\'i, la idea consiste en
-% recorrer todos los n\'umeros impares comprendidos entre $3$ y $n-3$ de a pares
-% cuya suma equivalgan a $n$. Los pares $i, n - i$ satisfacen trivialmente esta condici\'on, ya que $i + (n-i) = n$. Del mismo modo, es f\'acil ver que para generar todos los n\'umeros del rango mencionado, basta con variar i tal que $3 \le i \le n/2$. De esta forma se ve claramente que esPrimo(i) comprende el rango $3..n/2$, y $esPrimo(n-i)$ el rango $n/2..n-3$. De este modo, cuando se satisface que $esPrimo(i) \& esPrimo(n-i) == true$ se puede afirmar que se ha encontrado el par de n\'umeros que cumplen con la conjetura: dos n\'umeros primos cuya suma es $n$. En caso de que no hallar dicha tupla dentro del rango propuesto, se puede concluir que la conjetura de Goldbach era falsa, retornando la tupla (0,0) en este caso.  
-
-\section*{Correctitud}
-
-En esta secci\'on se analizar\'a en detalle la validez del algoritmo propuesto anteriormente. En primer lugar, se mostrar\'a c\'omo aplica el principio de optimalidad al problema dado. En segundo lugar, se demostrar\'a la correctitud del algoritmo expres\'andolo de forma recursiva para facilitar dicha demostraci\'on. Finalmente, se mostrar\'a que la forma recursiva del algoritmo y la versi\'on presentada en anteriores secciones son equivalentes en t\'erminos de correctitud por lo que quedar\'a demostrada la correctitud del algoritmo propuesto.
-  
 \subsection*{Principio de optimalidad}
 
 Demostraremos por qu\'e vale el principio de optimilidad en este problema por el absurdo.
@@ -123,13 +64,14 @@ $R + cantMM(n,k) > Q + cantMM(n,k) = P \Rightarrow R + cantMM(n,k) > P$
 
 Esto es un absurdo ya que supusimos que $P$ era la cantidad \'optima. Este absurdo surge de suponer que la cantidad de mosquitos muertos hasta la zona $n-1$ con $l-k$ litros no era \'optima. Entonces queda demostrado que vale el principio de optimalidad para el problema planteado.
 
-\subsection*{Demostraci\'on de correctitud}
+\subsection*{Solución recursiva y demostración de correctitud} %TODO!!!!!!!!!!!!!!!!!!!!!
 
 A partir de la idea presentada en la secci\'on anterior se puede plantear la siguiente funci\'on recursiva para resolver el problema.
+$\\ f(0, l) = 0 \\$
+$ f(i,l) = max \left\{ \begin{array}{ll}
+         f(i-1,l-k) & \mbox{$$}\\
+        f(i-1, l-k) + MM[i][k] & \mbox{con $1 \leq k \leq l$}\end{array} \right. $
 
-$\\ f(1,l) = max_{1 \leq j \leq l} (MM[1][j]) \\
- f(i,l) = max_{0 \leq k \leq l} (f(i-1, l-k) + MM[i][k]) \;\;\;\; $ si $i > 1
-$ \\
 
 Siendo $MM[i][j]$ la matriz que contiene la cantidad de mosquitos muertos por litro, de cada zona. La soluci\'on al problema ser\'ia $f(n,l)$ con $n$ la cantidad de zonas y $l$ la cantidad de litros disponibles.
 
@@ -152,8 +94,41 @@ $f(n+1,i) = max_{0 \leq k \leq i} (f(n, i-k) + MM[n+1][k])$ \\
 
 Como $i - k \leq l$ para cualquier $k \leq i$ puedo aplicar la hipótesis inductiva, es decir, $f(n,i-k)$ es la máxima cantidad hasta la zona $n$ con $i-k$ litros. Entonces con $max_{0 \leq k \leq i} (f(n, i-k) + MM[n+1][k])$ obtengo la máxima cantidad de mosquitos muertos hasta la zona $n+1$ con $i$ litros pues $f(n,i-k)$ es máxima y se calcula el máximo para todas las cantidades $k$ de litros posibles para dicha zona. Entonces, como vale $P(1)$ y $P(n) \Rightarrow P(n+1)$ por principio de inducci\'on queda demostrada la proposici\'on.
 
-\subsection*{Equivalencia entre la función recursiva y el algoritmo presentado}
+La función presentada, a pesar de ser correcta, hace repetidas llamadas recursivas a valores ya calculados. Sin embargo, sirve de base para idear un algoritmo que use la técnica de programación dinámica para resolver este problema de forma más eficiente. En las posteriores secciones veremos en detalle cómo se relaciona dicha función con el algoritmo implementado.
 
+\subsection*{Algoritmo utilizando programación dinámica}
+
+A continuaci\'on se encuentra el pseudoc\'odigo del algoritmo que utiliza la técnica de programación dinámica para resolver el problema.
+
+\begin{verbatim}
+maxMMParcial[zonas][litros]
+
+lleno la primer fila de maxMMParcial con 0
+
+para i desde 1 hasta zonas
+  para j desde 0 hasta litros
+    max_parcial = maxMMParcial[i-1,j]
+    k = 1
+    mientras k <= j
+      max_parcial = maximo(max_parcial, maxMMParcial[i-1,j-k] + MM[i][k])
+    maxMMParcial[i][j] = max_parcial
+
+litrosPorZona[zonas]
+
+litrosRestantes = litros
+j = litrosRestantes
+para i desde zonas hasta 1
+  mientras j >= 0 y (maxMMParcial[i][litrosRestantes] - MM[i-1][litrosRestantes - j]) != maxMMParcial[i-1][j]
+    j = j - 1
+  litrosPorZona[i-1] = litrosRestantes - j
+  litrosRestantes = j
+
+guardar en Tp2Ej1.out la linea "maxMMParcial[zonas][litros]"
+guardar en Tp2Ej1.out litrosPorZona
+
+\end{verbatim}
+
+Este algoritmo está basado en la función recursiva presentada en la sección anterior
 
 \section*{Complejidad}
 
