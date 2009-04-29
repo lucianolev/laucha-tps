@@ -187,7 +187,7 @@ Con el fin de analizar la complejidad de los algoritmos propuestos (fumigación 
 
 A continuación se describirán las características de las instancias utilizadas para las pruebas así como las particularidades de cada experimento. Dichas cuestiones son comunes al analisis de ambos algoritmos por lo que no haremos referencia a ninguno en particular. Más adelante analizaremos resultados de estos experimentos aplicado a cada uno de los algoritmos.
 
-Para las instancias de prueba se utilizó la función \textit{random} del lenguaje para generar matrices de \textit{mosquitosMuertos}) de tamaño $zonas*litros$ con valores aleatorios comprendidos entre $1$ y $10000$ con el fin de garantizar que las pruebas resulten lo suficientemente genéricas como para poder obtener resultados ``interesantes''.
+Para las instancias de prueba se utilizó la función \textit{random} del lenguaje para generar matrices de \textit{mosquitosMuertos}) de tamaño $zonas*litros$ con valores aleatorios comprendidos entre $1$ y $10000$ con el fin de garantizar que las pruebas resulten lo suficientemente genéricas como para poder obtener resultados ``interesantes''. Cabe mencionar que no se harán estudios sobre instancias particulares ya que, como se mencionó antes, el costo de ejecución del algoritmo de \textit{fumigación} no depende de los valores de la matriz de entrada que conforma cada instancia.
 
 En primer lugar, se hicieron cálculos utilizando como variable la cantidad de zonas a fumigar, fijando en $10$ los litros disponibles. El rango de zonas analizados es desde $1$ hasta $10000$ zonas, de a intervalos de tamaño $10$. La elección de estos valores fue producto del análisis de 2 cuestiones importantes: que números permitirían tomar muestras utiles para la realización de los gráficos y cual era la máxima cantidad de datos que nuestra aplicación podría manejar, acotada por el tiempo disponible para realizar las pruebas y las limitacion propias de la máquina en cuestión. Empiricamente, se comprobó que dicho rango de zonas permitía correr la aplicación en un tiempo razonable y al mismo tiempo proveer datos interesantes para el análisis en cuestión. Del mismo modo, fijar en 10 los litros aseguró que sea la cantidad de zonas el parámetro ponderante en el cálculo de tiempo de ejecución.
 
@@ -202,31 +202,71 @@ A continuación se presentarán los gráficos realizados para cada algoritmo uti
 Como se vió anteriormente, la primer parte del problema consistía en calcular la máxima cantidad de mosquitos muertos para una instancia determinada. Los siguientes gráficos muestran el comportamiento de este algoritmo en base a los dos parámetros de entrada de manera independiente:
 
 \begin{center}
- \includegraphics[width=0.7\textwidth]{Plots/Tp2Ej1-TiemposFumigacionPorLitros-10zonas-bw.png}
+ \includegraphics[width=0.7\textwidth]{Plots/Tp2Ej1-TiemposFumigacionPorZonas-10litros-bw.png}
 \begin{center}
 Figura 1.1
 \end{center}
-\includegraphics[width=0.7\textwidth]{Plots/Tp2Ej1-TiemposFumigacionPorZonas-10litros-bw.png}
+ \includegraphics[width=0.7\textwidth]{Plots/Tp2Ej1-TiemposFumigacionPorLitros-10zonas-bw.png}
 \begin{center}
 Figura 1.2
 \end{center}
 \end{center}
 
-Ambos gráficos permiten observar algunas cuestiones interesantes. La Figura 1.1 muestra como la función T(n) que representa el tiempo de ejecución se comporta prácticamente igual que la función $f(n) = n^2/19 \in O(n^2)$. Este hecho demuestra empíricamente que la complejidad con respecto a la cantidad de litros es cuadrática al realizar la fumigación tal como se había analizado anteriormente. Del mismo modo, la Figura 1.2 el
+Ambos gráficos permiten observar algunas cuestiones interesantes. La Figura 1.1 permite observar como el comportamiento del algoritmo de \textit{fumigación} con respecto a la cantidad de zonas se asimila a una función lineal, hecho que se corresponde con la complejidad calculada anteriormente. Del mismo modo, la Figura 1.2 muestra como la función T(n) que representa el tiempo de ejecución se comporta prácticamente igual que la función $f(n) = n^2/19 \in O(n^2)$. Este hecho demuestra empíricamente que la complejidad con respecto a la cantidad de litros es cuadrática al realizar la fumigación tal como se había analizado anteriormente.
 
-%TODO
+Otras cuestión observable son los ``picos'' y variaciones abrutas en ambos gráficos. En principio, esto no debería ocurrir ya que la complejidad no depende de la forma de la entrada como se mencionó anteriormente. El motivo de esto radica simplemente en los errores de precisión en la medición de las operaciones propios de las limitaciones de la máquina de cómputo utilizada. Los tiempos de ejecución del algoritmo son mucho mayores en la Figura 1.2 lo que resulta en una mayor estabilidad en los cálculo de tiempo, en contraste con la Figura 1.1 donde hay mayor impresición porque dicho gráfico refleja cambios de valores más abrutos.
+
+\begin{center}
+ \includegraphics[width=0.7\textwidth]{Plots/Tp2Ej1-TiemposFumigacion-3d-bw.png}
+\begin{center}
+Figura 1.3
+\end{center}
+\end{center}
+
+Esta última figura permite ver como el algoritmo en su totalidad realmente se comporta de la forma esperada. 
+Para esto basta comparar los tiempos de ejecución al variar ambos parámetros (litros y zonas) junto con la función $f(n,m) = n*m^2/200 \in O(n*m^2)$ viendo que ambas ``mantas'' coiniciden. Este ultimo hecho constituye la última prueba de que empirícamente el algoritmo funciona tal como se esperaba.
 
 \subsection*{Cálculo de Litros Por Zona}
 
-%TODO
+En esta sección analizaremos el comportamiento del otro algortimo propuesto que se encarga de dar parte de la solución del problema: el algoritmo encargado de calcular los litros a utilizar por cada zona. Los siguientes gráficos muestran el comportamiento del mismo en base a las dos variables en cuestión de forma independiente:
+
+\begin{center}
+ \includegraphics[width=0.7\textwidth]{Plots/Tp2Ej1-TiemposLitrosPorZonaPorZonas-10litros-bw.png}
+\begin{center}
+Figura 2.1
+\end{center}
+ \includegraphics[width=0.7\textwidth]{Plots/Tp2Ej1-TiemposLitrosPorZonaPorZonas-10zonas-bw.png}
+\begin{center}
+Figura 2.2
+\end{center}
+\end{center}
+
+Como se puede observar, en ambos casos, el comportamiento del algoritmo es el esperado. La Figura 2.1 muestra como el cálculo de litros por zona se ``corresponde'' con el gráfico de la función lineal $f(n) = n/25$ al variar la cantidad de zonas y fijar los litros en $10$. Asímismo, la Figura 2.2 se comporta de la forma $f(n) = n/75$ al variar los litros y fijar las zonas. Esto comprueba la linealidad en complejidad teórica analizada previamente para ambas variables. Un punto interesante a observar es que las constantes que acompañan a estas funciones difieren, siendo la constante relacionada al primer gráfico ($1/25$) 3 veces mayor que la otra ($1/75$). Al tratarse de instancias de igual tamaño (en ambos casos, matrices desde $1*10$ hasta $10000*10$), se puede concluir que la \textit{performance} de este algoritmo depende en mayor medida de la cantidad de zonas que de la cantidad de litros. En otras palabras, para instancias de igual tamaño, un caso demora 3 veces más el otro. \textbf{POR QUE?}
+
+Con respecto a la irregularidad del gráfico, cabe notar que, a diferencia del algoritmo anterior, este algoritmo no realiza siempre la misma cantidad de operaciones para instancias de igual tamaño tal como se vió en la sección de análisis de complejidad, ya que el recorrido inverso de la matriz resultante depende justamente de los valores que esta contenga que dependen a su vez de los valores de la matriz de entrada \textit{mosquitosMuertos} (ver sección \textit{Algoritmo}). Por este motivo, debido a que se trata de instancias aleatorias, es esperable que no se obtenga un comportamiento ``tan'' similar a la función lineal propuesta como ocurre para el primer algoritmo.
+
+Por último, al igual que para el algoritmo anterior, se presenta el siguiente gráfico de 3 dimensiones:
+
+\begin{center}
+ \includegraphics[width=0.7\textwidth]{Plots/Tp2Ej1-TiemposLitrosPorZona-3d-bw.png}
+\begin{center}
+Figura 1.3
+\end{center}
+\end{center}
+
+Al igual que antes, este gráfico permite ver la complejidad de ambos parámetros en conjunto. \textbf{TODO}
 
 \section*{Conclusiones}
 
-Este ejercicio nos mostr\'o un caso representativo en el que el tiempo de ejecuci\'on difiere notablemente a la complejidad calculada para el peor caso.
+%TODO: Decir que se podria haber analizado los algoritmos recursivos que repiten operaciones vs la programacion dinamica pero no hubo tiempo.
 
-Para este algoritmo en particular se debe a que la funci\'on \textit{encontrarPrimos} alcanzar\'ia dicho peor caso si la conjetura de Goldbach fuese falsa, cuesti\'on que no sucede para ning\'un n\'umero que pueda tomar la func\'on (es decir, hasta el n\'umero mas grande almacenable en un \textit{int}). M\'as aun, esta demostrado que para n\'umeros mucho mas grandes que los testeados la conjetura se sigue cumpliendo (ver secci\'on Referencias para m\'as detalles) por lo que en el \'ambito cient\'ifico se cree que es cierta.
+% Este ejercicio nos mostr\'o un caso representativo en el que el tiempo de ejecuci\'on difiere notablemente a la complejidad calculada para el peor caso.
+% 
+% Para este algoritmo en particular se debe a que la funci\'on \textit{encontrarPrimos} alcanzar\'ia dicho peor caso si la conjetura de Goldbach fuese falsa, cuesti\'on que no sucede para ning\'un n\'umero que pueda tomar la func\'on (es decir, hasta el n\'umero mas grande almacenable en un \textit{int}). M\'as aun, esta demostrado que para n\'umeros mucho mas grandes que los testeados la conjetura se sigue cumpliendo (ver secci\'on Referencias para m\'as detalles) por lo que en el \'ambito cient\'ifico se cree que es cierta.
+% 
+% Tambi\'en vimos casos en los que entre n\'umeros cercanos tomados por la funci\'on, el tiempo de ejecuci\'on difiere considerablemente. Adem\'as notamos que a medida que el tama\~{n}o del par\'ametro de entrada crece el tiempo tamb\'ien lo hace, pero siempre muy lejos de los peores casos para dichas entradas. Estas situaciones se deben a la desconocida distribuci\'on de los n\'umeros primos entre los naturales, por lo que no podemos dar una explicaci\'on general que incluya todos los casos reales. Sin embargo, en base a todos los an\'alisis realizados, podemos concluir que para todos los casos computables por nuestro algoritmo el tiempo de ejecuci\'on ser\'a mas que aceptable.
 
-Tambi\'en vimos casos en los que entre n\'umeros cercanos tomados por la funci\'on, el tiempo de ejecuci\'on difiere considerablemente. Adem\'as notamos que a medida que el tama\~{n}o del par\'ametro de entrada crece el tiempo tamb\'ien lo hace, pero siempre muy lejos de los peores casos para dichas entradas. Estas situaciones se deben a la desconocida distribuci\'on de los n\'umeros primos entre los naturales, por lo que no podemos dar una explicaci\'on general que incluya todos los casos reales. Sin embargo, en base a todos los an\'alisis realizados, podemos concluir que para todos los casos computables por nuestro algoritmo el tiempo de ejecuci\'on ser\'a mas que aceptable.
+TODO
 
 \bigskip
 
