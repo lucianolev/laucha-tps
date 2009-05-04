@@ -1,0 +1,73 @@
+buscarDiamante(archivo)
+	leer archivo y crear adyacencias excepto para los nodos de grado 1 y 0, un arreglo donde cada posicion i es una lista de los nodos adyacentes del nodo i
+
+	armarMatrizDeAdyacencia(adyacencias)
+	para cada nodo (superNodo) del grafo
+		si tam(adyacencias[superNodo]) >= 3
+			vecindadDeSuperNodo = crearVecindad(superNodo)
+			agregar buscarDiamanteMinimoEnVecindad(vecindadDeSuperNodo) a diamantesMinimos
+
+	diamanteMinimo = minimo(diamantesMinimos)
+
+armarMatrizDeAdyacencia(adyacencias) //O(nxm)
+	lleno con ceros la matriz
+	recorro las listas de adyacencia completando con 1s en la posicion correspondiente de la matriz
+
+crearVecindad(superNodo) //O(m)
+	para cada nodo k de adyacencias[superNodo]
+		para cada nodo j de adyacencias[k]
+			si nodo j es adyacente a superNodo
+				agregar nodo j a listaVecindad
+		vecindadDeSuperNodo[k] = listaVecindad;
+	retorno vecindadDeSuperNodo; //esto es un grafo (array de listas de adyacencia)
+
+buscarDiamanteMinimoEnVecindad(vecindadDeSuperNodo) //O(m)
+	pilaDFS = pila vacia
+	diamanteMinimo = null
+	mientras haya nodos en adyacencias[superNodo]
+		nodoActual = siguiente(adyacencias[superNodo])
+		si !marcado(nodoActual)
+			apilar nodoActual
+			nodosCompConexa = lista vacia
+			nodoMinimoCompConexa = n;
+			sumaGradosCompConexa = 0
+			mientras la pilaDFS no este vacia
+				nodoActual = desapilar(pilaDFS)
+				marcar nodoActual
+				sumaGradosCompConexa =+ grado(nodoActual)
+				agregar nodoActual a nodosCompConexa
+				si nodoActual < nodoMinimoCompConexa
+					nodoMinimoCompConexa = nodoActual
+				para cada nodo (adyacenteANodoActual) de vecindadDeSuperNodo[nodoActual]
+					si !marcado(adyacenteANodoActual)
+						sumaGradosCompConexa =+ grado(adyacenteANodoActual)
+						apilar adyacenteANodoActual
+			si (sumaGradosCompConexa != tam(nodosCompConexa)*(tam(nodosCompConexa) - 1)) //Comp no completa
+				si diamanteMinimo no existe o nodoMinimoCompConexa <= minimo(diamanteMinimo) //esto sirve para no buscar si ya sabemos que el diamante encontrado va a ser mayor
+					diamante = buscarDiamanteMinimoDeCompConexa(superNodo, vecindadDeSuperNodo, nodosCompConexa)
+					si diamanteMinimo no existe o si existe y es mas grande que diamante //O(1)
+						diamanteMinimo = diamante
+
+	retorno diamanteMinimo //si es null es porq no habia diamante en toda la vecindad
+
+buscarDiamanteMinimoDeCompConexa(superNodo, vecindadDeSuperNodo, nodosCompConexa) //O(tam(nodosCompConexa))
+	nodo1 = superNodo
+
+	nodoMinimo = n (nodo mas grande de todo el grafo)
+	para cada nodo (nodoActual) de nodosCompConexa //O(tam(nodosCompConexa))
+		si grado(nodoActual) < tam(nodosCompConexa) - 1 && nodoActual < nodoMinimo
+			nodoMinimo = nodoActual
+	nodo2 = nodoMinimo
+
+	tuplaMin = <n,n> //La tupla min tiene un orden magico, o sea <4,1> es mas chico que <3,2>
+	para cada nodo (adyacenteANodo2) de vecindadDeSuperNodo[nodo2] //O(tam(nodosCompConexa))
+		para cada nodo (nodoCandidato) de vecindadDeSuperNodo[adyacenteANodo2]
+			si nodoCandidato NO es adyacente a nodo2 && <nodoCandidato, adyacenteANodo2> < tuplaMin
+				tuplaMin = <nodoCandidato, adyacenteANodo2>
+
+	nodo3 = primero(tuplaMin)
+	nodo4 = segundo(tuplaMin)
+
+	diamanteMinimo = ordenar(nodo1, nodo2, nodo3, nodo4)
+
+	retorno diamanteMinimo
