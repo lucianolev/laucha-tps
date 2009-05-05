@@ -22,24 +22,23 @@ public class Diamante {
 		try {
  			inputStream = new BufferedReader(new FileReader(nombreDelArchivo));
 			StringTokenizer tokens = null;
-			InstanciaDengue instancia = null;
+			InstanciaDiamante instancia = null;
 			
-			tokens = new StringTokenizer(inputStream.readLine(), " ");
-			int cantNodos = Integer.parseInt(tokens.nextToken());
+			String line = inputStream.readLine();
+			int cantNodos = Integer.parseInt(line);
 			while(cantNodos != 0) {
 				instancia = new InstanciaDiamante(cantNodos);
-				nodosDeGradoUno = new int[cantNodos];
 				for(int i = 1; i <= instancia.cantNodos; i++) {
 					tokens = new StringTokenizer(inputStream.readLine(), " ");
 					LinkedList listaAdyacencia = new LinkedList();
 					while(tokens.hasMoreTokens()) {
-						listaAdyacencia.add(Integer.parseInt(tokens.nextToken()));
+						listaAdyacencia.add(Integer.valueOf(tokens.nextToken()));
 					}
-					adyacencias[i] = listaAdyacencia;
+					instancia.adyacencias[i] = listaAdyacencia;
 				}
-				
-				tokens = new StringTokenizer(inputStream.readLine(), " ");
-				cantNodos = Integer.parseInt(tokens.nextToken());
+				listaDeInstancias.add(instancia);
+				line = inputStream.readLine();
+				cantNodos = Integer.parseInt(line);
 			}
 		}
 		finally {
@@ -59,17 +58,19 @@ public class Diamante {
 		System.out.println("Se han resuelto todas las instancias ingresadas! ("+listaDeInstancias.size()+" instancia/s)");
 	}
 
-	public void buscarDiamante(instanciaDiamante instancia) {
+	public void buscarDiamante(InstanciaDiamante instancia) {
 		instancia.eliminarNodosChicos();
 		instancia.armarMatrizDeAdyacencia();
 		
 		LinkedList diamantesMinimos = new LinkedList();
-		for (int superNodo = 0; superNodo < instancia.cantNodos; superNodo++) {
-			if (instancia.adyacencias[superNodo].size() >= 3) {
-				LinkedList[] vecindadDeSuperNodo = instancia.crearVecindad(superNodo);
-				int[4] diamanteMinimoVecindad = instancia.buscarDiamanteMinimoEnVecindad(vecindadDeSuperNodo);
+		for (int superNodo = 1; superNodo <= instancia.cantNodos; superNodo++) {
+			if ((instancia.adyacencias[superNodo] != null) 
+				&& (instancia.adyacencias[superNodo].size() >= 3)) 
+			{
+				LinkedList[] vecindadDeSuperNodo = instancia.crearVecindad(new Integer(superNodo));
+				Integer[] diamanteMinimoVecindad = instancia.buscarDiamanteMinimoEnVecindad(new Integer(superNodo), vecindadDeSuperNodo);
 				if(diamanteMinimoVecindad != null) {
-					diamantesMinimos.add(diamanteMinimoVecindad)
+					diamantesMinimos.add(diamanteMinimoVecindad);
 				}
 			}
 		}
@@ -79,10 +80,11 @@ public class Diamante {
 		} else {
 			instancia.hayDiamante = true;
 			ListIterator iter = diamantesMinimos.listIterator();
-			instancia.diamanteMinimo = (int[])iter.next();
+			instancia.diamanteMinimo = (Integer[])iter.next();
+			Integer[] diamante = new Integer[4];
 			while(iter.hasNext()) {
-				diamante = (int[])iter.next();
-				if(InstanciaDiamante.compararDiamentes(diamante, diamanteMinimo)) {
+				diamante = (Integer[])iter.next();
+				if(InstanciaDiamante.compararDiamantes(diamante, instancia.diamanteMinimo)) {
 					instancia.diamanteMinimo = diamante;
 				}
 			}
@@ -96,6 +98,16 @@ public class Diamante {
 // 			agregar buscarDiamanteMinimoEnVecindad(vecindadDeSuperNodo) a diamantesMinimos
 // 
 // 	diamanteMinimo = minimo(diamantesMinimos)
+
+	public static void mostrarAdyacencias(LinkedList[] adyacencias, int cantNodos) {
+		for(int superNodo = 1; superNodo <= cantNodos; superNodo++) {
+			ListIterator listaAdyacencia = adyacencias[superNodo].listIterator();
+			System.out.print(superNodo+". ");
+			while(listaAdyacencia.hasNext()) {
+				System.out.print(((Integer)listaAdyacencia.next()).toString()+" ");
+			}
+			System.out.println("");
+		}
 	}
 
 	public void guardarResultados(String nombreDelArchivo) throws IOException {
