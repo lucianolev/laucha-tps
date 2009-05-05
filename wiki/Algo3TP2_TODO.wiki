@@ -9,7 +9,7 @@
 === Informe ===
   * Introducción *LISTO*
   * Algoritmo: Pseudocódigo, implementación y correctitud. - *LISTO*
-  * Complejidad - *Agustin (casi listo)*
+  * Complejidad - *LISTO*
   * Análisis de resultados: Graficos e analisis - *Lucho (casi listo)*
   * Conclusiones
 
