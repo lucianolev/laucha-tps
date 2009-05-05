@@ -62,6 +62,40 @@ public class Diamante {
 	public void buscarDiamante(instanciaDiamante instancia) {
 		instancia.eliminarNodosChicos();
 		instancia.armarMatrizDeAdyacencia();
+		
+		LinkedList diamantesMinimos = new LinkedList();
+		for (int superNodo = 0; superNodo < instancia.cantNodos; superNodo++) {
+			if (instancia.adyacencias[superNodo].size() >= 3) {
+				LinkedList[] vecindadDeSuperNodo = instancia.crearVecindad(superNodo);
+				int[4] diamanteMinimoVecindad = instancia.buscarDiamanteMinimoEnVecindad(vecindadDeSuperNodo);
+				if(diamanteMinimoVecindad != null) {
+					diamantesMinimos.add(diamanteMinimoVecindad)
+				}
+			}
+		}
+
+		if(diamantesMinimos.size() == 0) {
+			instancia.hayDiamante = false;
+		} else {
+			instancia.hayDiamante = true;
+			ListIterator iter = diamantesMinimos.listIterator();
+			instancia.diamanteMinimo = (int[])iter.next();
+			while(iter.hasNext()) {
+				diamante = (int[])iter.next();
+				if(InstanciaDiamante.compararDiamentes(diamante, diamanteMinimo)) {
+					instancia.diamanteMinimo = diamante;
+				}
+			}
+		}
+		Arrays.sort(instancia.diamanteMinimo);
+	}
+
+// para cada nodo (superNodo) del grafo
+// 		si tam(adyacencias[superNodo]) >= 3
+// 			vecindadDeSuperNodo = crearVecindad(superNodo)
+// 			agregar buscarDiamanteMinimoEnVecindad(vecindadDeSuperNodo) a diamantesMinimos
+// 
+// 	diamanteMinimo = minimo(diamantesMinimos)
 	}
 
 	public void guardarResultados(String nombreDelArchivo) throws IOException {
