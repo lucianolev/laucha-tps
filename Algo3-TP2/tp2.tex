@@ -4,6 +4,7 @@
 \usepackage{caratula}
 \usepackage{a4wide}
 \usepackage{graphicx}
+% \usepackage{graphs}
 
 \begin{document}
 
@@ -283,10 +284,35 @@ En un principio, cuando se comenzó a idear el algoritmo, surgió la idea de uti
 
 \section*{Algoritmo}
 
+% \begin{graph}(4,4)(-2,0)
+%  \roundnode{Nodo1}(1,1)
+%  \roundnode{Nodo2}(2,2)
+%  \edge{Nodo1}{Nodo2}
+% \end{graph}
+% \originalTeX
+% \begin{figure}[htbp]
+% 
+% \begin{graph}(4,4)(-2,0)
+%   \squarenode{Sq}(-1.5,3.5)
+%   \textnode{Te}(1.5,3.5){abc}
+%   \roundnode{Ro}(0,.5)
+%   \diredge{Sq}{Te}
+%   \edge{Sq}{Ro} \diredge{Ro}{Te}
+%   \dirbow{Ro}{Sq}{-.2}
+%   \dirbow{Ro}{Te}{.2}
+%   \dirloopedge{Ro}(-.8,-.2)(-1.2,.4)
+%   \dirloopedge{Ro}(.8,-.2)(1.2,.4)
+%   \loopedge{Ro}{15}(0,-.5)
+% \end{graph}
+% % \germanTeX
+% \end{figure}
+
+
 A continuaci\'on se presenta el pseudoc\'odigo del algoritmo para resolver el problema propuesto.
 
 \begin{verbatim}
-leer archivo y crear adyacencias excepto para los nodos de grado 1 y 0, un arreglo donde cada posicion i es una lista de los nodos adyacentes del nodo i
+leer archivo y crear adyacencias excepto para los nodos de grado 1 y 0,
+un arreglo donde cada posicion i es una lista de los nodos adyacentes del nodo i
 
 Armar la matriz de adyacencias
 
@@ -299,15 +325,49 @@ diamanteMinimo = minimo(diamantesMinimos)
 guardar en "Tp2Ej2.out" diamanteMinimo
 
 
-crearVecindad(superNodo) //O(m)
+crearVecindad(superNodo) { //O(m)
   para cada nodo k de adyacencias[superNodo]
     para cada nodo j de adyacencias[k]
       si nodo j es adyacente a superNodo
         agregar nodo j a listaVecindad
     vecindadDeSuperNodo[k] = listaVecindad
   devolver vecindadDeSuperNodo //esto es un grafo (array de listas de adyacencia)
+}
+
+buscarDiamanteMinimoEnVecindad(vecindadDeSuperNodo) { //O(m)
+  Recorrer una componente conexa (no recorrida previamente) de vecindadDeSuperNodo por DFS 
+  sumando los grados de los nodos recorridos (sumaGradosCompConexa) y
+  guardando en nodosCompConexa los nodos recorridos y
+  en nodoMinimoCompConexa el nodo minimo de la componente conexa
+  
+  si sumaGradosCompConexa != cant de nodos de un grafo completo de tam(nodosCompConexa) nodos
+    si diamanteMinimo no existe o nodoMinimoCompConexa <= minimo(diamanteMinimo)
+      diamante = buscarDiamanteMinimoDeCompConexa(superNodo,vecindadDeSuperNodo,nodosCompConexa)
+      si diamanteMinimo no existe o si existe y es mas grande que diamante //O(1)
+        diamanteMinimo = diamante
+
+  devolver diamanteMinimo //si es null es porq no habia diamante en toda la vecindad
+}
+
+buscarDiamanteMinimoDeCompConexa(superNodo, vecindadDeSuperNodo, nodosCompConexa) {
+  nodo1 = superNodo
+  nodoMinimo = nodo minimo de nodosCompConexa con grado menor que tam(nodosCompConexa)-1
+
+  para cada nodo (adyacenteANodo2) de vecindadDeSuperNodo[nodo2] //O(tam(nodosCompConexa))
+    para cada nodo (nodoCandidato) de vecindadDeSuperNodo[adyacenteANodo2]
+      si nodoCandidato no es adyacente a nodo2 y <nodoCandidato, adyacenteANodo2> < tuplaMin
+        tuplaMin = <nodoCandidato, adyacenteANodo2>
+
+  nodo3 = primero(tuplaMin)
+  nodo4 = segundo(tuplaMin)
+
+  diamanteMinimo = ordenar(nodo1, nodo2, nodo3, nodo4)
+
+  devuelvo diamanteMinimo
+}
 
 \end{verbatim}
+
 
 Antes de comenzar, para la implementaci\'on se utilizaron las siguientes estructuras:
 \begin{itemize}
