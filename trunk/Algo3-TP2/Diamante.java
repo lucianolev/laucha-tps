@@ -61,6 +61,8 @@ public class Diamante {
 	public void buscarDiamante(InstanciaDiamante instancia) {
 		instancia.eliminarNodosChicos();
 		instancia.armarMatrizDeAdyacencia();
+
+		instancia.mostrarMatrizDeAdyacencia(); //DEBUG
 		
 		LinkedList diamantesMinimos = new LinkedList();
 		for (int superNodo = 1; superNodo <= instancia.cantNodos; superNodo++) {
@@ -69,14 +71,20 @@ public class Diamante {
 			{
 				LinkedList[] vecindadDeSuperNodo = instancia.crearVecindad(new Integer(superNodo));
 				Integer[] diamanteMinimoVecindad = instancia.buscarDiamanteMinimoEnVecindad(new Integer(superNodo), vecindadDeSuperNodo);
+
 				if(diamanteMinimoVecindad != null) {
 					diamantesMinimos.add(diamanteMinimoVecindad);
 				}
+
 			}
 		}
 
 		if(diamantesMinimos.size() == 0) {
 			instancia.hayDiamante = false;
+			//DEBUG
+			System.out.println("----------------");
+			System.out.println("No hay diamante!");
+			System.out.println("");
 		} else {
 			instancia.hayDiamante = true;
 			ListIterator iter = diamantesMinimos.listIterator();
@@ -88,8 +96,12 @@ public class Diamante {
 					instancia.diamanteMinimo = diamante;
 				}
 			}
+
+			//DEBUG
+			System.out.println("----------------");
+			System.out.println("diamanteMinimo: "+instancia.diamanteMinimo[0]+" "+instancia.diamanteMinimo[1]+" "+instancia.diamanteMinimo[2]+" "+instancia.diamanteMinimo[3]);
+			System.out.println("");
 		}
-		Arrays.sort(instancia.diamanteMinimo);
 	}
 
 // para cada nodo (superNodo) del grafo
@@ -101,12 +113,14 @@ public class Diamante {
 
 	public static void mostrarAdyacencias(LinkedList[] adyacencias, int cantNodos) {
 		for(int superNodo = 1; superNodo <= cantNodos; superNodo++) {
-			ListIterator listaAdyacencia = adyacencias[superNodo].listIterator();
-			System.out.print(superNodo+". ");
-			while(listaAdyacencia.hasNext()) {
-				System.out.print(((Integer)listaAdyacencia.next()).toString()+" ");
+			if (adyacencias[superNodo] != null) {
+				ListIterator listaAdyacencia = adyacencias[superNodo].listIterator();
+				System.out.print(superNodo+". ");
+				while(listaAdyacencia.hasNext()) {
+					System.out.print(((Integer)listaAdyacencia.next()).toString()+" ");
+				}
+				System.out.println("");
 			}
-			System.out.println("");
 		}
 	}
 

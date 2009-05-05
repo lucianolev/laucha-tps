@@ -25,12 +25,14 @@ public class InstanciaDiamante {
 
 		//Borro los adyacentes a los nodos de grado 1 que elimine antes para mantener la consistencia
 		for(int i = 1; i <= cantNodos; i++) {
-			ListIterator iter = adyacencias[i].listIterator();
-			boolean elimino = false;
-			while(iter.hasNext() && !elimino) {
-				if(((Integer)iter.next()).intValue() == nodosDeGradoUno[i]) {
-					iter.remove();
-					elimino = true;
+			if(adyacencias[i] != null) {
+				ListIterator iter = adyacencias[i].listIterator();
+				boolean elimino = false;
+				while(iter.hasNext() && !elimino) {
+					if(((Integer)iter.next()).intValue() == nodosDeGradoUno[i]) {
+						iter.remove();
+						elimino = true;
+					}
 				}
 			}
 		}
@@ -46,11 +48,25 @@ public class InstanciaDiamante {
 		}
 
 		for(int i = 1; i <= cantNodos; i++) {
-			ListIterator iter = adyacencias[i].listIterator();
-			while(iter.hasNext()) {
-				matrizAdyacencias[i][((Integer)iter.next()).intValue()] = true;
+			if(adyacencias[i] != null) {
+				ListIterator iter = adyacencias[i].listIterator();
+				while(iter.hasNext()) {
+					matrizAdyacencias[i][((Integer)iter.next()).intValue()] = true;
+				}
 			}
 		}
+	}
+
+	public void mostrarMatrizDeAdyacencia() {
+		System.out.println("----------------------");
+		System.out.println("Matriz de Adyacencias:");
+		for(int i = 0; i <= cantNodos; i++) {
+			for(int j = 0; j <= cantNodos; j++) {
+				System.out.print(matrizAdyacencias[i][j]+" ");
+			}
+			System.out.println("");
+		}
+		System.out.println("----------------------");
 	}
 
 	public LinkedList[] crearVecindad(Integer superNodo) {
@@ -71,6 +87,7 @@ public class InstanciaDiamante {
 			vecindadDelSuperNodo[adyacenteASuperNodo.intValue()] = listaAdyacencia;
 		}
 
+		//DEBUG
 		System.out.println("Vecindad de "+superNodo.toString());
 		Diamante.mostrarAdyacencias(vecindadDelSuperNodo, cantNodos);
 		System.out.println("----------------------");
@@ -80,10 +97,13 @@ public class InstanciaDiamante {
 
 	public Integer[] buscarDiamanteMinimoEnVecindad(Integer superNodo, LinkedList[] vecindadDeSuperNodo) {
 		Stack pilaDFS = new Stack();
-		diamanteMinimo = null;
+		Integer[] diamanteMinimoVecindad = null;
 
 		ListIterator adyacentesASuperNodo = adyacencias[superNodo.intValue()].listIterator();
 		boolean[] marcados = new boolean[cantNodos+1];
+		for(int i = 1; i <= cantNodos; i++) {
+			marcados[i] = false;
+		}
 		while(adyacentesASuperNodo.hasNext()) {
 			Integer nodoActual = (Integer)adyacentesASuperNodo.next();
 			if(!marcados[nodoActual.intValue()]) {
@@ -94,7 +114,8 @@ public class InstanciaDiamante {
 				while(!pilaDFS.empty()) {
 					nodoActual = (Integer)pilaDFS.pop();
 					marcados[nodoActual.intValue()] = true;
-					sumaGradosCompConexa =+ vecindadDeSuperNodo[nodoActual.intValue()].size(); 
+					sumaGradosCompConexa = sumaGradosCompConexa +
+						vecindadDeSuperNodo[nodoActual.intValue()].size();
 					nodosCompConexa.add(nodoActual);
 					if (nodoActual.intValue() < nodoMinimoCompConexa.intValue()) {
 						nodoMinimoCompConexa = nodoActual;
@@ -103,29 +124,32 @@ public class InstanciaDiamante {
 					while(adyacentesANodoActual.hasNext()) {
 						Integer adyacenteANodoActual = (Integer)adyacentesANodoActual.next();
 						if(!marcados[adyacenteANodoActual.intValue()]) {
-							sumaGradosCompConexa =+ vecindadDeSuperNodo[adyacenteANodoActual.intValue()].size();
 							pilaDFS.push(adyacenteANodoActual);
 						}
 					}
 				}
 				if (sumaGradosCompConexa != (nodosCompConexa.size()*(nodosCompConexa.size()-1))) {
-					if (diamanteMinimo == null) {
-						diamanteMinimo = buscarDiamanteMinimoDeCompConexa(superNodo, vecindadDeSuperNodo, nodosCompConexa);
-					}
-					if(nodoMinimoCompConexa.intValue() <= diamanteMinimo[0].intValue()) {
+					if (diamanteMinimoVecindad == null) {
+						diamanteMinimoVecindad = buscarDiamanteMinimoDeCompConexa(superNodo, vecindadDeSuperNodo, nodosCompConexa);
+					} else 
+					if(nodoMinimoCompConexa.intValue() <= diamanteMinimoVecindad[0].intValue()) {
 						Integer[] diamante = buscarDiamanteMinimoDeCompConexa(superNodo, vecindadDeSuperNodo, nodosCompConexa);
-						if(diamante != null && compararDiamantes(diamante, diamanteMinimo)) {
-							diamanteMinimo = diamante;
+						if(diamante != null && compararDiamantes(diamante, diamanteMinimoVecindad)) {
+							diamanteMinimoVecindad = diamante;
 						}
 					}
 				}
 			}
 		}
-		if (diamanteMinimo == null) {
+		if (diamanteMinimoVecindad == null) {
 			System.out.println("En la vecindad del superNodo "+superNodo.intValue()+" no hay diamante");
+		} else {
+			//DEBUG
+			System.out.println("-->diamanteMinimoVecindad: "+diamanteMinimoVecindad[0]+" "+diamanteMinimoVecindad[1]+" "+diamanteMinimoVecindad[2]+" "+diamanteMinimoVecindad[3]);
+			System.out.println("");
 		}
 
-		return diamanteMinimo;
+		return diamanteMinimoVecindad;
 	}
 
 	public Integer[] buscarDiamanteMinimoDeCompConexa(Integer superNodo, LinkedList[] vecindadDeSuperNodo, LinkedList nodosCompConexa) {
@@ -151,7 +175,9 @@ public class InstanciaDiamante {
 			ListIterator adyacentesAAdyacenteANodo2 = vecindadDeSuperNodo[adyacenteANodo2.intValue()].listIterator();
 			while(adyacentesAAdyacenteANodo2.hasNext()) {
 				Integer adyacenteAAdyacenteANodo2 = (Integer)adyacentesAAdyacenteANodo2.next();
-				if(!matrizAdyacencias[adyacenteAAdyacenteANodo2.intValue()][nodo2.intValue()]) {
+				if((adyacenteAAdyacenteANodo2.intValue() != nodo2.intValue()) &&
+					!matrizAdyacencias[adyacenteAAdyacenteANodo2.intValue()][nodo2.intValue()])
+				{
 					if (adyacenteAAdyacenteANodo2.intValue() < adyacenteANodo2.intValue()) {
 						nodoChico = adyacenteAAdyacenteANodo2;
 						nodoGrande = adyacenteANodo2;
@@ -159,6 +185,7 @@ public class InstanciaDiamante {
 						nodoChico = adyacenteANodo2;
 						nodoGrande = adyacenteAAdyacenteANodo2;
 					}
+
 					if(nodoChico.intValue() < nodo3.intValue()) {
 						nodo3 = nodoChico;
 						nodo4 = nodoGrande;
@@ -171,19 +198,26 @@ public class InstanciaDiamante {
 			}
 		}
 
-		Integer[] diamanteMinimo = new Integer[4];
-		diamanteMinimo[0] = nodo1;
-		diamanteMinimo[1] = nodo2;
-		diamanteMinimo[2] = nodo3;
-		diamanteMinimo[3] = nodo4;
-		Arrays.sort(diamanteMinimo);
+		Integer[] diamanteMinimoCompConexa = new Integer[4];
+		diamanteMinimoCompConexa[0] = nodo1;
+		diamanteMinimoCompConexa[1] = nodo2;
+		diamanteMinimoCompConexa[2] = nodo3;
+		diamanteMinimoCompConexa[3] = nodo4;
 
-		return diamanteMinimo;
+		Arrays.sort(diamanteMinimoCompConexa);
+
+		//DEBUG
+		System.out.println("diamanteCompConexa: "+diamanteMinimoCompConexa[0]+" "+diamanteMinimoCompConexa[1]+" "+diamanteMinimoCompConexa[2]+" "+diamanteMinimoCompConexa[3]);
+		System.out.println("");
+
+
+		return diamanteMinimoCompConexa;
 	}
 
 	//retorno true si diamante1 < diamante2
 	public static boolean compararDiamantes(Integer[] diamante1, Integer[] diamante2) {
-		if(diamante1[0] != diamante2[0]) {
+
+		if(diamante1[0].intValue() != diamante2[0].intValue()) {
 			if (diamante1[0].intValue() < diamante2[0].intValue()) {
 				return true;
 			}
