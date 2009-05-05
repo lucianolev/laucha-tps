@@ -7,8 +7,24 @@
   * Programa para generar resultados para las pruebas. - *LISTO*
 
 === Informe ===
-  * Introducción
-  * Algoritmo: Pseudocódigo, implementación y correctitud. - *Fede y Mati*
-  * Complejidad - *Agustin*
-  * Análisis de resultados: Graficos e analisis - *Lucho*
+  * Introducción *LISTO*
+  * Algoritmo: Pseudocódigo, implementación y correctitud. - *LISTO*
+  * Complejidad - *Agustin (casi listo)*
+  * Análisis de resultados: Graficos e analisis - *Lucho (casi listo)*
+  * Conclusiones
+
+
+== Ej2 ==
+
+=== Código ===
+  * Pensar los algoritmos - *LISTO*
+  * Implementación funcional de los algoritmos - *Lucho*
+  * Generador de instancias -
+  * Programa para generar resultados para las pruebas. -
+
+=== Informe ===
+  * Introducción - *LISTO*
+  * Algoritmo: Pseudocódigo, implementación y correctitud. - *Mati y Agus*
+  * Complejidad -
+  * Análisis de resultados: Graficos e analisis -
   * Conclusiones
