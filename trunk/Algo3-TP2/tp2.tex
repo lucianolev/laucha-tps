@@ -1,4 +1,4 @@
-\documentclass[a4paper,10pt] {article}
+\documentclass[a4paper,11pt] {article}
 \usepackage[spanish]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{caratula}
@@ -281,6 +281,23 @@ TODO
 El objetivo del siguiente ejercicio es dise\~{n}ar un algoritmo que, dado un grafo, encuentre el menor subgrafo inducido isomorfo a un diamante, en caso de que éste exista. Un diamante puede definirse como un grafo $K_{4}$ menos una arista. Este algoritmo está basado en una propiedad sobre diamantes (enunciada en el Anexo A) que, además de ser usada para resolver el problema, será demostrada de manera formal.
 
 En un principio, cuando se comenzó a idear el algoritmo, surgió la idea de utilizar solamente la propiedad enunciada para resolver el problema. Es decir, para toda vecindad de cada nodo, estudiar cada componente conexa para determinar si la misma es completa. Sin embargo, esto sólo aportaba información sobre las componentes conexas que formaban un diamante, pero no brindaba detalles sobre los nodos que formaban el diamante, y no aseguraba que este fuera mínimo para dicha componente conexa. Por esta razón, se optó por utilizar un método más complejo que, aunque se basa en la propiedad mencionada, obtiene de cada componente conexa no completa (existe diamante) los nodos mínimos que forman un diamante. Esto se realiza calculando el mínimo nodo que puede formar un diamante y, a partir de este, construir el mínimo probando las posibles combinaciones que construyan un diamante. De esta manera se pueden obtener los diamantes mínimos de cada componente conexa no completa de una determinada vecindad y así determinar el mínimo de la misma. Finalmente, se comparan los diamantes obtenidos de cada vecindad para obtener el mínimo diamante del grafo. Este algoritmo será explicado en detalle, se mostrará su correctitud y se presentará la implementación y pruebas de ejecución del mismo en posteriores secciones.
+
+\section*{Demostraci\'on de la parte a}
+
+A continuaci\'on se presentar\'a la demostraci\'on de la siguiente propiedad:
+
+Sea $G$ un grafo de $n$ v\'ertices y $m$ aristas, $G$ no contiene un subgrafo diamante como subgrafo inducido si y solamente si para todo v\'ertice $v$, su vecindad $N(v)$ se divide en componentes conexas completas.
+
+Llamaremos $p$ a la proposici\'on ``$G$ no contiene un subgrafo diamante como subgrafo inducido`` y $q$ a la proposici\'on ''para todo v\'ertice $v$, su vecindad $N(v)$ se divide en componentes conexas completas``. Dividiremos la demostraci\'on en dos partes: la implicaci\'on y la vuelta.
+
+\begin{itemize}
+\item $p \Longrightarrow q$
+
+Por propiedades de la l\'ogica $p \Longrightarrow q$ equivale a mostrar $-q \Longrightarrow -p$. De esta manera, probaremos aqu\'i que si existe un v\'ertice $v$ tal que su vecindad $N(v)$ contiene una componente conexa no completa entonces $G$ contiene un subgrafo diamante como subgrafo inducido.
+
+Sea $v$ un v\'ertice de $G$ y sea $N(v)$ su vecindad asociada. Si $N(v)$ tiene a $K_{3}$ menos una arista (lo llamaremos $K_{3}-1$) como subgrafo inducido, entonces $G$ contiene un diamante como subgrafo inducido. Esto se debe a que, al pertenecer $K_{3}-1$ a la vecindad de $v$, el grafo original contiene a $K_{3}-1$ uniendo todos sus vertices con $v$, esto implica agregarle un nodo ($v$) y tres aristas (ya que $v$ es adyacente a los tres nodos que conforman el $K_{3}-1$ porque pertenecen a su vecindad). Como $K_{3}-1$ tiene dos aristas entonces agregando un nodo y sumando tres aristas tengo un $K_{4}-1$ (definici\'on de diamante).
+\end{itemize}
+
 
 \section*{Algoritmo}
 
