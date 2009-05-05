@@ -35,13 +35,7 @@ public class Diamante {
 					while(tokens.hasMoreTokens()) {
 						listaAdyacencia.add(Integer.parseInt(tokens.nextToken()));
 					}
-/*					if (listaAdyacencia.size() > 0) {
-						if (listaAdyacencia.size() == 1)
-							nodosDeGradoUno[listaAdyacencia[0]] = i;
-						instancia.adyacencias[i] = listaAdyacencia;
-					} else {
-						instancia.adyacencias[i] = null;
-					}*/
+					adyacencias[i] = listaAdyacencia;
 				}
 				
 				tokens = new StringTokenizer(inputStream.readLine(), " ");
@@ -63,6 +57,11 @@ public class Diamante {
 		}
 
 		System.out.println("Se han resuelto todas las instancias ingresadas! ("+listaDeInstancias.size()+" instancia/s)");
+	}
+
+	public void buscarDiamante(instanciaDiamante instancia) {
+		instancia.eliminarNodosChicos();
+		instancia.armarMatrizDeAdyacencia();
 	}
 
 	public void guardarResultados(String nombreDelArchivo) throws IOException {
