@@ -271,15 +271,15 @@ TODO
 \bigskip
 
 \begin{center}
-\section*{Ejercicio 2: Resoluci\'on de Puzzle}
+\section*{Ejercicio 2: Encontrar Diamante en un grafo}
 \end{center}
 
 \bigskip
 \section*{Introducci\'on}
 
-El objetivo del siguiente ejercicio es dise\~{n}ar un algoritmo que, dado un tablero de tama\~{n}o $n$ y $n^{2}$ fichas, determinar si existe una manera de colocar las fichas en el tablero, y en tal caso, retornarla. La condici\'on que determina si una ficha puede ser colocada es que, en cada uno de sus lados, contenga el mismo n\'umero que tiene la ficha con la que limita. Vale aclarar que las fichas no pueden ser rotadas y que los que lados limitan con un borde pueden tener cualquier n\'umero.
+El objetivo del siguiente ejercicio es dise\~{n}ar un algoritmo que, dado un grafo, encuentre el menor subgrafo inducido isomorfo a un diamante, en caso de que éste exista. Un diamante puede definirse como un grafo $K_{4}$ menos una arista. Este algoritmo está basado en una propiedad sobre diamantes (enunciada en el Anexo A) que, además de ser usada para resolver el problema, será demostrada de manera formal.
 
-Cuando empezamos a pensar el ejercicio surgi\'o la soluci\'on trivial, tan simple como ineficiente, utilizando un algoritmo de fuerza bruta que prueba todas las permutaciones posibles de las fichas en el tablero. R\'apidamente se descart\'o esta opci\'on pues su costo es factorial. Se opt\'o entonces por aplicar la idea de \textit{backtracking} en la funci\'on, de esta manera, se toma una ficha del conjunto restante y se chequea si puede ser colocada en la pr\'oxima posici\'on. En caso afirmativo, la ficha se coloca en dicha posici\'on y se realiza el mismo procedimiento para la siguiente casilla del tablero, sino se sigue buscando hasta encontrar una ficha que pueda ser colocada. Si ninguna de las fichas restantes puede ser colocada en el tablero entonces se regresa a la posici\'on anterior (aqu\'i queda explicita la idea de \textit{backtracking}) y se prueba con otra. Por \'ultimo, se plante\'o el uso de diversas podas para mejorar el rendimiento del algoritmo. Se dejaron de lado distintas opciones, ya sea por dificultad de implementaci\'on o exceso de complejidad temporal o espacial, tomando finalmente la poda que mejor se ajust\'o a los requerimientos necesarios.
+En un principio, cuando se comenzó a idear el algoritmo, surgió la idea de utilizar solamente la propiedad enunciada para resolver el problema. Es decir, para toda vecindad de cada nodo, estudiar cada componente conexa para determinar si la misma es completa. Sin embargo, esto sólo aportaba información sobre las componentes conexas que formaban un diamante, pero no brindaba detalles sobre los nodos que formaban el diamante, y no aseguraba que este fuera mínimo para dicha componente conexa. Por esta razón, se optó por utilizar un método más complejo que, aunque se basa en la propiedad mencionada, obtiene de cada componente conexa no completa (existe diamante) los nodos mínimos que forman un diamante. Esto se realiza calculando el mínimo nodo que puede formar un diamante y, a partir de este, construir el mínimo probando las posibles combinaciones que construyan un diamante. De esta manera se pueden obtener los diamantes mínimos de cada componente conexa no completa de una determinada vecindad y así determinar el mínimo de la misma. Finalmente, se comparan los diamantes obtenidos de cada vecindad para obtener el mínimo diamante del grafo. Este algoritmo será explicado en detalle, se mostrará su correctitud y se presentará la implementación y pruebas de ejecución del mismo en posteriores secciones.
 
 \section*{Algoritmo}
 
