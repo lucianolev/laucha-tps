@@ -247,12 +247,12 @@ Con respecto a la irregularidad del gráfico, cabe notar que, a diferencia del a
 
 Por último, al igual que para el algoritmo anterior, se presenta el siguiente gráfico de 3 dimensiones:
 
-\begin{center}
- \includegraphics[width=0.7\textwidth]{Plots/Tp2Ej1-TiemposLitrosPorZona-3d-bw.png}
+% \begin{center}
+%  \includegraphics[width=0.7\textwidth]{Plots/Tp2Ej1-TiemposLitrosPorZona-3d-bw.png}
 \begin{center}
 Figura 1.3
 \end{center}
-\end{center}
+% \end{center}
 
 Al igual que antes, este gráfico permite ver la complejidad de ambos parámetros en conjunto. \textbf{TODO}
 
@@ -286,97 +286,26 @@ En un principio, cuando se comenzó a idear el algoritmo, surgió la idea de uti
 A continuaci\'on se presenta el pseudoc\'odigo del algoritmo para resolver el problema propuesto.
 
 \begin{verbatim}
-resolverPuzzle(fichas[0..n^2-1], n) 
+leer archivo y crear adyacencias excepto para los nodos de grado 1 y 0, un arreglo donde cada posicion i es una lista de los nodos adyacentes del nodo i
 
-  tablero[n][n]
+Armar la matriz de adyacencias
 
-  fichaActualEn[n][n]
-  para i desde 0 hasta n-1
-    para j desde 0 hasta n-1
-      fichaActualEn[i][j] = 0
+para cada nodo (que llamaremos superNodo) del grafo
+  si el tamaño de la lista de adyacencia de superNodo es mayor que 3
+    vecindadDeSuperNodo = crearVecindad(superNodo)
+    agregar buscarDiamanteMinimoEnVecindad(vecindadDeSuperNodo) a diamantesMinimos
 
-  fichasPuestas[0..n^2-1]
-  para i desde 0 hasta n^2-1
-    fichasPuestas[i] = false
-
-  i = 0
-  j = 0
-
-  lista jardineroViejo = lista vacia
-  lista jardineroNuevo = lista vacia
-  metio = false
-  volviolgunavez = false
-  i_ant = 0
-  j_ant = 0
-
-  mientras i < n
-
-    si !fichasPuestas[fichaActualEn[i][j]] 
-    y encaja(fichas[fichaActualEn[i][j]], tablero, i, j)
-
-      si i != n-1
-        vaciar(jardineroNuevo)
-        para k desde 0 hasta n^2-1
-          si arriba(fichas[k]) = abajo(fichas[fichaActualEn[i][j]]) y !fichasPuestas[k]
-            jardineroNuevo = jardineroNuevo U fichas[k]
-
-      si j = 0 o i = n-1 o !puedoPodar(jardineroViejo, jardineroNuevo)
-
-        si i != n-1
-          jardineroViejo = jardineroNuevo
-
-        tablero[i][j] = fichas[fichaActualEn[i][j]]
-        fichasPuestas[fichaActualEn[i][j]] = true
-        metio = true
-        si j = n-1
-          i = i + 1
-          j = 0;
-        sino
-          j = j + 1
-
-    si !metio
-
-      volviolgunavez = false;
-      mientras fichaActualEn[i][j] = n^2-1
-
-        si i = 0 y j = 0
-          devolver "No hay solucion"
-        fichaActualEn[i][j] = 0
-        si j = 0
-          i = i - 1
-          j = n-1
-        sino
-          j = j - 1
-
-        fichasPuestas[fichaActualEn[i][j]] = false
-        volviolgunavez = true
-
-      si volviolgunavez = true
-        si j = 0
-          i_ant = i-1
-          j_ant = n-1
-        sino
-          i_ant = i
-          j_ant = j-1
-
-        si (j_ant != 0 o i_ant != 0) y (i_ant != n-1)
-          vaciar(jardineroViejo)
-          para k desde 0 hasta n^2-1
-            si arriba(fichas[k]) = abajo(fichas[fichaActualEn[i_ant][j_ant]]) 
-            y !fichasPuestas[k]
-              jardineroViejo = jardineroViejo U fichas[k]
-
-      fichaActualEn[i][j] = fichaActualEn[i][j] + 1
-
-  devolver tablero
+diamanteMinimo = minimo(diamantesMinimos)
+guardar en "Tp2Ej2.out" diamanteMinimo
 
 
-puedoPodar(lista1, lista2)
-  devolver interseccion(lista1, lista2) != vacio
-
-encaja(ficha, tablero, i, j)
-  (i = 0 o abajo(tablero[i-1][j]) = arriba(ficha)) y
-  (j = 0 o derecha(tablero[i][j-1]) = izquierda(ficha))
+crearVecindad(superNodo) //O(m)
+  para cada nodo k de adyacencias[superNodo]
+    para cada nodo j de adyacencias[k]
+      si nodo j es adyacente a superNodo
+        agregar nodo j a listaVecindad
+    vecindadDeSuperNodo[k] = listaVecindad
+  devolver vecindadDeSuperNodo //esto es un grafo (array de listas de adyacencia)
 
 \end{verbatim}
 
