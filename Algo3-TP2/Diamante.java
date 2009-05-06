@@ -104,13 +104,6 @@ public class Diamante {
 		}
 	}
 
-// para cada nodo (superNodo) del grafo
-// 		si tam(adyacencias[superNodo]) >= 3
-// 			vecindadDeSuperNodo = crearVecindad(superNodo)
-// 			agregar buscarDiamanteMinimoEnVecindad(vecindadDeSuperNodo) a diamantesMinimos
-// 
-// 	diamanteMinimo = minimo(diamantesMinimos)
-
 	public static void mostrarAdyacencias(LinkedList[] adyacencias, int cantNodos) {
 		for(int superNodo = 1; superNodo <= cantNodos; superNodo++) {
 			if (adyacencias[superNodo] != null) {
