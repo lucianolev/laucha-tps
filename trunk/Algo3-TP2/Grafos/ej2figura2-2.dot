@@ -1,0 +1,7 @@
+graph G {
+  node [shape="circle"]
+  w [pos="2,0!"]
+  " " [pos="1,0.5!"]
+  u [pos="0,0!"]
+  u--" "--w
+} 
