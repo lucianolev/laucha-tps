@@ -60,9 +60,10 @@ public class Diamante {
 
 	public void buscarDiamante(InstanciaDiamante instancia) {
 		//DEBUG
-// 		mostrarAdyacencias(instancia.adyacencias,instancia.cantNodos);
+/* 		mostrarAdyacencias(instancia.adyacencias,instancia.cantNodos);*/
 		long tiempoInicial = System.nanoTime();
 		instancia.eliminarNodosChicos();
+/* 		mostrarAdyacencias(instancia.adyacencias,instancia.cantNodos);*/
 		instancia.armarMatrizDeAdyacencia();
 
 		/*instancia.mostrarMatrizDeAdyacencia();*/ //DEBUG
@@ -142,7 +143,7 @@ public class Diamante {
 					outputStream.write(line, 1, line.length()-2);
 				} else {
 					line = "No hay diamante";
-					outputStream.write(line, 0, line.length()-1);
+					outputStream.write(line, 0, line.length());
 				}
 				outputStream.newLine();
 			}
@@ -158,11 +159,15 @@ public class Diamante {
 	public void cargarInstanciasRandom(int inicio, int limite) {
 		for(int i = inicio; i <= limite; i++) {
 			InstanciaDiamante nuevaInstancia = new InstanciaDiamante(i);
-// 			nuevaInstancia.generarInstanciaRandom(i);
-			nuevaInstancia.generarInstanciaCompleta(i);
-			mostrarAdyacencias(nuevaInstancia.adyacencias, nuevaInstancia.cantNodos);
+			nuevaInstancia.generarInstanciaRandom();
 			listaDeInstancias.add(nuevaInstancia);
 		}
+	}
+
+	public void cargarInstanciaCompleta(int paramCantNodos) {
+		InstanciaDiamante nuevaInstancia = new InstanciaDiamante(paramCantNodos);
+		nuevaInstancia.generarInstanciaCompleta();
+		listaDeInstancias.add(nuevaInstancia);
 	}
 
 	public void guardarTiempos(String nombreDelArchivo) throws IOException {

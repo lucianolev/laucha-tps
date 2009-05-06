@@ -12,26 +12,25 @@ public class InstanciaDiamante {
 	}
 
 	public void eliminarNodosChicos() {
-		//Saco los nodos de grado 0 y 1
-		int[] nodosDeGradoUno = new int[cantNodos+1];
+		//Saco los nodos de grado 0 y 1 y me acuerdo cuales son de grado 1
+		boolean[] esNodoGradoUno = new boolean[cantNodos+1];
 		for(int i = 1; i <= cantNodos; i++) {
-			if (adyacencias[i].size() == 1) {
-				nodosDeGradoUno[((Integer)adyacencias[i].getFirst()).intValue()] = i;
-			}
-			if (adyacencias[i].size() < 2) {
+			if (adyacencias[i].size() == 0) {
 				adyacencias[i] = null;
+			} else if (adyacencias[i].size() == 1){
+				esNodoGradoUno[i] = true;
+				adyacencias[i] = null;
+			} else
+				esNodoGradoUno[i] = false;
 			}
-		}
 
-		//Borro los adyacentes a los nodos de grado 1 que elimine antes para mantener la consistencia
+		//Borro los adyacentes a esos nodos de grado 1 para mantener la consistencia
 		for(int i = 1; i <= cantNodos; i++) {
 			if(adyacencias[i] != null) {
 				ListIterator iter = adyacencias[i].listIterator();
-				boolean elimino = false;
-				while(iter.hasNext() && !elimino) {
-					if(((Integer)iter.next()).intValue() == nodosDeGradoUno[i]) {
+				while(iter.hasNext()) {
+					if(esNodoGradoUno[((Integer)iter.next()).intValue()]) {
 						iter.remove();
-						elimino = true;
 					}
 				}
 			}
@@ -113,21 +112,26 @@ public class InstanciaDiamante {
 				int sumaGradosCompConexa = 0;
 				while(!pilaDFS.empty()) {
 					nodoActual = (Integer)pilaDFS.pop();
-					marcados[nodoActual.intValue()] = true;
-					sumaGradosCompConexa = sumaGradosCompConexa +
-						vecindadDeSuperNodo[nodoActual.intValue()].size();
-					nodosCompConexa.add(nodoActual);
-					if (nodoActual.intValue() < nodoMinimoCompConexa.intValue()) {
-						nodoMinimoCompConexa = nodoActual;
-					}
-					ListIterator adyacentesANodoActual = vecindadDeSuperNodo[nodoActual.intValue()].listIterator();
-					while(adyacentesANodoActual.hasNext()) {
-						Integer adyacenteANodoActual = (Integer)adyacentesANodoActual.next();
-						if(!marcados[adyacenteANodoActual.intValue()]) {
-							pilaDFS.push(adyacenteANodoActual);
+					if(!marcados[nodoActual.intValue()]) {
+						marcados[nodoActual.intValue()] = true;
+						sumaGradosCompConexa = sumaGradosCompConexa +
+							vecindadDeSuperNodo[nodoActual.intValue()].size();
+						nodosCompConexa.add(nodoActual);
+						if (nodoActual.intValue() < nodoMinimoCompConexa.intValue()) {
+							nodoMinimoCompConexa = nodoActual;
+						}
+						ListIterator adyacentesANodoActual = vecindadDeSuperNodo[nodoActual.intValue()].listIterator();
+						while(adyacentesANodoActual.hasNext()) {
+							Integer adyacenteANodoActual = (Integer)adyacentesANodoActual.next();
+							if(!marcados[adyacenteANodoActual.intValue()]) {
+								pilaDFS.push(adyacenteANodoActual);
+							}
 						}
 					}
 				}
+				//DEBUG
+				//System.out.println("-sumaGradosCompConexa: "+sumaGradosCompConexa);
+				//System.out.println("-nodosCompConexa: "+nodosCompConexa.size());
 				if (sumaGradosCompConexa != (nodosCompConexa.size()*(nodosCompConexa.size()-1))) {
 					if (diamanteMinimoVecindad == null) {
 						diamanteMinimoVecindad = buscarDiamanteMinimoDeCompConexa(superNodo, vecindadDeSuperNodo, nodosCompConexa);
@@ -237,9 +241,7 @@ public class InstanciaDiamante {
 		return false;
 	}
 
-	public void generarInstanciaRandom(int paramCantNodos) {
-		cantNodos = paramCantNodos;
-		adyacencias = new LinkedList[cantNodos+1];
+	public void generarInstanciaRandom() {
 		for (int i = 1; i <= cantNodos; i++) {
 			LinkedList listaAdyacencia = new LinkedList();
 			adyacencias[i] = listaAdyacencia;
@@ -271,9 +273,7 @@ public class InstanciaDiamante {
 // 		}
 	}
 
-	public void generarInstanciaCompleta(int paramCantNodos) {
-		cantNodos = paramCantNodos;
-		adyacencias = new LinkedList[cantNodos+1];
+	public void generarInstanciaCompleta() {
 		for (int i = 1; i <= cantNodos; i++) {
 			LinkedList listaAdyacencia = new LinkedList();
 			for(int j = 1; j <= cantNodos; j++) {
