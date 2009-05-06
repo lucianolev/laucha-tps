@@ -100,8 +100,6 @@ public class Diamante {
 					instancia.diamanteMinimo = diamante;
 				}
 			}
-			
-			
 
 			//DEBUG
 			System.out.println("----------------");
@@ -160,7 +158,9 @@ public class Diamante {
 	public void cargarInstanciasRandom(int inicio, int limite) {
 		for(int i = inicio; i <= limite; i++) {
 			InstanciaDiamante nuevaInstancia = new InstanciaDiamante(i);
-			nuevaInstancia.generarInstanciaRandom(i);
+// 			nuevaInstancia.generarInstanciaRandom(i);
+			nuevaInstancia.generarInstanciaCompleta(i);
+			mostrarAdyacencias(nuevaInstancia.adyacencias, nuevaInstancia.cantNodos);
 			listaDeInstancias.add(nuevaInstancia);
 		}
 	}
