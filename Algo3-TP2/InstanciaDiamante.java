@@ -271,6 +271,32 @@ public class InstanciaDiamante {
 // 		}
 	}
 
+	public void generarInstanciaCompleta(int paramCantNodos) {
+		cantNodos = paramCantNodos;
+		adyacencias = new LinkedList[cantNodos+1];
+		for (int i = 1; i <= cantNodos; i++) {
+			LinkedList listaAdyacencia = new LinkedList();
+			for(int j = 1; j <= cantNodos; j++) {
+				if (j != i) {
+					listaAdyacencia.add(Integer.valueOf(j));
+				}
+			}
+			adyacencias[i] = listaAdyacencia;
+		}
+
+		//DEBUG
+// 		System.out.println("Lista de adyacencias");
+// 		for (int i = 1; i <= cantNodos; i++) {
+// 			Integer[] arrayAdy = new Integer[adyacencias[i].size()]; 
+// 			adyacencias[i].toArray(arrayAdy);
+// 			String salida = "";
+// 			for(int j = 0; j < adyacencias[i].size(); j++){
+// 				salida = salida+arrayAdy[j]+" ";
+// 			}
+// 			System.out.println(i+". "+salida);
+// 		}
+	}
+
 	public int cantNodos;
 	public LinkedList[] adyacencias;
 	public boolean hayDiamante;
