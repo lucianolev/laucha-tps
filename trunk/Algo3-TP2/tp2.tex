@@ -362,7 +362,7 @@ diamanteMinimo = minimo(diamantesMinimos)
 guardar en "Tp2Ej2.out" diamanteMinimo
 
 
-crearVecindad(superNodo) { //O(m)
+crearVecindad(superNodo) { 
   para cada nodo k de adyacencias[superNodo]
     para cada nodo j de adyacencias[k]
       si nodo j es adyacente a superNodo
@@ -371,7 +371,7 @@ crearVecindad(superNodo) { //O(m)
   devolver vecindadDeSuperNodo //esto es un grafo (array de listas de adyacencia)
 }
 
-buscarDiamanteMinimoEnVecindad(vecindadDeSuperNodo) { //O(m)
+buscarDiamanteMinimoEnVecindad(vecindadDeSuperNodo) { 
   Recorrer una componente conexa (no recorrida previamente) de vecindadDeSuperNodo por DFS 
   sumando los grados de los nodos recorridos (sumaGradosCompConexa) y
   guardando en nodosCompConexa los nodos recorridos y
@@ -380,7 +380,7 @@ buscarDiamanteMinimoEnVecindad(vecindadDeSuperNodo) { //O(m)
   si sumaGradosCompConexa != cant de nodos de un grafo completo de tam(nodosCompConexa) nodos
     si diamanteMinimo no existe o nodoMinimoCompConexa <= minimo(diamanteMinimo)
       diamante = buscarDiamanteMinimoDeCompConexa(superNodo,vecindadDeSuperNodo,nodosCompConexa)
-      si diamanteMinimo no existe o si existe y es mas grande que diamante //O(1)
+      si diamanteMinimo no existe o si existe y es mas grande que diamante
         diamanteMinimo = diamante
 
   devolver diamanteMinimo //si es null es porq no habia diamante en toda la vecindad
@@ -419,23 +419,25 @@ Como el algoritmo propuesto se basa en la t\'ecnica de \textit{backtracking}, la
 
 \section*{An\'alisis de resultados}
 
-En la siguiente secci\'on se mostrar\'an los an\'alisis realizados para tableros de distinto tama\~{n}o. El enfoque principal de las pruebas radica en estudiar los tiempos de ejecuci\'on del algoritmo con y sin la poda. Para esto se implement\'o un algoritmo que genera tableros aleatorios de un tama\~{n}o $n$ pasado como par\'ametro. De esta manera, utilizando dicho algoritmo para distintos valores de $n$, se contrastaron ambos metodos (con y sin poda) con la cota estudiada ($n!$) arrojando los siguientes resultados. Vale aclarar que se utiliz\'o una escala logar\'itmica sobre el eje de ordenadas ya que los tiempos de ejecuci\'on toman valores muy altos, adem\'as, para realizar los gr\'aficos expuestos, se utilizaron tableros hasta un tama\~{n}o de $n=15$ pues para mayores valores los tiempos son excesivos.
+En la presente secci\'on se mostrar\'an los an\'alisis realizados para grafos con distinta cantidad de nodos. El enfoque principal de las pruebas radica en estudiar los tiempos de ejecuci\'on del algoritmo para casos aleatorios y estudiar el comportamiento para los peores casos. Con este fin se implement\'o un algoritmo que genera grafos aleatorios de $n$ cantidad de nodos, siendo $n$ el parámetro de dicha función. De esta manera, utilizando dicho algoritmo para distintos valores de $n$, se contrastaron los tiempos de ejecución con la cota estudiada. Como se mencionó en la sección anterior, la complejidad del algoritmo es $O(n*m)$ pero a fin de estudiar los resultados acotaremos esta complejidad a $O(n^{3})$ ya que en cualquier grafo la cantidad de aristas $m$ está acotada por $n*(n-1)/2$ es decir, $m$ es del orden de $n^{2}$. Esta acotación aporta simplicidad al estudio de resultados, sin embargo, como el algoritmo tiene una cota menor se espera que los tiempos de ejecución tengan un crecimiento menor que cúbico (en relación a la cantidad de nodos).
 
-% \begin{center}
-%  \includegraphics[width=0.7\textwidth]{Plots/Ej2-Complejidad2.png}
-% \begin{center}
-% Figura 2.1
-% \end{center}
-% \end{center}
-% 
-% \begin{center}
-%  \includegraphics[width=0.7\textwidth]{Plots/Ej2-Complejidad1.png}
-% \begin{center}
-% Figura 2.2
-% \end{center}
-% \end{center}
+La primera prueba realizada consistió en generar grafos aleatorios variando su cantidad de nodos entre $1$ y $500$. Para cada grafo se estudió su tiempo de ejecución y a continuación se presentan los resultados obtenidos.
 
-Como se puede apreciar en ambos gr\'aficos, los tiempos de ejecuci\'on de los dos algoritmos son sensiblemente menores que los de la complejidad teorica calculada para el peor caso ($O(n!)$). Esto concuerda con lo esperado ya que como se dijo en anteriores secciones, salvo en casos patol\'ogicos, en la pr\'actica el metodo de \textit{backtracking} aplicado a este problema es mucho m\'as eficiente.
+\begin{center}
+ \includegraphics[width=0.7\textwidth]{Plots/Tp2Ej2-Complejidad.png}
+\begin{center}
+Figura 2.1
+\end{center}
+\end{center}
+
+Como se puede apreciar en el gr\'afico, el crecimiento de los tiempos de ejecuci\'on del algoritmo es ligeramente inferior a la cota teórica propuesta. Como se mencionó anteriormente, esto se corresponde con lo esperado, ya que para este análisis de utilizó una cota mayor a la del algoritmo ($O(n^{3})$). Además se pueden apreciar irregularidades en la curva obtenida, lo que indica que el tiempo que se tarda en encontrar un diamante en un determinado grafo, además de depender de la cantidad de nodos, está determinado por la disposición de las aristas del mismo. Es decir, por la forma en la que está hecho el algoritmo, el tiempo de ejecución va a depender de la cantidad de componentes conexas en las que tenga que buscar el diamante mínimo, para cada vecindad de cada nodo. Los peores casos se darán en grafos en los que se busque un diamante en la mayoría de las componentes conexas de cada vecindad. Estos casos hacen que las optimizaciones del algoritmo, que descartan la búsqueda de un diamante mínimo en ciertas componentes conexas, sean ineficientes. 
+
+A continuación presentaremos alguno de estos casos ``patológicos'' y se verá por qué no se aplican las optimizaciones.
+
+En el grafo presentado, como se puede observar 
+
+
+son sensiblemente menores que los de la complejidad teorica calculada para el peor caso ($O(n!)$). Esto concuerda con lo esperado ya que como se dijo en anteriores secciones, salvo en casos patol\'ogicos, en la pr\'actica el metodo de \textit{backtracking} aplicado a este problema es mucho m\'as eficiente.
 
 Con respecto a las diferentes resultados obtenidos con los dos m\'etodos, vemos reflejado que efectivamente la poda produce una importante mejora en el rendimiento. Si bien para tableros peque\~{n}os el rendimiento es similar (es m\'as, en la mayor\'ia de los casos para $n$ chicos el m\'etodo que utiliza la poda suele ser menos eficaz), esto no es de importancia ya que en dichos casos, al no manejar gran cantidad de datos, el tiempo de ejecuci\'on no alcanza valores muy altos. Por el contrario, cuando tomamos valores de $n$ mas grandes (aprox $n\geq10$), se puede apreciar que la poda descarta gran cantidad de soluciones no posibles, lo que incide directamente en la eficiencia de la aplicaci\'on. De hecho, cuando se analizaron tableros de tama\~{n}o mayor que 15, el tiempo que llev\'o a cabo el algoritmo sin la poda para buscar una soluci\'on result\'o excesivo, situaci\'on que no ocurre cuando se utiliza la poda para tableros de hasta $n=25$.
 
