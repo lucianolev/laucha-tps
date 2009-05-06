@@ -8,9 +8,7 @@ class MainDiamante {
 		
 		Diamante diamante = new Diamante();
 
-// 		System.out.println("Modo de Uso: java MainDiamante (-in <archivoentrada>) || (-random <limite> <esparcimiento> <rangorandom> [-out <archivosalida>] [-guardartiempos <archivosalida>]");
-// 		System.out.println();
-		System.out.println("Modo de Uso: java MainDiamante -in <archivoentrada> [-out <archivosalida>]");
+		System.out.println("Modo de Uso: java MainDiamante (-in <archivoentrada>) || (-random <incio> <limite>) || (-completo <cantnodos>) [-out <archivosalida>] [-guardartiempos <archivosalida>]");
 		System.out.println();
 
 		ArrayList argslist = new ArrayList(args.length);
@@ -20,18 +18,21 @@ class MainDiamante {
 
 		int indexIn;
 		int indexRandom;
+		int indexCompleto;
 		int indexOut;
 		int indexGuardarTiempos;
 		try {
 			if((indexIn = argslist.indexOf("-in")) >= 0) {
 				diamante.cargarInstanciasDeArchivo(args[indexIn+1]);
-				diamante.resolverInstanciasCargadas();
 			} else if((indexRandom = argslist.indexOf("-random")) >= 0) {
 				int inicio = Integer.parseInt(args[indexRandom+1]);
 				int limite = Integer.parseInt(args[indexRandom+2]);
 				diamante.cargarInstanciasRandom(inicio, limite);
-				diamante.resolverInstanciasCargadas();
+			} else if((indexCompleto = argslist.indexOf("-completo")) >= 0) {
+				int cantnodos = Integer.parseInt(args[indexCompleto+1]);
+				diamante.cargarInstanciaCompleta(cantnodos);
 			}
+			diamante.resolverInstanciasCargadas();
 
 			if((indexOut = argslist.indexOf("-out")) >= 0) {
 				diamante.guardarResultados(args[indexOut+1]);
