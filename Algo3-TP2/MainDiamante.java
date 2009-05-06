@@ -29,7 +29,6 @@ class MainDiamante {
 			} else if((indexRandom = argslist.indexOf("-random")) >= 0) {
 				int inicio = Integer.parseInt(args[indexRandom+1]);
 				int limite = Integer.parseInt(args[indexRandom+2]);
-// 				int rangoRandom = Integer.parseInt(args[indexRandom+3]);
 				diamante.cargarInstanciasRandom(inicio, limite);
 				diamante.resolverInstanciasCargadas();
 			}
