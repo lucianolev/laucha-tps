@@ -59,10 +59,13 @@ public class Diamante {
 	}
 
 	public void buscarDiamante(InstanciaDiamante instancia) {
+		//DEBUG
+		mostrarAdyacencias(instancia.adyacencias,instancia.cantNodos);
+		long tiempoInicial = System.nanoTime();
 		instancia.eliminarNodosChicos();
 		instancia.armarMatrizDeAdyacencia();
 
-		instancia.mostrarMatrizDeAdyacencia(); //DEBUG
+		/*instancia.mostrarMatrizDeAdyacencia();*/ //DEBUG
 		
 		LinkedList diamantesMinimos = new LinkedList();
 		for (int superNodo = 1; superNodo <= instancia.cantNodos; superNodo++) {
@@ -78,11 +81,12 @@ public class Diamante {
 
 			}
 		}
-
+		
 		if(diamantesMinimos.size() == 0) {
 			instancia.hayDiamante = false;
 			//DEBUG
 			System.out.println("----------------");
+			System.out.println("Cant de nodos: "+instancia.cantNodos);
 			System.out.println("No hay diamante!");
 			System.out.println("");
 		} else {
@@ -96,12 +100,16 @@ public class Diamante {
 					instancia.diamanteMinimo = diamante;
 				}
 			}
+			
+			
 
 			//DEBUG
 			System.out.println("----------------");
+			System.out.println("Cant de nodos: "+instancia.cantNodos);
 			System.out.println("diamanteMinimo: "+instancia.diamanteMinimo[0]+" "+instancia.diamanteMinimo[1]+" "+instancia.diamanteMinimo[2]+" "+instancia.diamanteMinimo[3]);
 			System.out.println("");
 		}
+		instancia.tiempoDeBusqueda = (System.nanoTime() - tiempoInicial)/1000;
 	}
 
 	public static void mostrarAdyacencias(LinkedList[] adyacencias, int cantNodos) {
@@ -147,6 +155,44 @@ public class Diamante {
 				outputStream.close();
 			}
 		}
+	}
+
+	public void cargarInstanciasRandom(int inicio, int limite) {
+		for(int i = inicio; i <= limite; i++) {
+			InstanciaDiamante nuevaInstancia = new InstanciaDiamante(i);
+			nuevaInstancia.generarInstanciaRandom(i);
+			listaDeInstancias.add(nuevaInstancia);
+		}
+	}
+
+	public void guardarTiempos(String nombreDelArchivo) throws IOException {
+		if (listaDeInstancias.size() == 0) {
+			System.out.println("Error: No hay instancias resueltas para guardar!");
+			return;
+		}
+
+		BufferedWriter outputStream = null;
+		try {
+			outputStream = new BufferedWriter(new FileWriter(nombreDelArchivo));
+			String line = null;
+			ListIterator iter = listaDeInstancias.listIterator();
+
+			while(iter.hasNext()) {
+				InstanciaDiamante instanciaResuelta = (InstanciaDiamante)iter.next();
+				line = Integer.toString(instanciaResuelta.cantNodos);
+				line += " ";
+				line += Long.toString(instanciaResuelta.tiempoDeBusqueda);
+				outputStream.write(line);
+				outputStream.newLine();
+			}
+		}
+		finally {
+			if (outputStream != null) {
+				System.out.println("Se han guardado los tiempos de busqueda de diamante de "+listaDeInstancias.size()+" instancia/s resueltas en el archivo "+nombreDelArchivo);
+				outputStream.close();
+			}
+		}
+		
 	}
 
 }

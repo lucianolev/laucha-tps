@@ -88,9 +88,9 @@ public class InstanciaDiamante {
 		}
 
 		//DEBUG
-		System.out.println("Vecindad de "+superNodo.toString());
-		Diamante.mostrarAdyacencias(vecindadDelSuperNodo, cantNodos);
-		System.out.println("----------------------");
+// 		System.out.println("Vecindad de "+superNodo.toString());
+// 		Diamante.mostrarAdyacencias(vecindadDelSuperNodo, cantNodos);
+// 		System.out.println("----------------------");
 
 		return vecindadDelSuperNodo;
 	}
@@ -141,13 +141,13 @@ public class InstanciaDiamante {
 				}
 			}
 		}
-		if (diamanteMinimoVecindad == null) {
-			System.out.println("En la vecindad del superNodo "+superNodo.intValue()+" no hay diamante");
-		} else {
-			//DEBUG
-			System.out.println("-->diamanteMinimoVecindad: "+diamanteMinimoVecindad[0]+" "+diamanteMinimoVecindad[1]+" "+diamanteMinimoVecindad[2]+" "+diamanteMinimoVecindad[3]);
-			System.out.println("");
-		}
+// 		if (diamanteMinimoVecindad == null) {
+// 			System.out.println("En la vecindad del superNodo "+superNodo.intValue()+" no hay diamante");
+// 		} else {
+// 			//DEBUG
+// 			System.out.println("-->diamanteMinimoVecindad: "+diamanteMinimoVecindad[0]+" "+diamanteMinimoVecindad[1]+" "+diamanteMinimoVecindad[2]+" "+diamanteMinimoVecindad[3]);
+// 			System.out.println("");
+// 		}
 
 		return diamanteMinimoVecindad;
 	}
@@ -207,8 +207,8 @@ public class InstanciaDiamante {
 		Arrays.sort(diamanteMinimoCompConexa);
 
 		//DEBUG
-		System.out.println("diamanteCompConexa: "+diamanteMinimoCompConexa[0]+" "+diamanteMinimoCompConexa[1]+" "+diamanteMinimoCompConexa[2]+" "+diamanteMinimoCompConexa[3]);
-		System.out.println("");
+// 		System.out.println("diamanteCompConexa: "+diamanteMinimoCompConexa[0]+" "+diamanteMinimoCompConexa[1]+" "+diamanteMinimoCompConexa[2]+" "+diamanteMinimoCompConexa[3]);
+// 		System.out.println("");
 
 
 		return diamanteMinimoCompConexa;
@@ -237,17 +237,39 @@ public class InstanciaDiamante {
 		return false;
 	}
 
-// 	public void generarInstanciaRandom(int paramZonas, int paramLitros, int rangoRandom) {
-// 		zonas = paramZonas;
-// 		litros = paramLitros;
-// 		mosquitosMuertos = new int[zonas][litros+1];
-// 		for (int i = 0; i < paramZonas; i++) {
-// 			mosquitosMuertos[i][0] = 0; //el litro 0 es 0 para cada zona
-// 			for (int j = 1; j <= paramLitros; j++) {
-// 				mosquitosMuertos[i][j] = (int)(Math.random()*rangoRandom);
+	public void generarInstanciaRandom(int paramCantNodos) {
+		cantNodos = paramCantNodos;
+		adyacencias = new LinkedList[cantNodos+1];
+		for (int i = 1; i <= cantNodos; i++) {
+			LinkedList listaAdyacencia = new LinkedList();
+			adyacencias[i] = listaAdyacencia;
+		}
+
+		for (int i = 1; i <= cantNodos; i++) {
+			for(int j = 0; j < (int)(Math.random()*(cantNodos-1)+1); j++) {
+				int nodo = (int)(Math.random()*(cantNodos));
+				if(!adyacencias[i].contains(Integer.valueOf(nodo)) && nodo != i && nodo != 0) {
+					adyacencias[i].add(Integer.valueOf(nodo));
+					if(!adyacencias[nodo].contains(Integer.valueOf(i))) {
+						adyacencias[nodo].add(Integer.valueOf(i));
+					}
+				}
+				
+			}
+		}
+
+		//DEBUG
+// 		System.out.println("Lista de adyacencias");
+// 		for (int i = 1; i <= cantNodos; i++) {
+// 			Integer[] arrayAdy = new Integer[adyacencias[i].size()]; 
+// 			adyacencias[i].toArray(arrayAdy);
+// 			String salida = "";
+// 			for(int j = 0; j < adyacencias[i].size(); j++){
+// 				salida = salida+arrayAdy[j]+" ";
 // 			}
+// 			System.out.println(i+". "+salida);
 // 		}
-// 	}
+	}
 
 	public int cantNodos;
 	public LinkedList[] adyacencias;

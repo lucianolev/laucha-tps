@@ -19,28 +19,29 @@ class MainDiamante {
 		}
 
 		int indexIn;
-/*		int indexRandom;*/
+		int indexRandom;
 		int indexOut;
-/*		int indexGuardarTiempos;*/
+		int indexGuardarTiempos;
 		try {
 			if((indexIn = argslist.indexOf("-in")) >= 0) {
 				diamante.cargarInstanciasDeArchivo(args[indexIn+1]);
 				diamante.resolverInstanciasCargadas();
-			} /*else if((indexRandom = argslist.indexOf("-random")) >= 0) {
-				int limite = Integer.parseInt(args[indexRandom+1]);
-				int esparcimiento = Integer.parseInt(args[indexRandom+2]);
-				int rangoRandom = Integer.parseInt(args[indexRandom+3]);
-				diamante.cargarInstanciasRandom(limite, esparcimiento, rangoRandom);
+			} else if((indexRandom = argslist.indexOf("-random")) >= 0) {
+				int inicio = Integer.parseInt(args[indexRandom+1]);
+				int limite = Integer.parseInt(args[indexRandom+2]);
+// 				int rangoRandom = Integer.parseInt(args[indexRandom+3]);
+				diamante.cargarInstanciasRandom(inicio, limite);
 				diamante.resolverInstanciasCargadas();
-			}*/
+			}
 
 			if((indexOut = argslist.indexOf("-out")) >= 0) {
 				diamante.guardarResultados(args[indexOut+1]);
 			}
 
-// 			if((indexGuardarTiempos = argslist.indexOf("-guardartiempos")) >= 0) {
-// 				dengue.guardarTiemposDeFumigacion(args[indexGuardarTiempos+1]);
-// 			}
+			if((indexGuardarTiempos = argslist.indexOf("-guardartiempos")) >= 0) {
+				diamante.guardarTiempos(args[indexGuardarTiempos+1]);
+			}
+
 		} catch (ArrayIndexOutOfBoundsException e) {
 			System.out.println("Parametros incorrectos!");
 			return;
