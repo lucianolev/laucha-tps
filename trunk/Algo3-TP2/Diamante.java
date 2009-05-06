@@ -60,7 +60,7 @@ public class Diamante {
 
 	public void buscarDiamante(InstanciaDiamante instancia) {
 		//DEBUG
-		mostrarAdyacencias(instancia.adyacencias,instancia.cantNodos);
+// 		mostrarAdyacencias(instancia.adyacencias,instancia.cantNodos);
 		long tiempoInicial = System.nanoTime();
 		instancia.eliminarNodosChicos();
 		instancia.armarMatrizDeAdyacencia();
