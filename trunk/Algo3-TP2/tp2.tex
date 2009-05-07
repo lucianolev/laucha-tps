@@ -370,7 +370,7 @@ Concluimos entonces que la propiedad es cierta ya que existe un $v$ para el cual
 A continuaci\'on se presenta el pseudoc\'odigo del algoritmo para resolver el problema propuesto.
 
 \begin{verbatim}
-leer archivo y crear adyacencias excepto para los nodos de grado 1 y 0,
+Leer archivo y crear 'adyacencias' excepto para los nodos de grado 1 y 0,
 un arreglo donde cada posicion i es una lista de los nodos adyacentes del nodo i
 
 Armar la matriz de adyacencias
@@ -382,7 +382,6 @@ para cada nodo (que llamaremos superNodo) del grafo
 
 diamanteMinimo = minimo(diamantesMinimos)
 guardar en "Tp2Ej2.out" diamanteMinimo
-
 
 crearVecindad(superNodo) { 
   para cada nodo k de adyacencias[superNodo]
@@ -398,7 +397,7 @@ buscarDiamanteMinimoEnVecindad(vecindadDeSuperNodo) {
   sumando los grados de los nodos recorridos (sumaGradosCompConexa) y
   guardando en nodosCompConexa los nodos recorridos y
   en nodoMinimoCompConexa el nodo minimo de la componente conexa
-  
+
   si sumaGradosCompConexa != cant de nodos de un grafo completo de tam(nodosCompConexa) nodos
     si diamanteMinimo no existe o nodoMinimoCompConexa <= minimo(diamanteMinimo)
       diamante = buscarDiamanteMinimoDeCompConexa(superNodo,vecindadDeSuperNodo,nodosCompConexa)
@@ -437,7 +436,116 @@ Luego, dentro de la funci\'on \textit{buscarDiamanteMinimoEnVecindad} se verific
 
 \section*{Complejidad}
 
-Como el algoritmo propuesto se basa en la t\'ecnica de \textit{backtracking}, la complejidad del mismo en el peor caso es similar a la de un algoritmo de fuerza bruta. En este tipo de algoritmos, se generan todas las soluciones posibles y se eval\'uan para determinar si cumplen con el problema a resolver. La complejidad de generar y revisar todas las soluciones posibles es exponencial y, en particular, el algoritmo de fuerza bruta aplicado al problema presentado ser\'ia $O(n!)$, con $n$ la cantidad de fichas del tablero. A pesar de que los algoritmos de \textit{backtracking} descartan gran cantidad de casos y aplican podas para reducir el tiempo de ejecuci\'on, existen casos patol\'ogicos en que pocas de estas optimizaciones pueden ser utilizadas y, por lo tanto, se recorran todas las ramas de soluciones. Estos casos hacen que la complejidad en el peor caso del algoritmo presentado sea la misma que la de un algoritmo de fuerza bruta, es decir $O(n!)$ (siendo $n$ la cantidad de fichas totales del tablero). Sin embargo, como estudiaremos en posteriores secciones, el tiempo de ejecuci\'on del algoritmo difiere significativamente del tiempo del algoritmo de fuerza bruta.
+Para calcular la complejidad de este ejercicio el modelo utilizado fue el uniforme, esto se debe a que lo que define el orden del algoritmo es la cantidad de nodos y de aristas
+(y cómo están relacionados los nodos  por dichas aristas). Teniendo en cuenta que los nodos van de 1 a $n$, no es relevante observar el tamaño que ocupa cada nodo, sino la cantidad de estos, ya que si el número que representa a un nodo es muy grande, igual de grande es la cantidad de nodos en el grafo y pierde sentido utilizar el modelo logarítmico.
+
+\bigskip
+Al crear las listas de adyacencias, el algoritmo lee $2m$ aristas del archivo de entrada y las agrega en dichas listas.  Para esto crea n listas que representan las adyacencias de cada nodo. Como hay $2m$ aristas que se distribuirán en n listas(dónde la inserción es en O(1)), la complejidad temporal de realizar esta tarea será O($2m + n$).
+Luego se filtran los nodos de grado 0 y 1. Aquí se recorren las listas de adyacencias y  se eliminan los nodos que no tengan(en el grafo original) al menos dos nodos adyacentes. Esto requiere recorrer todas las listas de adyacencias que cuesta $2m + n$ (esto se debe a que para que un nodo sea adyacente a otro debe existir una arista y una arista no puede conectar a más de un nodo).
+
+\begin{verbatim}
+leer archivo y crear 'adyacencias', un arreglo donde cada posicion i es una lista
+ de los nodos adyacentes del nodo i.
+Luego, hay que eliminar los nodos de grado 0 y de grado 1.
+\end{verbatim}
+
+  A partir de ahora llamamos $n$ a la cantidad de nodos que pertenecían al grafo y no fueron filtrados por su grado. 
+ Dado esto, $sn$  està acotado por  $m$, ya que cada nodo tiene asociada por lo menos 2 aristas y como cada arista sòlo puede asociar a dos nodos, la mìnima cantidad de aristas es $n$.
+ Entonces el costo de n*n està acotado por $n*m$.
+
+\bigskip
+
+El costo de armar la matriz de adyacencias resulta de crear una matriz de $n*n$ posiciones con ceros y recorrer las listas de adyacencias y agregar en las 2 posiciones adecuadas en la matriz (O(1)) un 1.
+Entonces cuesta $n*n + m$. Al ser n $<$ $m$, cuesta $n * m$.
+
+\begin{verbatim}
+Armar la matriz de adyacencias 
+\end{verbatim}
+
+Luego se crean las vecindades para los nodos con grado mayor o igual a 3 y se busca el diamante mínimo que exista en cada una de dichas vecindades.
+
+\begin{verbatim}
+para cada nodo (que llamaremos superNodo) del grafo
+  si el taman'o de la lista de adyacencia de superNodo es mayor que 3
+    vecindadDeSuperNodo = crearVecindad(superNodo)
+    agregar buscarDiamanteMinimoEnVecindad(vecindadDeSuperNodo) a diamantesMinimos
+\end{verbatim}
+
+reacion de la vecindad para un nodo $i$:
+
+Para cada nodo $k$ adyacente a $i$ se recorren sus adyacentes y se los agrega a una componente de la vecindad si el nodo es también adyacente a $i$.
+Esto implica recorrer la lista de adyacencias de $i$ y ,para cada uno de sus  adyacentes, recorrer su lista de adyacencia. Como en una lista de adyacencias de un grafo no hay nodos repetidos, recorro como máximo una sola vez la lista de adyacencias de un nodo. A su vez, la cantidad de nodos contenidos entre todas las listas de adyacencias de un grafo es $2m$.
+Luego, para crear la ‘vecindad’ de un nodo, se recorren como máximo $2m$ nodos con los cuales se verifica ,por cada uno, si dos son adyacentes (O(1) en la matriz de adyacencia) y se los agrega a una lista(O(1) por agregarse al principio). Por lo que crear la ‘vecindad’ de un nodo es de orden $m$.
+
+\begin{verbatim}
+crearVecindad(superNodo) { //O(m)
+  para cada nodo k de adyacencias[superNodo]
+    para cada nodo j de adyacencias[k]
+      si nodo j es adyacente a superNodo
+        agregar nodo j a listaVecindad
+    vecindadDeSuperNodo[k] = listaVecindad
+  devolver vecindadDeSuperNodo //esto es un grafo (array de listas de adyacencia)
+}
+
+\end{verbatim}
+
+Búsqueda del diamante mínimo en una determinada vecindad.
+
+Para buscar el diamante mínimo en una vecindad lo que hace el algoritmo es recorrer por DFS cada componente conexa de la vecindad de un nodo,  sumando los grados de cada nodo, guardando los nodos y eligiendo el mínimo de ellos.
+Para esto recorremos la vecindad agregando los nodos que van apareciendo en el camino a una pila si no fueron marcados (en un array (O ( 1 )). Es decir que, una vez más, para cada nodo se revisa su lista de adyacencias. Esto es de orden $n + m$.
+
+Si existe el diamante, se lo busca de la siguiente manera:
+
+Para esto se calcula el nodo mínimo nodo, que no se relacione con todos los demás de la componente, es decir, se recorren a lo sumo $n$ nodos y se va guardando el menor, lo que cuesta a lo sumo $n$.
+Luego para cada uno de sus adyacentes que pertencen a la vecindad de $i$, se recorre su lista de adyacencia (ya se mencionó antes que el costo de realizar esto es $m$) y se verifican adyacencias hasta encontrar los nodos que cumplan la condición de ser adyacentes a $i$, y no ser adyacentes entre sí.
+Una vez encontrados estos nodos, se los ordena. Al ser cuatro nodos el tiempo es constante. 
+Es decir que la complejidad de encontrar el diamante minimo en una determinada componente conexa es O($n + m$) = O ( $m$ ) .
+
+Como hay que crear la vecindad para cada uno de los nodos de grado mayor o igual a 3, el número de vecindades va a depender de la cantidad de nodos. Luego, si existe el diamante se lo busca en orden $m$.
+Es decir que el orden de crear una vecindad ($n$) se sumará al de buscar su diamante si es que existe ($n$) por cada nodo estudiado. Luego, esto se realiza a lo sumo n veces, una vez por cada nodo.
+
+Es decir que el costo de crear todas las vecindades y buscar su diamante es $n * m$. 
+
+\begin{verbatim}
+buscarDiamanteMinimoEnVecindad(vecindadDeSuperNodo) { //O(m)
+  Recorrer una componente conexa (no recorrida previamente) de vecindadDeSuperNodo por DFS 
+  sumando los grados de los nodos recorridos (sumaGradosCompConexa) y
+  guardando en nodosCompConexa los nodos recorridos y
+  en nodoMinimoCompConexa el nodo minimo de la componente conexa
+  
+  si sumaGradosCompConexa != cant de nodos de un grafo completo de tam(nodosCompConexa) nodos
+    si diamanteMinimo no existe o nodoMinimoCompConexa <= minimo(diamanteMinimo)
+      diamante = buscarDiamanteMinimoDeCompConexa(superNodo,vecindadDeSuperNodo,nodosCompConexa)
+      si diamanteMinimo no existe o si existe y es mas grande que diamante //O(1)
+        diamanteMinimo = diamante
+  devolver diamanteMinimo //si es null es porq no habia diamante en toda la vecindad
+}
+
+buscarDiamanteMinimoDeCompConexa(superNodo, vecindadDeSuperNodo, nodosCompConexa) {
+  nodo1 = superNodo
+  nodoMinimo = nodo minimo de nodosCompConexa con grado menor que tam(nodosCompConexa)-1
+
+  para cada nodo (adyacenteANodo2) de vecindadDeSuperNodo[nodo2] //O(tam(nodosCompConexa))
+    para cada nodo (nodoCandidato) de vecindadDeSuperNodo[adyacenteANodo2]
+      si nodoCandidato no es adyacente a nodo2 y <nodoCandidato, adyacenteANodo2> < tuplaMin
+        tuplaMin = <nodoCandidato, adyacenteANodo2>
+
+  nodo3 = primero(tuplaMin)
+  nodo4 = segundo(tuplaMin)
+
+  diamanteMinimo = ordenar(nodo1, nodo2, nodo3, nodo4)
+
+  devuelvo diamanteMinimo
+}
+\end{verbatim}
+
+Cuando ya se tienen los diamantes mínimos de cada vecindad, resta encontrar el mínimo de todos.
+Es importante notar que no puede haber más componentes conexas que nodos, ya que la componente conexca más chica tiene un nodo(más allá de que debe tener por lo menos cuatro nodos para que haya un diamante.
+Como los diamantes tienen 4 nodos, se los compara componente a componente en O(1) y se descarta el mayor de los dos hasta que sólo quede un diamante. Entonces se comparan a los sumo n diamantes en O ( 1 ) por lo que en tiempo lineal se consigue el mínimo de los diamantes a partir de los diamantes mínimos de cada vecindad.
+
+\begin{verbatim}
+diamanteMinimo = minimo(diamantesMinimos)
+\end{verbatim}
 
 \section*{An\'alisis de resultados}
 
