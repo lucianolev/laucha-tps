@@ -13,16 +13,20 @@ public class InstanciaDiamante {
 
 	public void eliminarNodosChicos() {
 		//Saco los nodos de grado 0 y 1 y me acuerdo cuales son de grado 1
+		//Ademas cuento cuantos nodos son de grado mayor o igual a 2
 		boolean[] esNodoGradoUno = new boolean[cantNodos+1];
+		int cantNodosNuevoGrafo = 0;
 		for(int i = 1; i <= cantNodos; i++) {
 			if (adyacencias[i].size() == 0) {
 				adyacencias[i] = null;
 			} else if (adyacencias[i].size() == 1){
 				esNodoGradoUno[i] = true;
 				adyacencias[i] = null;
-			} else
+			} else {
 				esNodoGradoUno[i] = false;
+				cantNodosNuevoGrafo++;
 			}
+		}
 
 		//Borro los adyacentes a esos nodos de grado 1 para mantener la consistencia
 		for(int i = 1; i <= cantNodos; i++) {
@@ -35,23 +39,50 @@ public class InstanciaDiamante {
 				}
 			}
 		}
+		
+		//Uno las listas de los nodos de grado mayor o igual a un nuevo arreglo de adyacencias
+		//Me guardo ademas como se codifica cada nodo para el nuevo grafo
+		//Al mismo tiempo, me guardo la decodificacion en el private para luego poder restaurar el mapeo
+		LinkedList[] nuevasAdyacencias = new LinkedList[cantNodosNuevoGrafo];
+		int[] codificar = new int[cantNodos+1];
+		decodificar = new int[cantNodosNuevoGrafo];
+		int k = 0;
+		for(int i = 1; i <= cantNodos; i++) {
+			if(adyacencias[i] != null) {
+				nuevasAdyacencias[k] = adyacencias[i];
+				codificar[i] = k;
+				decodificar[k] = i;
+				k++;
+			}
+		}
+		//Remplazo el viejo grafo con el nuevo
+		adyacencias = nuevasAdyacencias;
+		cantNodos = cantNodosNuevoGrafo;
+
+		//Recorro el nuevo grafo y codifico cada nodo del grafo nuevo
+		for(int i = 0; i < cantNodos; i++) {
+			ListIterator listaAdyacencia = adyacencias[i].listIterator();
+			while (listaAdyacencia.hasNext()) {
+				Integer nodoViejo = (Integer)listaAdyacencia.next();
+				listaAdyacencia.set(new Integer(codificar[nodoViejo.intValue()]));
+			}
+		}
+
 	}
 
 	public void armarMatrizDeAdyacencia() {
-		matrizAdyacencias = new boolean[cantNodos+1][cantNodos+1];
+		matrizAdyacencias = new boolean[cantNodos][cantNodos];
 
-		for(int i = 0; i <= cantNodos; i++) {
-			for(int j = 0; j <= cantNodos; j++) {
+		for(int i = 0; i < cantNodos; i++) {
+			for(int j = 0; j < cantNodos; j++) {
 				matrizAdyacencias[i][j] = false;
 			}
 		}
 
-		for(int i = 1; i <= cantNodos; i++) {
-			if(adyacencias[i] != null) {
-				ListIterator iter = adyacencias[i].listIterator();
-				while(iter.hasNext()) {
-					matrizAdyacencias[i][((Integer)iter.next()).intValue()] = true;
-				}
+		for(int i = 0; i < cantNodos; i++) {
+			ListIterator iter = adyacencias[i].listIterator();
+			while(iter.hasNext()) {
+				matrizAdyacencias[i][((Integer)iter.next()).intValue()] = true;
 			}
 		}
 	}
@@ -59,8 +90,8 @@ public class InstanciaDiamante {
 	public void mostrarMatrizDeAdyacencia() {
 		System.out.println("----------------------");
 		System.out.println("Matriz de Adyacencias:");
-		for(int i = 0; i <= cantNodos; i++) {
-			for(int j = 0; j <= cantNodos; j++) {
+		for(int i = 0; i < cantNodos; i++) {
+			for(int j = 0; j < cantNodos; j++) {
 				System.out.print(matrizAdyacencias[i][j]+" ");
 			}
 			System.out.println("");
@@ -69,7 +100,7 @@ public class InstanciaDiamante {
 	}
 
 	public LinkedList[] crearVecindad(Integer superNodo) {
-		LinkedList[] vecindadDelSuperNodo = new LinkedList[cantNodos+1];
+		LinkedList[] vecindadDelSuperNodo = new LinkedList[cantNodos];
 
 		ListIterator adyacentesASuperNodo = adyacencias[superNodo.intValue()].listIterator();
 		while(adyacentesASuperNodo.hasNext()) {
@@ -99,8 +130,8 @@ public class InstanciaDiamante {
 		Integer[] diamanteMinimoVecindad = null;
 
 		ListIterator adyacentesASuperNodo = adyacencias[superNodo.intValue()].listIterator();
-		boolean[] marcados = new boolean[cantNodos+1];
-		for(int i = 1; i <= cantNodos; i++) {
+		boolean[] marcados = new boolean[cantNodos];
+		for(int i = 0; i < cantNodos; i++) {
 			marcados[i] = false;
 		}
 		while(adyacentesASuperNodo.hasNext()) {
@@ -159,7 +190,7 @@ public class InstanciaDiamante {
 	public Integer[] buscarDiamanteMinimoDeCompConexa(Integer superNodo, LinkedList[] vecindadDeSuperNodo, LinkedList nodosCompConexa) {
 		Integer nodo1 = superNodo;
 		
-		Integer nodo2 = new Integer(cantNodos);
+		Integer nodo2 = new Integer(cantNodos-1);
 		ListIterator iterNodosCompConexa = nodosCompConexa.listIterator();
 		while(iterNodosCompConexa.hasNext()) {
 			Integer nodoActual = (Integer)iterNodosCompConexa.next();
@@ -169,8 +200,8 @@ public class InstanciaDiamante {
 			}
 		}
 
-		Integer nodo3 = new Integer(cantNodos);
-		Integer nodo4 = new Integer(cantNodos);
+		Integer nodo3 = new Integer(cantNodos-1);
+		Integer nodo4 = new Integer(cantNodos-1);
 		Integer nodoChico;
 		Integer nodoGrande;
 		ListIterator adyacentesANodo2 = vecindadDeSuperNodo[nodo2.intValue()].listIterator();
@@ -214,7 +245,6 @@ public class InstanciaDiamante {
 // 		System.out.println("diamanteCompConexa: "+diamanteMinimoCompConexa[0]+" "+diamanteMinimoCompConexa[1]+" "+diamanteMinimoCompConexa[2]+" "+diamanteMinimoCompConexa[3]);
 // 		System.out.println("");
 
-
 		return diamanteMinimoCompConexa;
 	}
 
@@ -256,7 +286,6 @@ public class InstanciaDiamante {
 						adyacencias[nodo].add(Integer.valueOf(i));
 					}
 				}
-				
 			}
 		}
 
@@ -283,7 +312,6 @@ public class InstanciaDiamante {
 			}
 			adyacencias[i] = listaAdyacencia;
 		}
-
 		//DEBUG
 // 		System.out.println("Lista de adyacencias");
 // 		for (int i = 1; i <= cantNodos; i++) {
@@ -299,6 +327,7 @@ public class InstanciaDiamante {
 
 	public int cantNodos;
 	public LinkedList[] adyacencias;
+	public int[] decodificar;
 	public boolean hayDiamante;
 	public Integer[] diamanteMinimo;
 	public boolean[][] matrizAdyacencias;

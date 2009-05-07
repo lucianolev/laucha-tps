@@ -24,15 +24,17 @@ class MainDiamante {
 		try {
 			if((indexIn = argslist.indexOf("-in")) >= 0) {
 				diamante.cargarInstanciasDeArchivo(args[indexIn+1]);
+				diamante.resolverInstanciasCargadas();
 			} else if((indexRandom = argslist.indexOf("-random")) >= 0) {
 				int inicio = Integer.parseInt(args[indexRandom+1]);
 				int limite = Integer.parseInt(args[indexRandom+2]);
 				diamante.cargarInstanciasRandom(inicio, limite);
+				diamante.resolverInstanciasCargadas();
 			} else if((indexCompleto = argslist.indexOf("-completo")) >= 0) {
 				int cantnodos = Integer.parseInt(args[indexCompleto+1]);
 				diamante.cargarInstanciaCompleta(cantnodos);
+				diamante.resolverInstanciasCargadas();
 			}
-			diamante.resolverInstanciasCargadas();
 
 			if((indexOut = argslist.indexOf("-out")) >= 0) {
 				diamante.guardarResultados(args[indexOut+1]);
@@ -42,9 +44,9 @@ class MainDiamante {
 				diamante.guardarTiempos(args[indexGuardarTiempos+1]);
 			}
 
-		} catch (ArrayIndexOutOfBoundsException e) {
-			System.out.println("Parametros incorrectos!");
-			return;
+// 		} catch (ArrayIndexOutOfBoundsException e) {
+// 			System.out.println("Parametros incorrectos!");
+// 			return;
 		} catch (NumberFormatException e) {
 			System.out.println("Parametros incorrectos!");
 			return;
