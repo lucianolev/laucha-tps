@@ -601,7 +601,7 @@ En la sección siguiente veremos en detalle el algorimto propuesto junto con sus
 
 \section*{Algoritmo}
 
-Antes comenzar con el análisis, se presenta aqui el pseducódigo que esboza la idea del algoritmo:
+Antes comenzar con el análisis, se presenta aqui el pseudocódigo que esboza la idea del algoritmo:
 
 \begin{verbatim}
 armarRed()
@@ -644,7 +644,24 @@ En primer lugar, como se puede observar, \textit{armarRed()} es la función prin
 
 Probablemente el aspecto más interesante a analizar de este algoritmo sean las formas de verficación de ciclo y las estructuras asociadas a estos procedimientos. Razonando, se llegó a la conclusión que verificar la existencia de un ciclo en el árbol al insertar una arista equivale a observar a que componente conexa pertenece cada nodo de la arista en cuestión. En caso de pertenecer ambos nodos a la misma componente conexa es porque la arista formará un ciclo y debe ser descartada. Por este motivo, se concluyó que lo ideal sería encontrar una estructura que permita asociar cada nodo a una componente conexa, permitiendo verificar esto de manera eficiente. Abstrayéndose de esta cuestión, se notó que se debería contar con una estrucutura que represente a varios conjuntos disjuntos, uno por cada componente conexa, que logre buscar a que conjunto pertenece un determinado elemento (nodo) y que consiga unir dos conjuntos en forma óptima. Razonando más profundamente, se llegó a la conclusión de que no se podía obtener una estructura que permita realizar ambas operaciones en tiempo constante: si se podía ver la pertenencia en forma constante, la union tomaría tiempo de orden lineal y viceversa. Como la unión se realiza en ciertos casos (al hallar una arista cuyos nodos pertenezcan ya a distintas componentes conexas) mientras que la busqueda es obligada en cada iteración (para verificar si hay ciclo) se optó por priorizar esta última.
 
-Las estructuras elegidas para respresentar a las componentes conexas (conjuntos disjuntos) fueron dos arreglos de igual tamaño (cantidad de nodos/locales). Para el primero de ellos, cada posición representa un nodo de ese valor mientras que su contenido es alguna posición del segundo arreglo. Este último contiene...
+Las estructuras elegidas para respresentar a las componentes conexas (conjuntos disjuntos) fueron dos arreglos de igual tamaño (cantidad de nodos/locales): \textit{índices} y \textit{componentesConexas}. Para el primero de ellos (\textit{índices}), cada posición representa un nodo de ese valor mientras que su contenido es alguna posición del segundo arreglo (\textit{componentesConexas}). Este último contiene un número que representa una componente conexa. Ambos arreglos comienzan con todas sus posiciones en $0$ (los nodos no pertenecen a ninguna componente conexa, ya que ninguna arista fue insertada). De esta forma las funciones \textit{sePuedeMeter()} y \textit{meterArista()} se encagarán de observar y modificar estas estructuras, respectivamente.
+
+Con estas estructuras, verificar si hay ciclo (\textit{sePuedeMeter()}) radica simplemente en ir a la posición del arreglo \textit{índices} para ambos nodos y luego acceder al arreglo \textit{componentesConexas} para comprobar si esas posiciones hacen referencia las mismas componentes conexas. De este modo, la operacion de búsqueda se realiza en tiempo constante.
+
+La función \textit{meterArista()} se encargará de acomodar la estructura para mantener la coherencia. De acuerdo a los nodos de la arista en cuestión, tal como se puede ver en el pseudocódigo, existen 3 casos:
+\begin{itemize}
+ \item \textbf{Los nodos no pertenecen a ninguna componente conexa:} En este caso, para cada posición de ambos nodos se asigna un nuevo valor de componente conexa (contador \textit{compConexaActual}) al arreglo de \textit{índices}. Luego, en la posición \textit{compConexaActual} del arreglo \textit{componentesConexas} se guarda ese mismo valor. Finalmente, se incrementa el contador \textit{compConexaActual} de componentes conexas.
+
+ \item \textbf{Un nodo pertenece a alguna componente conexa y el otro no:} Simplemente se actualiza la posición del nodo que no pertenecía a ninguna componente conexa en el arreglo \textit{índices} con el valor de la componente conexa del otro nodo (que si se encontrada en alguna componente conexa).
+
+ \item \textbf{Los nodos pertenecen a componentes conexas distintas:} Este último caso es el más costoso, ya que es en el cuál se debe realizar la unión de las componentes conexas a las que pertencen cada uno de los dos nodos. Para realizar esto, se recorre el arreglo \textit{componentesConexas} y por cada elemento que pertenecía a la componente conexa del segundo nodo se le asigna el número de componente conexa del primer nodo.
+\end{itemize}
+
+De este modo, la función \textit{meterArista()} logra mantener la consistencia en todos los casos posibles de forma de que \textit{sePuedeMeter()} retorne siempre los valores esperados.
+
+Concluido el cicilo, se habrán insertado las $n-1$ aristas necesarias para generar el árbol de forma que no haya ciclos logrando así el objetivo propuesto. Finalmente, a fines de cumplir con lo pedido, se ordenan las aristas según los valores de cada nodo.
+
+Con respecto a la utilización de otras estructuras para mejorar la complejidad, se investigó acerca del asunto, concluyendo efectivamente que no se podrían encontrar formas de resolver el problema de los conjuntos disjuntos de una manera \textit{asintóticamente} mejor. Sin embargo, como veremos en la próxima sección, existen formas de optimizar las estructuras y los algorimos propuestos.
 
 \section*{Complejidad}
 
