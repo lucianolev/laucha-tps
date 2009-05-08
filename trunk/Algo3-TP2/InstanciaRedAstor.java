@@ -94,17 +94,20 @@ public class InstanciaRedAstor {
 	}
 
 	public void meterArista(Dupla dupla) {
+		//Si los 2 nodos de la dupla todavia no estan definidos (0 en los arreglos) es porque esta volando la arista.
 		if (componentePorNodo[dupla.prim] == 0 && componentePorNodo[dupla.seg] == 0) {
 			componentePorNodo[dupla.prim] = compConexaActual;
 			componentePorNodo[dupla.seg] = compConexaActual;
 			magia[componentePorNodo[dupla.prim]] = compConexaActual;
-			compConexaActual++;
+			compConexaActual++; //Creo una nueva componente conexa
 		}
 
+		//Si un nodo esta puesto y el otro no
 		if (componentePorNodo[dupla.prim] == 0 && componentePorNodo[dupla.seg] != 0) {
 			componentePorNodo[dupla.prim] = componentePorNodo[dupla.seg];
 		}
 
+		//Lo mismo pero con el otro nodo
 		if (componentePorNodo[dupla.prim] != 0 && componentePorNodo[dupla.seg] == 0) {
 			componentePorNodo[dupla.seg] = componentePorNodo[dupla.prim];
 		}

@@ -601,7 +601,23 @@ En la sección siguiente veremos en detalle el algorimto propuesto junto con sus
 
 \section*{Algoritmo}
 
-\textbf{TODO}
+Antes comenzar con el análisis, se presenta aqui el pseducódigo que esboza la idea del algoritmo:
+
+\begin{verbatim}
+armarRed()
+  aristasPorAgregar = lista de aristas del grafo original
+  aristasAstor = lista de aristas prefijadas por Astor
+  ordenar aristasPorAgregar por peso
+
+  insertar aristasAstor en el grafo resultado
+  costoProduccion = sumo los pesos de todas las aristas de astor
+
+  mientras haya aristas por agregar y la cantidad agregada sea menor a n nodos
+    tomo una arista de aristasPorAgregar
+    si se puede meter la arista (sePuedeMeter)
+    
+
+\end{verbatim}
 
 \section*{Complejidad}
 
