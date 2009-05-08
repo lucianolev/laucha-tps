@@ -21,7 +21,7 @@
 \maketitle
 
 \bigskip
-\section*{Aclaraci\'ones generales}
+\section*{Aclaraciones generales}
 
 Antes de comenzar el an\'alisis de cada ejercicio, cabe mencionar lo siguiente:
 
@@ -652,7 +652,38 @@ Las estructuras elegidas para respresentar a las componentes conexas (conjuntos 
 
 \section*{An\'alisis de resultados}
 
-\textbf{TODO}
+En la siguiente secci\'on analizaremos el comportamiento en la pr\'actica del algoritmo propuesto. El an\'alisis est\'a basado en estudiar el tiempo de ejecuci\'on para instancias aleatorias en funci\'on de la cantidad de locales manteniendo fija la cantidad de pares de locales fijados por Astor es decir, seg\'un el modelo propuesto, la cantidad de aristas a ingresar en el \'arbol antes de iniciar el algoritmo. A su vez, se ver\'a la relaci\'on que existe entre la complejidad te\'orica calculada y los resultados obtenidos. Adem\'as, para completar el an\'alisis se estudiar\'an los peores casos que presenta el algoritmo.
+
+Para realizar los tiempos de ejecuci\'on, se implement\'o un algoritmo que genera instancias aleatorias, es decir, genera la matriz de los pesos de cada arista para todo el grafo completo y una cierta cantidad de aristas, que representan los locales fijados por Astor, asegur\'andose que no formen un ciclo.
+
+A continuaci\'on se presentan los resultados de las pruebas realizadas para instancias aleatorias, variando la cantidad de locales y manteniendo fija la cantidad de pares fijado por Astor en $4$, $20$ y $50$.
+
+\begin{center}
+ \includegraphics[width=0.7\textwidth]{Plots/Tp2Ej3-Complejidad.png}
+\begin{center}
+Figura 3.1
+\end{center}
+\end{center}
+
+\begin{center}
+ \includegraphics[width=0.7\textwidth]{Plots/Tp2Ej3-Complejidad-20.png}
+\begin{center}
+Figura 3.2
+\end{center}
+\end{center}
+
+\begin{center}
+ \includegraphics[width=0.7\textwidth]{Plots/Tp2Ej3-Complejidad-50.png}
+\begin{center}
+Figura 3.3
+\end{center}
+\end{center}
+
+Como se puede apreciar, en las figuras $3.1$, $3.2$ y $3.3$ el crecimiento de la funci\'on que mide el tiempo de ejercuci\'on es similar, a pesar de que, a mayor cantidad de locales fijados por Astor, los tiempos se vuelven m\'as irregulares. La similitud en el crecimiento de los gr\'aficos se debe a que el tiempo que tarda algoritmo depende sobre todo de la disposici\'on de las aristas fijadas por Astor y de la forma en que se van agregando las aristas durante el algoritmo de Kruskal, y no tanto de la cantidad de aristas recibidas. Es decir, si se mantiene fija la cantidad de aristas de Astor y se aumenta significativamente la cantidad de locales totales, la incidencia de este par\'ametro en el tiempo de ejecuci\'on ser\'a m\'inima.
+
+Es importante observar que en las figuras presentadas el crecimiento de la funci\'on del tiempo de ejecuci\'on es menor que la cota te\'orica propuesta, $O(n^{3})$. El gr\'afico muestra adem\'as que dicho crecimiento se asemeja mucho m\'as al orden cuadr\'atico. Esto se debe a la forma en que el algoritmo arma el \'arbol resultante: la mayor\'ia de las aristas que agrega en los sucesivos pasos del algoritmo de Kruskal, se agregan en tiempo constante. Agregar una arista es de orden lineal s\'olo en el caso en que dicha arista une dos componentes conexas del \'arbol, es decir, cuando se deben recorrer las estructuras utilizadas para cambiar una de las componentes conexas fusionadas. Sin embargo, emp\'iricamente esta \'ultima operaci\'on  se realiza pocas veces en relaci\'on a la cantidad total de aristas agregadas. Por esta raz\'on, en el caso promedio la complejidad del algoritmo es menor que la cota te\'orica propuesta de $O(n^3)$. Por medio de las pruebas, podr\'iamos afirmar entonces que en la pr\'actica el algoritmo presentado se asemeja m\'as a un algoritmo de orden cuadr\'atico que a uno c\'ubico.
+
+Seg\'un lo mencionado anteriormente, se puede deducir que los peores casos ser\'an aquellos en los que agregar una arista al \'arbol resultado implique unir componentes conexas y, por lo tanto, tener que cambiar la estructura que guarda el n\'umero de componente conexa de cada nodo (llamada ComponentesConexas en la secci\'on ``Algoritmo``).
 
 \section*{Conclusiones}
 
