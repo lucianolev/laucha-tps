@@ -665,7 +665,37 @@ Con respecto a la utilización de otras estructuras para mejorar la complejidad,
 
 \section*{Complejidad}
 
-\textbf{TODO}
+A continuaci\'on se presentar\'a la demostraci\'on de correctitud del algoritmo implementado. Dividiremos la demostraci\'on en dos partes. Primero mostraremos que el grafo que retorna el algoritmo es un \'arbol generador del grafo recibido como par\'ametro. Luego veremos que ademas dicho \'abrol generador es m\'inimo.
+
+Vale aclarar que las aristas agregadas en el primer ciclo del algoritmo (las aristas elegidas por Astor) nunca pueden formar un ciclo por precondici\'on.
+
+Sea $G$ el grafo recibido como par\'ametro y $T$ el grafo resultado de aplicar \textit{armarRed}:
+
+\begin{itemize}
+\item $T$ es \'arbol generador de $G$
+
+Para comenzar, mostraremos que $T$ es conexo. Supongamos entonces que no lo es para llegar a un absurdo. Sea $e$ una arista de $G$ que une dos componentes conexas distintas de $T$. Dicha arista debi\'o ser considerada en algun paso del algoritmo como una posible arista para agregar a $T$. Como todas las aristas que no formen un ciclo son agregadas en cada paso del algoritmo, es absurdo que $e$ no pertenezca a $T$, puesto que si en el grafo final $e$ une dos componentes conexas de $T$, es decir que no forma ciclo en $T$, tampoco hubiese formado un ciclo en el momento en el que fue considerada para ser insertada ya que nunca se remueven aristas.
+
+Trivialmente se puede apreciar que $T$ es ac\'iclico, puesto que no se agrega ninguna arista que forme un ciclo. Adem\'as es tambi\'en trivial que $T$ contiene todos los nodos de $G$ (se agregan $n-1$ aristas que no forman ciclos).
+
+De esta manera podemos concluir que $T$ es un \'arbol generador m\'inimo de $G$, puesto que contiene todos los nodos de $G$, es conexo y no posee ciclos. Cabe mencionar que si la cantidad de aristas que se colocan sin chequeos por la elecci\'on de Astor es igual a $n-1$ entonces no se recorer\'a el segundo ciclo para agregar aristas porque por precondici\'on ya tendr\'ia formado mi \'arbol generador.
+
+\item $T$ es \'arbol generador que contiene las aristas prefijadas m\'inimo de $G$
+
+Nuevamente encararemos esta demostraci\'on por el absurdo. Supongamos entonces que $T$ es \'arbol generador (conteniendo las aristas de Astor) no m\'inimo de $G$ y que existe un grafo $S$ distinto de $T$ que si lo es. Sea $e$ la primer arista elegida por el algoritmo que pertenece a $T$ pero no a $S$. Como $e$ no pertenece a $S$, entonces si a $S$ le agrego la arista $e$ (notado $S+e$) $S+e$ contendr\'a un ciclo. Adem\'as existe $e'$ perteneciente al ciclo formado en $S$ tal que $e'$ no pertenece a $T$. Esto sucede porque si $e'$ perteneciera a $T$ entonces tendria un ciclo lo que es absurdo porque es \'arbol:
+
+\begin{center}
+ \includegraphics[width=0.22\textwidth]{Grafos/ej3figura1.png}
+\hspace{100pt}
+ \includegraphics[width=0.22\textwidth]{Grafos/ej3figura2.png}
+\begin{center}
+ Grafo $T$ \hspace{160pt} Grafo $S$
+\end{center}
+\end{center}
+
+En el ejemplo mostrado $e$ ser\'ia la arista (3,4) y $e'$ ser\'ia (2,4). Sea $S'=S+e-e'$, de esta manera $S'$ es \'arbol generador de $G$. Si $l(e')<l(e)$ ($l(e)=$ peso de la arista $e$) llego a un absurdo. Esto se puede ver porque $S$ contiene todas las aristas anteriores a $e$ m\'as $e'$ y no se forma un ciclo en dicho grafo, por consiguente el algoritmo que va armando el grafo $T$ hubiese elegido a $e'$ en lugar de $e$ y esto es absurdo porque dijimos que $e'$ no pertenece a $T$. Entonces tenemos que $l(e')\geq l(e)$. Podemos apreciar entonces que el peso de $S'$ es a lo sumo igual al de $S$, pero no puede ser menor porque $S$ es AGM. Esto implica que $S'$ tiene el mismo peso que $S$ y entonces tambien es \'arbol generador m\'inimo de $G$ (conteniendo las aristas prefijadas), m\'as a\'un, $S'$ tiene una arista m\'as en com\'un con $T$ que $S$. Repitiendo este paso para todas las aristas distintas entre $T$ y $S$ (como m\'aximo ser\'an $l-f-1$ pasos, donde $l$ es la cantidad de nodos y $f$ la cantidad de pares fijados por Astor), se llegar\'a a un grafo \'arbol generador m\'inimo de $G$ con las mismas aristas de $T$, lo que es absurdo porque partimos de que $T$ no es m\'inimo.
+
+\end{itemize}
 
 \section*{An\'alisis de resultados}
 
