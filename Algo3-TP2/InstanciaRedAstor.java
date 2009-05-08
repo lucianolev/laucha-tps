@@ -17,23 +17,39 @@ public class InstanciaRedAstor {
 		red = null;
 	}
 
-// 	public void generarInstanciaRandom(int paramZonas, int paramLitros, int rangoRandom) {
-// 		zonas = paramZonas;
-// 		litros = paramLitros;
-// 		mosquitosMuertos = new int[zonas][litros+1];
-// 		for (int i = 0; i < paramZonas; i++) {
-// 			mosquitosMuertos[i][0] = 0; //el litro 0 es 0 para cada zona
-// 			for (int j = 1; j <= paramLitros; j++) {
-// 				mosquitosMuertos[i][j] = (int)(Math.random()*rangoRandom);
-// 			}
-// 		}
-// 	}
+	public void generarInstanciaRandom(int paramCantLocales, int rangoRandom) {
+		cantLocales = paramCantLocales;
+		aristasAstor = new LinkedList();
+		matrizPesos = new int[cantLocales][cantLocales];
+		for (int i = 0; i < cantLocales; i++) {
+			for (int j = 0; j < cantLocales; j++) {
+				if(i == j) {
+					matrizPesos[i][j] = 0;
+				} else {
+					matrizPesos[i][j] = (int)((Math.random()*rangoRandom));
+				}
+			}
+		}
+		
+		cantParesAstor = 0;
+		int nodo1 = (int)((Math.random()*(cantLocales-1))+1);
+		int nodo2 = nodo1+(int)((Math.random()*(cantLocales-1))+1);
+
+		while(nodo2 <= cantLocales) {
+			Arista nueva = new Arista();
+			nueva.nodo1 = nodo1;
+			nueva.nodo2 = nodo2;
+			nodo1 = nodo1+(int)((Math.random()*(cantLocales-1))+1);
+			nodo2 = nodo1+(int)((Math.random()*(cantLocales-1))+1);
+			cantParesAstor++;
+		}
+	}
 
 	public void crearListaAristas() {
 		aristasPorAgregar = new LinkedList();
 		for(int i = 1; i < cantLocales; i++) {
 			for(int j = 0; j < i; j++) {
-				Arista nuevaArista = new Arista(i,j,matrizPesos[i][j]);
+				Arista nuevaArista = new Arista(i+1,j+1,matrizPesos[i][j]);
 				aristasPorAgregar.add(nuevaArista);
 			}
 		}
@@ -44,7 +60,7 @@ public class InstanciaRedAstor {
 		Arista aristaActual = new Arista();
 		while(iter.hasNext()) {
 			aristaActual = (Arista)iter.next();
-			aristaActual.peso = matrizPesos[aristaActual.nodo1][aristaActual.nodo2];
+			aristaActual.peso = matrizPesos[aristaActual.nodo1-1][aristaActual.nodo2-1];
 			iter.set(aristaActual);
 		}
 	}

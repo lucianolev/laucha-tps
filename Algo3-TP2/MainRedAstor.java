@@ -15,7 +15,7 @@ class MainRedAstor {
 		}
 
 		int indexIn;
-// 		int indexRandom;
+		int indexRandom;
 // 		int indexFijarParametro;
 		int indexOut;
 // 		int indexGuardarTiempos;
@@ -23,26 +23,26 @@ class MainRedAstor {
 			if((indexIn = argslist.indexOf("-in")) >= 0) {
 				red.cargarInstanciasDeArchivo(args[indexIn+1]);
 				red.resolverInstanciasCargadas();
-			} /*else if((indexRandom = argslist.indexOf("-random")) >= 0) {
+			} else if((indexRandom = argslist.indexOf("-random")) >= 0) {
 				int limite = Integer.parseInt(args[indexRandom+1]);
-				int esparcimiento = Integer.parseInt(args[indexRandom+2]);
-				int rangoRandom = Integer.parseInt(args[indexRandom+3]);
-				if((indexFijarParametro = argslist.indexOf("-fijarparametro")) >= 0) {
-					int cantidad = Integer.parseInt(args[indexFijarParametro+1]);
-					if (args[indexFijarParametro+2].equals("litros")) {
-						dengue.cargarInstanciasRandomConLitrosFijoHasta(cantidad, limite, esparcimiento, rangoRandom);
-					}
-					else if (args[indexFijarParametro+2].equals("zonas")) {
-						dengue.cargarInstanciasRandomConZonasFijoHasta(cantidad, limite, esparcimiento, rangoRandom);
-					} else {
-						ArrayIndexOutOfBoundsException e = new ArrayIndexOutOfBoundsException();
-						throw e;
-					}
-				} else {
-					dengue.cargarInstanciasRandomHasta(limite, esparcimiento, rangoRandom);
-				}
-				dengue.resolverInstanciasCargadas();
-			}*/
+// 				int pares = Integer.parseInt(args[indexRandom+2]);
+				int rango = Integer.parseInt(args[indexRandom+2]);
+				red.cargarInstanciasRandomConParesFijos(limite,rango);
+				red.resolverInstanciasCargadas();
+// 				if((indexFijarParametro = argslist.indexOf("-fijarparametro")) >= 0) {
+// 					int cantidad = Integer.parseInt(args[indexFijarParametro+1]);
+// 					if (args[indexFijarParametro+2].equals("litros")) {
+// 						red.cargarInstanciasRandomConParesFijos(cantidad, limite, esparcimiento, rangoRandom);
+// 					}
+// 					else {
+// 						ArrayIndexOutOfBoundsException e = new ArrayIndexOutOfBoundsException();
+// 						throw e;
+// 					}
+// 				} else {
+// 					dengue.cargarInstanciasRandomHasta(limite, esparcimiento, rangoRandom);
+// 				}
+				
+			}
 
 			if((indexOut = argslist.indexOf("-out")) >= 0) {
 				red.guardarResultados(args[indexOut+1]);
