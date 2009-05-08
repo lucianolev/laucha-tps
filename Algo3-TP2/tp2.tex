@@ -65,7 +65,7 @@ $R + cantMM(n,k) > Q + cantMM(n,k) = P \Rightarrow R + cantMM(n,k) > P$
 
 Esto es un absurdo ya que supusimos que $P$ era la cantidad \'optima. Este absurdo surge de suponer que la cantidad de mosquitos muertos hasta la zona $n-1$ con $l-k$ litros no era \'optima. Entonces queda demostrado que vale el principio de optimalidad para el problema planteado.
 
-\subsection*{Soluci\'on recursiva y demostraci\'on de correctitud} %TODO!!!!!!!!!!!!!!!!!!!!!
+\subsection*{Soluci\'on recursiva y demostraci\'on de correctitud}
 
 A partir de la idea presentada en la secci\'on anterior se puede plantear la siguiente funci\'on recursiva para resolver el problema.
 $\\ f(0, l) = 0 \\$
@@ -272,7 +272,7 @@ En términos de complejidad, el algoritmo tiene una gran eficiencia respecto de 
 
 Si bien la función recursiva utilizada mostró gran deficiencia, sirvió para tener la idea del algoritmo y a partir de ella, comenzar a pensar en còmo aplicar programación dinámica.
 
-En el análisis de los resultados, se pudo ver como se evitan cálculos utilizando resultados anteriores y se pudo comprobar empíricamente que el algoritmo cumple con la complejidad calculada. Los gráficos también mostraron cómo en este ejercicio en particular, el tiempo de ejecición dependía en mayor medida de la cantidad de zonas que de la cantidad de litros que se tengan.
+En el análisis de los resultados, se pudo ver como se evitan cálculos utilizando resultados anteriores y se pudo comprobar empíricamente que el algoritmo cumple con la complejidad calculada. Los gráficos también mostraron cómo en este ejercicio en particular, el tiempo de ejecición dependía en mayor medida de la cantidad de zonas que de la cantidad de litros que se tengan aunque la complejidad depende de ambos parámetros $o(n*m^2)$.
 
 Respecto de la dificultad de la implementación, quedò absolutamente claro que la solución recursiva era intuitiva y sencilla mientras que el algoritmo de programación dinámica requiere de un pensamiento más elavorado. Sin embargo, el ejercicio mostró que entendiendo como aplica el principio de optimalidad al problema, las ideas se vuelven mucho más claras y menos desagradables.
 En un comienzo el principio de optimalidad parecía sencillo de entender. Sirvió para construir una matriz que guardara los valores óptimos hasta el momento que eran usados para calcular los siguientes. Una vez obtenido el resultado óptimo para el problema planteado, empezó la parte rebuscada del uso del principio de optimalidad, pero también la más interesante.
@@ -435,12 +435,12 @@ Luego, dentro de la funci\'on \textit{buscarDiamanteMinimoEnVecindad} se verific
 
 \section*{Complejidad}
 
-Para calcular la complejidad de este ejercicio el modelo utilizado fue el uniforme, esto se debe a que lo que define el orden del algoritmo es la cantidad de nodos y de aristas
-(y cómo están relacionados los nodos  por dichas aristas). Teniendo en cuenta que los nodos van de 1 a $n$, no es relevante observar el tamaño que ocupa cada nodo, sino la cantidad de estos, ya que si el número que representa a un nodo es muy grande, igual de grande es la cantidad de nodos en el grafo y pierde sentido utilizar el modelo logarítmico.
+Para calcular la complejidad de este ejercicio el modelo utilizado fue el uniforme, esto se debe a que lo que define el orden del algoritmo es la cantidad de nodos y de aristas (y cómo están relacionados los nodos  por dichas aristas). Teniendo en cuenta que los nodos van de 1 a $n$, no es relevante observar el tamaño que ocupa cada nodo, sino la cantidad de estos, ya que si el número que representa a un nodo es muy grande, igual de grande es la cantidad de nodos en el grafo y pierde sentido utilizar el modelo logarítmico.
 
 \bigskip
-Al crear las listas de adyacencias, el algoritmo lee $2m$ aristas del archivo de entrada y las agrega en dichas listas.  Para esto crea n listas que representan las adyacencias de cada nodo. Como hay $2m$ aristas que se distribuirán en n listas(dónde la inserción es en $O(1)$), la complejidad temporal de realizar esta tarea será $O(2m + n)$.
-Luego se filtran los nodos de grado 0 y 1. Aquí se recorren las listas de adyacencias y  se eliminan los nodos que no tengan(en el grafo original) al menos dos nodos adyacentes. Esto requiere recorrer todas las listas de adyacencias que cuesta $2m + n$ (esto se debe a que para que un nodo sea adyacente a otro debe existir una arista y una arista no puede conectar a más de un nodo).
+Al crear las listas de adyacencias, el algoritmo lee $2m$ aristas del archivo de entrada y las agrega en dichas listas. Para esto crea n listas que representan las adyacencias de cada nodo. Como hay $2m$ aristas que se distribuirán en n listas(dónde la inserción es en $O(1)$), la complejidad temporal de realizar esta tarea será $O(2m + n)$.
+
+Luego se filtran los nodos de grado 0 y 1. Aquí se recorren las listas de adyacencias y se eliminan los nodos que no tengan(en el grafo original) al menos dos nodos adyacentes. Esto requiere recorrer todas las listas de adyacencias que cuesta $2m + n$ (esto se debe a que para que un nodo sea adyacente a otro debe existir una arista y una arista no puede conectar a más de un nodo).
 
 \begin{verbatim}
 crear grafo representado por array de lista de adyacencias (llamado 'adyacencias')
@@ -553,6 +553,14 @@ si hay algun diamante en diamantesMinimos retorno minimo(diamantesMinimos)
 \end{verbatim}
 
 Luego de haber analizado la complejidad del algoritmo en cada una de las partes (siendo éstas independientes entre si), se puede concluir que el orden del algoritmo en total será equivalente a la de mayor complejidad, es decir $O(n*m)$.
+
+\bigskip
+
+Finalmente estudiaremos la complejidad en funci\'on del tama\~{n}o de la entrada. Sea $t$ el tama\~{n}o de la entrada, $n$ la cantidad de nodos, y $m$ la cantidad de aristas. Tenemos entonces que:
+
+$$t=2m+1\log(n)>m\log(n)$$
+
+\hspace{45pt} $\Longrightarrow$ como $T(n,m) \in O(nm)$ y $nm<n^{m}=2^{m\log(n)}<2^{t} \Longrightarrow T(t) \in O(2^{t})$
 
 \section*{An\'alisis de resultados}
 
@@ -703,7 +711,9 @@ En el ejemplo mostrado $e$ ser\'ia la arista (3,4) y $e'$ ser\'ia (2,4). Sea $S'
 
 \section*{Complejidad}
 
-En la presente sección se intentará mostrar la complejidad teórica del algoritmo presentado. Antes de comenzar, es importante aclarar lo siguiente: Al contar con un grafo completo como parámetro de entrada, el mismo posee $n*(n-1)$ aristas, siendo $n$ la cantidad de nodos. Es decir que $O(n^2) = O(m)$, por lo que, de ahora en adelante, consideraremos a $n$ como único parámetro al calcular la complejidad.
+Para calcular la complejidad de este ejercicio el modelo utilizado fue el uniforme, esto se debe a que lo que define el orden del algoritmo es la cantidad de nodos y de aristas (y cómo están relacionados los nodos  por dichas aristas). Es decir, no es relevante observar el tamaño que ocupa cada nodo, sino la cantidad de nodos que contenga el grafo. En consecuencia, la utilizaci\'on del modelo logaritm\'ico carece de sentido para este tipo de problema.
+
+Antes de comenzar, es importante aclarar lo siguiente: Al contar con un grafo completo como parámetro de entrada, el mismo posee $n*(n-1)$ aristas, siendo $n$ la cantidad de nodos. Es decir que $O(n^2) = O(m)$, por lo que, de ahora en adelante, consideraremos a $n$ como único parámetro al calcular la complejidad.
 
 A continuación analizaremos parte por parte la complejidad de cada función del algoritmo:
 
@@ -780,6 +790,14 @@ agrego la arista al grafo resultante
 La primer etapa de la función consiste en evaluar los 3 casos mencionados anteriormente en la descripción del algoritmo. Para los primeros dos, se realizan únicamente operaciones en una cantidad de posiciones acotadas de ambos arreglos por lo cual la complejidad es constante. Sin embargo, el último caso, encargado de unir las dos componentes conexas es $O(n)$ en el peor caso, ya que se deberá recorrer el arreglo de tamaño $n$ para cambiar las posiciones de los nodos relativos a una de las dos componentes conexas. Con respecto a la última operación, es trivial observar que dicho costo es de orden constante ya que se trata de agregar un elemento a una lista enlazada.
 
 Por todo esto, podemos concluir que la función meterArista() es $O(n)$ para el peor caso.
+
+\bigskip
+
+Finalmente estudiaremos la complejidad en funci\'on del tama\~{n}o de la entrada. Sea $t$ el tama\~{n}o de la entrada, $n$ la cantidad de locales, $f$ la cantidad de aristas de Astor, $L$ la matriz de pesos de las aristas y $F$ el arreglo de aristas de Astor. Tenemos entonces que:
+
+$$t=\log(n)+\log(f)+\sum_{i=1}^{n}\sum_{j=1}^{n}\log(L_{i,j})+\sum_{i=1}^{f}\log(F_{i})>\log(n)+\log(n)+\sum_{i=1}^{n}\sum_{j=1}^{n}1+\sum_{i=1}^{f}1>2\log(n)+n^{2}+n>n^{2}$$
+
+\hspace{45pt} $\Longrightarrow$ como $T(n) \in O(n^{3})$ y $n^{3}=(n^{2})^{3/2}<t^{3/2} \Longrightarrow T(t) \in O(t^{3/2})$
 
 \section*{An\'alisis de resultados}
 
