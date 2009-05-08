@@ -28,15 +28,14 @@ Antes de comenzar el an\'alisis de cada ejercicio, cabe mencionar lo siguiente:
 \begin{itemize}
  \item La implementaci\'on de los 3 algoritmos se realiz\'o en \textbf{lenguaje Java}, haciendo uso de las librer\'ias est\'andar del mismo.
  \item Para el c\'alculo de tiempo de los algoritmos se utiliz\'o la funci\'on \textbf{nanoTime()} de la clase System de Java. Con el fin de aumentar la precisi\'on de las mediciones, se utiliz\'o el comando \textbf{nice} para darle m\'axima prioridad a la tarea.
- \item El c\'odigo fuente de los algoritmos aqui analizados se encuentran en los archivos \textit{Dengue.java} (Ej 1), \textit{...} (Ej 2) y \textit{...} (Ej 3).
+ \item El c\'odigo fuente de los algoritmos aqui analizados se encuentran en los archivos \textit{Dengue.java} (Ej 1), \textit{Diamante.java} (Ej 2) y \textit{RedAstor.java} (Ej 3).
  \item El c\'odigo fuente de los programas encargados de hacer uso de los algoritmos y necesarios para compilar las aplicaciones son:
  \begin{itemize}
     \item \underline{Ej 1:} MainDengue.java, Dengue.java e InstanciaDengue.java.
     \item \underline{Ej 2:} MainDiamante.java, Diamante.java, InstanciaDiamante.java.
-    \item \underline{Ej 3:} ...
+    \item \underline{Ej 3:} MainRedAstor.java, RedAstor.java, InstanciaRedAstor.java, Arista.java, AristaComparator.java, Dupla.java, DuplaComparator.java.
   \end{itemize}
  \item Para la lectura y escritura de los datos se utilizaron clases provistas por el lenguaje Java. No se har\'a referencia a estos algoritmos ya que no resultan de inter\'es para el trabajo aqui presentado.
- \item Al ejecutar cada programa sin argumentos se muestra una leyenda explicando su modo de uso.
  \item Los gr\'aficos se realizaron con \textbf{GNUPlot}. En los casos considerados pertinentes, se utiliz\'o una escala logar\'itmica con el fin de poder visualizar mejor los resultados.
 \end{itemize}
 
@@ -82,7 +81,7 @@ P(n): $f(n, i)$ es la cantidad m\'axima de mosquitos muertos hasta la zona $n$ c
 
 \textbf{Caso Base ($P(1)$)}
 
-$f(1,i) = max_{1 \leq j \leq i} (MM[1][j]) \;\;\;\; $ con $i \leq 1$
+$f(1,i) = max_{0 \leq j \leq i} (MM[1][j]) \;\;\;\; $ con $i \leq 1$
 
 Entonces, como se puede notar, $f(1,i)$ = $f (1,1)$ por lo que es trivialmente la cantidad m\'axima de mosquitos muertos de la primera zona con $i$ litros. \\
 
