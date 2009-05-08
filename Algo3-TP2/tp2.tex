@@ -612,12 +612,39 @@ armarRed()
   insertar aristasAstor en el grafo resultado
   costoProduccion = sumo los pesos de todas las aristas de astor
 
-  mientras haya aristas por agregar y la cantidad agregada sea menor a n nodos
+  mientras la cantidad agregada sea menor a n-1 nodos
     tomo una arista de aristasPorAgregar
-    si se puede meter la arista (sePuedeMeter)
-    
+    si se puede insertar la arista (sePuedeMeter)
+      sumar a costoProduccion el peso de la arista
+      insertar la arista en el grafo resultado (meterArista)
 
+  ordenar las aristas del grafo resultado segun los valores de los nodos
+
+sePuedeMeter(arista)
+  si los dos nodos distintas a la misma componente conexa 
+  o si alguno de los dos no pertenece a ninguna
+    retornar true
+  sino
+    retornar false
+
+meterArista(arista)
+  si ninguno de los dos nodos pertenece a alguna componente conexa
+    asignar una nueva componente conexa a ambos nodos
+
+  sino si un nodo pertenece a alguna componente y el otro no
+    asignar al otro nodo esa componente
+
+  sino si ambos nodos pertenecen a componentes conexas distintas
+    uno las dos componentes en una y le asigno a ambos nodos esa componente
+
+  agrego la arista al grafo resultante
 \end{verbatim}
+
+En primer lugar, como se puede observar, \textit{armarRed()} es la función principal del algoritmo encargada de generar el arbol generador mínimo del grafo (con aristas prefijadas), es decir, armar la red ferroviaria. Como se mencionó, este algorimto es básicamente el algoritmo de Kruskal para armar el árbol generador mínimo con algunas particularidades. El primer procedimiento consiste en almacenar las aristas prefijadas por Astor y las aristas para agregar en listas enlazadas. Luego se ordenan las aristas a agregar de menor a mayor mediante un algoritmo de sorting eficiente (basado en \textit{Quicksort}) provisto por las librerías del lenguaje, con el fin de poder luego tomar cada arista mínima en cada paso en tiempo constante. Finalmente, el ciclo principal se encarga se armar el árbol resultado de la siguiente manera: Toma una arista de la lista (la mínima hasta ese paso) y pregunta si se puede insertar (\textit{sePuedeMeter()}), es decir si no formará un ciclo que rompa con el invariante de árbol. En caso afirmativo, inserta la arista al grafo (\textit{meterArista()}), acomodando las estructuras como veremos a continuación. Caso contrario, descarta la arista y prosigue con la siguiente, hasta haber insertado $n-1$ aristas, es decir, haber formado el árbol.
+
+Probablemente el aspecto más interesante a analizar de este algoritmo sean las formas de verficación de ciclo y las estructuras asociadas a estos procedimientos. Razonando, se llegó a la conclusión que verificar la existencia de un ciclo en el árbol al insertar una arista equivale a observar a que componente conexa pertenece cada nodo de la arista en cuestión. En caso de pertenecer ambos nodos a la misma componente conexa es porque la arista formará un ciclo y debe ser descartada. Por este motivo, se concluyó que lo ideal sería encontrar una estructura que permita asociar cada nodo a una componente conexa, permitiendo verificar esto de manera eficiente. Abstrayéndose de esta cuestión, se notó que se debería contar con una estrucutura que represente a varios conjuntos disjuntos, uno por cada componente conexa, que logre buscar a que conjunto pertenece un determinado elemento (nodo) y que consiga unir dos conjuntos en forma óptima. Razonando más profundamente, se llegó a la conclusión de que no se podía obtener una estructura que permita realizar ambas operaciones en tiempo constante: si se podía ver la pertenencia en forma constante, la union tomaría tiempo de orden lineal y viceversa. Como la unión se realiza en ciertos casos (al hallar una arista cuyos nodos pertenezcan ya a distintas componentes conexas) mientras que la busqueda es obligada en cada iteración (para verificar si hay ciclo) se optó por priorizar esta última.
+
+Las estructuras elegidas para respresentar a las componentes conexas (conjuntos disjuntos) fueron dos arreglos de igual tamaño (cantidad de nodos/locales). Para el primero de ellos, cada posición representa un nodo de ese valor mientras que su contenido es alguna posición del segundo arreglo. Este último contiene...
 
 \section*{Complejidad}
 
