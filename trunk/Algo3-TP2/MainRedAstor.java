@@ -5,7 +5,7 @@ import java.util.ArrayList;
 class MainRedAstor {
 
 	public static void main(String[] args) throws IOException {
-		System.out.println("Modo de Uso: java MainRedAstor (-in <archivoentrada>) || (-random <limite> <esparcimiento> <rangorandom> [-fijarparametro <cantidad> (litros || zonas)]) [-out <archivosalida>] [-guardartiempos <archivosalida>]");
+		System.out.println("Modo de Uso: java MainRedAstor (-in <archivoentrada>) || (-random <inicio> <limite> <cantParesAstor> <rangorandom> [-out <archivosalida>] [-guardartiempos <archivosalida>]");
 		System.out.println();
 
 		RedAstor red = new RedAstor();
@@ -16,20 +16,21 @@ class MainRedAstor {
 
 		int indexIn;
 		int indexRandom;
-// 		int indexFijarParametro;
+// 		int indexFijarPares;
 		int indexOut;
-// 		int indexGuardarTiempos;
+		int indexGuardarTiempos;
 		try {
 			if((indexIn = argslist.indexOf("-in")) >= 0) {
 				red.cargarInstanciasDeArchivo(args[indexIn+1]);
 				red.resolverInstanciasCargadas();
 			} else if((indexRandom = argslist.indexOf("-random")) >= 0) {
-				int limite = Integer.parseInt(args[indexRandom+1]);
-// 				int pares = Integer.parseInt(args[indexRandom+2]);
-				int rango = Integer.parseInt(args[indexRandom+2]);
-				red.cargarInstanciasRandomConParesFijos(limite,rango);
+				int inicio = Integer.parseInt(args[indexRandom+1]);
+				int limite = Integer.parseInt(args[indexRandom+2]);
+				int pares = Integer.parseInt(args[indexRandom+3]);
+				int rango = Integer.parseInt(args[indexRandom+4]);
+				red.cargarInstanciasRandomConParesFijos(inicio, limite, pares, rango);
 				red.resolverInstanciasCargadas();
-// 				if((indexFijarParametro = argslist.indexOf("-fijarparametro")) >= 0) {
+// 				if((indexFijarPares = argslist.indexOf("-fijarpares")) >= 0) {
 // 					int cantidad = Integer.parseInt(args[indexFijarParametro+1]);
 // 					if (args[indexFijarParametro+2].equals("litros")) {
 // 						red.cargarInstanciasRandomConParesFijos(cantidad, limite, esparcimiento, rangoRandom);
@@ -48,9 +49,9 @@ class MainRedAstor {
 				red.guardarResultados(args[indexOut+1]);
 			}
 
-// 			if((indexGuardarTiempos = argslist.indexOf("-guardartiempos")) >= 0) {
-// 				red.guardarTiemposDeFumigacion(args[indexGuardarTiempos+1]);
-// 			}
+			if((indexGuardarTiempos = argslist.indexOf("-guardartiempos")) >= 0) {
+				red.guardarTiempos(args[indexGuardarTiempos+1]);
+			}
 		} catch (ArrayIndexOutOfBoundsException e) {
 			System.out.println("Parametros incorrectos!");
 			return;

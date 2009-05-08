@@ -81,6 +81,7 @@ public class RedAstor {
 	}
 
 	public void armarRed(InstanciaRedAstor instancia) {
+		long tiempoInicial = System.nanoTime();
 		instancia.crearListaAristas();
 		instancia.crearListaAstor();
 		//DEBUG
@@ -133,6 +134,10 @@ public class RedAstor {
 		Arrays.sort(arrayDuplaTemp, new DuplaComparator());
 
 		instancia.red = new LinkedList(Arrays.asList(arrayDuplaTemp));
+
+		instancia.tiempoAlgoritmo = (System.nanoTime() - tiempoInicial)/1000;
+
+		System.out.println("->Cant Locales: "+instancia.cantLocales+". Cant Pares Astor: "+instancia.cantParesAstor+". Costo de produccion: "+instancia.costoProduccion+". Tiempo de armar red: "+instancia.tiempoAlgoritmo+" us.");
 	}
 
 	public void guardarResultados(String nombreDelArchivo) throws IOException {
@@ -169,20 +174,50 @@ public class RedAstor {
 		}
 	}
 
-	public void cargarInstanciasRandomConParesFijos(int limite, int rangoRandom) {
+	public void cargarInstanciasRandomConParesFijos(int inicio, int limite, int cantPares, int rangoRandom) {
 		System.out.println("Generando instancias aleatorias...");
 
-		int j = 4;
+		int j = inicio;
 		int c = 0;
 		while (j <= limite) {
 			InstanciaRedAstor instancia = new InstanciaRedAstor();
-			instancia.generarInstanciaRandom(j, rangoRandom);
+			instancia.generarInstanciaRandom(j, cantPares, rangoRandom);
 			listaDeInstancias.add(instancia);
 			j++;
 			c++;
 		}
 
 		System.out.println("Se han generado "+c+" instancias aleatorias!");
+	}
+
+	public void guardarTiempos(String nombreDelArchivo) throws IOException {
+		if (listaDeInstancias.size() == 0) {
+			System.out.println("Error: No hay instancias resueltas para guardar!");
+			return;
+		}
+
+		BufferedWriter outputStream = null;
+		try {
+			outputStream = new BufferedWriter(new FileWriter(nombreDelArchivo));
+			String line = null;
+			ListIterator iter = listaDeInstancias.listIterator();
+
+			while(iter.hasNext()) {
+				InstanciaRedAstor instanciaResuelta = (InstanciaRedAstor)iter.next();
+				line = Integer.toString(instanciaResuelta.cantLocales);
+				line += " ";
+				line += Long.toString(instanciaResuelta.tiempoAlgoritmo);
+				outputStream.write(line);
+				outputStream.newLine();
+			}
+		}
+		finally {
+			if (outputStream != null) {
+				System.out.println("Se han guardado los tiempos de fumigacion de "+listaDeInstancias.size()+" instancia/s resueltas en el archivo "+nombreDelArchivo);
+				outputStream.close();
+			}
+		}
+		
 	}
 
 }
