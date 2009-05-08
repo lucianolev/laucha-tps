@@ -663,7 +663,7 @@ Concluido el cicilo, se habrán insertado las $n-1$ aristas necesarias para gene
 
 Con respecto a la utilización de otras estructuras para mejorar la complejidad, se investigó acerca del asunto, concluyendo efectivamente que no se podrían encontrar formas de resolver el problema de los conjuntos disjuntos de una manera \textit{asintóticamente} mejor. Sin embargo, como veremos en la próxima sección, existen formas de optimizar las estructuras y los algorimos propuestos.
 
-\section*{Complejidad}
+\section*{Correctitud}
 
 A continuaci\'on se presentar\'a la demostraci\'on de correctitud del algoritmo implementado. Dividiremos la demostraci\'on en dos partes. Primero mostraremos que el grafo que retorna el algoritmo es un \'arbol generador del grafo recibido como par\'ametro. Luego veremos que ademas dicho \'abrol generador es m\'inimo.
 
@@ -696,6 +696,10 @@ Nuevamente encararemos esta demostraci\'on por el absurdo. Supongamos entonces q
 En el ejemplo mostrado $e$ ser\'ia la arista (3,4) y $e'$ ser\'ia (2,4). Sea $S'=S+e-e'$, de esta manera $S'$ es \'arbol generador de $G$. Si $l(e')<l(e)$ ($l(e)=$ peso de la arista $e$) llego a un absurdo. Esto se puede ver porque $S$ contiene todas las aristas anteriores a $e$ m\'as $e'$ y no se forma un ciclo en dicho grafo, por consiguente el algoritmo que va armando el grafo $T$ hubiese elegido a $e'$ en lugar de $e$ y esto es absurdo porque dijimos que $e'$ no pertenece a $T$. Entonces tenemos que $l(e')\geq l(e)$. Podemos apreciar entonces que el peso de $S'$ es a lo sumo igual al de $S$, pero no puede ser menor porque $S$ es AGM. Esto implica que $S'$ tiene el mismo peso que $S$ y entonces tambien es \'arbol generador m\'inimo de $G$ (conteniendo las aristas prefijadas), m\'as a\'un, $S'$ tiene una arista m\'as en com\'un con $T$ que $S$. Repitiendo este paso para todas las aristas distintas entre $T$ y $S$ (como m\'aximo ser\'an $l-f-1$ pasos, donde $l$ es la cantidad de nodos y $f$ la cantidad de pares fijados por Astor), se llegar\'a a un grafo \'arbol generador m\'inimo de $G$ con las mismas aristas de $T$, lo que es absurdo porque partimos de que $T$ no es m\'inimo.
 
 \end{itemize}
+
+\section*{Complejidad}
+
+\textbf{TODO}
 
 \section*{An\'alisis de resultados}
 

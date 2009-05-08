@@ -1,0 +1,27 @@
+graph G {
+node [shape="circle"]
+a [pos="1,2!"]
+b [pos="2,2!"]
+c [pos="0,1!"]
+d [pos="3,1!"]
+e [pos="1,0!"]
+f [pos="2,0!"]
+
+a--b [label="2"]
+b--d [style="bold"]
+d--f [label="1"]
+e--f [style="bold"]
+c--e [label="3"]
+c--a [style="bold"]
+
+a--d
+a--f
+a--e
+b--c
+b--e
+b--f
+c--d
+c--f
+d--e
+
+}
