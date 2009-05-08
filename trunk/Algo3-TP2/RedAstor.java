@@ -23,7 +23,7 @@ public class RedAstor {
  			inputStream = new BufferedReader(new FileReader(nombreDelArchivo));
 			String line = null;
 			StringTokenizer tokens = null;
-			InstanciaDengue instancia = null;
+			InstanciaRedAstor instancia = null;
 
 			line = inputStream.readLine();
 			tokens = new StringTokenizer(line, " ");
@@ -31,22 +31,28 @@ public class RedAstor {
 			while(cantLocales != 0) {
 				instancia = new InstanciaRedAstor();
 				instancia.cantLocales = cantLocales;
+				instancia.aristasAstor = new LinkedList();
 				instancia.cantParesAstor = Integer.parseInt(tokens.nextToken());
-				instancia.aristas = new Arista[(instancia.cantLocales*(instancia.cantLocales-1))/2];
-				inputStream.readLine();
-				int k = 0;
-				for(int i = 1; i < instancia.cantLocales; i++) {
+				instancia.matrizPesos = new int[instancia.cantLocales][instancia.cantLocales];
+				for(int i = 0; i < instancia.cantLocales; i++) {
 					tokens = new StringTokenizer(inputStream.readLine(), " ");
-					for(int j = 0; j < i; j++) {
-						instancia.aristas[k] = Integer.parseInt(tokens.nextToken());
-						k++;
+					for(int j = 0; j < instancia.cantLocales; j++) {
+						instancia.matrizPesos[i][j] = Integer.parseInt(tokens.nextToken());
 					}
-					for(int)
 				}
+
+				for(int i = 0; i < instancia.cantParesAstor; i++) {
+					tokens = new StringTokenizer(inputStream.readLine(), " ");
+					Arista nuevaArista = new Arista();
+					nuevaArista.nodo1 = Integer.parseInt(tokens.nextToken());
+					nuevaArista.nodo2 = Integer.parseInt(tokens.nextToken());
+					instancia.aristasAstor.add(nuevaArista);
+				}
+				
 				listaDeInstancias.add(instancia);
 				line = inputStream.readLine();
 				tokens = new StringTokenizer(line, " ");
-				zonas = Integer.parseInt(tokens.nextToken());
+				cantLocales = Integer.parseInt(tokens.nextToken());
 			}
 		}
 		finally {
@@ -55,6 +61,59 @@ public class RedAstor {
 				inputStream.close();
 			}
 		}
+	}
+
+	public void resolverInstanciasCargadas() {
+		ListIterator iter = listaDeInstancias.listIterator();
+		while(iter.hasNext()) {
+			armarRed((InstanciaRedAstor)iter.next()); //Resuelvo la instancia
+		}
+
+		System.out.println("Se han resuelto todas las instancias ingresadas! ("+listaDeInstancias.size()+" instancia/s)");
+	}
+
+	public void armarRed(InstanciaRedAstor instancia) {
+		instancia.crearListaAristas();
+		instancia.crearListaAstor();
+
+		Arista[] arrayTemp = new Arista[instancia.aristasPorAgregar.size()];
+		instancia.aristasPorAgregar.toArray(arrayTemp);
+		Arrays.sort(arrayTemp, new AristaComparator());
+		
+		instancia.aristasPorAgregar = (LinkedList)Arrays.asList(arrayTemp);
+
+		instancia.componentePorNodo = new int[instancia.cantLocales];
+		instancia.magia = new int[instancia.cantLocales];
+		for(int i = 0; i < instancia.cantLocales; i++) {
+			instancia.componentePorNodo[i] = 0;
+			instancia.magia[i] = 0;
+		}
+
+		ListIterator iter = instancia.aristasAstor.listIterator();
+		while (iter.hasNext()) {
+			instancia.red = new LinkedList();
+			Arista aristaActual = ((Arista)iter.next());
+			instancia.costoProduccion =+ aristaActual.peso;
+			Dupla dupla = new Dupla(aristaActual.nodo1, aristaActual.nodo2);
+			instancia.meterArista(dupla);
+		}
+
+		int cantAristasMetidas = instancia.cantParesAstor;
+		iter = instancia.aristasPorAgregar.listIterator();
+		while(iter.hasNext() && cantAristasMetidas < instancia.cantLocales) {
+			Arista aristaActual = (Arista)iter.next();
+			Dupla dupla = new Dupla(aristaActual.nodo1, aristaActual.nodo2);
+			if(instancia.sePuedeMeter(dupla)) {
+				instancia.costoProduccion =+ aristaActual.peso; 
+				instancia.meterArista(dupla);
+			}
+		}
+
+		Dupla[] arrayDuplaTemp = new Dupla[instancia.red.size()];
+		instancia.red.toArray(arrayDuplaTemp);
+		Arrays.sort(arrayDuplaTemp, new DuplaComparator());
+
+		instancia.red = (LinkedList)Arrays.asList(arrayTemp);
 	}
 
 	public void guardarResultados(String nombreDelArchivo) throws IOException {
@@ -70,13 +129,17 @@ public class RedAstor {
 			ListIterator iter = listaDeInstancias.listIterator();
 
 			while(iter.hasNext()) {
-				InstanciaDengue instanciaResuelta = (InstanciaDengue)iter.next();
-				line = Integer.toString(instanciaResuelta.maxMosquitosMuertos);
+				InstanciaRedAstor instanciaResuelta = (InstanciaRedAstor)iter.next();
+				line = Integer.toString(instanciaResuelta.costoProduccion);
 				outputStream.write(line);
 				outputStream.newLine();
-				line = Arrays.toString(instanciaResuelta.litrosPorZona).replace(", ", " ");
-				outputStream.write(line, 1, line.length()-2);
-				outputStream.newLine();
+				iter = instanciaResuelta.red.listIterator();
+				while(iter.hasNext()) {
+					Dupla duplaActual = (Dupla)iter.next();
+					line = Integer.toString(duplaActual.prim)+" "+Integer.toString(duplaActual.seg);
+					outputStream.write(line, 0, line.length());
+					outputStream.newLine();
+				}
 			}
 		}
 		finally {
@@ -86,3 +149,5 @@ public class RedAstor {
 			}
 		}
 	}
+
+}
