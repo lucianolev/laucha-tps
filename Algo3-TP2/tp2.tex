@@ -289,7 +289,7 @@ A continuaci\'on se presentar\'a la demostraci\'on de la siguiente propiedad:
 
 Sea $G$ un grafo de $n$ v\'ertices y $m$ aristas, $G$ no contiene un subgrafo diamante como subgrafo inducido si y solamente si para todo v\'ertice $v$, su vecindad $N(v)$ se divide en componentes conexas completas.
 
-Llamaremos $p$ a la proposici\'on ``$G$ no contiene un subgrafo diamante como subgrafo inducido`` y $q$ a la proposici\'on ''para todo v\'ertice $v$, su vecindad $N(v)$ se divide en componentes conexas completas``. Dividiremos la demostraci\'on en dos partes: la implicaci\'on y la vuelta.
+Llamaremos $p$ a la proposici\'on ``$G$ no contiene un subgrafo diamante como subgrafo inducido`` y $q$ a la proposici\'on ''para todo v\'ertice $v$, su vecindad $N(v)$ se divide en componentes conexas completas``. Dividiremos la demostraci\'on en dos partes: la implicaci\'on y la rec\'iproca.
 
 \begin{itemize}
 \item $p \Longrightarrow q$
@@ -571,15 +571,12 @@ Cabe aclarar que el esquema presentado en la figura 2.2 representa s\'olo un cas
 
 \section*{Conclusiones}
 
-% A lo largo del desarrollo del ejercicio, se experimentaron las particularidades de un algoritmo de \textit{backtracking}. Nos encontramos con diversas dificultades en la implementaci\'on, a pesar de que la idea intuitiva del algoritmo es relativamente simple. Adem\'as, llegamos a la conclusi\'on de que, si bien la complejidad en peor caso es muy elevada, el algoritmo en general suele ser mucho m\'as eficiente que algoritmos que utilizan la t\'ecnica de fuerza bruta para resolver este tipo de problemas. 
-% 
-% Los principales incovenientes que surgen al implementar un algoritmo de \textit{backtracking} tienen que ver con la elecci\'on de la poda. Al momento de dicha elecci\'on, se deben considerar los aspectos de eficiencia, dificultad en la implementaci\'on y sobre todo, los beneficios (en relaci\'on al tiempo de ejecuci\'on) que esta provocar\'ia. Al pensar en detalle cada uno de las posibles podas, estos factores fueron determinantes para tomar una decisi\'on; podas que parec\'ian muy eficientes en principio, resultaban muy dif\'iciles de implementar y no aportaban cambios significativos que justifiquen su uso. A su vez, podas que parec\'ian descartar muchos casos, terminaban empeorando el tiempo de ejecuci\'on.
-% 
-% Es importante destacar que al aplicar la poda propuesta, el algoritmo mejora considerablemente en promedio. Esta situaci\'on resultaba esperable y pudo ser comprobada emp\'iricamente en las pruebas realizadas. Tambi\'en, se not\'o una relaci\'on entre la distribuci\'on de fichas de entrada y el tiempo de ejecuci\'on del algoritmo presentado. Por ejemplo, existen casos en los que la disposici\'on de las fichas no permitan hacer podas y otros en los que no sea necesario tener que reemplazar alguna ficha.
-% 
-% En conclusi\'on, la eficiencia del algoritmo de \textit{backtracking} depende fuertemente de las podas que se realicen y de la distribuci\'on probabil\'istica de los par\'ametros de entrada para casos promedio. Por esta raz\'on, la implementaci\'on de podas es determinante y justifica el tiempo invertido en idear las mismas.
+En esta \'ultima secci\'on se realizar\'a una breve descripci\'on de los temas y resultados a tener en cuenta sobre este ejercicio. La primer parte del ejercicio requiri\'o un estudio profundo de teoria sobre subgrafos diamantes lo que permiti\'o una mayor facilidad para encarar la segunda parte y una buena cantidad de ideas a tener en cuenta. Sin embargo, el algoritmo presentado debi\'o encargarse de numerosas complicaciones que, a la hora de realizar la demostraci\'on de la propiedad referida al tema, no hab\'ian sido tenido en cuenta.
 
-\textbf{TODO}
+En mayor parte esto se debi\'o a la complejidad exigida por la c\'atedra lo que motiv\'o a la utilizaci\'on de distintas estructuras y m\'etodos (matrices y listas de adyacencia, estructuras de mapeo, algoritmos de busqueda inteligente, etc) que pudieran cumplir con lo pedido. Otro aspecto dificultoso fue el hecho de tener que retornar el diamante de menor tama\~{n}o, lo que implic\'o tener que guardar un registro de cada uno por componente conexa asociada a una vecindad, y no el primero en ser encontrado. Qued\'o a las claras aqu\'i como una idea que no es muy complicada ,como es la de encontrar un subgrafo inducido, puede volverse sumamente compleja al pedir ciertos requisitos sobre los resultados (en este caso el diamante m\'inimo).
+
+En cuanto a las pruebas realizadas, estas arrojaron los resultados esperados en los casos en que se utilizaron grafos generados aleatoriamente. Tambi\'en hemos visto que para cierto tipo de grafos de entrada, puede que el algoritmo vari\'e notoriamente su tiempo de ejecuci\'on, a\'un asi cuando la cantidad de nodos es la misma. Esto se debe principalmente a dos razones. Una de ellas es la manera en que se construyen las listas de adyacencia utilizadas como estructura. Al no recibir los par\'ametros de entrada en orden, puede que el algoritmo obtenga primero los diamantes con nodos m\'as grandes, lo que no permitir\'ia evitar una gran cantidad de c\'aluculos como si suceder\'ia en caso de obtener inicialmente los m\'inimos. El otro factor importante a tener en cuenta es el de la distribuci\'on de las aristas en el grafo, donde puede ocurrir que casi todas las componentes conexas de cada vecindad tengan la mayor cantidad de aristas pero sin ser completas. Esto implicar\'ia una gran cantidad de diamantes a buscar a comparaci\'on de casos promedio. Estos y otros casos patol\'ogicos son bastante complejos de generar sobre todo en grafos de gran tama\~{n}o por lo que su an\'alisis no pudo ser tan extenso como se dese\'o.
+
 
 \begin{center}
 \section*{Ejercicio 3: Red Astor}
