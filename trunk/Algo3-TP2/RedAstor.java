@@ -72,39 +72,58 @@ public class RedAstor {
 		System.out.println("Se han resuelto todas las instancias ingresadas! ("+listaDeInstancias.size()+" instancia/s)");
 	}
 
+	public static void mostrarListaAristas(LinkedList lista) {
+		ListIterator iter = lista.listIterator();
+		while(iter.hasNext()) {
+			Arista actual = (Arista)iter.next();
+			System.out.println("("+Integer.toString(actual.nodo1)+","+Integer.toString(actual.nodo2)+","+Integer.toString(actual.peso)+")");
+		}
+	}
+
 	public void armarRed(InstanciaRedAstor instancia) {
 		instancia.crearListaAristas();
 		instancia.crearListaAstor();
-
+		//DEBUG
+		System.out.println("Sin ordenar:");
+		mostrarListaAristas(instancia.aristasPorAgregar);
+				
 		Arista[] arrayTemp = new Arista[instancia.aristasPorAgregar.size()];
 		instancia.aristasPorAgregar.toArray(arrayTemp);
 		Arrays.sort(arrayTemp, new AristaComparator());
 		
-		instancia.aristasPorAgregar = (LinkedList)Arrays.asList(arrayTemp);
+		instancia.aristasPorAgregar = new LinkedList(Arrays.asList(arrayTemp));
+		//DEBUG
+		System.out.println("Ordenada:");
+		mostrarListaAristas(instancia.aristasPorAgregar);
 
-		instancia.componentePorNodo = new int[instancia.cantLocales];
-		instancia.magia = new int[instancia.cantLocales];
-		for(int i = 0; i < instancia.cantLocales; i++) {
+		instancia.componentePorNodo = new int[instancia.cantLocales+1];
+		instancia.magia = new int[instancia.cantLocales+1];
+		for(int i = 0; i < instancia.cantLocales+1; i++) {
 			instancia.componentePorNodo[i] = 0;
 			instancia.magia[i] = 0;
 		}
 
+		//Meto las aristas de astor
+		//DEBUG
+		System.out.println("Las de astor:");
+		mostrarListaAristas(instancia.aristasAstor);
 		ListIterator iter = instancia.aristasAstor.listIterator();
+		instancia.red = new LinkedList();
 		while (iter.hasNext()) {
-			instancia.red = new LinkedList();
 			Arista aristaActual = ((Arista)iter.next());
-			instancia.costoProduccion =+ aristaActual.peso;
+			instancia.costoProduccion += aristaActual.peso;
 			Dupla dupla = new Dupla(aristaActual.nodo1, aristaActual.nodo2);
 			instancia.meterArista(dupla);
 		}
 
+		//Empiezo Kruskal
 		int cantAristasMetidas = instancia.cantParesAstor;
 		iter = instancia.aristasPorAgregar.listIterator();
 		while(iter.hasNext() && cantAristasMetidas < instancia.cantLocales) {
 			Arista aristaActual = (Arista)iter.next();
 			Dupla dupla = new Dupla(aristaActual.nodo1, aristaActual.nodo2);
 			if(instancia.sePuedeMeter(dupla)) {
-				instancia.costoProduccion =+ aristaActual.peso; 
+				instancia.costoProduccion += aristaActual.peso; 
 				instancia.meterArista(dupla);
 			}
 		}
@@ -113,7 +132,7 @@ public class RedAstor {
 		instancia.red.toArray(arrayDuplaTemp);
 		Arrays.sort(arrayDuplaTemp, new DuplaComparator());
 
-		instancia.red = (LinkedList)Arrays.asList(arrayTemp);
+		instancia.red = new LinkedList(Arrays.asList(arrayDuplaTemp));
 	}
 
 	public void guardarResultados(String nombreDelArchivo) throws IOException {
@@ -127,15 +146,15 @@ public class RedAstor {
 			outputStream = new BufferedWriter(new FileWriter(nombreDelArchivo));
 			String line = null;
 			ListIterator iter = listaDeInstancias.listIterator();
-
+			
 			while(iter.hasNext()) {
 				InstanciaRedAstor instanciaResuelta = (InstanciaRedAstor)iter.next();
 				line = Integer.toString(instanciaResuelta.costoProduccion);
 				outputStream.write(line);
 				outputStream.newLine();
-				iter = instanciaResuelta.red.listIterator();
-				while(iter.hasNext()) {
-					Dupla duplaActual = (Dupla)iter.next();
+				ListIterator iterRed = instanciaResuelta.red.listIterator();
+				while(iterRed.hasNext()) {
+					Dupla duplaActual = ((Dupla)iterRed.next());
 					line = Integer.toString(duplaActual.prim)+" "+Integer.toString(duplaActual.seg);
 					outputStream.write(line, 0, line.length());
 					outputStream.newLine();
@@ -148,6 +167,22 @@ public class RedAstor {
 				outputStream.close();
 			}
 		}
+	}
+
+	public void cargarInstanciasRandomConParesFijos(int limite, int rangoRandom) {
+		System.out.println("Generando instancias aleatorias...");
+
+		int j = 4;
+		int c = 0;
+		while (j <= limite) {
+			InstanciaRedAstor instancia = new InstanciaRedAstor();
+			instancia.generarInstanciaRandom(j, rangoRandom);
+			listaDeInstancias.add(instancia);
+			j++;
+			c++;
+		}
+
+		System.out.println("Se han generado "+c+" instancias aleatorias!");
 	}
 
 }

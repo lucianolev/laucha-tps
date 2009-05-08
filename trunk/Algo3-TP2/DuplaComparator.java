@@ -11,14 +11,15 @@ class DuplaComparator implements Comparator {
 			return 1;
 		}
 
-		if(((Arista)arista1).prim == ((Arista)arista2).prim) {
-			if(((Arista)arista1).seg < ((Arista)arista2).seg) {
+		if(((Dupla)dupla1).prim == ((Dupla)dupla2).prim) {
+			if(((Dupla)dupla1).seg < ((Dupla)dupla2).seg) {
 				return -1;
-			} else if (((Arista)arista1).seg > ((Arista)arista2).seg) {
+			} else if (((Dupla)dupla1).seg > ((Dupla)dupla2).seg) {
 				return 1;
 			} else {
 				return 0;
 			}
 		}
+		return 0;
 	}
 }

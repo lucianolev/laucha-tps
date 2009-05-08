@@ -14,5 +14,6 @@ class AristaComparator implements Comparator {
 		if(((Arista)arista1).peso == ((Arista)arista2).peso) {
 			return 0;
 		}
+		return 0;
 	}
 }
