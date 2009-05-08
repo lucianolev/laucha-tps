@@ -45,8 +45,9 @@ Antes de comenzar el an\'alisis de cada ejercicio, cabe mencionar lo siguiente:
 
 \bigskip
 \section*{Introducci\'on}
+El primer ejercicio plantea el problema de optimizar el uso de litros de ''Raid'' para la fumigación de mosquitos óptima, requiriendo cubrir una determinada cantidad de zonas. Es relevante comentar que al utilizar una mayor cantidad de litros en una zona, esto no implica matar más mosquitos.
 
-El objetivo del siguiente ejercicio es diseñar un algoritmo que resuelva el problema planteado de manera polinomial. Para esto se utiliz\'o la t\'ecnica de progamaci\'on din\'amica, lo que implic\'o la realizaci\'on de diversos pasos. Primero se corrobor\'o que el problema cumpla con el principio de optimalidad. Una vez comprobado esto (condici\'on necesaria para poder aplicar programaci\'on din\'amica) y utilizando las ideas vistas en dicha demostraci\'on, se procedi\'o a crear una funci\'on recursiva que retorne el resultado deseado. Luego se modific\'o dicha version por un algoritmo iterativo, siendo este un paso intermedio requerido para aplicar la t\'ecnica mencionada. El paso siguiente consisti\'o en modificar el algoritmo de manera de evitar la repetici\'on de c\'alculos innecesarios (aqu\'i queda implicita la idea de programaci\'on din\'amica), mejorando notablemente la complejidad de la funci\'on. Por \'ultimo, como veremos m\'as adelante, se opt\'o por un cambio de t\'ecnica algoritmica pasando de un algoritmo que originalmente era \textit{top-down} a uno \textit{bottom-up}.
+El ovjetivo diseñar un algoritmo que resuelva el problema planteado de manera polinomial. Para esto se utiliz\'o la t\'ecnica de progamaci\'on din\'amica, lo que implic\'o la realizaci\'on de diversos pasos. Primero se corrobor\'o que el problema cumpla con el principio de optimalidad. Una vez comprobado esto (condici\'on necesaria para poder aplicar programaci\'on din\'amica) y utilizando las ideas vistas en dicha demostraci\'on, se procedi\'o a crear una funci\'on recursiva que retorne el resultado deseado. Luego se modific\'o dicha version por un algoritmo iterativo, siendo este un paso intermedio requerido para aplicar la t\'ecnica mencionada. El paso siguiente consisti\'o en modificar el algoritmo de manera de evitar la repetici\'on de c\'alculos innecesarios (aqu\'i queda implicita la idea de programaci\'on din\'amica), mejorando notablemente la complejidad de la funci\'on. Por \'ultimo, como veremos m\'as adelante, se opt\'o por un cambio de t\'ecnica algoritmica pasando de un algoritmo que originalmente era \textit{top-down} a uno \textit{bottom-up}.
 
 \section*{Algoritmo}
 
@@ -271,6 +272,8 @@ En términos de complejidad, el algoritmo tiene una gran eficiencia respecto de 
 
 Si bien la función recursiva utilizada mostró gran deficiencia, sirvió para tener la idea del algoritmo y a partir de ella, comenzar a pensar en còmo aplicar programación dinámica.
 
+En el análisis de los resultados, se pudo ver como se evitan cálculos utilizando resultados anteriores y se pudo comprobar empíricamente que el algoritmo cumple con la complejidad calculada. Los gráficos también mostraron cómo en este ejercicio en particular, el tiempo de ejecición dependía en mayor medida de la cantidad de zonas que de la cantidad de litros que se tengan.
+
 Respecto de la dificultad de la implementación, quedò absolutamente claro que la solución recursiva era intuitiva y sencilla mientras que el algoritmo de programación dinámica requiere de un pensamiento más elavorado. Sin embargo, el ejercicio mostró que entendiendo como aplica el principio de optimalidad al problema, las ideas se vuelven mucho más claras y menos desagradables.
 En un comienzo el principio de optimalidad parecía sencillo de entender. Sirvió para construir una matriz que guardara los valores óptimos hasta el momento que eran usados para calcular los siguientes. Una vez obtenido el resultado óptimo para el problema planteado, empezó la parte rebuscada del uso del principio de optimalidad, pero también la más interesante.
 
@@ -436,7 +439,7 @@ Para calcular la complejidad de este ejercicio el modelo utilizado fue el unifor
 (y cómo están relacionados los nodos  por dichas aristas). Teniendo en cuenta que los nodos van de 1 a $n$, no es relevante observar el tamaño que ocupa cada nodo, sino la cantidad de estos, ya que si el número que representa a un nodo es muy grande, igual de grande es la cantidad de nodos en el grafo y pierde sentido utilizar el modelo logarítmico.
 
 \bigskip
-Al crear las listas de adyacencias, el algoritmo lee $2m$ aristas del archivo de entrada y las agrega en dichas listas.  Para esto crea n listas que representan las adyacencias de cada nodo. Como hay $2m$ aristas que se distribuirán en n listas(dónde la inserción es en O(1)), la complejidad temporal de realizar esta tarea será O($2m + n$).
+Al crear las listas de adyacencias, el algoritmo lee $2m$ aristas del archivo de entrada y las agrega en dichas listas.  Para esto crea n listas que representan las adyacencias de cada nodo. Como hay $2m$ aristas que se distribuirán en n listas(dónde la inserción es en $O(1)$), la complejidad temporal de realizar esta tarea será $O(2m + n)$.
 Luego se filtran los nodos de grado 0 y 1. Aquí se recorren las listas de adyacencias y  se eliminan los nodos que no tengan(en el grafo original) al menos dos nodos adyacentes. Esto requiere recorrer todas las listas de adyacencias que cuesta $2m + n$ (esto se debe a que para que un nodo sea adyacente a otro debe existir una arista y una arista no puede conectar a más de un nodo).
 
 \begin{verbatim}
@@ -445,11 +448,11 @@ excepto para los nodos de grado 1 y 0
 \end{verbatim}
 
 A partir de ahora llamamos $n$ a la cantidad de nodos que pertenecían al grafo y no fueron filtrados por su grado.
-Dado esto, $sn$  està acotado por  $m$, ya que cada nodo tiene asociada por lo menos 2 aristas y como cada arista sòlo puede asociar a dos nodos, la mìnima cantidad de aristas es $n$. Entonces el costo de n*n està acotado por $n*m$.
+Dado esto, $sn$  està acotado por  $m$, ya que cada nodo tiene asociada por lo menos 2 aristas y como cada arista sòlo puede asociar a dos nodos, la mìnima cantidad de aristas es $n$. Entonces el costo de $n^2$ està acotado por $n*m$.
 
 \bigskip
 
-El costo de armar la matriz de adyacencias resulta de crear una matriz de $n*n$ posiciones con ceros y recorrer las listas de adyacencias y agregar en las 2 posiciones adecuadas en la matriz (O(1)) un 1. Entonces cuesta $n*n + m$. Al ser n $<$ $m$, cuesta $n * m$.
+El costo de armar la matriz de adyacencias resulta de crear una matriz de $n^2$ posiciones con ceros y recorrer las listas de adyacencias y agregar en las 2 posiciones adecuadas en la matriz ($O(1)$) un 1. Entonces cuesta $n^2+m$. Al ser $n<m$, cuesta $n*m$.
 
 \begin{verbatim}
 armar la matriz de adyacencias de ese grafo
@@ -470,7 +473,7 @@ Creación de la vecindad para un nodo $i$:
 Para cada nodo $k$ adyacente a $i$ se recorren sus adyacentes y se los agrega a una componente de la vecindad si el nodo es también adyacente a $i$.
 Esto implica recorrer la lista de adyacencias de $i$ y ,para cada uno de sus  adyacentes, recorrer su lista de adyacencia. Como en una lista de adyacencias de un grafo no hay nodos repetidos, recorro como máximo una sola vez la lista de adyacencias de un nodo. A su vez, la cantidad de nodos contenidos entre todas las listas de adyacencias de un grafo es $2m$.
 
-Luego, para crear la ‘vecindad’ de un nodo, se recorren como máximo $2m$ nodos con los cuales se verifica ,por cada uno, si dos son adyacentes (O(1) en la matriz de adyacencia) y se los agrega a una lista(O(1) por agregarse al principio). Por lo que crear la ‘vecindad’ de un nodo es de orden $m$.
+Luego, para crear la ‘vecindad’ de un nodo, se recorren como máximo $2m$ nodos con los cuales se verifica ,por cada uno, si dos son adyacentes ($O(1)$ en la matriz de adyacencia) y se los agrega a una lista ( $O(1)$ por agregarse al principio). Por lo que crear la ‘vecindad’ de un nodo es de orden $m$.
 
 \begin{verbatim}
 crearVecindad(superNodo)
@@ -485,14 +488,14 @@ crearVecindad(superNodo)
 Búsqueda del diamante mínimo en una determinada vecindad.
 
 Para buscar el diamante mínimo en una vecindad lo que hace el algoritmo es recorrer por DFS cada componente conexa de la vecindad de un nodo,  sumando los grados de cada nodo, guardando los nodos y eligiendo el mínimo de ellos.
-Para esto recorremos la vecindad agregando los nodos que van apareciendo en el camino a una pila si no fueron marcados (en un array (O ( 1 )). Es decir que, una vez más, para cada nodo se revisa su lista de adyacencias. Esto es de orden $n + m$.
+Para esto recorremos la vecindad agregando los nodos que van apareciendo en el camino a una pila si no fueron marcados (en un array, $O(1)$). Es decir que, una vez más, para cada nodo se revisa su lista de adyacencias. Esto es de orden $n + m$.
 
 Si existe el diamante, se lo busca de la siguiente manera:
 
 Para esto se calcula el nodo mínimo nodo, que no se relacione con todos los demás de la componente, es decir, se recorren a lo sumo $n$ nodos y se va guardando el menor, lo que cuesta a lo sumo $n$.
 Luego para cada uno de sus adyacentes que pertencen a la vecindad de $i$, se recorre su lista de adyacencia (ya se mencionó antes que el costo de realizar esto es $m$) y se verifican adyacencias hasta encontrar los nodos que cumplan la condición de ser adyacentes a $i$, y no ser adyacentes entre sí.
 Una vez encontrados estos nodos, se los ordena. Al ser cuatro nodos el tiempo es constante. 
-Es decir que la complejidad de encontrar el diamante minimo en una determinada componente conexa es $O(n + m)$ = $O (m)$
+Es decir que la complejidad de encontrar el diamante minimo en una determinada componente conexa es $O(n + m) = O(m)$
 
 Como hay que crear la vecindad para cada uno de los nodos de grado mayor o igual a 3, el número de vecindades va a depender de la cantidad de nodos. Luego, si existe el diamante se lo busca en orden $m$.
 Es decir que el orden de crear una vecindad ($n$) se sumará al de buscar su diamante si es que existe ($n$) por cada nodo estudiado. Luego, esto se realiza a lo sumo n veces, una vez por cada nodo.
@@ -548,6 +551,8 @@ Como los diamantes tienen 4 nodos, se los compara componente a componente en $O(
 \begin{verbatim}
 si hay algun diamante en diamantesMinimos retorno minimo(diamantesMinimos)
 \end{verbatim}
+
+Luego de haber analizado la complejidad del algoritmo en cada una de las partes (siendo éstas independientes entre si), se puede concluir que el orden del algoritmo en total será equivalente a la de mayor complejidad, es decir $O(n*m)$.
 
 \section*{An\'alisis de resultados}
 
@@ -620,7 +625,7 @@ armarRed()
   ordenar las aristas del grafo resultado segun los valores de los nodos
 
 sePuedeMeter(arista)
-  si los dos nodos distintas a la misma componente conexa 
+  si los dos nodos pertenecen a distintas componentes conexas
   o si alguno de los dos no pertenece a ninguna
     retornar true
   sino
@@ -639,7 +644,7 @@ meterArista(arista)
   agrego la arista al grafo resultante
 \end{verbatim}
 
-En primer lugar, como se puede observar, \textit{armarRed()} es la función principal del algoritmo encargada de generar el arbol generador mínimo del grafo (con aristas prefijadas), es decir, armar la red ferroviaria. Como se mencionó, este algorimto es básicamente el algoritmo de Kruskal para armar el árbol generador mínimo con algunas particularidades. El primer procedimiento consiste en almacenar las aristas prefijadas por Astor y las aristas para agregar en listas enlazadas. Luego se ordenan las aristas a agregar de menor a mayor mediante un algoritmo de sorting eficiente (basado en \textit{Quicksort}) provisto por las librerías del lenguaje, con el fin de poder luego tomar cada arista mínima en cada paso en tiempo constante. Finalmente, el ciclo principal se encarga se armar el árbol resultado de la siguiente manera: Toma una arista de la lista (la mínima hasta ese paso) y pregunta si se puede insertar (\textit{sePuedeMeter()}), es decir si no formará un ciclo que rompa con el invariante de árbol. En caso afirmativo, inserta la arista al grafo (\textit{meterArista()}), acomodando las estructuras como veremos a continuación. Caso contrario, descarta la arista y prosigue con la siguiente, hasta haber insertado $n-1$ aristas, es decir, haber formado el árbol.
+En primer lugar, como se puede observar, \textit{armarRed()} es la función principal del algoritmo encargada de generar el arbol generador mínimo del grafo (con aristas prefijadas), es decir, armar la red ferroviaria. Como se mencionó, este algorimto es básicamente el algoritmo de Kruskal para armar el árbol generador mínimo con algunas particularidades. El primer procedimiento consiste en almacenar las aristas prefijadas por Astor y las aristas para agregar en listas enlazadas. Luego se ordenan las aristas a agregar de menor a mayor mediante un algoritmo de sorting eficiente (basado en \textit{Mergesort}) provisto por las librerías del lenguaje, con el fin de poder luego tomar cada arista mínima en cada paso en tiempo constante. Finalmente, el ciclo principal se encarga se armar el árbol resultado de la siguiente manera: Toma una arista de la lista (la mínima hasta ese paso) y pregunta si se puede insertar (\textit{sePuedeMeter()}), es decir si no formará un ciclo que rompa con el invariante de árbol. En caso afirmativo, inserta la arista al grafo (\textit{meterArista()}), acomodando las estructuras como veremos a continuación. Caso contrario, descarta la arista y prosigue con la siguiente, hasta haber insertado $n-1$ aristas, es decir, haber formado el árbol.
 
 Probablemente el aspecto más interesante a analizar de este algoritmo sean las formas de verficación de ciclo y las estructuras asociadas a estos procedimientos. Razonando, se llegó a la conclusión que verificar la existencia de un ciclo en el árbol al insertar una arista equivale a observar a que componente conexa pertenece cada nodo de la arista en cuestión. En caso de pertenecer ambos nodos a la misma componente conexa es porque la arista formará un ciclo y debe ser descartada. Por este motivo, se concluyó que lo ideal sería encontrar una estructura que permita asociar cada nodo a una componente conexa, permitiendo verificar esto de manera eficiente. Abstrayéndose de esta cuestión, se notó que se debería contar con una estrucutura que represente a varios conjuntos disjuntos, uno por cada componente conexa, que logre buscar a que conjunto pertenece un determinado elemento (nodo) y que consiga unir dos conjuntos en forma óptima. Razonando más profundamente, se llegó a la conclusión de que no se podía obtener una estructura que permita realizar ambas operaciones en tiempo constante: si se podía ver la pertenencia en forma constante, la union tomaría tiempo de orden lineal y viceversa. Como la unión se realiza en ciertos casos (al hallar una arista cuyos nodos pertenezcan ya a distintas componentes conexas) mientras que la busqueda es obligada en cada iteración (para verificar si hay ciclo) se optó por priorizar esta última.
 
@@ -698,7 +703,83 @@ En el ejemplo mostrado $e$ ser\'ia la arista (3,4) y $e'$ ser\'ia (2,4). Sea $S'
 
 \section*{Complejidad}
 
-\textbf{TODO}
+En la presente sección se intentará mostrar la complejidad teórica del algoritmo presentado. Antes de comenzar, es importante aclarar lo siguiente: Al contar con un grafo completo como parámetro de entrada, el mismo posee $n*(n-1)$ aristas, siendo $n$ la cantidad de nodos. Es decir que $O(n^2) = O(m)$, por lo que, de ahora en adelante, consideraremos a $n$ como único parámetro al calcular la complejidad.
+
+A continuación analizaremos parte por parte la complejidad de cada función del algoritmo:
+
+\begin{verbatim}
+  aristasPorAgregar = lista de aristas del grafo original
+  aristasAstor = lista de aristas prefijadas por Astor
+\end{verbatim}
+
+El primer paso de la función principal consiste en crear dos listas donde se almacenarán aristas. Para la primera se cuenta con $m = n*(n-1)$ aristas mientras que para la segunda, la cantidad de aristas será menor ya que las aristas fijadas no pueden superar a $n-1$ (porque sino habría ciclos y el problema no tendría solución). Por lo tanto hasta aquí la complejidad resulta de orden $O(n^2)$.
+
+\begin{verbatim}
+  ordenar aristasPorAgregar por peso
+\end{verbatim}
+
+Como se mencionó antes, el algoritmo utilizado para realizar el ordenamiento es una variante del \textit{Mergesort} optimizada, por lo que su complejidad es $O(m*log(m)) = O(n^2*log(n^2)) = O(n^2*log(n))$.
+
+\begin{verbatim}
+  insertar aristasAstor en el grafo resultado
+  costoProduccion = sumo los pesos de todas las aristas de astor
+\end{verbatim}
+
+La primera operación de inserción resulta $O(n)$ por la cota vista, por la que las aristas de Astor no pueden ser más de $n-1$. Con respecto a la segunda operación, es del mismo orden por la misma causa.
+
+\begin{verbatim}
+  mientras la cantidad agregada sea menor a n-1 nodos
+    tomo una arista de aristasPorAgregar
+    si se puede insertar la arista (sePuedeMeter)
+      sumar a costoProduccion el peso de la arista
+      insertar la arista en el grafo resultado (meterArista)
+\end{verbatim}
+
+En esta parte, hay un ciclo que se realiza como máximo, $m$ cantidad de veces, debido a que en el peor caso se recorrerán las $m$ aristas del grafo completo. Esto se debe a que en cada iteración una determinada arista es insertada en el grafo resultado, o es descartada como posible arista a insertar.
+
+Con respecto a las operaciones realizadas dentro del ciclo, la primera resulta constante porque consiste en tomar el primer elemento de una lista enlazada. Luego se verifica si la arista obtenida se puede insertar llamando a la funcion \textit{sePuedeMeter()}. Esta función tiene un costo de peor caso $O(1)$ como veremos más adelante. En caso de poder meter la arista, se realizan dos operaciones: Una suma de costo constante y la insercion de la arista en el grafo. Del mismo modo, veremos luego que la complejidad de esta última función es $O(n)$.
+
+A partir de lo mencionado anteriormente, podemos concluir que la complejidad total de este fragmento del algoritmo resulta $O(n*m) = O(n^3)$ ya que la operación de mayor costo dentro del ciclo es lineal con respecto a $n$ y la cantidad de iteraciones es a lo sumo $O(n^2)$.
+
+\begin{verbatim}
+  ordenar las aristas del grafo resultado segun los valores de los nodos
+\end{verbatim}
+
+Al igual que antes, \textit{Mergesort} realizará esta operación en $O(n*log(n))$ ya que el grafo resultado posee $n-1$ aristas por ser árbol generador del grafo original.
+
+\bigskip
+Por todo esto, podemos afirmar que la complejidad total del algoritmo es $O(n^3)$ ya que ninguna parte del algorimo supera la complejidad del ciclo analizado.
+
+\subsection*{sePuedeMeter()}
+
+\begin{verbatim}
+si los dos nodos pertenecen a distintas componentes conexas
+o si alguno de los dos no pertenece a ninguna
+  retornar true
+sino
+  retornar false
+\end{verbatim}
+
+Como vimos anteriormente, verficar esta condición implica el acceso a dos posiciones de cada arreglo (\textit{índices} y \textit{componentesConexas}) por lo cual el orden resulta $O(1)$.
+
+\subsection*{meterArista()}
+
+\begin{verbatim}
+si ninguno de los dos nodos pertenece a alguna componente conexa
+  asignar una nueva componente conexa a ambos nodos
+
+sino si un nodo pertenece a alguna componente y el otro no
+  asignar al otro nodo esa componente
+
+sino si ambos nodos pertenecen a componentes conexas distintas
+  uno las dos componentes en una y le asigno a ambos nodos esa componente
+
+agrego la arista al grafo resultante
+\end{verbatim}
+
+La primer etapa de la función consiste en evaluar los 3 casos mencionados anteriormente en la descripción del algoritmo. Para los primeros dos, se realizan únicamente operaciones en una cantidad de posiciones acotadas de ambos arreglos por lo cual la complejidad es constante. Sin embargo, el último caso, encargado de unir las dos componentes conexas es $O(n)$ en el peor caso, ya que se deberá recorrer el arreglo de tamaño $n$ para cambiar las posiciones de los nodos relativos a una de las dos componentes conexas. Con respecto a la última operación, es trivial observar que dicho costo es de orden constante ya que se trata de agregar un elemento a una lista enlazada.
+
+Por todo esto, podemos concluir que la función meterArista() es $O(n)$ para el peor caso.
 
 \section*{An\'alisis de resultados}
 
