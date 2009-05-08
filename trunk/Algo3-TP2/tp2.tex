@@ -661,7 +661,7 @@ De este modo, la función \textit{meterArista()} logra mantener la consistencia 
 
 Concluido el cicilo, se habrán insertado las $n-1$ aristas necesarias para generar el árbol de forma que no haya ciclos logrando así el objetivo propuesto. Finalmente, a fines de cumplir con lo pedido, se ordenan las aristas según los valores de cada nodo.
 
-Con respecto a la utilización de otras estructuras para mejorar la complejidad, se investigó acerca del asunto, concluyendo efectivamente que no se podrían encontrar formas de resolver el problema de los conjuntos disjuntos de una manera \textit{asintóticamente} mejor. Sin embargo, como veremos en la próxima sección, existen formas de optimizar las estructuras y los algorimos propuestos.
+Con respecto a la utilización de otras estructuras para mejorar la complejidad, se investigó acerca del asunto, concluyendo efectivamente que no se podrían encontrar formas de resolver el problema de los conjuntos disjuntos de una manera \textit{asintóticamente} mejor. Sin embargo, como veremos en la sección ``Conclusiones``, existen formas de optimizar las estructuras y los algorimos propuestos.
 
 \section*{Correctitud}
 
@@ -753,6 +753,12 @@ Como se puede notar en el gr\'afico, la arista de menor peso es la $D-F$ por lo 
 
 \section*{Conclusiones}
 
-\textbf{TODO}
+A partir de las secciones detalladas anteriormente se pueden realizar las siguientes conclusiones y aclaraciones. En primer lugar, es importante aclarar que a la hora de resolver el problema se podr\'ian haber utilizado otro tipo de estructuras para mejorar el rendimiento del algoritmo. Como el algoritmo propuesto se basa principalmente en hacer operaciones de bu\'squeda y uni\'on sobre distintos conjuntos de nodos, se podr\'ia haber utilizado una estructura \textit{Union-Find}\footnotemark[1]. En la pr\'actica este tipo de estructuras hacen que el algoritmo mejore significativamente su complejidad debido a que las operaciones de uni\'on y b\'usqueda son pr\'acticamente lineales (utilizando algoritmos inteligentes sobre listas y \'arboles). Cabe aclarar que a pesar de esto la cota te\'orica es la misma que se obtiene con las estructuras utilizadas en nuestro algoritmo.
+
+Como se pudo observar emp\'iricamente, llegamos a la conclusi\'on de que el algoritmo es mejor en promedio de lo que se esperaba en teor\'ia. Es decir, se mostr\'o que tiene un comportamiento del orden cuadr\'atico para la mayor\'ia de los casos, aunque existen casos en lo que esto no es cierto. Cabe mencionar tambi\'en que se podr\'ian haber hecho otras pruebas para estudiar el comportamiento del algoritmo. En concreto, se podr\'ia haber hecho un an\'alisis de los tiempos de ejecuci\'on en funci\'on de la cantidad de aristas de Astor, manteniendo fija la cantidad de locales. Se supone que a medida que aumente la cantidad de aristas de Astor para una cantidad de locales fija, el tiempo de ejecuci\'on deber\'ia disminuir ya que debe agregar menor cantidad de aristas teniendo que chequear si se forma un ciclo.
+
+Finalmente, podemos concluir que el problema podr\'ia haber sido resuelto de manera un poco m\'as eficiente de haber tenido tiempo adicional. Sin embargo, en la pr\'actica, el tiempo de ejecuci\'on del algoritmo propuesto se asemeja m\'as al de los algoritmos que utilizan \textit{Union-Find} que a un algoritmo de orden c\'ubico.
+
+\footnotetext[1]{Ver referencias sobre este tipo de estructuras en la secci\'on ''Referencias''}
 
 \end{document}
