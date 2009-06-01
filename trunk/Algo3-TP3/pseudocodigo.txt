@@ -1,0 +1,15 @@
+construir la matriz de adyacencias
+
+para cada superNodo
+	nodoActual = superNodo
+	apilo nodoActual
+	mientras la pila no este vacia
+		para cada nodo desde nodoActual+1 hasta n
+			si no es adyacente a ninguno de los nodos de la pila
+				apilar nodo
+				acumuladorDePeso += peso(nodo)
+		si acumuladorDePeso > pesoMaximo
+			conjuntoSolucion = pila
+			pesoMaximo = acumuladorDePeso;
+		nodoActual = desapilar pila
+		acumuladorDePeso -= peso(nodoActual)
