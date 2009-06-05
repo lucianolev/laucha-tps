@@ -39,8 +39,12 @@ public class ResolvedorCIPM {
 		}
 	}
 
-	public LinkedList dameSolucion() {
+	public LinkedList dameConjuntoSolucion() {
 		return conjuntoSolucion;
+	}
+	
+	public int damePesoMaximo() {
+		return pesoMaximo;
 	}
 
 	private GrafoNPonderados elGrafo;
