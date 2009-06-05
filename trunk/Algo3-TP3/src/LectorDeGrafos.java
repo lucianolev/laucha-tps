@@ -16,6 +16,7 @@ public class LectorDeGrafos {
 			
 			String line = inputStream.readLine();
 			int cantNodos = Integer.parseInt(line);
+			listaDeGrafos = new LinkedList();
 			while(cantNodos != 0) {
 				int[] pesoNodos = new int[cantNodos+1];
 				LinkedList[] adyacencias = new LinkedList[cantNodos+1];

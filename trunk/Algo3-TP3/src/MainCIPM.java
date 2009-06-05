@@ -20,6 +20,7 @@ public class MainCIPM {
 			//...
 			
 /*			escritor.agregarSolucion(resolvedor.dameSolucion());*/
+			System.out.println(resolvedor.damePesoMaximo());
 		}
 /*		escritor.guardarSoluciones("TP3.out");*/
 	}
