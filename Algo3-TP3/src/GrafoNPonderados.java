@@ -2,7 +2,7 @@ import java.util.*;
 
 public class GrafoNPonderados {
 
-	public GrafoNPonderados(LinkedList[] pListaDeAdyacencias, int pCantNodos, int[] pPesoNodos) {
+	public GrafoNPonderados(int pCantNodos, LinkedList[] pListaDeAdyacencias, int[] pPesoNodos) {
 		listaDeAdyacencias = pListaDeAdyacencias;
 		cantNodos = pCantNodos;
 		pesoNodos = pPesoNodos;
@@ -19,7 +19,7 @@ public class GrafoNPonderados {
 		for (int i = 1; i <= cantNodos; i++) {
 			ListIterator iter = listaDeAdyacencias[i].listIterator();
 			while (iter.hasNext()) {
-				matrizAdyacencias[i][iter.next()] = true;
+				matrizAdyacencias[i][((Integer)iter.next()).intValue()] = true;
 			}
 		}
 	}
