@@ -1,23 +1,27 @@
+import java.io.IOException;
 
 public class MainCIPM {
 
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
-		LectorDeGrafo lector = new LectorDeGrafo("TP3.in");
-		Grafo elgrafo = lector.dameGrafo();
-		ResolvedorCIPM resolvedor = new ResolvedorCIPM(grafo);
+		LectorDeGrafos lector = new LectorDeGrafos("TP3.in");
+/*		EscritorDeSoluciones escritor = new EscritorDeSoluciones();*/
+		while(lector.quedanGrafos()) {
+			GrafoNPonderados elgrafo = lector.dameProximoGrafo();
+			ResolvedorCIPM resolvedor = new ResolvedorCIPM(elgrafo);
 		
-		//resuelvo el problema mediante el metodo exacto
-		resolvedor.resolverExacto();
-		
-		//resulevo el problema mediante el metodo bla bla
-		//...
-		
-		EscritorDeSolucion escritor = new EscritorDeSolucion(resolvedor.dameSolucion());
-		escritor.guardarSolucion("TP3.out");
+			//resuelvo el problema mediante el metodo exacto
+			resolvedor.resolverExacto();
+			
+			//resulevo el problema mediante el metodo bla bla
+			//...
+			
+/*			escritor.agregarSolucion(resolvedor.dameSolucion());*/
+		}
+/*		escritor.guardarSoluciones("TP3.out");*/
 	}
 
 }
