@@ -1,4 +1,6 @@
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.ListIterator;
 
 public class MainCIPM {
 
@@ -8,7 +10,7 @@ public class MainCIPM {
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		LectorDeGrafos lector = new LectorDeGrafos("TP3.in");
-/*		EscritorDeSoluciones escritor = new EscritorDeSoluciones();*/
+		EscritorDeSoluciones escritor = new EscritorDeSoluciones();
 		while(lector.quedanGrafos()) {
 			GrafoNPonderados elgrafo = lector.dameProximoGrafo();
 			ResolvedorCIPM resolvedor = new ResolvedorCIPM(elgrafo);
@@ -19,10 +21,21 @@ public class MainCIPM {
 			//resulevo el problema mediante el metodo bla bla
 			//...
 			
-/*			escritor.agregarSolucion(resolvedor.dameSolucion());*/
-			System.out.println(resolvedor.damePesoMaximo());
+			Solucion laSolucion = resolvedor.dameSolucion();
+
+			escritor.agregarSolucion(laSolucion);
+
+			System.out.println(laSolucion.pesoMaximo);
+
+			LinkedList conjuntoSolucion = laSolucion.conjuntoSolucion;
+
+			ListIterator iter = conjuntoSolucion.listIterator();
+			while(iter.hasNext()) {
+				System.out.print(((Integer)iter.next()).intValue()+" ");
+			}
+			System.out.println();
 		}
-/*		escritor.guardarSoluciones("TP3.out");*/
+		escritor.guardarSoluciones("TP3.out");
 	}
 
 }
