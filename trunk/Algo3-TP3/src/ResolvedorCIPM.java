@@ -6,8 +6,7 @@ public class ResolvedorCIPM {
 
 	public ResolvedorCIPM(GrafoNPonderados unGrafo) {
 		elGrafo = unGrafo;
-		conjuntoSolucion = null;
-		pesoMaximo = 0;
+		laSolucion = new Solucion();
 	}
 
 	public void resolverExacto() {
@@ -29,9 +28,9 @@ public class ResolvedorCIPM {
 						acumuladorDePeso += elGrafo.pesoNodo(nodo);
 					}
 				}
-				if (acumuladorDePeso > pesoMaximo) {
-					conjuntoSolucion = new LinkedList(pila);
-					pesoMaximo = acumuladorDePeso;
+				if (acumuladorDePeso > laSolucion.pesoMaximo) {
+					laSolucion.conjuntoSolucion = new LinkedList(pila);
+					laSolucion.pesoMaximo = acumuladorDePeso;
 				}
 				nodoActual = ((Integer)pila.pop()).intValue();
 				acumuladorDePeso -= elGrafo.pesoNodo(nodoActual);
@@ -39,16 +38,11 @@ public class ResolvedorCIPM {
 		}
 	}
 
-	public LinkedList dameConjuntoSolucion() {
-		return conjuntoSolucion;
-	}
-	
-	public int damePesoMaximo() {
-		return pesoMaximo;
+	public Solucion dameSolucion() {
+		return laSolucion;
 	}
 
 	private GrafoNPonderados elGrafo;
-	private LinkedList conjuntoSolucion;
-	private int pesoMaximo;
+	private Solucion laSolucion;
 
 }
