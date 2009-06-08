@@ -38,6 +38,12 @@ public class ResolvedorCIPM {
 		}
 	}
 
+	public void heuristicaConstructiva() {
+		
+		
+		
+	}
+	
 	public Solucion dameSolucion() {
 		return laSolucion;
 	}

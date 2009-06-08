@@ -1,0 +1,23 @@
+mientras el grafo tenga nodos
+
+	maxrel = busco el maximo de la relacion peso/grado del grafo
+	
+	para cada nodo del grafo
+		si el peso(nodo)/grado(nodo) > (1-alfa)*maxrel, con 0 < alfa <= 1
+			agrego el nodo a la lista RCL
+	
+	superNodo = elijo aleatoriamente un nodo de RCL
+	
+	para cada nodo del grafo
+		si es el superNodo
+			borro el nodo
+		sino si nodo es adyacente a superNodo
+			borro el nodo
+		sino
+			para cada nodo2 adyacente al nodo
+				si el nodo2 es adyacente a superNodo
+					borro a nodo2 de la lista de adyacencias de nodo
+
+
+
+
