@@ -25,6 +25,7 @@ public class GrafoNPonderados {
 		}
 	}
 
+	//nodo1 y nodo2 deben pertenecer al grafo
 	public boolean sonAdyacentes(int nodo1, int nodo2) { 
 		return matrizAdyacencias[nodo1][nodo2];	
 	}
