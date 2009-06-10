@@ -38,7 +38,28 @@ public class ResolvedorCIPM {
 		}
 	}
 
-	public void heuristicaConstructiva() {
+	//0 < alfaRCL < 1
+	public void heuristicaConstructiva(double alfaRCL) {
+		GrafoNPonderados grafoTemporal = elGrafo;
+		LinkedList listaRCL = new LinkedList();
+		
+		while(grafoTemporal.cantNodos() > 0) {
+			
+			double maxRelPesoGrado = 0;
+			for(int nodo = 1; nodo <= grafoTemporal.cantNodos(); nodo++) {
+				double relPesoGrado = grafoTemporal.pesoNodo(nodo)/grafoTemporal.gradoNodo(nodo);
+				if(relPesoGrado > maxRelPesoGrado) {
+					maxRelPesoGrado = relPesoGrado;
+				}
+			}
+			
+			for(int nodo = 1; nodo <= grafoTemporal.cantNodos(); nodo++) {
+				double relPesoGrado = grafoTemporal.pesoNodo(nodo)/grafoTemporal.gradoNodo(nodo);
+				if (relPesoGrado > (1-alfaRCL)*maxRelPesoGrado) {
+					listaRCL.add(new Integer(nodo));
+				}
+			}
+		}
 		
 		
 		

@@ -3,12 +3,27 @@ import java.util.ListIterator;
 
 public class GrafoNPonderados {
 
-	public GrafoNPonderados(int pCantNodos, LinkedList[] pListaDeAdyacencias, int[] pPesoNodos) {
-		listaDeAdyacencias = pListaDeAdyacencias;
+	public GrafoNPonderados(int pCantNodos, LinkedList[] pAdyacencias, int[] pPesoNodos) {
+		adyacencias = pAdyacencias;
 		cantNodos = pCantNodos;
 		pesoNodos = pPesoNodos;
 		armarMatrizAdyacencias();
 	}
+	
+	public GrafoNPonderados(GrafoNPonderados otroGrafo) {
+		adyacencias = otroGrafo.adyacencias();
+		cantNodos = otroGrafo.cantNodos();
+		matrizAdyacencias = otroGrafo.matrizAdyacencias();
+		pesoNodos = otroGrafo.pesoNodos();
+	}
+	
+	public LinkedList[] adyacencias() {	return adyacencias;	}
+	
+	public boolean[][] matrizAdyacencias() { return matrizAdyacencias; }
+	
+	public int cantNodos() { return cantNodos; }
+	
+	public int[] pesoNodos() { return pesoNodos; }
 
 	private void armarMatrizAdyacencias() {
 		matrizAdyacencias = new boolean[cantNodos+1][cantNodos+1];
@@ -18,7 +33,7 @@ public class GrafoNPonderados {
 			}
 		}
 		for (int i = 1; i <= cantNodos; i++) {
-			ListIterator iter = listaDeAdyacencias[i].listIterator();
+			ListIterator iter = adyacencias[i].listIterator();
 			while (iter.hasNext()) {
 				matrizAdyacencias[i][((Integer)iter.next()).intValue()] = true;
 			}
@@ -29,18 +44,17 @@ public class GrafoNPonderados {
 	public boolean sonAdyacentes(int nodo1, int nodo2) { 
 		return matrizAdyacencias[nodo1][nodo2];	
 	}
-
+	
+	public int gradoNodo(int nodo) {
+		return adyacencias[nodo].size();
+	}
+	
 	public int pesoNodo(int nodo) {
 		return pesoNodos[nodo];
 	}
-
-	public int cantNodos() {
-		return cantNodos;
-	}
 	
 	private boolean[][] matrizAdyacencias;
-	private LinkedList[] listaDeAdyacencias;
-
+	private LinkedList[] adyacencias;
 	private int[] pesoNodos;
 	private int cantNodos;
 
