@@ -98,33 +98,53 @@ public class ResolvedorCIPM {
 	//O(n*m)
 	//TODO: hay que verificar que el nodo a sacar tenga menos peso que el nodo a insertar!
 	public Solucion busquedaLocal(Solucion unaSolucion) {
+	
+		if(unaSolucion.conjuntoSolucion.size() == 1) {
+			return unaSolucion;
+		}
+		
 		ListIterator iterSolucion = unaSolucion.conjuntoSolucion.listIterator();
 
-		int pesoMaximoDeNodoAInsertar = 0;
-		int nodoAInsertar;
-		int nodoAsacar;
+		int diferenciaMaximaDePeso = 0;
+		int nodoAInsertar = 0;
+		int nodoASacar = 0;
 
 		while(iterSolucion.hasNext()) {
-			int nodoSolucion = (Integer)iterSolucion.next().intValue();
+			int nodoSolucion = ((Integer)iterSolucion.next()).intValue();
 			ListIterator adyacentesANodoSolucion = elGrafo.adyacentes(nodoSolucion).listIterator();
 			while(adyacentesANodoSolucion.hasNext()) {
-				int adyacenteANodoSolucion = (Integer)adyacentesANodoSolucion.next().intValue();
+				int adyacenteANodoSolucion = ((Integer)adyacentesANodoSolucion.next()).intValue();
 				ListIterator otroIterSolucion = unaSolucion.conjuntoSolucion.listIterator();
 				boolean adyacenteAAlguno = false;
 				//Me fijo si el adyacenteANodoSolucion es adyacente a alguno de la solucion
 				while(otroIterSolucion.hasNext() && !adyacenteAAlguno) {
-					int otroNodoSolucion = (Integer)otroIterSolucion.next().intValue();
+					int otroNodoSolucion = ((Integer)otroIterSolucion.next()).intValue();
 					if(otroNodoSolucion != nodoSolucion) {
 						adyacenteAAlguno = elGrafo.sonAdyacentes(otroNodoSolucion, adyacenteANodoSolucion);
 					}
 				}
-				if (!adyacenteAAlguno && (elGrafo.pesoNodo(adyacenteANodoSolucion) > pesoMaximoDeNodoAInsertar)) {
+				//Me fijo ademas si la diferencia de pesos de los nodos que estoy intercambiando es la maxima
+				int diferenciaActual = elGrafo.pesoNodo(adyacenteANodoSolucion) - elGrafo.pesoNodo(nodoSolucion);
+				if (!adyacenteAAlguno && diferenciaActual > diferenciaMaximaDePeso) {
 					nodoAInsertar = adyacenteANodoSolucion;
-					pesoMaximoDeNodoAInsertar = elGrafo.pesoNodo(nodoAInsertar);
+					diferenciaMaximaDePeso = diferenciaActual;
 					nodoASacar = nodoSolucion;
 				}
 			}
 		}
+		
+		if(diferenciaMaximaDePeso > 0) {
+			iterSolucion = unaSolucion.conjuntoSolucion.listIterator();
+			boolean encontro = false;
+			while(iterSolucion.hasNext() && !encontro) {
+				encontro = ((Integer)iterSolucion.next()).intValue() == nodoASacar;
+			}
+			iterSolucion.remove();
+			unaSolucion.conjuntoSolucion.add(new Integer(nodoAInsertar));
+		}
+
+		return unaSolucion;
+
 	}
 	
 	private GrafoNPonderados elGrafo;
