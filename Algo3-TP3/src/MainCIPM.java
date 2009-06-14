@@ -16,25 +16,38 @@ public class MainCIPM {
 			ResolvedorCIPM resolvedor = new ResolvedorCIPM(elgrafo);
 		
 			//resuelvo el problema mediante el metodo exacto
-			resolvedor.resolverExacto();
+			Solucion solucionExacta = resolvedor.resolverExacto();
 			
-			//resulevo el problema mediante el metodo bla bla
-			//...
-			
-			Solucion laSolucion = resolvedor.dameSolucion();
+			//encuentro una solucion mediante una heuristica constructiva
+			double alfaRCL = 0.9;
+			Solucion solucionHConstructiva = resolvedor.heuristicaConstructiva(alfaRCL);
 
-			escritor.agregarSolucion(laSolucion);
+			escritor.agregarSolucion(solucionExacta);
+			escritor.agregarSolucion(solucionHConstructiva);
 
-			System.out.println(laSolucion.pesoMaximo);
+			//DEBUG
+			System.out.println(solucionExacta.pesoMaximo);
 
-			LinkedList conjuntoSolucion = laSolucion.conjuntoSolucion;
+			LinkedList conjuntoSolucion = solucionExacta.conjuntoSolucion;
 
 			ListIterator iter = conjuntoSolucion.listIterator();
 			while(iter.hasNext()) {
 				System.out.print(((Integer)iter.next()).intValue()+" ");
 			}
 			System.out.println();
+
+			//DEBUG
+			System.out.println(solucionHConstructiva.pesoMaximo);
+
+			conjuntoSolucion = solucionHConstructiva.conjuntoSolucion;
+
+			iter = conjuntoSolucion.listIterator();
+			while(iter.hasNext()) {
+				System.out.print(((Integer)iter.next()).intValue()+" ");
+			}
+			System.out.println();
 		}
+		
 		escritor.guardarSoluciones("TP3.out");
 	}
 

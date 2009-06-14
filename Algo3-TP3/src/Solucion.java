@@ -3,7 +3,7 @@ import java.util.LinkedList;
 public class Solucion {
 
 	public Solucion() {
-		conjuntoSolucion = null;
+		conjuntoSolucion = new LinkedList();
 		pesoMaximo = 0;
 	}
 
