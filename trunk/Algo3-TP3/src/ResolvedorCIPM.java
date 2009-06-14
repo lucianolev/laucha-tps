@@ -141,6 +141,7 @@ public class ResolvedorCIPM {
 			}
 			iterSolucion.remove();
 			unaSolucion.conjuntoSolucion.add(new Integer(nodoAInsertar));
+			unaSolucion.pesoMaximo += diferenciaMaximaDePeso;
 		}
 
 		return unaSolucion;
