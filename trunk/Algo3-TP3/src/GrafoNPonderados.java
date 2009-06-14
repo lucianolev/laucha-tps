@@ -13,10 +13,28 @@ public class GrafoNPonderados {
 	
 	//O(n*n)
 	public GrafoNPonderados(GrafoNPonderados otroGrafo) {
-		adyacencias = otroGrafo.adyacencias();
-		cantNodos = otroGrafo.cantNodos();
-		matrizAdyacencias = otroGrafo.matrizAdyacencias();
-		pesoNodos = otroGrafo.pesoNodos();
+		cantNodos = otroGrafo.cantNodos;
+	
+		adyacencias = new LinkedList[cantNodos+1];
+		for(int i = 1; i <= cantNodos; i++) {
+			ListIterator iter = otroGrafo.adyacencias[i].listIterator();
+			adyacencias[i] = new LinkedList();
+			while(iter.hasNext()) {
+				adyacencias[i].add(new Integer((Integer)iter.next()));
+			}
+		}
+		
+		matrizAdyacencias = new boolean[cantNodos+1][cantNodos+1];
+		for(int i = 1; i <= cantNodos; i++) {
+			for(int j = 1; j <= cantNodos; j++) {
+				matrizAdyacencias[i][j] = otroGrafo.matrizAdyacencias[i][j];
+			}
+		}
+
+		pesoNodos = new int[cantNodos+1];
+		for(int i = 1; i <= cantNodos; i++) {
+			pesoNodos[i] = otroGrafo.pesoNodos[i];
+		}
 	}
 	
 	public LinkedList[] adyacencias() {	return adyacencias;	}

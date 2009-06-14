@@ -17,15 +17,11 @@ public class MainCIPM {
 		
 			//resuelvo el problema mediante el metodo exacto
 			Solucion solucionExacta = resolvedor.resolverExacto();
-			
-			//encuentro una solucion mediante una heuristica constructiva
-			double alfaRCL = 0.9;
-			Solucion solucionHConstructiva = resolvedor.heuristicaConstructiva(alfaRCL);
-
 			escritor.agregarSolucion(solucionExacta);
-			escritor.agregarSolucion(solucionHConstructiva);
-
+			
 			//DEBUG
+			System.out.println("Solucion exacta");
+			
 			System.out.println(solucionExacta.pesoMaximo);
 
 			LinkedList conjuntoSolucion = solucionExacta.conjuntoSolucion;
@@ -35,8 +31,15 @@ public class MainCIPM {
 				System.out.print(((Integer)iter.next()).intValue()+" ");
 			}
 			System.out.println();
-
+			
+			//encuentro una solucion mediante una heuristica constructiva
+			double alfaRCL = 0.9;
+			Solucion solucionHConstructiva = resolvedor.heuristicaConstructiva(alfaRCL);
+			escritor.agregarSolucion(solucionHConstructiva);
+			
 			//DEBUG
+			System.out.println("Heuristica constructiva");
+			
 			System.out.println(solucionHConstructiva.pesoMaximo);
 
 			conjuntoSolucion = solucionHConstructiva.conjuntoSolucion;
@@ -45,7 +48,24 @@ public class MainCIPM {
 			while(iter.hasNext()) {
 				System.out.print(((Integer)iter.next()).intValue()+" ");
 			}
+			System.out.println();			
+
+			Solucion mejorSolucion = resolvedor.busquedaLocal(solucionHConstructiva);
+			escritor.agregarSolucion(mejorSolucion);
+			
+			//DEBUG
+			System.out.println("Busqueda Local");
+
+			System.out.println(mejorSolucion.pesoMaximo);
+
+			conjuntoSolucion = mejorSolucion.conjuntoSolucion;
+
+			iter = conjuntoSolucion.listIterator();
+			while(iter.hasNext()) {
+				System.out.print(((Integer)iter.next()).intValue()+" ");
+			}
 			System.out.println();
+			
 		}
 		
 		escritor.guardarSoluciones("TP3.out");
