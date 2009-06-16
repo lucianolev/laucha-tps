@@ -11,6 +11,32 @@ public class GrafoNPonderados {
 		armarMatrizAdyacencias();
 	}
 	
+	//genera aleatoriamente un grafo de pCantNodos
+	public GrafoNPonderados(int pCantNodos) {
+		cantNodos = pCantNodos;
+		pesoNodos = new int[cantNodos+1];
+		
+		adyacencias = new LinkedList[cantNodos+1];
+		for (int i = 1; i <= cantNodos; i++) { 
+			adyacencias[i] = new LinkedList();
+			pesoNodos[i] = (int)(Math.random()*(cantNodos)+1)*10;
+		}
+
+		for (int i = 1; i <= cantNodos; i++) {
+			for(int j = 0; j < (int)(Math.random()*(cantNodos-1)+1); j++) {
+				int nodo = (int)(Math.random()*(cantNodos));
+				if(!adyacencias[i].contains(Integer.valueOf(nodo)) && nodo != i && nodo != 0) {
+					adyacencias[i].add(Integer.valueOf(nodo));
+					if(!adyacencias[nodo].contains(Integer.valueOf(i))) {
+						adyacencias[nodo].add(Integer.valueOf(i));
+					}
+				}
+			}
+		}
+		
+		armarMatrizAdyacencias();
+	}
+	
 	//O(n*n)
 	public GrafoNPonderados(GrafoNPonderados otroGrafo) {
 		cantNodos = otroGrafo.cantNodos;
@@ -108,6 +134,19 @@ public class GrafoNPonderados {
 					}
 				}
 			}
+		}
+	}
+	
+	public void mostrarGrafo() {
+		System.out.println(cantNodos);
+		for (int i = 1; i <= cantNodos; i++) {
+			Integer[] arrayAdy = new Integer[adyacencias[i].size()]; 
+			adyacencias[i].toArray(arrayAdy);
+			String salida = pesoNodos[i]+" ";
+			for(int j = 0; j < adyacencias[i].size(); j++){
+				salida = salida+arrayAdy[j]+" ";
+			}
+			System.out.println(salida);
 		}
 	}
 	
