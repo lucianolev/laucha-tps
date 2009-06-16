@@ -29,11 +29,10 @@ public class EscritorDeSoluciones {
 
 			while(iter.hasNext()) {
 				Solucion unaSolucion = (Solucion)iter.next();
-				line = Integer.toString(unaSolucion.pesoMaximo);
+				line = Integer.toString(unaSolucion.peso());
 				outputStream.write(line, 0, line.length());
 				outputStream.newLine();
-				LinkedList conjuntoSolucion = unaSolucion.conjuntoSolucion;
-				ListIterator iterConj = conjuntoSolucion.listIterator();
+				ListIterator iterConj = unaSolucion.iterSolucion();
 				line = new String();
 				while(iterConj.hasNext()) {
 					line += ((Integer)iterConj.next()).toString()+" ";
