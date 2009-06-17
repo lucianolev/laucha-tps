@@ -23,7 +23,7 @@ public class GrafoNPonderados {
 		}
 
 		for (int i = 1; i <= cantNodos; i++) {
-			for(int j = 0; j < (int)(Math.random()*(cantNodos-1)+1); j++) {
+			for(int j = 0; j < (int)(Math.random()*((cantNodos-1)+1)/3); j++) {
 				int nodo = (int)(Math.random()*(cantNodos));
 				if(!adyacencias[i].contains(Integer.valueOf(nodo)) && nodo != i && nodo != 0) {
 					adyacencias[i].add(Integer.valueOf(nodo));
@@ -46,7 +46,7 @@ public class GrafoNPonderados {
 			ListIterator iter = otroGrafo.adyacencias[i].listIterator();
 			adyacencias[i] = new LinkedList();
 			while(iter.hasNext()) {
-				adyacencias[i].add(new Integer((Integer)iter.next()));
+				adyacencias[i].add(new Integer(((Integer)iter.next()).intValue()));
 			}
 		}
 		
@@ -135,6 +135,16 @@ public class GrafoNPonderados {
 				}
 			}
 		}
+	}
+	
+	public int pesoVecindad(int superNodo) {
+		int pesoAcum = 0;
+		ListIterator iterAdyacentes = adyacencias[superNodo].listIterator();
+		while(iterAdyacentes.hasNext()) {
+			int nodo = ((Integer)iterAdyacentes.next()).intValue();
+			pesoAcum += pesoNodo(nodo);
+		}
+		return pesoAcum;
 	}
 	
 	public void mostrarGrafo() {

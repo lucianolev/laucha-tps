@@ -18,6 +18,7 @@ public class Solucion {
 		boolean encontro = false;
 		while(iter.hasNext() && !encontro) {
 			if (((Integer)iter.next()).intValue() == nodo) {
+				//System.out.println("Saque el "+nodo);
 				iter.remove();
 				encontro = true;
 			}
@@ -42,14 +43,15 @@ public class Solucion {
 		return conjuntoSolucion.listIterator();
 	}
 	
-	public void mostrarSolucion() {
+	public void mostrarSolucion(GrafoNPonderados elGrafo) {
 		System.out.println("-------------");
 		System.out.println("Peso: "+peso);
 		System.out.println("Nodos: ");
 		
 		ListIterator iter = iterSolucion();
 		while(iter.hasNext()) {
-			System.out.print(((Integer)iter.next()).intValue()+" ");
+			int nodo = ((Integer)iter.next()).intValue();
+			System.out.print(nodo+"(G:"+elGrafo.gradoNodo(nodo)+", P:"+elGrafo.pesoNodo(nodo)+")"+" ");
 		}
 		System.out.println();
 		System.out.println("-------------");
