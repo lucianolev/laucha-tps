@@ -43,7 +43,7 @@ public class ResolvedorCIPM {
 	}
 
 	//0 <= alfaRCL < 1
-	public Solucion heuristicaConstructiva(double alfaRCL) {
+	public Solucion heuristicaConstructivaPesoGrado(double alfaRCL) {
 		Solucion laSolucion = new Solucion();
 		
 		GrafoNPonderados grafoTemporal = new GrafoNPonderados(elGrafo);
@@ -89,7 +89,141 @@ public class ResolvedorCIPM {
 		
 		return laSolucion;
 	}
-
+	
+	public Solucion heuristicaConstructivaConPeso(double alfaRCL) {
+		Solucion laSolucion = new Solucion();
+		
+		GrafoNPonderados grafoTemporal = new GrafoNPonderados(elGrafo);
+		ArrayList listaRCL = null;
+		
+		while(grafoTemporal.hayNodos()) {
+			
+			double maxPeso = 0;
+			for(int nodo = 1; nodo <= grafoTemporal.cantNodos(); nodo++) {
+				if (grafoTemporal.existeNodo(nodo))
+				{
+					if(grafoTemporal.pesoNodo(nodo) > maxPeso) {
+						maxPeso = grafoTemporal.pesoNodo(nodo);
+					}
+				}
+			}
+			
+			listaRCL = new ArrayList();
+			for(int nodo = 1; nodo <= grafoTemporal.cantNodos(); nodo++) {
+				if (grafoTemporal.existeNodo(nodo)) {
+					if (grafoTemporal.gradoNodo(nodo) == 0) {
+						laSolucion.agregarNodo(nodo, grafoTemporal);
+						grafoTemporal.borrarNodoGradoCero(nodo);
+					} else {
+						if (grafoTemporal.pesoNodo(nodo) >= (1-alfaRCL)*maxPeso) {
+							listaRCL.add(new Integer(nodo));
+						}
+					}
+				}
+			}
+			
+			if (listaRCL.size() > 0) {
+				Random generador = new Random();
+				int rand = generador.nextInt(listaRCL.size());
+				int superNodo = ((Integer)listaRCL.get(rand)).intValue();
+				laSolucion.agregarNodo(superNodo, grafoTemporal);
+				grafoTemporal.borrarVecindad(superNodo);
+			}
+		}
+		
+		return laSolucion;
+	}
+	
+	public Solucion heuristicaConstructivaConGrado(double alfaRCL) {
+		Solucion laSolucion = new Solucion();
+		
+		GrafoNPonderados grafoTemporal = new GrafoNPonderados(elGrafo);
+		ArrayList listaRCL = null;
+		
+		while(grafoTemporal.hayNodos()) {
+			
+			double minGrado = grafoTemporal.cantNodos();
+			for(int nodo = 1; nodo <= grafoTemporal.cantNodos(); nodo++) {
+				if (grafoTemporal.existeNodo(nodo))
+				{
+					if(grafoTemporal.gradoNodo(nodo) < minGrado) {
+						minGrado = grafoTemporal.gradoNodo(nodo);
+					}
+				}
+			}
+			
+			listaRCL = new ArrayList();
+			for(int nodo = 1; nodo <= grafoTemporal.cantNodos(); nodo++) {
+				if (grafoTemporal.existeNodo(nodo)) {
+					if (grafoTemporal.gradoNodo(nodo) == 0) {
+						laSolucion.agregarNodo(nodo, grafoTemporal);
+						grafoTemporal.borrarNodoGradoCero(nodo);
+					} else {
+						if (grafoTemporal.gradoNodo(nodo) <= minGrado/(1-alfaRCL)) {
+							listaRCL.add(new Integer(nodo));
+						}
+					}
+				}
+			}
+			
+			if (listaRCL.size() > 0) {
+				Random generador = new Random();
+				int rand = generador.nextInt(listaRCL.size());
+				int superNodo = ((Integer)listaRCL.get(rand)).intValue();
+				laSolucion.agregarNodo(superNodo, grafoTemporal);
+				grafoTemporal.borrarVecindad(superNodo);
+			}
+		}
+		
+		return laSolucion;
+	}
+	
+	public Solucion heuristicaConstructivaPesoVecindad(double alfaRCL) {
+		Solucion laSolucion = new Solucion();
+		
+		GrafoNPonderados grafoTemporal = new GrafoNPonderados(elGrafo);
+		ArrayList listaRCL = null;
+		
+		while(grafoTemporal.hayNodos()) {
+			
+			double maxRelPesoVecindad = 0;
+			for(int nodo = 1; nodo <= grafoTemporal.cantNodos(); nodo++) {
+				if (grafoTemporal.existeNodo(nodo) && 
+					(grafoTemporal.gradoNodo(nodo) != 0))
+				{
+					double relPesoVecindad = grafoTemporal.pesoNodo(nodo)/(grafoTemporal.pesoVecindad(nodo)/grafoTemporal.gradoNodo(nodo));
+					if(relPesoVecindad > maxRelPesoVecindad) {
+						maxRelPesoVecindad = relPesoVecindad;
+					}
+				}
+			}
+			
+			listaRCL = new ArrayList();
+			for(int nodo = 1; nodo <= grafoTemporal.cantNodos(); nodo++) {
+				if (grafoTemporal.existeNodo(nodo)) {
+					if (grafoTemporal.gradoNodo(nodo) == 0) {
+						laSolucion.agregarNodo(nodo, grafoTemporal);
+						grafoTemporal.borrarNodoGradoCero(nodo);
+					} else {
+						double relPesoVecindad = grafoTemporal.pesoNodo(nodo)/(grafoTemporal.pesoVecindad(nodo)/grafoTemporal.gradoNodo(nodo));
+						if (relPesoVecindad >= (1-alfaRCL)*maxRelPesoVecindad) {
+							listaRCL.add(new Integer(nodo));
+						}
+					}
+				}
+			}
+			
+			if (listaRCL.size() > 0) {
+				Random generador = new Random();
+				int rand = generador.nextInt(listaRCL.size());
+				int superNodo = ((Integer)listaRCL.get(rand)).intValue();
+				laSolucion.agregarNodo(superNodo, grafoTemporal);
+				grafoTemporal.borrarVecindad(superNodo);
+			}
+		}
+		
+		return laSolucion;
+	}
 
 	//O(n*m)
 	//TODO: hay que verificar que el nodo a sacar tenga menos peso que el nodo a insertar!
@@ -151,12 +285,57 @@ public class ResolvedorCIPM {
 		return mejorSolucionVecina;
 	}
 	
-	public Solucion grasp(int cantIteracionesGrasp, double alfaRCL, int cantIteracionesLocal) {
+	public Solucion graspPesoGrado(int cantIteracionesGrasp, double alfaRCL, int cantIteracionesLocal) {
 		Solucion unaSolucion = null;
 		Solucion laMejorSolucion = null;
 		int pesoMaximo = 0;
 		for(int i = 0; i < cantIteracionesGrasp; i++) {
-			unaSolucion = heuristicaConstructiva(alfaRCL);
+			unaSolucion = heuristicaConstructivaPesoGrado(alfaRCL);
+			unaSolucion = busquedaLocal(unaSolucion, cantIteracionesLocal);
+			if(unaSolucion.peso() > pesoMaximo) {
+				laMejorSolucion = unaSolucion;
+				pesoMaximo = laMejorSolucion.peso();
+			}
+		}
+		return laMejorSolucion;
+	}
+	
+	public Solucion graspPeso(int cantIteracionesGrasp, double alfaRCL, int cantIteracionesLocal) {
+		Solucion unaSolucion = null;
+		Solucion laMejorSolucion = null;
+		int pesoMaximo = 0;
+		for(int i = 0; i < cantIteracionesGrasp; i++) {
+			unaSolucion = heuristicaConstructivaConPeso(alfaRCL);
+			unaSolucion = busquedaLocal(unaSolucion, cantIteracionesLocal);
+			if(unaSolucion.peso() > pesoMaximo) {
+				laMejorSolucion = unaSolucion;
+				pesoMaximo = laMejorSolucion.peso();
+			}
+		}
+		return laMejorSolucion;
+	}
+	
+	public Solucion graspGrado(int cantIteracionesGrasp, double alfaRCL, int cantIteracionesLocal) {
+		Solucion unaSolucion = null;
+		Solucion laMejorSolucion = null;
+		int pesoMaximo = 0;
+		for(int i = 0; i < cantIteracionesGrasp; i++) {
+			unaSolucion = heuristicaConstructivaConGrado(alfaRCL);
+			unaSolucion = busquedaLocal(unaSolucion, cantIteracionesLocal);
+			if(unaSolucion.peso() > pesoMaximo) {
+				laMejorSolucion = unaSolucion;
+				pesoMaximo = laMejorSolucion.peso();
+			}
+		}
+		return laMejorSolucion;
+	}
+	
+	public Solucion graspPesoVecindad(int cantIteracionesGrasp, double alfaRCL, int cantIteracionesLocal) {
+		Solucion unaSolucion = null;
+		Solucion laMejorSolucion = null;
+		int pesoMaximo = 0;
+		for(int i = 0; i < cantIteracionesGrasp; i++) {
+			unaSolucion = heuristicaConstructivaPesoVecindad(alfaRCL);
 			unaSolucion = busquedaLocal(unaSolucion, cantIteracionesLocal);
 			if(unaSolucion.peso() > pesoMaximo) {
 				laMejorSolucion = unaSolucion;
