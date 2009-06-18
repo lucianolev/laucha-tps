@@ -1,5 +1,6 @@
 import java.util.LinkedList;
 import java.util.ListIterator;
+import java.util.Collections;
 
 public class GrafoNPonderados {
 
@@ -12,7 +13,8 @@ public class GrafoNPonderados {
 	}
 	
 	//genera aleatoriamente un grafo de pCantNodos
-	public GrafoNPonderados(int pCantNodos) {
+	//0 < densidad <= 1
+	public GrafoNPonderados(int pCantNodos, double densidad) {
 		cantNodos = pCantNodos;
 		pesoNodos = new int[cantNodos+1];
 		
@@ -23,7 +25,7 @@ public class GrafoNPonderados {
 		}
 
 		for (int i = 1; i <= cantNodos; i++) {
-			for(int j = 0; j < (int)(Math.random()*((cantNodos-1)+1)/3); j++) {
+			for(int j = 0; j < (int)(Math.random()*((cantNodos-1)+1)*densidad); j++) {
 				int nodo = (int)(Math.random()*(cantNodos));
 				if(!adyacencias[i].contains(Integer.valueOf(nodo)) && nodo != i && nodo != 0) {
 					adyacencias[i].add(Integer.valueOf(nodo));
@@ -94,7 +96,7 @@ public class GrafoNPonderados {
 	}
 	
 	//nodo1 y nodo2 deben pertenecer al grafo
-	public boolean sonAdyacentes(int nodo1, int nodo2) { 
+	public boolean sonAdyacentes(int nodo1, int nodo2) {
 		return matrizAdyacencias[nodo1][nodo2];	
 	}
 	
@@ -108,6 +110,12 @@ public class GrafoNPonderados {
 	
 	public int pesoNodo(int nodo) {
 		return pesoNodos[nodo];
+	}
+	
+	public void ordenarAdyacenciasPorPeso() {
+		for(int i = 1; i <= cantNodos; i++) {
+			Collections.sort(adyacencias[i], new PesoNodoComparator(pesoNodos));
+		}
 	}
 	
 	public void borrarNodoGradoCero(int nodo) {
