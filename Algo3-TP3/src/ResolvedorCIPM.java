@@ -226,7 +226,6 @@ public class ResolvedorCIPM {
 	}
 
 	//O(n*m)
-	//TODO: hay que verificar que el nodo a sacar tenga menos peso que el nodo a insertar!
 	public Solucion intercambioDeNodo(Solucion unaSolucion) {
 	
 		if(unaSolucion.tamSolucion() == 1) {
@@ -272,6 +271,67 @@ public class ResolvedorCIPM {
 
 	}
 	
+	public Solucion intercambioDeUnoAMuchos(Solucion unaSolucion) {
+	
+		if(unaSolucion.tamSolucion() == 1) {
+			return unaSolucion;
+		}
+		
+		ListIterator iterSolucion = unaSolucion.iterSolucion();
+
+		int diferenciaMaximaDePeso = 0;
+		LinkedList nodosAInsertar = new LinkedList();
+		int nodoASacar = 0;
+
+		while(iterSolucion.hasNext()) {
+			int pesosNodosAInsertarActual = 0;
+			LinkedList nodosAInsertarActual = new LinkedList();
+			
+			int nodoSolucion = ((Integer)iterSolucion.next()).intValue();
+			ListIterator adyacentesANodoSolucion = elGrafo.adyacentes(nodoSolucion).listIterator();
+			while(adyacentesANodoSolucion.hasNext()) {
+				int adyacenteANodoSolucion = ((Integer)adyacentesANodoSolucion.next()).intValue();
+				ListIterator otroIterSolucion = unaSolucion.iterSolucion();
+				boolean adyacenteAAlguno = false;
+				//Me fijo si el adyacenteANodoSolucion es adyacente a alguno de la solucion
+				while(otroIterSolucion.hasNext() && !adyacenteAAlguno) {
+					int otroNodoSolucion = ((Integer)otroIterSolucion.next()).intValue();
+					if(otroNodoSolucion != nodoSolucion) {
+						adyacenteAAlguno = elGrafo.sonAdyacentes(otroNodoSolucion, adyacenteANodoSolucion);
+					}
+				}
+				if(!adyacenteAAlguno) {
+					ListIterator iterNodosAInsertarActual = nodosAInsertarActual.listIterator();
+					boolean adyacenteANodoAInsertar = false;
+					while(iterNodosAInsertarActual.hasNext() && !adyacenteANodoAInsertar) {
+						int nodoAInsertarAnterior = ((Integer)iterNodosAInsertarActual.next()).intValue();
+						adyacenteANodoAInsertar = elGrafo.sonAdyacentes(nodoAInsertarAnterior, adyacenteANodoSolucion);
+					}
+					if(!adyacenteANodoAInsertar) {
+						nodosAInsertarActual.add(new Integer(adyacenteANodoSolucion));
+						pesosNodosAInsertarActual += elGrafo.pesoNodo(adyacenteANodoSolucion);
+					}
+				}
+			}
+			int diferenciaActual = pesosNodosAInsertarActual - elGrafo.pesoNodo(nodoSolucion);
+			if (diferenciaActual > diferenciaMaximaDePeso) {
+				nodosAInsertar = nodosAInsertarActual;
+				diferenciaMaximaDePeso = diferenciaActual;
+				nodoASacar = nodoSolucion;
+			}
+		}
+		
+		if(diferenciaMaximaDePeso > 0) {
+			unaSolucion.sacarNodo(nodoASacar, elGrafo);
+			ListIterator iterNodosAInsertar = nodosAInsertar.listIterator();
+			while(iterNodosAInsertar.hasNext()) {
+				unaSolucion.agregarNodo(((Integer)iterNodosAInsertar.next()).intValue(), elGrafo);
+			}
+		}
+
+		return unaSolucion;
+	}
+	
 	public Solucion busquedaLocal(Solucion unaSolucion, int cantIteraciones) {
 		Solucion mejorSolucionVecina = unaSolucion;
 		int pesoMaximoAnterior;
@@ -285,13 +345,44 @@ public class ResolvedorCIPM {
 		return mejorSolucionVecina;
 	}
 	
+	public Solucion busquedaLocal2(Solucion unaSolucion, int cantIteraciones) {
+		Solucion mejorSolucionVecina = unaSolucion;
+		int pesoMaximoAnterior;
+		for(int i = 0; i < cantIteraciones; i++) {
+			pesoMaximoAnterior = mejorSolucionVecina.peso();
+			mejorSolucionVecina = intercambioDeUnoAMuchos(mejorSolucionVecina);
+			if(mejorSolucionVecina.peso() == pesoMaximoAnterior) {
+//				System.out.println("Iteraciones BL2: "+i);
+				return mejorSolucionVecina;
+			}
+		}
+//		System.out.println("Iteraciones BL2: "+cantIteraciones);
+		return mejorSolucionVecina;
+	}
+	
 	public Solucion graspPesoGrado(int cantIteracionesGrasp, double alfaRCL, int cantIteracionesLocal) {
 		Solucion unaSolucion = null;
 		Solucion laMejorSolucion = null;
 		int pesoMaximo = 0;
 		for(int i = 0; i < cantIteracionesGrasp; i++) {
 			unaSolucion = heuristicaConstructivaPesoGrado(alfaRCL);
+			
 			unaSolucion = busquedaLocal(unaSolucion, cantIteracionesLocal);
+			if(unaSolucion.peso() > pesoMaximo) {
+				laMejorSolucion = unaSolucion;
+				pesoMaximo = laMejorSolucion.peso();
+			}
+		}
+		return laMejorSolucion;
+	}
+	
+	public Solucion graspPesoGrado2(int cantIteracionesGrasp, double alfaRCL, int cantIteracionesLocal) {
+		Solucion unaSolucion = null;
+		Solucion laMejorSolucion = null;
+		int pesoMaximo = 0;
+		for(int i = 0; i < cantIteracionesGrasp; i++) {
+			unaSolucion = heuristicaConstructivaPesoGrado(alfaRCL);
+			unaSolucion = busquedaLocal2(unaSolucion, cantIteracionesLocal);
 			if(unaSolucion.peso() > pesoMaximo) {
 				laMejorSolucion = unaSolucion;
 				pesoMaximo = laMejorSolucion.peso();
