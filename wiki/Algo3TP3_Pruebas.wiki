@@ -1,5 +1,7 @@
 = Pruebas =
 
+Hay que hacer una funcion q nos genere 9 archivos con un tipo de grafo cada uno (variando tamaño y densidad) y cada archivo con 10 grafos distintos o algo asi.
+
 ==heuristica constructiva==
 
 (para cada prueba con 20 grafos distintos de ese tipo)
