@@ -55,6 +55,7 @@ public class ResolvedorTester {
 //		solucionHConstructiva.mostrarSolucion(elgrafo);
 		
 		compararHCBL("tablaPrueba.txt");
+		pruebasGrasp("testsGrasps.out", 30);
 		
 		return;
 	}
@@ -145,7 +146,48 @@ public class ResolvedorTester {
 			}
 		}
 	}
-		
+	
+	public static void pruebasGrasp(String nombreDelArchivo, int cantIteracionesGrasp) throws IOException {
+		BufferedWriter outputStream = null;
+		try {
+			outputStream = new BufferedWriter(new FileWriter(nombreDelArchivo));
+			int cantIteracionesLocal = 200;
+			
+			String[] archivos = new String[9];
+			archivos[0] = "grafos50bd.in";
+			archivos[1] = "grafos50md.in";
+			archivos[2] = "grafos50ad.in";
+			archivos[3] = "grafos300bd.in";
+			archivos[4] = "grafos300md.in";
+			archivos[5] = "grafos300ad.in";
+			archivos[6] = "grafos700bd.in";
+			archivos[7] = "grafos700md.in";
+			archivos[8] = "grafos700ad.in";
+
+			for(int i = 0; i < 9 ; i++) { 
+				LectorDeGrafos lector = new LectorDeGrafos(archivos[i]);				
+				while(lector.quedanGrafos()) {
+					 GrafoNPonderados elgrafo = lector.dameProximoGrafo();
+					 ResolvedorCIPM resolvedor = new ResolvedorCIPM(elgrafo);
+					
+					 String line = null;
+					 for(double alfaRCL = 0.1; alfaRCL < 1; alfaRCL+=0.1) {
+						 Solucion solucionGrasp = resolvedor.grasp(cantIteracionesGrasp, alfaRCL, cantIteracionesLocal);
+						 line += solucionGrasp.peso()+";";
+					 }
+					 outputStream.write(line, 0, line.length());
+					 outputStream.newLine();
+				}
+			}
+		}
+		finally {
+			if (outputStream != null) {
+				System.out.println("Se han guardado los resultados en el archivo "+nombreDelArchivo);
+				outputStream.close();
+			}
+		}
+	}
+
 	public static void pruebasViejas() {
 		
 //		LectorDeGrafos lector = new LectorDeGrafos("TP3.in");
