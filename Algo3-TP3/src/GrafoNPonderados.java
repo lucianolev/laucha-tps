@@ -4,6 +4,8 @@ import java.util.Collections;
 
 public class GrafoNPonderados {
 
+	/* -- Constructores -- */
+	
 	//O(n*n)
 	public GrafoNPonderados(int pCantNodos, LinkedList[] pAdyacencias, int[] pPesoNodos) {
 		adyacencias = pAdyacencias;
@@ -12,7 +14,7 @@ public class GrafoNPonderados {
 		armarMatrizAdyacencias();
 	}
 	
-	//genera aleatoriamente un grafo de pCantNodos
+	//Genera aleatoriamente un grafo de pCantNodos
 	//0 < densidad <= 1
 	public GrafoNPonderados(int pCantNodos, double densidad) {
 		cantNodos = pCantNodos;
@@ -65,6 +67,8 @@ public class GrafoNPonderados {
 		}
 	}
 	
+	/* -- Observadores de la Clase -- */
+	
 	public LinkedList[] adyacencias() {	return adyacencias;	}
 	
 	public boolean[][] matrizAdyacencias() { return matrizAdyacencias; }
@@ -74,22 +78,6 @@ public class GrafoNPonderados {
 	public int[] pesoNodos() { return pesoNodos; }
 	
 	public boolean hayNodos() { return ((cantNodos - nodosBorrados) > 0); }
-
-	//O(n*n)
-	private void armarMatrizAdyacencias() {
-		matrizAdyacencias = new boolean[cantNodos+1][cantNodos+1];
-		for (int i = 1; i <= cantNodos; i++) {
-			for (int j = 1; j <= cantNodos; j++) {
-				matrizAdyacencias[i][j] = false;
-			}
-		}
-		for (int i = 1; i <= cantNodos; i++) {
-			ListIterator iter = adyacencias[i].listIterator();
-			while (iter.hasNext()) {
-				matrizAdyacencias[i][((Integer)iter.next()).intValue()] = true;
-			}
-		}
-	}
 
 	public boolean existeNodo(int nodo) {
 		return (adyacencias[nodo] != null);
@@ -112,12 +100,40 @@ public class GrafoNPonderados {
 		return pesoNodos[nodo];
 	}
 	
+	//O(n)
+	public int pesoVecindad(int superNodo) {
+		int pesoAcum = 0;
+		ListIterator iterAdyacentes = adyacencias[superNodo].listIterator();
+		while(iterAdyacentes.hasNext()) {
+			int nodo = ((Integer)iterAdyacentes.next()).intValue();
+			pesoAcum += pesoNodo(nodo);
+		}
+		return pesoAcum;
+	}
+	
+	public void mostrarGrafo() {
+		System.out.println(cantNodos);
+		for (int i = 1; i <= cantNodos; i++) {
+			Integer[] arrayAdy = new Integer[adyacencias[i].size()]; 
+			adyacencias[i].toArray(arrayAdy);
+			String salida = pesoNodos[i]+" ";
+			for(int j = 0; j < adyacencias[i].size(); j++){
+				salida = salida+arrayAdy[j]+" ";
+			}
+			System.out.println(salida);
+		}
+	}
+	
+	/* -- Modificadores de la Clase -- */
+	
+	//O(m*log(n))
 	public void ordenarAdyacenciasPorPeso() {
 		for(int i = 1; i <= cantNodos; i++) {
 			Collections.sort(adyacencias[i], new PesoNodoComparator(pesoNodos));
 		}
 	}
 	
+	//O(1)
 	public void borrarNodoGradoCero(int nodo) {
 		if (gradoNodo(nodo) == 0) {
 			adyacencias[nodo] = null;
@@ -145,26 +161,21 @@ public class GrafoNPonderados {
 		}
 	}
 	
-	public int pesoVecindad(int superNodo) {
-		int pesoAcum = 0;
-		ListIterator iterAdyacentes = adyacencias[superNodo].listIterator();
-		while(iterAdyacentes.hasNext()) {
-			int nodo = ((Integer)iterAdyacentes.next()).intValue();
-			pesoAcum += pesoNodo(nodo);
-		}
-		return pesoAcum;
-	}
+	/* -- Private -- */
 	
-	public void mostrarGrafo() {
-		System.out.println(cantNodos);
+	//O(n*n)
+	private void armarMatrizAdyacencias() {
+		matrizAdyacencias = new boolean[cantNodos+1][cantNodos+1];
 		for (int i = 1; i <= cantNodos; i++) {
-			Integer[] arrayAdy = new Integer[adyacencias[i].size()]; 
-			adyacencias[i].toArray(arrayAdy);
-			String salida = pesoNodos[i]+" ";
-			for(int j = 0; j < adyacencias[i].size(); j++){
-				salida = salida+arrayAdy[j]+" ";
+			for (int j = 1; j <= cantNodos; j++) {
+				matrizAdyacencias[i][j] = false;
 			}
-			System.out.println(salida);
+		}
+		for (int i = 1; i <= cantNodos; i++) {
+			ListIterator iter = adyacencias[i].listIterator();
+			while (iter.hasNext()) {
+				matrizAdyacencias[i][((Integer)iter.next()).intValue()] = true;
+			}
 		}
 	}
 	
