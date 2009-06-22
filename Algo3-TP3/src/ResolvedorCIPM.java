@@ -298,6 +298,7 @@ public class ResolvedorCIPM {
 			pesoMaximoAnterior = mejorSolucionVecina.peso();
 			mejorSolucionVecina = intercambioDeNodo(mejorSolucionVecina);
 			if(mejorSolucionVecina.peso() == pesoMaximoAnterior) {
+				cantIteraciones = i;
 				return mejorSolucionVecina;
 			}
 		}
@@ -311,11 +312,10 @@ public class ResolvedorCIPM {
 			pesoMaximoAnterior = mejorSolucionVecina.peso();
 			mejorSolucionVecina = intercambioDeUnoAMuchos(mejorSolucionVecina);
 			if(mejorSolucionVecina.peso() == pesoMaximoAnterior) {
-//				System.out.println("Iteraciones BL2: "+i);
+				cantIteraciones = i;
 				return mejorSolucionVecina;
 			}
 		}
-//		System.out.println("Iteraciones BL2: "+cantIteraciones);
 		return mejorSolucionVecina;
 	}
 	
