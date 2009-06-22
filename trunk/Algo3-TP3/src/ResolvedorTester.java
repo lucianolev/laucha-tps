@@ -1,4 +1,7 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
+
 
 public class ResolvedorTester {
 
@@ -7,43 +10,43 @@ public class ResolvedorTester {
 	 */
 	public static void main(String[] args) throws IOException {
 
-		//generarGrafosDePrueba(10);
-		int tamGrafo = 40;
-		double densidad = 0.8;
-		
-		GrafoNPonderados elgrafo = new GrafoNPonderados(tamGrafo, densidad);
-		
-		ResolvedorCIPM resolvedor = new ResolvedorCIPM(elgrafo);
-		
-		//resuelvo el problema mediante el metodo exacto
-		Solucion solucionExacta = resolvedor.resolverExacto();
-		//DEBUG
-		System.out.println("Solucion exacta");
-		solucionExacta.mostrarSolucion(elgrafo);
-		
-		//encuentro una solucion mediante una heuristica constructiva
-		Solucion solucionHConstructiva = resolvedor.heuristicaConstructivaPesoGrado();
-		//DEBUG
-		System.out.println("Heuristica constructiva con peso/grado");
-		solucionHConstructiva.mostrarSolucion(elgrafo);
-		
-		//encuentro una solucion mediante una heuristica constructiva
-		solucionHConstructiva = resolvedor.heuristicaConstructivaConPeso();
-		//DEBUG
-		System.out.println("Heuristica constructiva con peso");
-		solucionHConstructiva.mostrarSolucion(elgrafo);
-		
-		//encuentro una solucion mediante una heuristica constructiva
-		solucionHConstructiva = resolvedor.heuristicaConstructivaConGrado();
-		//DEBUG
-		System.out.println("Heuristica constructiva con grado");
-		solucionHConstructiva.mostrarSolucion(elgrafo);
-		
-		//encuentro una solucion mediante una heuristica constructiva
-		solucionHConstructiva = resolvedor.heuristicaConstructivaPesoVecindad();
-		//DEBUG
-		System.out.println("Heuristica constructiva con peso vecindad");
-		solucionHConstructiva.mostrarSolucion(elgrafo);
+//		generarGrafosDePrueba(3);
+//		int tamGrafo = 40;
+//		double densidad = 0.8;
+//		
+//		GrafoNPonderados elgrafo = new GrafoNPonderados(tamGrafo, densidad);
+//		
+//		ResolvedorCIPM resolvedor = new ResolvedorCIPM(elgrafo);
+//		
+//		//resuelvo el problema mediante el metodo exacto
+//		Solucion solucionExacta = resolvedor.resolverExacto();
+//		//DEBUG
+//		System.out.println("Solucion exacta");
+//		solucionExacta.mostrarSolucion(elgrafo);
+//		
+//		//encuentro una solucion mediante una heuristica constructiva
+//		Solucion solucionHConstructiva = resolvedor.heuristicaConstructivaPesoGrado();
+//		//DEBUG
+//		System.out.println("Heuristica constructiva con peso/grado");
+//		solucionHConstructiva.mostrarSolucion(elgrafo);
+//		
+//		//encuentro una solucion mediante una heuristica constructiva
+//		solucionHConstructiva = resolvedor.heuristicaConstructivaConPeso();
+//		//DEBUG
+//		System.out.println("Heuristica constructiva con peso");
+//		solucionHConstructiva.mostrarSolucion(elgrafo);
+//		
+//		//encuentro una solucion mediante una heuristica constructiva
+//		solucionHConstructiva = resolvedor.heuristicaConstructivaConGrado();
+//		//DEBUG
+//		System.out.println("Heuristica constructiva con grado");
+//		solucionHConstructiva.mostrarSolucion(elgrafo);
+//		
+//		//encuentro una solucion mediante una heuristica constructiva
+//		solucionHConstructiva = resolvedor.heuristicaConstructivaPesoVecindad();
+//		//DEBUG
+//		System.out.println("Heuristica constructiva con peso vecindad");
+//		solucionHConstructiva.mostrarSolucion(elgrafo);
 		
 //		//encuentro una solucion mediante una heuristica constructiva
 //		solucionHConstructiva = resolvedor.heuristicaConstructivaGrasp(0);
@@ -51,7 +54,96 @@ public class ResolvedorTester {
 //		System.out.println("Heuristica constructiva con peso/grado (alfa 0)");
 //		solucionHConstructiva.mostrarSolucion(elgrafo);
 		
+		compararHCBL("tablaPrueba.txt");
+		
 		return;
+	}
+	
+	public static void compararHCBL(String archivoSalida) throws IOException  {
+		
+		BufferedWriter outputStream = null;
+		try {
+			outputStream = new BufferedWriter(new FileWriter(archivoSalida));
+			String line = null;
+			
+			String[] nombres = new String[9];
+			nombres[0] = "grafos50bd.in";
+			nombres[1] = "grafos50md.in";
+			nombres[2] = "grafos50ad.in";
+			nombres[3] = "grafos300bd.in";
+			nombres[4] = "grafos300md.in";
+			nombres[5] = "grafos300ad.in";
+			nombres[6] = "grafos700bd.in";
+			nombres[7] = "grafos700md.in";
+			nombres[8] = "grafos700ad.in";
+			
+			int cantIteraciones = 1000;
+			
+			for(int i = 0; i < 9; i++) {
+			
+				LectorDeGrafos lector = new LectorDeGrafos(nombres[i]);
+				
+				while(lector.quedanGrafos()) {
+					GrafoNPonderados elgrafo = lector.dameProximoGrafo();
+					ResolvedorCIPM resolvedor = new ResolvedorCIPM(elgrafo);
+					Solucion solucion = null;
+			
+//					if(i < 3) {
+//						//Solucion Exacta
+//						solucion = resolvedor.resolverExacto();
+//						line = Integer.toString(solucion.peso());
+//					} else {
+						line = ";";
+//					}
+					
+					//Heuristica PesoGrado
+					solucion = resolvedor.heuristicaConstructivaPesoGrado();
+					line += ";"+Integer.toString(solucion.peso());
+					Solucion bl1 = resolvedor.busquedaLocal(solucion, cantIteraciones);
+					line += ";"+Integer.toString(bl1.peso())+" ("+cantIteraciones+")";
+					cantIteraciones = 1000;
+					Solucion bl2 = resolvedor.busquedaLocal2(solucion, cantIteraciones);
+					line += ";"+Integer.toString(bl2.peso())+" ("+cantIteraciones+")";
+					
+					//Heuristica Peso			
+					solucion = resolvedor.heuristicaConstructivaConPeso();
+					line += ";"+Integer.toString(solucion.peso());
+					bl1 = resolvedor.busquedaLocal(solucion, cantIteraciones);
+					line += ";"+Integer.toString(bl1.peso())+" ("+cantIteraciones+")";
+					cantIteraciones = 1000;
+					bl2 = resolvedor.busquedaLocal2(solucion, cantIteraciones);
+					line += ";"+Integer.toString(bl2.peso())+" ("+cantIteraciones+")";
+					
+					//Heuristica Grado
+					solucion = resolvedor.heuristicaConstructivaConGrado();
+					line += ";"+Integer.toString(solucion.peso());
+					bl1 = resolvedor.busquedaLocal(solucion, cantIteraciones);
+					line += ";"+Integer.toString(bl1.peso())+" ("+cantIteraciones+")";
+					cantIteraciones = 1000;
+					bl2 = resolvedor.busquedaLocal2(solucion, cantIteraciones);
+					line += ";"+Integer.toString(bl2.peso())+" ("+cantIteraciones+")";
+					
+					//Heuristica PesoVecindad
+					solucion = resolvedor.heuristicaConstructivaPesoVecindad();
+					line += ";"+Integer.toString(solucion.peso());
+					bl1 = resolvedor.busquedaLocal(solucion, cantIteraciones);
+					line += ";"+Integer.toString(bl1.peso())+" ("+cantIteraciones+")";
+					cantIteraciones = 1000;
+					bl2 = resolvedor.busquedaLocal2(solucion, cantIteraciones);
+					line += ";"+Integer.toString(bl2.peso())+" ("+cantIteraciones+")";
+					
+					outputStream.write(line, 0, line.length());
+					outputStream.newLine();
+				}
+			}
+		}
+		
+		finally {
+			if (outputStream != null) {
+				System.out.println("Se creo la tabla de prueba en el archivo "+archivoSalida);
+				outputStream.close();
+			}
+		}
 	}
 		
 	public static void pruebasViejas() {
