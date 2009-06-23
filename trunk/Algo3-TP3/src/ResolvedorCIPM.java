@@ -298,10 +298,11 @@ public class ResolvedorCIPM {
 			pesoMaximoAnterior = mejorSolucionVecina.peso();
 			mejorSolucionVecina = intercambioDeNodo(mejorSolucionVecina);
 			if(mejorSolucionVecina.peso() == pesoMaximoAnterior) {
-				cantIteraciones = i;
+				cantIteracionesBL = i+1;
 				return mejorSolucionVecina;
 			}
 		}
+		cantIteracionesBL = cantIteraciones;
 		return mejorSolucionVecina;
 	}
 	
@@ -312,10 +313,11 @@ public class ResolvedorCIPM {
 			pesoMaximoAnterior = mejorSolucionVecina.peso();
 			mejorSolucionVecina = intercambioDeUnoAMuchos(mejorSolucionVecina);
 			if(mejorSolucionVecina.peso() == pesoMaximoAnterior) {
-				cantIteraciones = i;
+				cantIteracionesBL = i+1;
 				return mejorSolucionVecina;
 			}
 		}
+		cantIteracionesBL = cantIteraciones;
 		return mejorSolucionVecina;
 	}
 	
@@ -522,5 +524,6 @@ public class ResolvedorCIPM {
 	}
 	
 	private GrafoNPonderados elGrafo;
+	public int cantIteracionesBL;
 
 }
