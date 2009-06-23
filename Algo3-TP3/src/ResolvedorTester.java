@@ -11,14 +11,14 @@ public class ResolvedorTester {
 	public static void main(String[] args) throws IOException {
 
 //		generarGrafosDePrueba(3);
-//		int tamGrafo = 40;
-//		double densidad = 0.8;
+//		int tamGrafo = 30;
+//		double densidad = 0.2;
 //		
 //		GrafoNPonderados elgrafo = new GrafoNPonderados(tamGrafo, densidad);
 //		
 //		ResolvedorCIPM resolvedor = new ResolvedorCIPM(elgrafo);
 //		
-//		//resuelvo el problema mediante el metodo exacto
+		//resuelvo el problema mediante el metodo exacto
 //		Solucion solucionExacta = resolvedor.resolverExacto();
 //		//DEBUG
 //		System.out.println("Solucion exacta");
@@ -55,7 +55,7 @@ public class ResolvedorTester {
 //		solucionHConstructiva.mostrarSolucion(elgrafo);
 		
 		//compararHCBL("tablaPrueba.txt");
-		pruebasGrasp("testsGrasps.out", 30);
+		//pruebasGrasp("testsGrasps.out", 30);
 		//pruebasGrasp("testsGrasps100.out", 100);
 		//pruebasGrasp("testsGrasps300.out", 300);
 		
@@ -70,17 +70,15 @@ public class ResolvedorTester {
 			String line = null;
 			
 			String[] nombres = new String[9];
-			nombres[0] = "grafos40bd.in";
-			nombres[1] = "grafos40md.in";
-			nombres[2] = "grafos40ad.in";
+			nombres[0] = "grafos30bd.in";
+			nombres[1] = "grafos30md.in";
+			nombres[2] = "grafos30ad.in";
 			nombres[3] = "grafos300bd.in";
 			nombres[4] = "grafos300md.in";
 			nombres[5] = "grafos300ad.in";
 			nombres[6] = "grafos600bd.in";
 			nombres[7] = "grafos600md.in";
 			nombres[8] = "grafos600ad.in";
-			
-			int cantIteraciones = 1000;
 			
 			for(int i = 0; i < 9; i++) {
 			
@@ -91,49 +89,46 @@ public class ResolvedorTester {
 					ResolvedorCIPM resolvedor = new ResolvedorCIPM(elgrafo);
 					Solucion solucion = null;
 			
-//					if(i < 3) {
-//						//Solucion Exacta
-//						solucion = resolvedor.resolverExacto();
-//						line = Integer.toString(solucion.peso());
-//					} else {
+					if(i < 3) {
+						//Solucion Exacta
+						solucion = resolvedor.resolverExacto();
+						line = Integer.toString(solucion.peso());
+						System.out.println("Termine un exacto");
+					} else {
 						line = ";";
-//					}
+					}
 					
 					//Heuristica PesoGrado
 					solucion = resolvedor.heuristicaConstructivaPesoGrado();
 					line += ";"+Integer.toString(solucion.peso());
-					Solucion bl1 = resolvedor.busquedaLocal(solucion, cantIteraciones);
-					line += ";"+Integer.toString(bl1.peso())+" ("+cantIteraciones+")";
-					cantIteraciones = 1000;
-					Solucion bl2 = resolvedor.busquedaLocal2(solucion, cantIteraciones);
-					line += ";"+Integer.toString(bl2.peso())+" ("+cantIteraciones+")";
+					Solucion bl1 = resolvedor.busquedaLocal(solucion, 1000);
+					line += ";"+Integer.toString(bl1.peso())+" ("+resolvedor.cantIteracionesBL+")";
+					Solucion bl2 = resolvedor.busquedaLocal2(solucion, 1000);
+					line += ";"+Integer.toString(bl2.peso())+" ("+resolvedor.cantIteracionesBL+")";
 					
 					//Heuristica Peso			
 					solucion = resolvedor.heuristicaConstructivaConPeso();
 					line += ";"+Integer.toString(solucion.peso());
-					bl1 = resolvedor.busquedaLocal(solucion, cantIteraciones);
-					line += ";"+Integer.toString(bl1.peso())+" ("+cantIteraciones+")";
-					cantIteraciones = 1000;
-					bl2 = resolvedor.busquedaLocal2(solucion, cantIteraciones);
-					line += ";"+Integer.toString(bl2.peso())+" ("+cantIteraciones+")";
+					bl1 = resolvedor.busquedaLocal(solucion, 1000);
+					line += ";"+Integer.toString(bl1.peso())+" ("+resolvedor.cantIteracionesBL+")";
+					bl2 = resolvedor.busquedaLocal2(solucion, 1000);
+					line += ";"+Integer.toString(bl2.peso())+" ("+resolvedor.cantIteracionesBL+")";
 					
 					//Heuristica Grado
 					solucion = resolvedor.heuristicaConstructivaConGrado();
 					line += ";"+Integer.toString(solucion.peso());
-					bl1 = resolvedor.busquedaLocal(solucion, cantIteraciones);
-					line += ";"+Integer.toString(bl1.peso())+" ("+cantIteraciones+")";
-					cantIteraciones = 1000;
-					bl2 = resolvedor.busquedaLocal2(solucion, cantIteraciones);
-					line += ";"+Integer.toString(bl2.peso())+" ("+cantIteraciones+")";
+					bl1 = resolvedor.busquedaLocal(solucion, 1000);
+					line += ";"+Integer.toString(bl1.peso())+" ("+resolvedor.cantIteracionesBL+")";
+					bl2 = resolvedor.busquedaLocal2(solucion, 1000);
+					line += ";"+Integer.toString(bl2.peso())+" ("+resolvedor.cantIteracionesBL+")";
 					
 					//Heuristica PesoVecindad
 					solucion = resolvedor.heuristicaConstructivaPesoVecindad();
 					line += ";"+Integer.toString(solucion.peso());
-					bl1 = resolvedor.busquedaLocal(solucion, cantIteraciones);
-					line += ";"+Integer.toString(bl1.peso())+" ("+cantIteraciones+")";
-					cantIteraciones = 1000;
-					bl2 = resolvedor.busquedaLocal2(solucion, cantIteraciones);
-					line += ";"+Integer.toString(bl2.peso())+" ("+cantIteraciones+")";
+					bl1 = resolvedor.busquedaLocal(solucion, 1000);
+					line += ";"+Integer.toString(bl1.peso())+" ("+resolvedor.cantIteracionesBL+")";
+					bl2 = resolvedor.busquedaLocal2(solucion, 1000);
+					line += ";"+Integer.toString(bl2.peso())+" ("+resolvedor.cantIteracionesBL+")";
 					
 					outputStream.write(line, 0, line.length());
 					outputStream.newLine();
@@ -156,9 +151,9 @@ public class ResolvedorTester {
 			int cantIteracionesLocal = 200;
 			
 			String[] archivos = new String[9];
-			archivos[0] = "grafos40bd.in";
-			archivos[1] = "grafos40md.in";
-			archivos[2] = "grafos40ad.in";
+			archivos[0] = "grafos30bd.in";
+			archivos[1] = "grafos30md.in";
+			archivos[2] = "grafos30ad.in";
 			archivos[3] = "grafos300bd.in";
 			archivos[4] = "grafos300md.in";
 			archivos[5] = "grafos300ad.in";
@@ -267,24 +262,24 @@ public class ResolvedorTester {
 		
 		EscritorDeGrafos escritor = new EscritorDeGrafos();
 		for(int i = 0; i < cantGrafosPorTipo; i++) {
-			GrafoNPonderados grafo40bd = new GrafoNPonderados(40, 0.2);
-			escritor.agregarGrafo(grafo40bd);
+			GrafoNPonderados grafo30bd = new GrafoNPonderados(30, 0.2);
+			escritor.agregarGrafo(grafo30bd);
 		}
-		escritor.guardarGrafos("grafos40bd.in");
+		escritor.guardarGrafos("grafos30bd.in");
 		
 		escritor = new EscritorDeGrafos();
 		for(int i = 0; i < cantGrafosPorTipo; i++) {
-			GrafoNPonderados grafo40md = new GrafoNPonderados(40, 0.5);
-			escritor.agregarGrafo(grafo40md);
+			GrafoNPonderados grafo30md = new GrafoNPonderados(30, 0.5);
+			escritor.agregarGrafo(grafo30md);
 		}
-		escritor.guardarGrafos("grafos40md.in");
+		escritor.guardarGrafos("grafos30md.in");
 		
 		escritor = new EscritorDeGrafos();
 		for(int i = 0; i < cantGrafosPorTipo; i++) {
-			GrafoNPonderados grafo40ad = new GrafoNPonderados(40, 0.8);
-			escritor.agregarGrafo(grafo40ad);
+			GrafoNPonderados grafo30ad = new GrafoNPonderados(30, 0.8);
+			escritor.agregarGrafo(grafo30ad);
 		}
-		escritor.guardarGrafos("grafos40ad.in");
+		escritor.guardarGrafos("grafos30ad.in");
 
 		escritor = new EscritorDeGrafos();
 		for(int i = 0; i < cantGrafosPorTipo; i++) {
