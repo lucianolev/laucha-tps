@@ -82,7 +82,7 @@ public class ResolvedorTester {
 			
 			for(int i = 0; i < 9; i++) {
 			
-				LectorDeGrafos lector = new LectorDeGrafos(nombres[i]);
+				LectorDeGrafos lector = new LectorDeGrafos("../grafos/"+nombres[i]);
 				
 				while(lector.quedanGrafos()) {
 					GrafoNPonderados elgrafo = lector.dameProximoGrafo();
@@ -165,7 +165,7 @@ public class ResolvedorTester {
 			archivos[8] = "grafos700ad.in";
 
 			for(int i = 0; i < 9 ; i++) { 
-				LectorDeGrafos lector = new LectorDeGrafos(archivos[i]);				
+				LectorDeGrafos lector = new LectorDeGrafos("../grafos/"+archivos[i]);				
 				while(lector.quedanGrafos()) {
 					 GrafoNPonderados elgrafo = lector.dameProximoGrafo();
 					 ResolvedorCIPM resolvedor = new ResolvedorCIPM(elgrafo);
