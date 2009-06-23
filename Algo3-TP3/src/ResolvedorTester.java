@@ -54,10 +54,10 @@ public class ResolvedorTester {
 //		System.out.println("Heuristica constructiva con peso/grado (alfa 0)");
 //		solucionHConstructiva.mostrarSolucion(elgrafo);
 		
-		compararHCBL("tablaPrueba.txt");
-		//pruebasGrasp("testsGrasps.out", 30);
-		//pruebasGrasp("testsGrasps100.out", 100);
-		//pruebasGrasp("testsGrasps300.out", 300);
+		//compararHCBL("tablaPrueba.txt");
+		pruebasGrasp("testsGrasps.out", 30);
+		pruebasGrasp("testsGrasps100.out", 100);
+		pruebasGrasp("testsGrasps300.out", 300);
 		
 		return;
 	}
