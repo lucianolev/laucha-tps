@@ -55,12 +55,165 @@ public class ResolvedorTester {
 //		solucionHConstructiva.mostrarSolucion(elgrafo);
 		
 		//compararHCBL("tablaPrueba.txt");
-		pruebasGrasp("testsGrasps.out", 30);
-		pruebasGrasp("testsGrasps100.out", 100);
-		pruebasGrasp("testsGrasps300.out", 300);
+		//pruebasGrasp("testsGrasps.out", 30);
+		//pruebasGrasp("testsGrasps100.out", 100);
+		//pruebasGrasp("testsGrasps300.out", 300);
+		
+//		medicionesExacto("tiemposExacto.txt");
+//		medicionesHC("tiemposHC.txt");
+//		medicionesBL("tiemposBL.txt");
 		
 		return;
 	}
+	
+	public static void medicionesExacto(String archivoSalida) throws IOException {
+		BufferedWriter outputStream = null;
+		try {
+			outputStream = new BufferedWriter(new FileWriter(archivoSalida));
+			GrafoNPonderados grafo = null;
+			ResolvedorCIPM resolvedor = null;
+			
+			for(int i = 1; i <= 37; i++) {
+				String line = new String();
+				grafo = new GrafoNPonderados(i,0.2);
+				resolvedor = new ResolvedorCIPM(grafo);
+				long inicio = System.currentTimeMillis();
+				resolvedor.resolverExacto();
+				long fin = System.currentTimeMillis();
+				long tiempo = (fin - inicio);
+				line += i+" "+tiempo;
+				
+				grafo = new GrafoNPonderados(i,0.5);
+				resolvedor = new ResolvedorCIPM(grafo);
+				inicio = System.currentTimeMillis();
+				resolvedor.resolverExacto();
+				fin = System.currentTimeMillis();
+				tiempo = (fin - inicio);
+				line += " "+tiempo;
+				
+				grafo = new GrafoNPonderados(i,0.8);
+				resolvedor = new ResolvedorCIPM(grafo);
+				inicio = System.currentTimeMillis();
+				resolvedor.resolverExacto();
+				fin = System.currentTimeMillis();
+				tiempo = (fin - inicio);
+				line += " "+tiempo;
+				
+				outputStream.write(line, 0, line.length());
+				outputStream.newLine();
+			}
+			
+		}
+		finally {
+			if (outputStream != null) {
+				System.out.println("Se guardaron los tiempos para el exacto en el archivo "+archivoSalida);
+				outputStream.close();
+			}
+		}
+	}
+	
+	public static void medicionesHC (String archivoSalida)  throws IOException  {
+		
+		BufferedWriter outputStream = null;
+		try {
+			
+			outputStream = new BufferedWriter(new FileWriter(archivoSalida));
+			GrafoNPonderados grafo = null;
+			ResolvedorCIPM resolvedor = null;
+			
+			for(int i = 1; i <= 1000; i += 10) {
+				String line = new String();
+				grafo = new GrafoNPonderados(i,0.2);
+				resolvedor = new ResolvedorCIPM(grafo);
+				long inicio = System.currentTimeMillis();
+				resolvedor.heuristicaConstructivaPesoGrado();
+				long fin = System.currentTimeMillis();
+				long tiempo = (fin - inicio);
+				line += i+" "+tiempo;
+				
+				grafo = new GrafoNPonderados(i,0.5);
+				resolvedor = new ResolvedorCIPM(grafo);
+				inicio = System.currentTimeMillis();
+				resolvedor.heuristicaConstructivaPesoGrado();
+				fin = System.currentTimeMillis();
+				tiempo = (fin - inicio);
+				line += " "+tiempo;
+				
+				grafo = new GrafoNPonderados(i,0.8);
+				resolvedor = new ResolvedorCIPM(grafo);
+				inicio = System.currentTimeMillis();
+				resolvedor.heuristicaConstructivaPesoGrado();
+				fin = System.currentTimeMillis();
+				tiempo = (fin - inicio);
+				line += " "+tiempo;
+				
+				outputStream.write(line, 0, line.length());
+				outputStream.newLine();
+			}
+			
+		}
+		
+		finally {
+			if (outputStream != null) {
+				System.out.println("Se guardaron los tiempos para la HC en el archivo "+archivoSalida);
+				outputStream.close();
+			}
+		}
+	}
+	
+	public static void medicionesBL (String archivoSalida)  throws IOException  {
+		
+		BufferedWriter outputStream = null;
+		try {
+			
+			outputStream = new BufferedWriter(new FileWriter(archivoSalida));
+			GrafoNPonderados grafo = null;
+			ResolvedorCIPM resolvedor = null;
+			Solucion solucion = null;
+			
+			for(int i = 1; i <= 600; i += 10) {
+				String line = new String();
+				grafo = new GrafoNPonderados(i,0.2);
+				resolvedor = new ResolvedorCIPM(grafo);
+				long inicio = System.currentTimeMillis();
+				solucion = resolvedor.heuristicaConstructivaConGrado();
+				resolvedor.busquedaLocal2(solucion, 100);
+				long fin = System.currentTimeMillis();
+				long tiempo = (fin - inicio);
+				line += i+" "+tiempo;
+				
+				grafo = new GrafoNPonderados(i,0.5);
+				resolvedor = new ResolvedorCIPM(grafo);
+				inicio = System.currentTimeMillis();
+				solucion = resolvedor.heuristicaConstructivaConGrado();
+				resolvedor.busquedaLocal2(solucion, 100);
+				fin = System.currentTimeMillis();
+				tiempo = (fin - inicio);
+				line += " "+tiempo;
+				
+				grafo = new GrafoNPonderados(i,0.8);
+				resolvedor = new ResolvedorCIPM(grafo);
+				inicio = System.currentTimeMillis();
+				solucion = resolvedor.heuristicaConstructivaConGrado();
+				resolvedor.busquedaLocal2(solucion, 100);
+				fin = System.currentTimeMillis();
+				tiempo = (fin - inicio);
+				line += " "+tiempo;
+				
+				outputStream.write(line, 0, line.length());
+				outputStream.newLine();
+			}
+			
+		}
+		
+		finally {
+			if (outputStream != null) {
+				System.out.println("Se guardaron los tiempos para la BL en el archivo "+archivoSalida);
+				outputStream.close();
+			}
+		}
+	}
+	
 	
 	public static void compararHCBL(String archivoSalida) throws IOException  {
 		
@@ -322,77 +475,6 @@ public class ResolvedorTester {
 		escritor.guardarGrafos("grafos600ad.in");
 		
 		return;
-	}
-	
-	public static void probarConAlfas(GrafoNPonderados elGrafo, ResolvedorCIPM resolvedor) {
-		
-		//encuentro una solucion mediante una heuristica constructiva
-		Solucion solucionHConstructiva = resolvedor.heuristicaConstructivaGrasp(0);
-		//escritor.agregarSolucion(solucionHConstructiva);
-		//DEBUG
-		System.out.println("Heuristica constructiva con alfa = 0");
-		solucionHConstructiva.mostrarSolucion(elGrafo);
-		
-		//encuentro una solucion mediante una heuristica constructiva
-		solucionHConstructiva = resolvedor.heuristicaConstructivaGrasp(0.25);
-		//escritor.agregarSolucion(solucionHConstructiva);
-		//DEBUG
-		System.out.println("Heuristica constructiva con alfa = 0.25");
-		solucionHConstructiva.mostrarSolucion(elGrafo);
-		
-		//encuentro una solucion mediante una heuristica constructiva
-		solucionHConstructiva = resolvedor.heuristicaConstructivaGrasp(0.5);
-		//escritor.agregarSolucion(solucionHConstructiva);
-		//DEBUG
-		System.out.println("Heuristica constructiva con alfa = 0.5");
-		solucionHConstructiva.mostrarSolucion(elGrafo);
-		
-		//encuentro una solucion mediante una heuristica constructiva
-		solucionHConstructiva = resolvedor.heuristicaConstructivaGrasp(0.75);
-		//escritor.agregarSolucion(solucionHConstructiva);
-		//DEBUG
-		System.out.println("Heuristica constructiva con alfa = 0.75");
-		solucionHConstructiva.mostrarSolucion(elGrafo);
-		
-		//encuentro una solucion mediante una heuristica constructiva
-		solucionHConstructiva = resolvedor.heuristicaConstructivaGrasp(0.99);
-		//escritor.agregarSolucion(solucionHConstructiva);
-		//DEBUG
-		System.out.println("Heuristica constructiva con alfa = 0.99");
-		solucionHConstructiva.mostrarSolucion(elGrafo);
-		
-	}
-	
-	public static void probarGrasps(GrafoNPonderados elGrafo, ResolvedorCIPM resolvedor, double alfaRCL, int cantIteracionesGrasp, int cantIteracionesLocal) {
-		
-		//grasp
-		Solucion solucionGrasp = resolvedor.grasp(cantIteracionesGrasp, alfaRCL, cantIteracionesLocal);
-		//escritor.agregarSolucion(solucionExacta);
-		//DEBUG
-		System.out.println("Solucion GRASP con peso/grado");
-		solucionGrasp.mostrarSolucion(elGrafo);
-		
-//		//grasp
-//		solucionGrasp = resolvedor.graspPeso(cantIteracionesGrasp, alfaRCL, cantIteracionesLocal);
-//		//escritor.agregarSolucion(solucionExacta);
-//		//DEBUG
-//		System.out.println("Solucion GRASP con peso");
-//		solucionGrasp.mostrarSolucion(elGrafo);
-//		
-//		//grasp
-//		solucionGrasp = resolvedor.graspGrado(cantIteracionesGrasp, alfaRCL, cantIteracionesLocal);
-//		//escritor.agregarSolucion(solucionExacta);
-//		//DEBUG
-//		System.out.println("Solucion GRASP con grado");
-//		solucionGrasp.mostrarSolucion(elGrafo);
-//		
-//		//grasp
-//		solucionGrasp = resolvedor.graspPesoVecindad(cantIteracionesGrasp, alfaRCL, cantIteracionesLocal);
-//		//escritor.agregarSolucion(solucionExacta);
-//		//DEBUG
-//		System.out.println("Solucion GRASP con peso/vecindad");
-//		solucionGrasp.mostrarSolucion(elGrafo);
-		
 	}
 
 }
