@@ -54,8 +54,10 @@ public class ResolvedorTester {
 //		System.out.println("Heuristica constructiva con peso/grado (alfa 0)");
 //		solucionHConstructiva.mostrarSolucion(elgrafo);
 		
-		compararHCBL("tablaPrueba.txt");
+		//compararHCBL("tablaPrueba.txt");
 		pruebasGrasp("testsGrasps.out", 30);
+		//pruebasGrasp("testsGrasps100.out", 100);
+		//pruebasGrasp("testsGrasps300.out", 300);
 		
 		return;
 	}
@@ -68,15 +70,15 @@ public class ResolvedorTester {
 			String line = null;
 			
 			String[] nombres = new String[9];
-			nombres[0] = "grafos50bd.in";
-			nombres[1] = "grafos50md.in";
-			nombres[2] = "grafos50ad.in";
+			nombres[0] = "grafos40bd.in";
+			nombres[1] = "grafos40md.in";
+			nombres[2] = "grafos40ad.in";
 			nombres[3] = "grafos300bd.in";
 			nombres[4] = "grafos300md.in";
 			nombres[5] = "grafos300ad.in";
-			nombres[6] = "grafos700bd.in";
-			nombres[7] = "grafos700md.in";
-			nombres[8] = "grafos700ad.in";
+			nombres[6] = "grafos600bd.in";
+			nombres[7] = "grafos600md.in";
+			nombres[8] = "grafos600ad.in";
 			
 			int cantIteraciones = 1000;
 			
@@ -154,15 +156,15 @@ public class ResolvedorTester {
 			int cantIteracionesLocal = 200;
 			
 			String[] archivos = new String[9];
-			archivos[0] = "grafos50bd.in";
-			archivos[1] = "grafos50md.in";
-			archivos[2] = "grafos50ad.in";
+			archivos[0] = "grafos40bd.in";
+			archivos[1] = "grafos40md.in";
+			archivos[2] = "grafos40ad.in";
 			archivos[3] = "grafos300bd.in";
 			archivos[4] = "grafos300md.in";
 			archivos[5] = "grafos300ad.in";
-			archivos[6] = "grafos700bd.in";
-			archivos[7] = "grafos700md.in";
-			archivos[8] = "grafos700ad.in";
+			archivos[6] = "grafos600bd.in";
+			archivos[7] = "grafos600md.in";
+			archivos[8] = "grafos600ad.in";
 
 			for(int i = 0; i < 9 ; i++) { 
 				LectorDeGrafos lector = new LectorDeGrafos("../grafos/"+archivos[i]);				
@@ -170,7 +172,7 @@ public class ResolvedorTester {
 					 GrafoNPonderados elgrafo = lector.dameProximoGrafo();
 					 ResolvedorCIPM resolvedor = new ResolvedorCIPM(elgrafo);
 					
-					 String line = null;
+					 String line = new String();
 					 for(double alfaRCL = 0.1; alfaRCL < 1; alfaRCL+=0.1) {
 						 Solucion solucionGrasp = resolvedor.grasp(cantIteracionesGrasp, alfaRCL, cantIteracionesLocal);
 						 line += solucionGrasp.peso()+";";
@@ -265,24 +267,24 @@ public class ResolvedorTester {
 		
 		EscritorDeGrafos escritor = new EscritorDeGrafos();
 		for(int i = 0; i < cantGrafosPorTipo; i++) {
-			GrafoNPonderados grafo50bd = new GrafoNPonderados(50, 0.2);
-			escritor.agregarGrafo(grafo50bd);
+			GrafoNPonderados grafo40bd = new GrafoNPonderados(40, 0.2);
+			escritor.agregarGrafo(grafo40bd);
 		}
-		escritor.guardarGrafos("grafos50bd.in");
+		escritor.guardarGrafos("grafos40bd.in");
 		
 		escritor = new EscritorDeGrafos();
 		for(int i = 0; i < cantGrafosPorTipo; i++) {
-			GrafoNPonderados grafo50md = new GrafoNPonderados(50, 0.5);
-			escritor.agregarGrafo(grafo50md);
+			GrafoNPonderados grafo40md = new GrafoNPonderados(40, 0.5);
+			escritor.agregarGrafo(grafo40md);
 		}
-		escritor.guardarGrafos("grafos50md.in");
+		escritor.guardarGrafos("grafos40md.in");
 		
 		escritor = new EscritorDeGrafos();
 		for(int i = 0; i < cantGrafosPorTipo; i++) {
-			GrafoNPonderados grafo50ad = new GrafoNPonderados(50, 0.8);
-			escritor.agregarGrafo(grafo50ad);
+			GrafoNPonderados grafo40ad = new GrafoNPonderados(40, 0.8);
+			escritor.agregarGrafo(grafo40ad);
 		}
-		escritor.guardarGrafos("grafos50ad.in");
+		escritor.guardarGrafos("grafos40ad.in");
 
 		escritor = new EscritorDeGrafos();
 		for(int i = 0; i < cantGrafosPorTipo; i++) {
@@ -307,24 +309,24 @@ public class ResolvedorTester {
 		
 		escritor = new EscritorDeGrafos();
 		for(int i = 0; i < cantGrafosPorTipo; i++) {
-			GrafoNPonderados grafo700bd = new GrafoNPonderados(700, 0.2);
-			escritor.agregarGrafo(grafo700bd);
+			GrafoNPonderados grafo600bd = new GrafoNPonderados(600, 0.2);
+			escritor.agregarGrafo(grafo600bd);
 		}
-		escritor.guardarGrafos("grafos700bd.in");
+		escritor.guardarGrafos("grafos600bd.in");
 		
 		escritor = new EscritorDeGrafos();
 		for(int i = 0; i < cantGrafosPorTipo; i++) {
-			GrafoNPonderados grafo700md = new GrafoNPonderados(700, 0.5);
-			escritor.agregarGrafo(grafo700md);
+			GrafoNPonderados grafo600md = new GrafoNPonderados(600, 0.5);
+			escritor.agregarGrafo(grafo600md);
 		}
-		escritor.guardarGrafos("grafos700md.in");
+		escritor.guardarGrafos("grafos600md.in");
 		
 		escritor = new EscritorDeGrafos();
 		for(int i = 0; i < cantGrafosPorTipo; i++) {
-			GrafoNPonderados grafo700ad = new GrafoNPonderados(700, 0.8);
-			escritor.agregarGrafo(grafo700ad);
+			GrafoNPonderados grafo600ad = new GrafoNPonderados(600, 0.8);
+			escritor.agregarGrafo(grafo600ad);
 		}
-		escritor.guardarGrafos("grafos700ad.in");
+		escritor.guardarGrafos("grafos600ad.in");
 		
 		return;
 	}
