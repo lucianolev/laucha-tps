@@ -376,7 +376,7 @@ public class ResolvedorCIPM {
 		Solucion laMejorSolucion = null;
 		int pesoMaximo = 0;
 		for(int i = 0; i < cantIteracionesGrasp; i++) {
-			unaSolucion = heuristicaConstructivaGrasp(alfaRCL);
+			unaSolucion = heuristicaConstructivaConGradoGrasp(alfaRCL);
 			unaSolucion = busquedaLocal2(unaSolucion, cantIteracionesLocal);
 			if(unaSolucion.peso() > pesoMaximo) {
 				laMejorSolucion = unaSolucion;
