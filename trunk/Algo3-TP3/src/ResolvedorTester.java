@@ -121,30 +121,30 @@ public class ResolvedorTester {
 			GrafoNPonderados grafo = null;
 			ResolvedorCIPM resolvedor = null;
 			
-			for(int i = 1; i <= 1000; i += 10) {
+			for(int i = 10; i <= 1400; i += 10) {
 				String line = new String();
 				grafo = new GrafoNPonderados(i,0.2);
 				resolvedor = new ResolvedorCIPM(grafo);
-				long inicio = System.currentTimeMillis();
+				long inicio = System.nanoTime();
 				resolvedor.heuristicaConstructivaPesoGrado();
-				long fin = System.currentTimeMillis();
-				long tiempo = (fin - inicio);
+				long fin = System.nanoTime();
+				long tiempo = (fin - inicio)/1000;
 				line += i+" "+tiempo;
 				
 				grafo = new GrafoNPonderados(i,0.5);
 				resolvedor = new ResolvedorCIPM(grafo);
-				inicio = System.currentTimeMillis();
+				inicio = System.nanoTime();
 				resolvedor.heuristicaConstructivaPesoGrado();
-				fin = System.currentTimeMillis();
-				tiempo = (fin - inicio);
+				fin = System.nanoTime();
+				tiempo = (fin - inicio)/1000;
 				line += " "+tiempo;
 				
 				grafo = new GrafoNPonderados(i,0.8);
 				resolvedor = new ResolvedorCIPM(grafo);
-				inicio = System.currentTimeMillis();
+				inicio = System.nanoTime();
 				resolvedor.heuristicaConstructivaPesoGrado();
-				fin = System.currentTimeMillis();
-				tiempo = (fin - inicio);
+				fin = System.nanoTime();
+				tiempo = (fin - inicio)/1000;
 				line += " "+tiempo;
 				
 				outputStream.write(line, 0, line.length());
