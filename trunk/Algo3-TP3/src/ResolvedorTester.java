@@ -14,48 +14,31 @@ public class ResolvedorTester {
 //	medicionesBL("tiempooos.out");
 
 //		generarGrafosDePrueba(3);
-//		int tamGrafo = 30;
-//		double densidad = 0.2;
-//		
-//		GrafoNPonderados elgrafo = new GrafoNPonderados(tamGrafo, densidad);
-//		
-//		ResolvedorCIPM resolvedor = new ResolvedorCIPM(elgrafo);
-//		
-		//resuelvo el problema mediante el metodo exacto
-//		Solucion solucionExacta = resolvedor.resolverExacto();
-//		//DEBUG
-//		System.out.println("Solucion exacta");
-//		solucionExacta.mostrarSolucion(elgrafo);
-//		
-//		//encuentro una solucion mediante una heuristica constructiva
-//		Solucion solucionHConstructiva = resolvedor.heuristicaConstructivaPesoGrado();
-//		//DEBUG
-//		System.out.println("Heuristica constructiva con peso/grado");
-//		solucionHConstructiva.mostrarSolucion(elgrafo);
-//		
-//		//encuentro una solucion mediante una heuristica constructiva
-//		solucionHConstructiva = resolvedor.heuristicaConstructivaConPeso();
-//		//DEBUG
-//		System.out.println("Heuristica constructiva con peso");
-//		solucionHConstructiva.mostrarSolucion(elgrafo);
-//		
-//		//encuentro una solucion mediante una heuristica constructiva
-//		solucionHConstructiva = resolvedor.heuristicaConstructivaConGrado();
-//		//DEBUG
-//		System.out.println("Heuristica constructiva con grado");
-//		solucionHConstructiva.mostrarSolucion(elgrafo);
-//		
-//		//encuentro una solucion mediante una heuristica constructiva
-//		solucionHConstructiva = resolvedor.heuristicaConstructivaPesoVecindad();
-//		//DEBUG
-//		System.out.println("Heuristica constructiva con peso vecindad");
-//		solucionHConstructiva.mostrarSolucion(elgrafo);
 		
-//		//encuentro una solucion mediante una heuristica constructiva
-//		solucionHConstructiva = resolvedor.heuristicaConstructivaGrasp(0);
-//		//DEBUG
-//		System.out.println("Heuristica constructiva con peso/grado (alfa 0)");
-//		solucionHConstructiva.mostrarSolucion(elgrafo);
+		int tamGrafo = 800;
+		double alfaRCL = 0.2;
+		double densidad = 0.5;
+		int cantIteracionesLocal = 1000;
+		
+		GrafoNPonderados elgrafo = new GrafoNPonderados(tamGrafo, densidad);
+		
+		ResolvedorCIPM resolvedor = new ResolvedorCIPM(elgrafo);
+		
+		//grasp
+		long inicio = System.currentTimeMillis();
+		Solucion solucionGrasp = resolvedor.grasp(50, alfaRCL, cantIteracionesLocal);
+		long fin = System.currentTimeMillis();
+		//DEBUG
+		System.out.println("Solucion GRASP con 50 iters: "+solucionGrasp.peso());
+		//solucionGrasp.mostrarSolucion(elgrafo);
+		System.out.println("Tiempo: "+(fin - inicio));
+		
+		//grasp
+		solucionGrasp = resolvedor.grasp(1000, alfaRCL, cantIteracionesLocal);
+		//DEBUG
+		System.out.println("Solucion GRASP con 1000 iters: "+solucionGrasp.peso());
+		//solucionGrasp.mostrarSolucion(elgrafo);
+		System.out.println("Tiempo: "+(fin - inicio));
 		
 		//compararHCBL("tablaPrueba.txt");
 		//pruebasGrasp("testsGrasps.out", 30);
@@ -66,7 +49,7 @@ public class ResolvedorTester {
 //		medicionesHC("tiemposHC.txt");
 //		medicionesBL("tiemposBL.txt");
 
-		optimizarCantIterParaAlfa("pesosCantIterParaAlfa.txt", 0.2);
+		//optimizarCantIterParaAlfa("pesosCantIterParaAlfa.txt", 0.2);
 
 		return;
 	}
@@ -82,26 +65,26 @@ public class ResolvedorTester {
 				String line = new String();
 				grafo = new GrafoNPonderados(i,0.2);
 				resolvedor = new ResolvedorCIPM(grafo);
-				long inicio = System.currentTimeMillis();
+				long inicio = System.nanoTime();
 				resolvedor.resolverExacto();
-				long fin = System.currentTimeMillis();
-				long tiempo = (fin - inicio);
+				long fin = System.nanoTime();
+				long tiempo = (fin - inicio)/1000;
 				line += i+" "+tiempo;
 				
 				grafo = new GrafoNPonderados(i,0.5);
 				resolvedor = new ResolvedorCIPM(grafo);
-				inicio = System.currentTimeMillis();
+				inicio = System.nanoTime();
 				resolvedor.resolverExacto();
-				fin = System.currentTimeMillis();
-				tiempo = (fin - inicio);
+				fin = System.nanoTime();
+				tiempo = (fin - inicio)/1000;
 				line += " "+tiempo;
 				
 				grafo = new GrafoNPonderados(i,0.8);
 				resolvedor = new ResolvedorCIPM(grafo);
-				inicio = System.currentTimeMillis();
+				inicio = System.nanoTime();
 				resolvedor.resolverExacto();
-				fin = System.currentTimeMillis();
-				tiempo = (fin - inicio);
+				fin = System.nanoTime();
+				tiempo = (fin - inicio)/1000;
 				line += " "+tiempo;
 				
 				outputStream.write(line, 0, line.length());
@@ -130,26 +113,26 @@ public class ResolvedorTester {
 				String line = new String();
 				grafo = new GrafoNPonderados(i,0.2);
 				resolvedor = new ResolvedorCIPM(grafo);
-				long inicio = System.currentTimeMillis();
+				long inicio = System.nanoTime();
 				resolvedor.heuristicaConstructivaPesoGrado();
-				long fin = System.currentTimeMillis();
-				long tiempo = (fin - inicio);
+				long fin = System.nanoTime();
+				long tiempo = (fin - inicio)/1000;
 				line += i+" "+tiempo;
 				
 				grafo = new GrafoNPonderados(i,0.5);
 				resolvedor = new ResolvedorCIPM(grafo);
-				inicio = System.currentTimeMillis();
+				inicio = System.nanoTime();
 				resolvedor.heuristicaConstructivaPesoGrado();
-				fin = System.currentTimeMillis();
-				tiempo = (fin - inicio);
+				fin = System.nanoTime();
+				tiempo = (fin - inicio)/1000;
 				line += " "+tiempo;
 				
 				grafo = new GrafoNPonderados(i,0.8);
 				resolvedor = new ResolvedorCIPM(grafo);
-				inicio = System.currentTimeMillis();
+				inicio = System.nanoTime();
 				resolvedor.heuristicaConstructivaPesoGrado();
-				fin = System.currentTimeMillis();
-				tiempo = (fin - inicio);
+				fin = System.nanoTime();
+				tiempo = (fin - inicio)/1000;
 				line += " "+tiempo;
 				
 				outputStream.write(line, 0, line.length());
@@ -224,24 +207,18 @@ public class ResolvedorTester {
 		BufferedWriter outputStream = null;
 		try {
 			outputStream = new BufferedWriter(new FileWriter(archivoSalida));
-
-			for(int i = 10; i <= 300 ; i += 10) {
-				String line = new String();
-				line += i;
-				
-				Solucion solucion = null;
-				LectorDeGrafos lector = new LectorDeGrafos("../grafos/grafos600md.in");
-
-				while(lector.quedanGrafos()) {
-					GrafoNPonderados grafo = lector.dameProximoGrafo();
-					ResolvedorCIPM resolvedor = new ResolvedorCIPM(grafo);
-					solucion = resolvedor.grasp(i, alfa, 1000);
-					line += " "+solucion.peso();
-				}
+			GrafoNPonderados grafo = new GrafoNPonderados(500, 0.5);
+			ResolvedorCIPM resolvedor = new ResolvedorCIPM(grafo);
+			
+			Solucion solucion = null;
+			String line = null;
+			for(int i = 1; i <= 200 ; i += 1) {	
+				solucion = resolvedor.grasp(i, alfa, 1000);
+				line = i+" "+solucion.peso();
+				System.out.println("Resolvi grafo para iteraciones = "+i);
 				outputStream.write(line, 0, line.length());
 				outputStream.newLine();
 			}
-
 		}
 		finally {
 			if (outputStream != null) {
