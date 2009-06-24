@@ -51,12 +51,11 @@ Finalmente, se desarrollar\'a una metaheur\'istica GRASP modificando ligeramente
 
 Por \'ultimo, para la metaheur\'istica GRASP obtenida y para las mejores heur\'isticas (constructiva y de b\'usqueda local) se mostrar\'an casos en donde el resultado de las mismas difiera del exacto en gran medida. Adem\'as, se estudiar\'a la complejidad te\'orica de estos algoritmos y se realizar\'an comparaciones con el tiempo de ejecuci\'on obtenido en las pruebas.
 
-\begin{center}
-\section*{Ejercicio 1: Dengue}
-\end{center}
+% \begin{center}
+% \section*{Ejercicio 1: Dengue}
+% \end{center}
 
-\bigskip
-\section*{Introducci\'on}
+\section*{Ejercicio 1}
 El primer ejercicio plantea el problema de optimizar el uso de litros de ''Raid'' para la fumigación de mosquitos óptima, requiriendo cubrir una determinada cantidad de zonas. Es relevante comentar que al utilizar una mayor cantidad de litros en una zona, esto no implica matar más mosquitos.
 
 El ovjetivo diseñar un algoritmo que resuelva el problema planteado de manera polinomial. Para esto se utiliz\'o la t\'ecnica de progamaci\'on din\'amica, lo que implic\'o la realizaci\'on de diversos pasos. Primero se corrobor\'o que el problema cumpla con el principio de optimalidad. Una vez comprobado esto (condici\'on necesaria para poder aplicar programaci\'on din\'amica) y utilizando las ideas vistas en dicha demostraci\'on, se procedi\'o a crear una funci\'on recursiva que retorne el resultado deseado. Luego se modific\'o dicha version por un algoritmo iterativo, siendo este un paso intermedio requerido para aplicar la t\'ecnica mencionada. El paso siguiente consisti\'o en modificar el algoritmo de manera de evitar la repetici\'on de c\'alculos innecesarios (aqu\'i queda implicita la idea de programaci\'on din\'amica), mejorando notablemente la complejidad de la funci\'on. Por \'ultimo, como veremos m\'as adelante, se opt\'o por un cambio de t\'ecnica algoritmica pasando de un algoritmo que originalmente era \textit{top-down} a uno \textit{bottom-up}.
@@ -220,27 +219,27 @@ A continuaci\'on se presentar\'an los gr\'aficos realizados para cada algoritmo 
 
 Como se vi\'o anteriormente, la primer parte del problema consist\'ia en calcular la m\'axima cantidad de mosquitos muertos para una instancia determinada. Los siguientes gr\'aficos muestran el comportamiento de este algoritmo en base a los dos par\'ametros de entrada de manera independiente:
 
-\begin{center}
- \includegraphics[width=0.7\textwidth]{Plots/Tp2Ej1-TiemposFumigacionPorZonas-10litros-bw.png}
-\begin{center}
-Figura 1.1
-\end{center}
- \includegraphics[width=0.7\textwidth]{Plots/Tp2Ej1-TiemposFumigacionPorLitros-10zonas-bw.png}
-\begin{center}
-Figura 1.2
-\end{center}
-\end{center}
+% \begin{center}
+%  \includegraphics[width=0.7\textwidth]{Plots/Tp2Ej1-TiemposFumigacionPorZonas-10litros-bw.png}
+% \begin{center}
+% Figura 1.1
+% \end{center}
+%  \includegraphics[width=0.7\textwidth]{Plots/Tp2Ej1-TiemposFumigacionPorLitros-10zonas-bw.png}
+% \begin{center}
+% Figura 1.2
+% \end{center}
+% \end{center}
 
 Ambos gr\'aficos permiten observar algunas cuestiones interesantes. La Figura 1.1 permite observar como el comportamiento del algoritmo de \textit{fumigaci\'on} con respecto a la cantidad de zonas se asimila a una funci\'on lineal, hecho que se corresponde con la complejidad calculada anteriormente. Del mismo modo, la Figura 1.2 muestra como la funci\'on T(n) que representa el tiempo de ejecuci\'on se comporta pr\'acticamente igual que la funci\'on $f(n) = n^2/19 \in O(n^2)$. Este hecho demuestra emp\'iricamente que la complejidad con respecto a la cantidad de litros es cuadr\'atica al realizar la fumigaci\'on tal como se hab\'ia analizado anteriormente.
 
 Otras cuesti\'on observable son los ``picos'' y variaciones abrutas en ambos gr\'aficos. En principio, esto no deber\'ia ocurrir ya que la complejidad no depende de la forma de la entrada como se mencion\'o anteriormente. El motivo de esto radica simplemente en los errores de precisi\'on en la medici\'on de las operaciones propios de las limitaciones de la m\'aquina de c\'omputo utilizada. Los tiempos de ejecuci\'on del algoritmo son mucho mayores en la Figura 1.2 lo que resulta en una mayor estabilidad en los c\'alculo de tiempo, en contraste con la Figura 1.1 donde hay mayor impresici\'on porque dicho gr\'afico refleja cambios de valores m\'as abrutos.
-
-\begin{center}
- \includegraphics[width=0.7\textwidth]{Plots/Tp2Ej1-TiemposFumigacion-3d-bw.png}
-\begin{center}
-Figura 1.3
-\end{center}
-\end{center}
+% 
+% \begin{center}
+%  \includegraphics[width=0.7\textwidth]{Plots/Tp2Ej1-TiemposFumigacion-3d-bw.png}
+% \begin{center}
+% Figura 1.3
+% \end{center}
+% \end{center}
 
 Esta \'ultima figura permite ver como el algoritmo en su totalidad realmente se comporta de la forma esperada. 
 Para esto basta comparar los tiempos de ejecuci\'on al variar ambos par\'ametros (litros y zonas) junto con la funci\'on $f(n,m) = n*m^2/200 \in O(n*m^2)$ viendo que ambas ``mantas'' coiniciden. Este ultimo hecho constituye la \'ultima prueba de que empir\'icamente el algoritmo funciona tal como se esperaba.
@@ -249,16 +248,16 @@ Para esto basta comparar los tiempos de ejecuci\'on al variar ambos par\'ametros
 
 En esta secci\'on analizaremos el comportamiento del otro algortimo propuesto que se encarga de dar parte de la soluci\'on del problema: el algoritmo encargado de calcular los litros a utilizar por cada zona. Los siguientes gr\'aficos muestran el comportamiento del mismo en base a las dos variables en cuesti\'on de forma independiente:
 
-\begin{center}
- \includegraphics[width=0.7\textwidth]{Plots/Tp2Ej1-TiemposLitrosPorZonaPorZonas-10litros-bw.png}
-\begin{center}
-Figura 2.1
-\end{center}
- \includegraphics[width=0.7\textwidth]{Plots/Tp2Ej1-TiemposLitrosPorZonaPorZonas-10zonas-bw.png}
-\begin{center}
-Figura 2.2
-\end{center}
-\end{center}
+% \begin{center}
+%  \includegraphics[width=0.7\textwidth]{Plots/Tp2Ej1-TiemposLitrosPorZonaPorZonas-10litros-bw.png}
+% \begin{center}
+% Figura 2.1
+% \end{center}
+%  \includegraphics[width=0.7\textwidth]{Plots/Tp2Ej1-TiemposLitrosPorZonaPorZonas-10zonas-bw.png}
+% \begin{center}
+% Figura 2.2
+% \end{center}
+% \end{center}
 
 Como se puede observar, en ambos casos, el comportamiento del algoritmo es el esperado. La Figura 2.1 muestra como el c\'alculo de litros por zona se ``corresponde'' con el gr\'afico de la funci\'on lineal $f(n) = n/25$ al variar la cantidad de zonas y fijar los litros en $10$. As\'imismo, la Figura 2.2 se comporta de la forma $f(n) = n/75$ al variar los litros y fijar las zonas. Esto comprueba la linealidad en complejidad te\'orica analizada previamente para ambas variables. Un punto interesante a observar es que las constantes que acompañan a estas funciones difieren, siendo la constante relacionada al primer gr\'afico ($1/25$) 3 veces mayor que la otra ($1/75$). Al tratarse de instancias de igual tamaño (en ambos casos, matrices desde $1*10$ hasta $10000*10$), se puede concluir que la \textit{performance} de este algoritmo depende en mayor medida de la cantidad de zonas que de la cantidad de litros. En otras palabras, para instancias de igual tamaño, un caso demora 3 veces m\'as el otro. Si bien se intentó buscar una explicación a este fenómeno, se concluyó que resulta muy complejo observar cual es la causa de esta particularidad, principalmente porque se está trabajando con instancias aleatorias con parámetros arbitrarios.
 
@@ -266,12 +265,12 @@ Con respecto a la irregularidad del gr\'afico, cabe notar que, a diferencia del 
 
 Por \'ultimo, al igual que para el algoritmo anterior, se presenta el siguiente gr\'afico de 3 dimensiones:
 
-\begin{center}
- \includegraphics[width=0.7\textwidth]{Plots/Tp2Ej1-TiemposLitrosPorZona-3d-bw.png}
-\begin{center}
-Figura 1.3
-\end{center}
-\end{center}
+% \begin{center}
+%  \includegraphics[width=0.7\textwidth]{Plots/Tp2Ej1-TiemposLitrosPorZona-3d-bw.png}
+% \begin{center}
+% Figura 1.3
+% \end{center}
+% \end{center}
 
 Al igual que antes, este gr\'afico permite ver la complejidad de ambos par\'ametros en conjunto. Cabe notar al tratarse de un algorimto más veloz que el primer caso, los errores de cálculo de tiempo son aún mayores por lo cual no resulta simple obtener una conclusión demasiado fiable. Sin embargo, se puede ver que la función $f(n,m) = n/8 + m/72 \in O(n + m)$ resulta una estimación aceptable para $T(n,m)$. Al igual que antes, podemos concluir que la complejidad teórica total del algoritmo calculada tiene directa relación con los resultados obtenidos.
 
@@ -330,21 +329,21 @@ Esto se debe a que, al pertenecer $K_{3}-1$ a la vecindad de $v$, el grafo origi
 Viendo esto, basta probar que si existe un v\'ertice $v$ tal que su vecindad $N(v)$ tiene una componente conexa no completa entonces dicha componente contiene un $K_{3}-1$. Para esto, mostraremos ahora que todo grafo $G$ conexo y no completo contiene un $K_{3}-1$ (propiedad 2).
 
 Como $G$ no es completo pero si conexo, existen dos nodos $a$ y $z$ tal que no son adyacentes y existe un camino entre ellos. Sea $b$ un nodo adyacente a $a$ que pertenece al camino entre $a$ y $z$. $b$ es distinto de $z$ ya que si fueran iguales $a$ y $z$ ser\'ian adyacentes y eso es absurdo por hipotesis. Ahora tomamos un nodo adyacente a $b$ que tambi\'en pertenezca al camino entre $a$ y $z$ al que llamaremos $c$. Este nodo puede ser igual a $z$ (en caso de que el camino tenga longitud dos) o un nodo intermedio en el camino entre $a$ y $z$. Si $c$ es igual a $z$ entonces me puedo formar un $K_{3}-1$ ya que $a$ es adyacente a $b$, $b$ es adyacente a $z$ y $z$ no es adyacente a $a$ por hipotesis:
-\begin{center}
- \includegraphics[width=0.34\textwidth]{Grafos/ej2figura1-1.png}
-\end{center}
+% \begin{center}
+%  \includegraphics[width=0.34\textwidth]{Grafos/ej2figura1-1.png}
+% \end{center}
 Si $c$ es distinto de $z$ entonces tenemos dos casos: si $c$ no es adyacente a $a$ entonces podemos formar un $K_{3}-1$ con dichos nodos:
-\begin{center}
- \includegraphics[width=0.6\textwidth]{Grafos/ej2figura1-2.png}
-\end{center}
+% \begin{center}
+%  \includegraphics[width=0.6\textwidth]{Grafos/ej2figura1-2.png}
+% \end{center}
 Si $c$ si es adyacente a $a$, entonces no podemos formar un $K_{3}-1$ entre $a$ $b$ y $c$:
-\begin{center}
- \includegraphics[width=0.6\textwidth]{Grafos/ej2figura1-3.png}
-\end{center}
+% \begin{center}
+%  \includegraphics[width=0.6\textwidth]{Grafos/ej2figura1-3.png}
+% \end{center}
 En este \'ultimo caso tomamos como nuevo nodo $b$ a $c$ (es adyacente a $a$ y pertenece al camino entre $a$ y $z$) y como nuevo nodo $c$ a un nodo adyacente a $c$ que pertenezca al camino entre $a$ y $z$ y todavia no haya sido recorrido (siguiendo el orden alfabetico seria el nodo $d$). Nuevamente caemos en el caso anterior, donde la posibilidad de poder armar un $K_{3}-1$ depende de si $d$ es adyacente o no a $a$. Si no es posible obtener un $K_{3}-1$ con el nodo $d$ (debido a que $d$ es adyacente a $a$), seguiremos avanzando los dos nodos pertenecientes al camino entre $a$ y $z$ hasta llegar a que el primero de los dos es el nodo anterior a $z$ (lo llamaremos $y$) del camino y el segundo nodo es igual a $z$. En este caso, siempre es posible armar un $K_{3}-1$ ya que $z$ no es adyacente a $a$ por hipotesis:
-\begin{center}
- \includegraphics[width=0.85\textwidth]{Grafos/ej2figura1-4.png}
-\end{center}
+% \begin{center}
+%  \includegraphics[width=0.85\textwidth]{Grafos/ej2figura1-4.png}
+% \end{center}
 Finalmente hemos probado que si existe un v\'ertice $v$ de $G$ tal que su vecindad $N(v)$ tiene una componente conexa no completa entonces dicha componente contiene un $K_{3}-1$ (por 2), y esto implica que $G$ contiene un subgrafo diamante como subgrafo inducido (por 1).
 
 \item $q \Longrightarrow p$
@@ -352,13 +351,13 @@ Finalmente hemos probado que si existe un v\'ertice $v$ de $G$ tal que su vecind
 Por propiedades de la l\'ogica $q \Longrightarrow p$ equivale a mostrar $-p \Longrightarrow -q$. De esta manera, probaremos aqu\'i que si $G$ contiene un subgrafo diamante como subgrafo inducido entonces existe un v\'ertice $v$ tal que su vecindad $N(v)$ contiene una componente conexa no completa.
 
 Sea $G$ un grafo que contiene un subgrafo diamante como subgrafo inducido. Sea $G_{D}$ el subgrafo diamante de $G$:
-\begin{center}
- \includegraphics[width=0.34\textwidth]{Grafos/ej2figura2-1.png}
-\end{center}
+% \begin{center}
+%  \includegraphics[width=0.34\textwidth]{Grafos/ej2figura2-1.png}
+% \end{center}
 Si tomo uno de los dos nodos de $G_{D}$ de grado tres, que llamaremos $v$, su vecindad $N_{G_{D}}(v)$ sera:
-\begin{center}
- \includegraphics[width=0.34\textwidth]{Grafos/ej2figura2-2.png}
-\end{center}
+% \begin{center}
+%  \includegraphics[width=0.34\textwidth]{Grafos/ej2figura2-2.png}
+% \end{center}
 Podemos ver entonces que $N_{G_{D}}(v)$ tiene una \'unica componente conexa y esta no es completa ya que los dos nodos de grado dos del diamante (en la figura llamados $u$ y $w$) no son adyacentes.
 
 Sea $v$ uno de los dos nodos de grado tres del subgrafo diamante de $G$ y $u$ y $w$ los dos nodos de grado dos de dicho diamante. Si tomo la vecindad $N(v)$ de $v$, como $u$ y $w$ son adyacentes a $v$ (pertenecen al diamante) entonces pertenecen a $N(v)$. Ademas como $u$ y $w$ son los nodos de grado dos del subgrafo diamante entonces no son adyacentes en $G$. Como $u$ y $w$ no son adyacentes en $G$ tampoco lo ser\'an para ningun subgrafo inducido de $G$, en particular para $N(v)$. De esta manera la componente conexa de $N(v)$ que contiene al diamante no es completa.
@@ -579,24 +578,24 @@ $$t=2m+1\log(n)>m\log(n)$$
 En la presente secci\'on se mostrar\'an los an\'alisis realizados para grafos con distinta cantidad de nodos. El enfoque principal de las pruebas radica en estudiar los tiempos de ejecuci\'on del algoritmo para casos aleatorios y estudiar el comportamiento para los peores casos. Con este fin se implement\'o un algoritmo que genera grafos aleatorios de $n$ cantidad de nodos, siendo $n$ el par\'ametro de dicha funci\'on. De esta manera, utilizando dicho algoritmo para distintos valores de $n$, se contrastaron los tiempos de ejecuci\'on con la cota estudiada. Como se mencion\'o en la secci\'on anterior, la complejidad del algoritmo es $O(n*m)$ pero a fin de estudiar los resultados acotaremos esta complejidad a $O(n^{3})$ ya que en cualquier grafo la cantidad de aristas $m$ est\'a acotada por $n*(n-1)/2$ es decir, $m$ es del orden de $n^{2}$. Esta acotaci\'on aporta simplicidad al estudio de resultados, sin embargo, como el algoritmo tiene una cota menor se espera que los tiempos de ejecuci\'on tengan un crecimiento menor que c\'ubico (en relaci\'on a la cantidad de nodos).
 
 La primera prueba realizada consisti\'o en generar grafos aleatorios variando su cantidad de nodos entre $1$ y $500$. Para cada grafo se estudi\'o su tiempo de ejecuci\'on y a continuaci\'on se presentan los resultados obtenidos.
-
-\begin{center}
- \includegraphics[width=0.7\textwidth]{Plots/Tp2Ej2-Complejidad.png}
-\begin{center}
-Figura 2.1
-\end{center}
-\end{center}
+% 
+% \begin{center}
+%  \includegraphics[width=0.7\textwidth]{Plots/Tp2Ej2-Complejidad.png}
+% \begin{center}
+% Figura 2.1
+% \end{center}
+% \end{center}
 
 Como se puede apreciar en el gr\'afico, el crecimiento de los tiempos de ejecuci\'on del algoritmo es ligeramente inferior a la cota te\'orica propuesta. Como se mencion\'o anteriormente, esto se corresponde con lo esperado, ya que para este an\'alisis de utiliz\'o una cota mayor a la del algoritmo ($O(n^{3})$). Adem\'as se pueden apreciar irregularidades en la curva obtenida, lo que indica que el tiempo que se tarda en encontrar un diamante en un determinado grafo, adem\'as de depender de la cantidad de nodos, est\'a determinado por la disposici\'on de las aristas del mismo. Es decir, por la forma en la que est\'a hecho el algoritmo, el tiempo de ejecuci\'on va a depender de la cantidad de componentes conexas en las que tenga que buscar el diamante m\'inimo, para cada vecindad de cada nodo. Los peores casos se dar\'an en grafos en los que se busque un diamante en la mayor\'ia de las componentes conexas de cada vecindad. Estos casos hacen que las optimizaciones del algoritmo, que descartan la b\'usqueda de un diamante m\'inimo en ciertas componentes conexas, sean ineficientes. 
 
 A continuaci\'on presentaremos alguno de estos casos ``patol\'ogicos'' y se ver\'a por qu\'e no se aplican las optimizaciones.
 
-\begin{center}
- \includegraphics[width=0.7\textwidth]{Grafos/grafomati.png}
-\begin{center}
-Figura 2.2
-\end{center}
-\end{center}
+% \begin{center}
+%  \includegraphics[width=0.7\textwidth]{Grafos/grafomati.png}
+% \begin{center}
+% Figura 2.2
+% \end{center}
+% \end{center}
 
 Como se puede observar en el grafo presentado, la vecindad del nodo $1$ tiene varias componentes conexas que forman un diamante, ya que ninguna es completa. Por esta raz\'on, se deben estudiar todas las componentes conexas para encontrar el diamante m\'inimo. Sin embargo, podr\'ia darse el caso en que el algoritmo implementado no tenga que buscar el diamante m\'inimo para todas debido a que el m\'inimo nodo de una componente conexa (llamado nodoMinimoCompConexa en la secci\'on algoritmo) es menor que el m\'inimo nodo de las otras componentes. Esto suceder\'ia, por ejemplo, si el algoritmo comenzara a estudiar la componente conexa que comienza con el nodo $2$. Por el contrario, en el caso en que comenzara por la componente conexa que tiene el nodo $5$ y recorriera de derecha a izquierda las componentes conexas del gr\'afico, se tendr\'ia que calcular el m\'inimo diamante para todas las componentes, por lo que la cantidad de operaciones ser\'ia mayor. La forma en que se recorren las componentes conexas depende exclusivamente del orden de las listas de adyacencias pasadas como par\'ametro, por lo que la aparici\'on de estos peores casos estar\'a ligada a esta distribuci\'on. 
 
@@ -708,14 +707,14 @@ De esta manera podemos concluir que $T$ es un \'arbol generador m\'inimo de $G$,
 
 Nuevamente encararemos esta demostraci\'on por el absurdo. Supongamos entonces que $T$ es \'arbol generador (conteniendo las aristas de Astor) no m\'inimo de $G$ y que existe un grafo $S$ distinto de $T$ que si lo es. Sea $e$ la primer arista elegida por el algoritmo que pertenece a $T$ pero no a $S$. Como $e$ no pertenece a $S$, entonces si a $S$ le agrego la arista $e$ (notado $S+e$) $S+e$ contendr\'a un ciclo. Adem\'as existe $e'$ perteneciente al ciclo formado en $S$ tal que $e'$ no pertenece a $T$. Esto sucede porque si $e'$ perteneciera a $T$ entonces tendria un ciclo lo que es absurdo porque es \'arbol:
 
-\begin{center}
- \includegraphics[width=0.22\textwidth]{Grafos/ej3figura1.png}
-\hspace{100pt}
- \includegraphics[width=0.22\textwidth]{Grafos/ej3figura2.png}
-\begin{center}
- Grafo $T$ \hspace{160pt} Grafo $S$
-\end{center}
-\end{center}
+% \begin{center}
+%  \includegraphics[width=0.22\textwidth]{Grafos/ej3figura1.png}
+% \hspace{100pt}
+%  \includegraphics[width=0.22\textwidth]{Grafos/ej3figura2.png}
+% \begin{center}
+%  Grafo $T$ \hspace{160pt} Grafo $S$
+% \end{center}
+% \end{center}
 
 En el ejemplo mostrado $e$ ser\'ia la arista (3,4) y $e'$ ser\'ia (2,4). Sea $S'=S+e-e'$, de esta manera $S'$ es \'arbol generador de $G$. Si $l(e')<l(e)$ ($l(e)=$ peso de la arista $e$) llego a un absurdo. Esto se puede ver porque $S$ contiene todas las aristas anteriores a $e$ m\'as $e'$ y no se forma un ciclo en dicho grafo, por consiguente el algoritmo que va armando el grafo $T$ hubiese elegido a $e'$ en lugar de $e$ y esto es absurdo porque dijimos que $e'$ no pertenece a $T$. Entonces tenemos que $l(e')\geq l(e)$. Podemos apreciar entonces que el peso de $S'$ es a lo sumo igual al de $S$, pero no puede ser menor porque $S$ es AGM. Esto implica que $S'$ tiene el mismo peso que $S$ y entonces tambien es \'arbol generador m\'inimo de $G$ (conteniendo las aristas prefijadas), m\'as a\'un, $S'$ tiene una arista m\'as en com\'un con $T$ que $S$. Repitiendo este paso para todas las aristas distintas entre $T$ y $S$ (como m\'aximo ser\'an $l-f-1$ pasos, donde $l$ es la cantidad de nodos y $f$ la cantidad de pares fijados por Astor), se llegar\'a a un grafo \'arbol generador m\'inimo de $G$ con las mismas aristas de $T$, lo que es absurdo porque partimos de que $T$ no es m\'inimo.
 
@@ -819,26 +818,26 @@ Para realizar los tiempos de ejecuci\'on, se implement\'o un algoritmo que gener
 
 A continuaci\'on se presentan los resultados de las pruebas realizadas para instancias aleatorias, variando la cantidad de locales y manteniendo fija la cantidad de pares fijado por Astor en $4$, $20$ y $50$.
 
-\begin{center}
- \includegraphics[width=0.7\textwidth]{Plots/Tp2Ej3-Complejidad.png}
-\begin{center}
-Figura 3.1
-\end{center}
-\end{center}
-
-\begin{center}
- \includegraphics[width=0.7\textwidth]{Plots/Tp2Ej3-Complejidad-20.png}
-\begin{center}
-Figura 3.2
-\end{center}
-\end{center}
-
-\begin{center}
- \includegraphics[width=0.7\textwidth]{Plots/Tp2Ej3-Complejidad-50.png}
-\begin{center}
-Figura 3.3
-\end{center}
-\end{center}
+% \begin{center}
+%  \includegraphics[width=0.7\textwidth]{Plots/Tp2Ej3-Complejidad.png}
+% \begin{center}
+% Figura 3.1
+% \end{center}
+% \end{center}
+% 
+% \begin{center}
+%  \includegraphics[width=0.7\textwidth]{Plots/Tp2Ej3-Complejidad-20.png}
+% \begin{center}
+% Figura 3.2
+% \end{center}
+% \end{center}
+% 
+% \begin{center}
+%  \includegraphics[width=0.7\textwidth]{Plots/Tp2Ej3-Complejidad-50.png}
+% \begin{center}
+% Figura 3.3
+% \end{center}
+% \end{center}
 
 Como se puede apreciar, en las figuras $3.1$, $3.2$ y $3.3$ el crecimiento de la funci\'on que mide el tiempo de ejercuci\'on es similar, a pesar de que, a mayor cantidad de locales fijados por Astor, los tiempos se vuelven m\'as irregulares. La similitud en el crecimiento de los gr\'aficos se debe a que el tiempo que tarda algoritmo depende sobre todo de la disposici\'on de las aristas fijadas por Astor y de la forma en que se van agregando las aristas durante el algoritmo de Kruskal, y no tanto de la cantidad de aristas recibidas. Es decir, si se mantiene fija la cantidad de aristas de Astor y se aumenta significativamente la cantidad de locales totales, la incidencia de este par\'ametro en el tiempo de ejecuci\'on ser\'a m\'inima.
 
@@ -846,12 +845,12 @@ Es importante observar que en las figuras presentadas el crecimiento de la funci
 
 Seg\'un lo mencionado anteriormente, se puede deducir que los peores casos ser\'an aquellos en los que agregar una arista al \'arbol resultado implique unir componentes conexas y, por lo tanto, tener que cambiar la estructura que guarda el n\'umero de componente conexa de cada nodo (llamada ComponentesConexas en la secci\'on ``Algoritmo``). A continuaci\'on presentaremos un ejemplo de peor caso y lo explicaremos en detalle.
 
-\begin{center}
- \includegraphics[width=0.6\textwidth]{Grafos/ej3peorcaso.png}
-\begin{center}
-Figura 3.4
-\end{center}
-\end{center}
+% \begin{center}
+%  \includegraphics[width=0.6\textwidth]{Grafos/ej3peorcaso.png}
+% \begin{center}
+% Figura 3.4
+% \end{center}
+% \end{center}
 
 En primer lugar, se deben hacer ciertas aclaraciones: 
 \begin{itemize}
