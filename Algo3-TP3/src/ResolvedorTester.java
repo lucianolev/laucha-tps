@@ -11,7 +11,7 @@ public class ResolvedorTester {
 	public static void main(String[] args) throws IOException {
 	
 	//medicionesBL("hasta2000.out");
-	medicionesBL("tiempooos.out");
+//	medicionesBL("tiempooos.out");
 
 //		generarGrafosDePrueba(3);
 //		int tamGrafo = 30;
@@ -65,7 +65,9 @@ public class ResolvedorTester {
 //		medicionesExacto("tiemposExacto.txt");
 //		medicionesHC("tiemposHC.txt");
 //		medicionesBL("tiemposBL.txt");
-		
+
+		optimizarCantIterParaAlfa("pesosCantIterParaAlfa.txt", 0.2);
+
 		return;
 	}
 	
@@ -217,7 +219,86 @@ public class ResolvedorTester {
 			}
 		}
 	}
-	
+
+	public static void optimizarCantIterParaAlfa(String archivoSalida, double alfa) throws IOException {
+		BufferedWriter outputStream = null;
+		try {
+			outputStream = new BufferedWriter(new FileWriter(archivoSalida));
+
+			for(int i = 10; i <= 300 ; i += 10) {
+				String line = new String();
+				line += i;
+				
+				Solucion solucion = null;
+				LectorDeGrafos lector = new LectorDeGrafos("../grafos/grafos600md.in");
+
+				while(lector.quedanGrafos()) {
+					GrafoNPonderados grafo = lector.dameProximoGrafo();
+					ResolvedorCIPM resolvedor = new ResolvedorCIPM(grafo);
+					solucion = resolvedor.grasp(i, alfa, 1000);
+					line += " "+solucion.peso();
+				}
+				outputStream.write(line, 0, line.length());
+				outputStream.newLine();
+			}
+
+		}
+		finally {
+			if (outputStream != null) {
+				System.out.println("Se han guardado los resultados en el archivo "+archivoSalida);
+				outputStream.close();
+			}
+		}
+	}
+
+	public static void medicionesGrasp(String archivoSalida, double alfa, int cantIterGrasp) throws IOException {
+		BufferedWriter outputStream = null;
+		try {
+			
+			outputStream = new BufferedWriter(new FileWriter(archivoSalida));
+			GrafoNPonderados grafo = null;
+			ResolvedorCIPM resolvedor = null;
+			
+			for(int i = 10; i <= 1000; i += 10) {
+				String line = new String();
+				grafo = new GrafoNPonderados(i,0.2);
+				resolvedor = new ResolvedorCIPM(grafo);
+				long inicio = System.nanoTime();
+				resolvedor.grasp(cantIterGrasp, alfa, 1000);
+				long fin = System.nanoTime();
+				long tiempo = (fin - inicio)/1000;
+				line += i+" "+tiempo;
+				
+				grafo = new GrafoNPonderados(i,0.5);
+				resolvedor = new ResolvedorCIPM(grafo);
+				inicio = System.nanoTime();
+				resolvedor.grasp(cantIterGrasp, alfa, 1000);
+				fin = System.nanoTime();
+				tiempo = (fin - inicio)/1000;
+				line += " "+tiempo;
+				
+				grafo = new GrafoNPonderados(i,0.8);
+				resolvedor = new ResolvedorCIPM(grafo);
+				inicio = System.nanoTime();
+				resolvedor.grasp(cantIterGrasp, alfa, 1000);
+				fin = System.nanoTime();
+				tiempo = (fin - inicio)/1000;
+				line += " "+tiempo;
+				
+				outputStream.write(line, 0, line.length());
+				outputStream.newLine();
+			}
+			
+		}
+		
+		finally {
+			if (outputStream != null) {
+				System.out.println("Se guardaron los tiempos para la BL en el archivo "+archivoSalida);
+				outputStream.close();
+			}
+		}
+	}
+
 	public static void compararHCBL(String archivoSalida) throws IOException  {
 		
 		BufferedWriter outputStream = null;
@@ -316,7 +397,7 @@ public class ResolvedorTester {
 			archivos[8] = "grafos600ad.in";
 
 			for(int i = 0; i < 9 ; i++) { 
-				LectorDeGrafos lector = new LectorDeGrafos("../grafos/"+archivos[i]);				
+				LectorDeGrafos lector = new LectorDeGrafos("../grafos/"+archivos[i]);
 				while(lector.quedanGrafos()) {
 					 GrafoNPonderados elgrafo = lector.dameProximoGrafo();
 					 ResolvedorCIPM resolvedor = new ResolvedorCIPM(elgrafo);
