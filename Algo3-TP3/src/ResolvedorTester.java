@@ -15,30 +15,30 @@ public class ResolvedorTester {
 
 //		generarGrafosDePrueba(3);
 		
-		int tamGrafo = 800;
-		double alfaRCL = 0.2;
-		double densidad = 0.5;
-		int cantIteracionesLocal = 1000;
-		
-		GrafoNPonderados elgrafo = new GrafoNPonderados(tamGrafo, densidad);
-		
-		ResolvedorCIPM resolvedor = new ResolvedorCIPM(elgrafo);
-		
-		//grasp
-		long inicio = System.currentTimeMillis();
-		Solucion solucionGrasp = resolvedor.grasp(50, alfaRCL, cantIteracionesLocal);
-		long fin = System.currentTimeMillis();
-		//DEBUG
-		System.out.println("Solucion GRASP con 50 iters: "+solucionGrasp.peso());
-		//solucionGrasp.mostrarSolucion(elgrafo);
-		System.out.println("Tiempo: "+(fin - inicio));
-		
-		//grasp
-		solucionGrasp = resolvedor.grasp(1000, alfaRCL, cantIteracionesLocal);
-		//DEBUG
-		System.out.println("Solucion GRASP con 1000 iters: "+solucionGrasp.peso());
-		//solucionGrasp.mostrarSolucion(elgrafo);
-		System.out.println("Tiempo: "+(fin - inicio));
+//		int tamGrafo = 800;
+//		double alfaRCL = 0.2;
+//		double densidad = 0.5;
+//		int cantIteracionesLocal = 1000;
+//		
+//		GrafoNPonderados elgrafo = new GrafoNPonderados(tamGrafo, densidad);
+//		
+//		ResolvedorCIPM resolvedor = new ResolvedorCIPM(elgrafo);
+//		
+//		//grasp
+//		long inicio = System.currentTimeMillis();
+//		Solucion solucionGrasp = resolvedor.grasp(50, alfaRCL, cantIteracionesLocal);
+//		long fin = System.currentTimeMillis();
+//		//DEBUG
+//		System.out.println("Solucion GRASP con 50 iters: "+solucionGrasp.peso());
+//		//solucionGrasp.mostrarSolucion(elgrafo);
+//		System.out.println("Tiempo: "+(fin - inicio));
+//		
+//		//grasp
+//		solucionGrasp = resolvedor.grasp(1000, alfaRCL, cantIteracionesLocal);
+//		//DEBUG
+//		System.out.println("Solucion GRASP con 1000 iters: "+solucionGrasp.peso());
+//		//solucionGrasp.mostrarSolucion(elgrafo);
+//		System.out.println("Tiempo: "+(fin - inicio));
 		
 		//compararHCBL("tablaPrueba.txt");
 		//pruebasGrasp("testsGrasps.out", 30);
@@ -50,6 +50,7 @@ public class ResolvedorTester {
 //		medicionesBL("tiemposBL.txt");
 
 		//optimizarCantIterParaAlfa("pesosCantIterParaAlfa.txt", 0.2);
+		medicionesGrasp("tiemposGrasp.txt", 0.2, 70);
 
 		return;
 	}
@@ -236,7 +237,7 @@ public class ResolvedorTester {
 			GrafoNPonderados grafo = null;
 			ResolvedorCIPM resolvedor = null;
 			
-			for(int i = 10; i <= 1000; i += 10) {
+			for(int i = 10; i <= 800; i += 10) {
 				String line = new String();
 				grafo = new GrafoNPonderados(i,0.2);
 				resolvedor = new ResolvedorCIPM(grafo);
@@ -264,6 +265,8 @@ public class ResolvedorTester {
 				
 				outputStream.write(line, 0, line.length());
 				outputStream.newLine();
+				
+				System.out.println("hice grasp con grafos de tamaño "+i);
 			}
 			
 		}
