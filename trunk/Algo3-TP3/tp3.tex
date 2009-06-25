@@ -198,9 +198,18 @@ $$t=\log(n)+\log(m)+\sum_{i=1}^{n}\sum_{j=1}^{m}\log(M_{i,j})>\log(n)+\log(m)+\s
 
 \section*{An\'alisis de resultados}
 
-Con el fin de analizar la complejidad de los algoritmos propuestos (fumigaci\'on y c\'alculo de litros por zona) se realizaron varias pruebas. Estos experimentos est\'an orientados a estudiar el tiempo de ejecuci\'on del mismo en relaci\'on a los datos de entrada, comparando el costo real de los algoritmos junto con su complejidad te\'orica calculada. Para cada algoritmo se ver\'an 3 gr\'aficos distintos. El primero de ellos servir\'a para analizar la complejidad con respecto a los litros, es decir, fijando la cantidad de zonas. Reciprocamente, el segundo ser\'a en base a la cantidad de zonas con una cantidad fija de litros. Por \'ultimo, el tercer gr\'afico en 3 dimensiones mostrar\'a como se comporta el algoritmo considerando ambas variables en conjunto.
+El siguiente analisis est\'a orientado a estudiar el tiempo de ejecuci\'on del algoritmo exacto en relaci\'on a los datos de entrada (cantidad de nodos de los grafos), comparando el costo real del algoritmo junto con su complejidad te\'orica calculada. Como vimos anteriormente el m\'etodo exacto tiene una alta complejidad temporal por lo que, al momento de realizar las mediciones, se utilizaron grafos en los que su cantidad de nodos var\'ia entre 1 y 35.
 
-A continuaci\'on se describir\'an las caracter\'isticas de las instancias utilizadas para las pruebas as\'i como las particularidades de cada experimento. Dichas cuestiones son comunes al analisis de ambos algoritmos por lo que no haremos referencia a ninguno en particular. M\'as adelante analizaremos resultados de estos experimentos aplicado a cada uno de los algoritmos.
+En cuanto al tipo de grafos utilizados, se opt\'o por analizar el comportamiento del algoritmo sobre grafos con distintas densidades. De esta manera, para cada grafo de un mismo tama\~{n}o, se realizaron tres pruebas, variando entre altas, medias y bajas densidades.
+
+Los resultados arrojados fueron los siguientes:
+
+\begin{center}
+ \includegraphics[width=0.9\textwidth]{graficos/tiemposExacto.png}
+\begin{center}
+Figura 1.1
+\end{center}
+\end{center}
 
 Para las instancias de prueba se utiliz\'o la funci\'on \textit{random} del lenguaje para generar matrices de \textit{mosquitosMuertos}) de tamaño $zonas*litros$ con valores aleatorios comprendidos entre $1$ y $10000$ con el fin de garantizar que las pruebas resulten lo suficientemente gen\'ericas como para poder obtener resultados ``interesantes''. Cabe mencionar que no se har\'an estudios sobre instancias particulares ya que, como se mencion\'o antes, el costo de ejecuci\'on del algoritmo de \textit{fumigaci\'on} no depende de los valores de la matriz de entrada que conforma cada instancia.
 
