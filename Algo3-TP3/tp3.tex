@@ -198,9 +198,11 @@ En la presente secci\'on se calcular\'a la complejidad en el peor caso del algor
 
 \section*{An\'alisis de resultados}
 
-El siguiente analisis est\'a orientado a estudiar el tiempo de ejecuci\'on del algoritmo exacto en relaci\'on a los datos de entrada (cantidad de nodos de los grafos), comparando el costo real del algoritmo junto con su complejidad te\'orica calculada. Como vimos anteriormente el m\'etodo exacto tiene una alta complejidad temporal por lo que, al momento de realizar las mediciones, se utilizaron grafos en los que su cantidad de nodos var\'ia entre 1 y 35.
+El siguiente analisis est\'a orientado a estudiar el tiempo de ejecuci\'on del algoritmo exacto en relaci\'on a los datos de entrada (cantidad de nodos de los grafos), comparando el costo real del algoritmo junto con su complejidad te\'orica calculada. Como vimos anteriormente el m\'etodo exacto tiene una alta complejidad temporal por lo que, al momento de realizar las mediciones, se utilizaron grafos en los que su cantidad de nodos var\'ia entre 1 y 36.
 
-En cuanto al tipo de grafos utilizados, se opt\'o por analizar el comportamiento del algoritmo sobre grafos con distintas densidades. De esta manera, para cada grafo de un mismo tama\~{n}o, se realizaron tres pruebas, variando entre altas, medias y bajas densidades.
+En cuanto al tipo de grafos utilizados, se opt\'o por analizar el comportamiento del algoritmo sobre grafos con distintas densidades debido a que la cantidad de conjuntos independientes se modifica notablemente seg\'un este par\'ametro. De esta manera, para cada grafo de un mismo tama\~{n}o, se realizaron tres pruebas, variando entre altas, medias y bajas densidades.
+
+Cabe mencionar que los grafos sobre los que se aplic\'o el algoritmo fueron generados aleatoriamente y que el tiempo de ejecuci\'on del mismo fue calculado mediante el uso de la funci\'on \textit{nanoTime()} de Java.
 
 Los resultados arrojados fueron los siguientes:
 
@@ -211,74 +213,9 @@ Figura 1.1
 \end{center}
 \end{center}
 
-Para las instancias de prueba se utiliz\'o la funci\'on \textit{random} del lenguaje para generar matrices de \textit{mosquitosMuertos}) de tamaño $zonas*litros$ con valores aleatorios comprendidos entre $1$ y $10000$ con el fin de garantizar que las pruebas resulten lo suficientemente gen\'ericas como para poder obtener resultados ``interesantes''. Cabe mencionar que no se har\'an estudios sobre instancias particulares ya que, como se mencion\'o antes, el costo de ejecuci\'on del algoritmo de \textit{fumigaci\'on} no depende de los valores de la matriz de entrada que conforma cada instancia.
+Como se puede apreciar en el gr\'afico, el tiempo de ejecuci\'on del algoritmo aplicado sobre los distintos grafos seleccionados se comporta de acuerdo a la complejidad te\'orica estimada. Adem\'as, podemos ver que se mantiene muy alejado de la cota para el peor caso ($3^{n}$).
 
-En primer lugar, se hicieron c\'alculos utilizando como variable la cantidad de zonas a fumigar, fijando en $10$ los litros disponibles. El rango de zonas analizados es desde $1$ hasta $10000$ zonas, de a intervalos de tamaño $10$. La elecci\'on de estos valores fue producto del an\'alisis de 2 cuestiones importantes: que n\'umeros permitir\'ian tomar muestras utiles para la realizaci\'on de los gr\'aficos y cual era la m\'axima cantidad de datos que nuestra aplicaci\'on podr\'ia manejar, acotada por el tiempo disponible para realizar las pruebas y las limitacion propias de la m\'aquina en cuesti\'on. Empiricamente, se comprob\'o que dicho rango de zonas permit\'ia correr la aplicaci\'on en un tiempo razonable y al mismo tiempo proveer datos interesantes para el an\'alisis en cuesti\'on. Del mismo modo, fijar en 10 los litros asegur\'o que sea la cantidad de zonas el par\'ametro ponderante en el c\'alculo de tiempo de ejecuci\'on.
-
-La segunda prueba resulta muy similar a la anterior en cuanto al rango de valores utilizados. La diferencia radica en que ahora el par\'ametro fijado es la cantidad de zonas en vez de la cantidad de litros, variando los litros en el rango $1$ hasta $10000$, de a intervalos de tamaño $10$ (al igual que en la prueba anterior).
-
-La tercer y \'ultima prueba consisti\'o en analizar el algoritmo considerando ambas variables en conjunto, de modo de poder comparar el tiempo de ejecuci\'on para distintos valores de zonas y litros junto con la complejidad te\'orica que depende de estos dos par\'ametros. Para esta prueba se tomaron valores de zonas y litros entre $1$ y $1000$, de a intervalos de tamaño $100$ (10 valores posibles). Luego, se calcularon los tiempos de ejecuci\'on de todas las permutaciones de los 10 elementos pertenecientes a dicho conjunto de manera tal de obtener resultados para las combinaciones de litros y zonas dentro del intervalo mencionado.
-
-A continuaci\'on se presentar\'an los gr\'aficos realizados para cada algoritmo utilizando estas 3 pruebas descriptas.
-
-\subsection*{Fumigaci\'on}
-
-Como se vi\'o anteriormente, la primer parte del problema consist\'ia en calcular la m\'axima cantidad de mosquitos muertos para una instancia determinada. Los siguientes gr\'aficos muestran el comportamiento de este algoritmo en base a los dos par\'ametros de entrada de manera independiente:
-
-% \begin{center}
-%  \includegraphics[width=0.7\textwidth]{Plots/Tp2Ej1-TiemposFumigacionPorZonas-10litros-bw.png}
-% \begin{center}
-% Figura 1.1
-% \end{center}
-%  \includegraphics[width=0.7\textwidth]{Plots/Tp2Ej1-TiemposFumigacionPorLitros-10zonas-bw.png}
-% \begin{center}
-% Figura 1.2
-% \end{center}
-% \end{center}
-
-Ambos gr\'aficos permiten observar algunas cuestiones interesantes. La Figura 1.1 permite observar como el comportamiento del algoritmo de \textit{fumigaci\'on} con respecto a la cantidad de zonas se asimila a una funci\'on lineal, hecho que se corresponde con la complejidad calculada anteriormente. Del mismo modo, la Figura 1.2 muestra como la funci\'on T(n) que representa el tiempo de ejecuci\'on se comporta pr\'acticamente igual que la funci\'on $f(n) = n^2/19 \in O(n^2)$. Este hecho demuestra emp\'iricamente que la complejidad con respecto a la cantidad de litros es cuadr\'atica al realizar la fumigaci\'on tal como se hab\'ia analizado anteriormente.
-
-Otras cuesti\'on observable son los ``picos'' y variaciones abrutas en ambos gr\'aficos. En principio, esto no deber\'ia ocurrir ya que la complejidad no depende de la forma de la entrada como se mencion\'o anteriormente. El motivo de esto radica simplemente en los errores de precisi\'on en la medici\'on de las operaciones propios de las limitaciones de la m\'aquina de c\'omputo utilizada. Los tiempos de ejecuci\'on del algoritmo son mucho mayores en la Figura 1.2 lo que resulta en una mayor estabilidad en los c\'alculo de tiempo, en contraste con la Figura 1.1 donde hay mayor impresici\'on porque dicho gr\'afico refleja cambios de valores m\'as abrutos.
-% 
-% \begin{center}
-%  \includegraphics[width=0.7\textwidth]{Plots/Tp2Ej1-TiemposFumigacion-3d-bw.png}
-% \begin{center}
-% Figura 1.3
-% \end{center}
-% \end{center}
-
-Esta \'ultima figura permite ver como el algoritmo en su totalidad realmente se comporta de la forma esperada. 
-Para esto basta comparar los tiempos de ejecuci\'on al variar ambos par\'ametros (litros y zonas) junto con la funci\'on $f(n,m) = n*m^2/200 \in O(n*m^2)$ viendo que ambas ``mantas'' coiniciden. Este ultimo hecho constituye la \'ultima prueba de que empir\'icamente el algoritmo funciona tal como se esperaba.
-
-\subsection*{C\'alculo de Litros Por Zona}
-
-En esta secci\'on analizaremos el comportamiento del otro algortimo propuesto que se encarga de dar parte de la soluci\'on del problema: el algoritmo encargado de calcular los litros a utilizar por cada zona. Los siguientes gr\'aficos muestran el comportamiento del mismo en base a las dos variables en cuesti\'on de forma independiente:
-
-% \begin{center}
-%  \includegraphics[width=0.7\textwidth]{Plots/Tp2Ej1-TiemposLitrosPorZonaPorZonas-10litros-bw.png}
-% \begin{center}
-% Figura 2.1
-% \end{center}
-%  \includegraphics[width=0.7\textwidth]{Plots/Tp2Ej1-TiemposLitrosPorZonaPorZonas-10zonas-bw.png}
-% \begin{center}
-% Figura 2.2
-% \end{center}
-% \end{center}
-
-Como se puede observar, en ambos casos, el comportamiento del algoritmo es el esperado. La Figura 2.1 muestra como el c\'alculo de litros por zona se ``corresponde'' con el gr\'afico de la funci\'on lineal $f(n) = n/25$ al variar la cantidad de zonas y fijar los litros en $10$. As\'imismo, la Figura 2.2 se comporta de la forma $f(n) = n/75$ al variar los litros y fijar las zonas. Esto comprueba la linealidad en complejidad te\'orica analizada previamente para ambas variables. Un punto interesante a observar es que las constantes que acompañan a estas funciones difieren, siendo la constante relacionada al primer gr\'afico ($1/25$) 3 veces mayor que la otra ($1/75$). Al tratarse de instancias de igual tamaño (en ambos casos, matrices desde $1*10$ hasta $10000*10$), se puede concluir que la \textit{performance} de este algoritmo depende en mayor medida de la cantidad de zonas que de la cantidad de litros. En otras palabras, para instancias de igual tamaño, un caso demora 3 veces m\'as el otro. Si bien se intentó buscar una explicación a este fenómeno, se concluyó que resulta muy complejo observar cual es la causa de esta particularidad, principalmente porque se está trabajando con instancias aleatorias con parámetros arbitrarios.
-
-Con respecto a la irregularidad del gr\'afico, cabe notar que, a diferencia del algoritmo anterior, este algoritmo no realiza siempre la misma cantidad de operaciones para instancias de igual tamaño tal como se vi\'o en la secci\'on de an\'alisis de complejidad, ya que el recorrido inverso de la matriz resultante depende justamente de los valores que esta contenga que dependen a su vez de los valores de la matriz de entrada \textit{mosquitosMuertos} (ver secci\'on \textit{Algoritmo}). Por este motivo, debido a que se trata de instancias aleatorias, es esperable que no se obtenga un comportamiento ``tan'' similar a la funci\'on lineal propuesta como ocurre para el primer algoritmo.
-
-Por \'ultimo, al igual que para el algoritmo anterior, se presenta el siguiente gr\'afico de 3 dimensiones:
-
-% \begin{center}
-%  \includegraphics[width=0.7\textwidth]{Plots/Tp2Ej1-TiemposLitrosPorZona-3d-bw.png}
-% \begin{center}
-% Figura 1.3
-% \end{center}
-% \end{center}
-
-Al igual que antes, este gr\'afico permite ver la complejidad de ambos par\'ametros en conjunto. Cabe notar al tratarse de un algorimto más veloz que el primer caso, los errores de cálculo de tiempo son aún mayores por lo cual no resulta simple obtener una conclusión demasiado fiable. Sin embargo, se puede ver que la función $f(n,m) = n/8 + m/72 \in O(n + m)$ resulta una estimación aceptable para $T(n,m)$. Al igual que antes, podemos concluir que la complejidad teórica total del algoritmo calculada tiene directa relación con los resultados obtenidos.
+Otro aspecto a tener en cuenta es la notable diferencia de los tiempos en relaci\'on a las diversas densidades. Se puede ver que si la densidad del grafo es baja, el tiempo de busqueda del conjunto independiente de mayor peso es mucho mayor que si se lo busca sobre un grafo de densidad media. Lo mismo sucede entre media y alta densidad. Esto se debe a que al disminuir la cantidad de aristas (menor densidad), la cantidad de conjuntos independientes en el grafo aumenta, ya que mientras menos aristas haya, mayor cantidad de nodos no adyacentes entre si habr\'a. De esta manera, mientras menor sea la densidad, mayor ser\'a la cantidad de conjuntos independientes a tener en cuenta por el algoritmo con el fin de buscar el de mayor peso, por lo que demandar\'a mayor tiempo de ejecuci\'on.
 
 \section*{Conclusiones}
 
