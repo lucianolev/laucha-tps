@@ -234,11 +234,28 @@ Otro aspecto a tener en cuenta es la notable diferencia de los tiempos en relaci
 \end{center}
 
 \bigskip
-\section*{Introducci\'on}
+\section*{Esquema general}
 
-El objetivo del siguiente ejercicio es dise\~{n}ar un algoritmo que, dado un grafo, encuentre el menor subgrafo inducido isomorfo a un diamante, en caso de que \'este exista. Un diamante puede definirse como un grafo $K_{4}$ menos una arista. Este algoritmo est\'a basado en una propiedad sobre diamantes (enunciada en el Anexo A) que, adem\'as de ser usada para resolver el problema, ser\'a demostrada de manera formal.
+\begin{verbatim}
+Conjunto solucion = conjunto vacio
 
-En un principio, cuando se comenz\'o a idear el algoritmo, surgi\'o la idea de utilizar solamente la propiedad enunciada para resolver el problema. Es decir, para toda vecindad de cada nodo, estudiar cada componente conexa para determinar si la misma es completa. Sin embargo, esto s\'olo aportaba informaci\'on sobre las componentes conexas que formaban un diamante, pero no brindaba detalles sobre los nodos que formaban el diamante, y no aseguraba que este fuera m\'inimo para dicha componente conexa. Por esta raz\'on, se opt\'o por utilizar un m\'etodo m\'as complejo que, aunque se basa en la propiedad mencionada, obtiene de cada componente conexa no completa (existe diamante) los nodos m\'inimos que forman un diamante. Esto se realiza calculando el m\'inimo nodo que puede formar un diamante y, a partir de este, construir el m\'inimo probando las posibles combinaciones que construyan un diamante. De esta manera se pueden obtener los diamantes m\'inimos de cada componente conexa no completa de una determinada vecindad y as\'i determinar el m\'inimo de la misma. Finalmente, se comparan los diamantes obtenidos de cada vecindad para obtener el m\'inimo diamante del grafo. Este algoritmo ser\'a explicado en detalle, se mostrar\'a su correctitud y se presentar\'a la implementaci\'on y pruebas de ejecuci\'on del mismo en posteriores secciones.
+mientras haya nodos en el grafo
+  maxF = 0
+  para cada nodo del grafo
+    si grado(nodo) = 0
+      agregar nodo a solucion
+      borrar nodo del grafo
+    sino
+      si F(nodo) >= maxF
+        maxF = F(nodo)
+        nodoMax = nodo
+  finPara
+
+  agregar nodoMax a solucion
+  borrar vecindad de nodoMax
+\end{verbatim}
+
+
 
 \section*{Demostraci\'on de la parte a}
 
