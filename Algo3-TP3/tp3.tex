@@ -35,8 +35,8 @@ Antes de comenzar el an\'alisis de cada ejercicio, cabe mencionar lo siguiente:
     \item \underline{Ej 2:} MainDiamante.java, Diamante.java, InstanciaDiamante.java.
     \item \underline{Ej 3:} MainRedAstor.java, RedAstor.java, InstanciaRedAstor.java, Arista.java, AristaComparator.java, Dupla.java, DuplaComparator.java.
   \end{itemize}
- \item Para la lectura y escritura de los datos se utilizaron clases provistas por el lenguaje Java. No se har\'a referencia a estos algoritmos ya que no resultan de inter\'es para el trabajo aqui presentado.
- \item Los gr\'aficos se realizaron con \textbf{GNUPlot}. En los casos considerados pertinentes, se utiliz\'o una escala logar\'itmica con el fin de poder visualizar mejor los resultados.
+ \item Para la lectura y escritura de los datos se utilizaron clases provistas por el lenguaje Java. No se har\'a referencia a estos algoritmos ya que no resultan de inter\'es para el trabajo aqu\'i presentado.
+ \item Los gr\'aficos se realizaron con \textbf{GNUPlot} y Calc. En los casos considerados pertinentes, se utiliz\'o una escala logar\'itmica con el fin de poder visualizar mejor los resultados.
 \end{itemize}
 
 %EXPLICAR LO DE LAS DENSIDADES!!!!!
@@ -235,6 +235,25 @@ Otro aspecto a tener en cuenta es la notable diferencia de los tiempos en relaci
 
 \bigskip
 \section*{Esquema general}
+
+\begin{verbatim}
+Conjunto solucion = conjunto vacio
+
+mientras haya nodos en el grafo
+  maxF = 0
+  para cada nodo del grafo
+    si grado(nodo) = 0
+      agregar nodo a solucion
+      borrar nodo del grafo
+    sino
+      si F(nodo) >= maxF
+        maxF = F(nodo)
+        nodoMax = nodo
+  finPara
+
+  agregar nodoMax a solucion
+  borrar vecindad de nodoMax
+\end{verbatim}
 
 \begin{verbatim}
 Conjunto solucion = conjunto vacio
