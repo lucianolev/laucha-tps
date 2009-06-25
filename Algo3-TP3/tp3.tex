@@ -61,7 +61,7 @@ En primer lugar, nos ocuparemos del análisis de un algoritmo exacto propuesto p
 para cada nodo (nodoActual) del grafo
     apilar nodoActual
     mientras la pila no sea vacia
-        para cada nodo desde nodoActual en adelante
+        para cada nodo desde nodoActual+1 en adelante
             si ese nodo no es adyacente a ninguno de la pila
                 apilar nodo
         finPara
@@ -72,136 +72,19 @@ para cada nodo (nodoActual) del grafo
 finPara
 \end{verbatim}
 
-Como se puede observar, el algoritmo utiliza la técnica de \textit{backtracking} para resolver el problema. Sin embargo, el algoritmo resulta más complejo que este simple esquema ya que se realizan podas implícitas por lo cual el algoritmo no evalúa todos los posibles conjuntos independientes del grafo $G$ sino solamente se observarán todos los nodos conjuntos independientes maximales (CIM) de cada subgrafo $S$ de G inducido por los nodos desde un nodo $i$ hasta $n$, con $1 <= i <= n$\footnotemark[1]. Antes de explicar el porqué de esta cuestión, es importante notar que todos los CIMs del grafo G están contenidos en todos los CIMs para los $n$ subgrafos S mencionados. Por lo tanto, el algoritmo observará todos los CIMs de G, donde uno de esos resultará el conjunto independiente de peso máximo de G\footnotemark[2].
-A continuación, veremos en detalle el algoritmo, mostrando que efectivamente recorre todos (y únicamente) los CIMs de cada subgrafo inducido S:
+Como se puede observar, el algoritmo utiliza la técnica de \textit{backtracking} para resolver el problema. La idea general del mismo consiste en observar todos conjuntos independientes (CI) de cada subgrafo $S$ de G inducido por los nodos desde un nodo $i$ hasta $n$ que contengan al nodo $i$, para $1 \leq i \leq n$\footnotemark[1]. Cada iteración del ciclo externo del algoritmo se encargará de buscar todos los CI para cada uno de los subgrafos.
 
-Para cada nodo (al que llamaremos \textit{superNodo} por cuestiones didácticas) del grafo, se utiliza una pila que comienza conteniendo únicamente a dicho nodo. Luego, se van agregando todos los nodos que vayan conformando un conjunto independiente apartir de ese \textit{superNodo} hasta el último del grafo. Este conjunto resulta un CIM del \textbf{grafo inducido} por los nodos desde el \textit{superNodo} hasta $n$ (S) ya que, como se mencionó, se apilarán todos los nodos posibles desde este nodo en adelante.
-Inmediatamente después, en caso de que dicho conjunto independiente sea el de peso máximo\footnotemark[3] hasta el momento, se almacena la pila como solución. El siguente paso consiste en desapilar el tope de la pila (que contiene al último nodo insertado), observando si cada nodo posterior a éste puede ser apilado de modo que se siga manteniendo el invariante conjunto independiente, es decir, se insertan los nodos que no sean adyacentes a \underline{ningún} nodo de la pila. Nuevamente, dicho conjunto independiente resulta \textbf{maximal} (respecto a S) debido a que los nodos apilados son todos los que se podían insertar hasta el momento más todos los nodos posteriores al actual que puedan ser insertados (hasta el último del grafo). Por todo esto, podemos afirmar que en cada iteración del ciclo principal el algoritmo evaluará todos los CIMs de para cada S (uno en cada iteración).
+Antes de continuar, es importante notar que esto garantiza encontrar el conjunto independiente de peso máximo de $G$. La demostración es simple: Sea $j$ el nodo mínimo del CI de peso máximo del grafo $G$. Como en cada iteración $i$, el algoritmo busca todos los conjuntos independientes que contengan al nodo $i$ en S, con $i$ desde $1$ hasta $n$, entonces existe una iteración del algoritmo donde $i = j$. En dicha iteración, por hipótesis, se observan todos los conjuntos independientes que están compuestos por $j$ y nodos mayores a $j$, y como $j$ es el nodo mínimo de la solución, uno de esos conjuntos deberá ser dicha solución.
+
+A continuación, se mostrará como en cada iteración del ciclo externo, el algoritmo observa los CI de los subgrafos S mencionados.
+
+El ciclo utiliza una pila que comienza conteniendo únicamente al nodo $i$. Luego, se van agregando todos los nodos que vayan conformando un conjunto independiente apartir de ese nodo \textit{i} hasta el último del grafo.
+Inmediatamente después, en caso de que dicho conjunto independiente sea el de peso máximo\footnotemark[2] hasta el momento, se almacena la pila como solución. El siguente paso consiste en desapilar el tope de la pila (que contiene al último nodo insertado), observando si cada nodo posterior a éste puede ser apilado de modo que se siga manteniendo el invariante de conjunto independiente, es decir, se insertan los nodos que no sean adyacentes a \underline{ningún} nodo de la pila. De esta manera, al salir del ciclo, se habrán observado todos conjuntos independientes que contengan al nodo $i$, ya que es condición del ciclo que dicho nodo esté en la pila por ser el primer nodo apilado.
+
+Por todo esto, podemos afirmar que el algoritmo encontrará el conjunto independiente de peso máximo para cualquier grafo G.
 
 \footnotetext[1]{Recordemos que cada nodo del grafo está numerado desde 1 hasta $n$.}
-\footnotemark[2]{Es fácil ver que todo conjunto independiente de peso máximo deberá ser un conjunto independiente maximal ya que sino se podrían agregar nodos que sumarían pesos (ya que cada nodo tiene un peso positivo) y dicho conjunto no sería de peso máximo.}
-\footnotemark[3]{Dicho peso se encuentra ya almacenado en simple acumulador.}
-
-El primer ejercicio plantea el problema de optimizar el uso de litros de ''Raid'' para la fumigación de mosquitos óptima, requiriendo cubrir una determinada cantidad de zonas. Es relevante comentar que al utilizar una mayor cantidad de litros en una zona, esto no implica matar más mosquitos.
-
-El ovjetivo diseñar un algoritmo que resuelva el problema planteado de manera polinomial. Para esto se utiliz\'o la t\'ecnica de progamaci\'on din\'amica, lo que implic\'o la realizaci\'on de diversos pasos. Primero se corrobor\'o que el problema cumpla con el principio de optimalidad. Una vez comprobado esto (condici\'on necesaria para poder aplicar programaci\'on din\'amica) y utilizando las ideas vistas en dicha demostraci\'on, se procedi\'o a crear una funci\'on recursiva que retorne el resultado deseado. Luego se modific\'o dicha version por un algoritmo iterativo, siendo este un paso intermedio requerido para aplicar la t\'ecnica mencionada. El paso siguiente consisti\'o en modificar el algoritmo de manera de evitar la repetici\'on de c\'alculos innecesarios (aqu\'i queda implicita la idea de programaci\'on din\'amica), mejorando notablemente la complejidad de la funci\'on. Por \'ultimo, como veremos m\'as adelante, se opt\'o por un cambio de t\'ecnica algoritmica pasando de un algoritmo que originalmente era \textit{top-down} a uno \textit{bottom-up}.
-
-\section*{Algoritmo}
-
-En la presente secci\'on presentaremos todos los pasos que se siguieron para lograr la implementaci\'on del algoritmo que resuelve el problema. Como se mencion\'o anteriormente, el problema ser\'a resuelto por medio de la t\'ecnica de programaci\'on din\'amica por lo que presentaremos las demostraciones de todos los pasos que implica construir un algoritmo de esa manera. En primer lugar, se demostrar\'a c\'omo aplica el principio de optimalidad en el problema dado. En segundo lugar, plantearemos una funci\'on recursiva que resuelva el problema y demostraremos su correctitud. Finalmente, mostraremos el algoritmo construido con programaci\'on din\'amica, explicando detalladamente por qu\'e resuelve el problema de manera m\'as eficiente que la soluci\'on recursiva.
-
-\subsection*{Principio de optimalidad}
-
-Demostraremos por qu\'e vale el principio de optimilidad en este problema por el absurdo.
-
-Sean $n$ y $l$ la cantidad de zonas y litros disponibles respectivamente y que las zonas se numeran de $1$ a $n$. Suponemos que la cantidad de mosquitos muertos con $l$ litros hasta la zona $n$ es \'optima y llamaremos $P$ a dicha cantidad. Sea $k$ la cantidad de litros usados en la zona $n$, suponemos que hasta la zona $n-1$ usando $l-k$ litros la cantidad de mosquitos muertos ($Q$) no es \'optima y se intenta llegar a un absurdo.
-
-Si hasta la zona $n-1$ la cantidad de mosquitos muertos no es \'optima (para $l-k$ litros), existe otra forma de distribuir los $l-k$ litros entre las zonas $1$ a $n-1$ que hace que la nueva cantidad, a la que llamaremos $R$, sea \'optima (es decir, $R > Q$). Entonces tenemos que
-
-$R + cantMM(n,k) > Q + cantMM(n,k) = P \Rightarrow R + cantMM(n,k) > P$
-
-Esto es un absurdo ya que supusimos que $P$ era la cantidad \'optima. Este absurdo surge de suponer que la cantidad de mosquitos muertos hasta la zona $n-1$ con $l-k$ litros no era \'optima. Entonces queda demostrado que vale el principio de optimalidad para el problema planteado.
-
-\subsection*{Soluci\'on recursiva y demostraci\'on de correctitud}
-
-A partir de la idea presentada en la secci\'on anterior se puede plantear la siguiente funci\'on recursiva para resolver el problema.
-$\\ f(0, l) = 0 \\$
-$ f(i,l) = max \left\{ \begin{array}{ll}
-         f(i-1,l) & \mbox{$$}\\
-        f(i-1, l-k) + MM[i][k] & \mbox{con $1 \leq k \leq l$}\end{array} \right. $
-
-
-Siendo $MM[i][j]$ la matriz que contiene la cantidad de mosquitos muertos por litro, de cada zona. La soluci\'on al problema ser\'ia $f(n,l)$ con $n$ la cantidad de zonas y $l$ la cantidad de litros disponibles.
-
-Para demostrar que la funci\'on presentada es correcta utilizaremos inducci\'on en la cantidad de zonas manteniendo la cantidad $l$ de litros fija. Es decir, queremos probar la siguiente proposici\'on. \\
-
-P(n): $f(n, i)$ es la cantidad m\'axima de mosquitos muertos hasta la zona $n$ con $i$ litros. ($0 \leq i \leq l$) \\
-
-\textbf{Caso Base ($P(1)$)}
-
-$f(1,i) = max_{0 \leq j \leq i} (MM[1][j]) \;\;\;\; $ con $i \leq 1$
-
-Entonces, como se puede notar, $f(1,i)$ = $f (1,1)$ por lo que es trivialmente la cantidad m\'axima de mosquitos muertos de la primera zona con $i$ litros. \\
-
-\textbf{Paso inductivo ($P(n) \Rightarrow P(n+1)$)}
-
-Supongo que $f(n,i)$ es la m\'axima cantidad de mosquitos muertos hasta la zona $n$ con $i$ litros ($0 \leq i \leq l$) y demuestro que $f(n+1,i)$ es la cantidad m\'axima hasta la zona $n+1$.
-Como $n+1 > 1$ tenemos que \\
-
-$f(n+1,i) = max_{0 \leq k \leq i} (f(n, i-k) + MM[n+1][k])$ \\
-
-Como $i - k \leq l$ para cualquier $k \leq i$ puedo aplicar la hip\'otesis inductiva, es decir, $f(n,i-k)$ es la m\'axima cantidad hasta la zona $n$ con $i-k$ litros. Entonces con $max_{0 \leq k \leq i} (f(n, i-k) + MM[n+1][k])$ obtengo la m\'axima cantidad de mosquitos muertos hasta la zona $n+1$ con $i$ litros pues $f(n,i-k)$ es m\'axima y se calcula el m\'aximo para todas las cantidades $k$ de litros posibles para dicha zona. Entonces, como vale $P(1)$ y $P(n) \Rightarrow P(n+1)$ por principio de inducci\'on queda demostrada la proposici\'on.
-
-La funci\'on presentada, a pesar de ser correcta, hace repetidas llamadas recursivas a valores ya calculados. Sin embargo, sirve de base para idear un algoritmo que use la t\'ecnica de programaci\'on din\'amica para resolver este problema de forma m\'as eficiente. En las posteriores secciones veremos en detalle c\'omo se relaciona dicha funci\'on con el algoritmo implementado.
-
-\subsection*{Algoritmo utilizando programaci\'on din\'amica}
-
-A continuaci\'on se encuentra el pseudoc\'odigo del algoritmo que utiliza la t\'ecnica de programaci\'on din\'amica para resolver el problema.
-
-\begin{verbatim}
-maxMMParcial[zonas][litros]
-
-lleno la primer fila de maxMMParcial con 0
-
-para i desde 1 hasta zonas
-  para j desde 0 hasta litros
-    max_parcial = maxMMParcial[i-1,j]
-    k = 1
-    mientras k <= j
-      max_parcial = maximo(max_parcial, maxMMParcial[i-1,j-k] + MM[i][k])
-    maxMMParcial[i][j] = max_parcial
-
-\end{verbatim}
-
-% litrosPorZona[zonas]
-% 
-% litrosRestantes = litros
-% j = litrosRestantes
-% para i desde zonas hasta 1
-%   mientras j >= 0 y (maxMMParcial[i][litrosRestantes] - MM[i-1][litrosRestantes - j]) != maxMMParcial[i-1][j]
-%     j = j - 1
-%   litrosPorZona[i-1] = litrosRestantes - j
-%   litrosRestantes = j
-
-% guardar en Tp2Ej1.out litrosPorZona
-
-Este algoritmo est\'a basado en la funci\'on recursiva presentada en la secci\'on anterior, pero usando una estrategia \textit{Bottom-up} para calcular el resultado. Dicha estrategia se basa en el uso de una matriz para almacenar los resultados ya calculados y, a partir de ellos, construir las distintas etapas de la soluci\'on. Esta matriz tiene la siguiente forma:
-
-\begin{center}
-litros
-\end{center}
-\[ zonas \left( \begin{array}{ccccc}
-0 & 0 & 0 & \cdots & 0 \\
-0 & f(1,1) & f(1,2) & \cdots & f(1,l)  \\
-0 & f(2,1) & f(2,2) & \cdots & f(2,l)	\\
-\vdots & \vdots & \vdots & \ddots & \vdots \\
-0 & f(n,1) & f(n,2) & \cdots & f(n,l) \end{array} \right)\]
-
-En el algoritmo presentado cada fila de esta matriz se construye a partir de la fila anterior, por lo que la primer fila (que representa el caso base de $f$) debe ser 0 al comienzo del procedimiento. Adem\'as, en este c\'alculo tambi\'en es necesario utilizar los valores de la matriz de entrada (MM) que contiene la cantidad de mosquitos muertos seg\'un la cantidad de zonas y litros.
-Esto se corresponde a la definici\'on recursiva de la funci\'on $f$ ya que el valor que retorna $f$ para cada zona $i$ se construye a partir de la zona $i-1$. 
-
-Como se puede apreciar en el pseudoc\'odigo cada elemento de la matriz se construye de la siguiente manera:
-
-$ maxMMParcial[i][j] = max \left\{ \begin{array}{ll}
-         maxMMParcial[i-1][j] & \mbox{$$}\\
-        maxMMParcial[i-1][j-k] + MM[i][k] & \mbox{con $1 \leq k \leq j$}\end{array} \right. $
-
-
-Esta definici\'on muestra claramente la relaci\'on que existe entre el algoritmo que utiliza programaci\'on din\'amica y la funci\'on que resuelve el problema de manera recursiva. Cada posici\'on de la matriz se calcula de la misma manera que $f$, por lo que, si el caso base es el mismo, se obtendr\'an los mismos resultados. Por esta raz\'on, al terminar de calcular toda la matriz (hasta la posici\'on $n$ y $l$) se obtiene $f(n,l)$, es decir, la soluci\'on para la instancia del problema.
-
-\subsection*{Cálculo de los litros por zona}
-
-Una vez obtenida la matriz que contiene los valores óptimos para las distintas instancias del problema. Se implementó un algoritmo para utilizar estos valores de manera tal de encontrar la cantidad de litros que debían emplearse en cada zona para finalmente obtener el valor óptimo ya calculado.
-
-Este algoritmo consistió en, utilizando el principio de optimalidad, recorrer la matriz de la última fila hacia la primera, observando cómo cambiaría el valor en la matriz de una zona a otra utilizando una determinada cantidad de litros y cuál fue el cambio observado. Al coincidir el resultado observado con el esperado, se encuentra la cantidad de litros que deben ser utilizados en esa zona y se guarda en un array. Una vez recorridas todas las filas de la matriz, se posee un array con los litros que deben usarse en cada zona para conseguir el resultado óptimo.
-
-\begin{verbatim}
-recorrer matriz maxMMparcial desde la ultima fila a la primera
-  Buscar en cada fila (i) en MM los listros que cumplan con que:
-    maxMMparcial[i][litrosQueNoUse] - los mosquitos muertos en la zona i con esos litros
-    = a maxMMparcial[i-1][litrosQueNoUse - litros que acabo de usar].
-  guardar en litrosUsadosEn[i] los litros encontrados para dicha zona.
-\end{verbatim}
+\footnotemark[2]{Dicho peso se encuentra ya almacenado en simple acumulador.}
 
 \section*{Complejidad}
 
