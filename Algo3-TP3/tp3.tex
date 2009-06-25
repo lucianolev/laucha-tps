@@ -64,12 +64,23 @@ para cada nodo (nodoActual) del grafo
         para cada nodo desde nodoActual en adelante
             si ese nodo no es adyacente a ninguno de la pila
                 apilar nodo
-                si la suma de pesos de los nodos de la pila > peso de la solucion
-                    solucion = pila
-                nodoActual = desapilar nodo
+        finPara
+        si la suma de pesos de los nodos de la pila > peso de la solucion
+            solucion = pila
+        nodoActual = desapilar nodo
     finMientras
 finPara
 \end{verbatim}
+
+Como se puede observar, el algoritmo utiliza la técnica de \textit{backtracking} para resolver el problema. Sin embargo, el algoritmo resulta más complejo que este simple esquema ya que se realizan podas implícitas por lo cual el algoritmo no evalúa todos los posibles conjuntos independientes del grafo $G$ sino solamente se observarán todos los nodos conjuntos independientes maximales (CIM) de cada subgrafo $S$ de G inducido por los nodos desde un nodo $i$ hasta $n$, con $1 <= i <= n$\footnotemark[1]. Antes de explicar el porqué de esta cuestión, es importante notar que todos los CIMs del grafo G están contenidos en todos los CIMs para los $n$ subgrafos S mencionados. Por lo tanto, el algoritmo observará todos los CIMs de G, donde uno de esos resultará el conjunto independiente de peso máximo de G\footnotemark[2].
+A continuación, veremos en detalle el algoritmo, mostrando que efectivamente recorre todos (y únicamente) los CIMs de cada subgrafo inducido S:
+
+Para cada nodo (al que llamaremos \textit{superNodo} por cuestiones didácticas) del grafo, se utiliza una pila que comienza conteniendo únicamente a dicho nodo. Luego, se van agregando todos los nodos que vayan conformando un conjunto independiente apartir de ese \textit{superNodo} hasta el último del grafo. Este conjunto resulta un CIM del \textbf{grafo inducido} por los nodos desde el \textit{superNodo} hasta $n$ (S) ya que, como se mencionó, se apilarán todos los nodos posibles desde este nodo en adelante.
+Inmediatamente después, en caso de que dicho conjunto independiente sea el de peso máximo\footnotemark[3] hasta el momento, se almacena la pila como solución. El siguente paso consiste en desapilar el tope de la pila (que contiene al último nodo insertado), observando si cada nodo posterior a éste puede ser apilado de modo que se siga manteniendo el invariante conjunto independiente, es decir, se insertan los nodos que no sean adyacentes a \underline{ningún} nodo de la pila. Nuevamente, dicho conjunto independiente resulta \textbf{maximal} (respecto a S) debido a que los nodos apilados son todos los que se podían insertar hasta el momento más todos los nodos posteriores al actual que puedan ser insertados (hasta el último del grafo). Por todo esto, podemos afirmar que en cada iteración del ciclo principal el algoritmo evaluará todos los CIMs de para cada S (uno en cada iteración).
+
+\footnotetext[1]{Recordemos que cada nodo del grafo está numerado desde 1 hasta $n$.}
+\footnotemark[2]{Es fácil ver que todo conjunto independiente de peso máximo deberá ser un conjunto independiente maximal ya que sino se podrían agregar nodos que sumarían pesos (ya que cada nodo tiene un peso positivo) y dicho conjunto no sería de peso máximo.}
+\footnotemark[3]{Dicho peso se encuentra ya almacenado en simple acumulador.}
 
 El primer ejercicio plantea el problema de optimizar el uso de litros de ''Raid'' para la fumigación de mosquitos óptima, requiriendo cubrir una determinada cantidad de zonas. Es relevante comentar que al utilizar una mayor cantidad de litros en una zona, esto no implica matar más mosquitos.
 
