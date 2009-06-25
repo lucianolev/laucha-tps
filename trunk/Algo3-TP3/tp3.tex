@@ -53,6 +53,22 @@ Por \'ultimo, para la metaheur\'istica GRASP obtenida y para las mejores heur\'i
 
 \section*{Algoritmo Exacto}
 
+En primer lugar, nos ocuparemos del análisis de un algoritmo exacto propuesto para resolver el problema en cuestión. A continuación, se presenta el pseudocódigo que esboza el comportamiento del mismo:
+
+\begin{verbatim}
+para cada nodo (nodoActual) del grafo
+    apilar nodoActual
+    mientras la pila no sea vacia
+        para cada nodo desde nodoActual en adelante
+            si ese nodo no es adyacente a ninguno de la pila
+                apilar nodo
+                si la suma de pesos de los nodos de la pila > peso de la solucion
+                    solucion = pila
+                nodoActual = desapilar nodo
+    finMientras
+finPara
+\end{verbatim}
+
 El primer ejercicio plantea el problema de optimizar el uso de litros de ''Raid'' para la fumigación de mosquitos óptima, requiriendo cubrir una determinada cantidad de zonas. Es relevante comentar que al utilizar una mayor cantidad de litros en una zona, esto no implica matar más mosquitos.
 
 El ovjetivo diseñar un algoritmo que resuelva el problema planteado de manera polinomial. Para esto se utiliz\'o la t\'ecnica de progamaci\'on din\'amica, lo que implic\'o la realizaci\'on de diversos pasos. Primero se corrobor\'o que el problema cumpla con el principio de optimalidad. Una vez comprobado esto (condici\'on necesaria para poder aplicar programaci\'on din\'amica) y utilizando las ideas vistas en dicha demostraci\'on, se procedi\'o a crear una funci\'on recursiva que retorne el resultado deseado. Luego se modific\'o dicha version por un algoritmo iterativo, siendo este un paso intermedio requerido para aplicar la t\'ecnica mencionada. El paso siguiente consisti\'o en modificar el algoritmo de manera de evitar la repetici\'on de c\'alculos innecesarios (aqu\'i queda implicita la idea de programaci\'on din\'amica), mejorando notablemente la complejidad de la funci\'on. Por \'ultimo, como veremos m\'as adelante, se opt\'o por un cambio de t\'ecnica algoritmica pasando de un algoritmo que originalmente era \textit{top-down} a uno \textit{bottom-up}.
