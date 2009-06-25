@@ -234,7 +234,7 @@ Figura 1.1
 \end{center}
 \end{center}
 
-Como se puede apreciar en el gr\'afico, el tiempo de ejecuci\'on del algoritmo aplicado sobre los distintos grafos seleccionados se comporta de acuerdo a la complejidad te\'orica estimada. Adem\'as, podemos ver que se mantiene muy alejado de la cota para el peor caso ($3^{n}$).
+Como se puede apreciar en el gr\'afico, el tiempo de ejecuci\'on del algoritmo aplicado sobre los distintos grafos seleccionados se comporta de acuerdo a la complejidad te\'orica estimada. Adem\'as, podemos ver que se mantiene muy alejado de la cota para el peor caso ($2^{n}$).
 
 Otro aspecto a tener en cuenta es la notable diferencia de los tiempos en relaci\'on a las diversas densidades. Se puede ver que si la densidad del grafo es baja, el tiempo de busqueda del conjunto independiente de mayor peso es mucho mayor que si se lo busca sobre un grafo de densidad media. Lo mismo sucede entre media y alta densidad. Esto se debe a que al disminuir la cantidad de aristas (menor densidad), la cantidad de conjuntos independientes en el grafo aumenta, ya que mientras menos aristas haya, mayor cantidad de nodos no adyacentes entre si habr\'a. De esta manera, mientras menor sea la densidad, mayor ser\'a la cantidad de conjuntos independientes a tener en cuenta por el algoritmo con el fin de buscar el de mayor peso, por lo que demandar\'a mayor tiempo de ejecuci\'on.
 
@@ -244,41 +244,23 @@ Otro aspecto a tener en cuenta es la notable diferencia de los tiempos en relaci
 \section*{Heur\'isticas constructivas}
 \end{center}
 
-\bigskip
 \section*{Esquema general}
 
-\begin{verbatim}
-Conjunto solucion = conjunto vacio
-
-mientras haya nodos en el grafo
-  maxF = 0
-  para cada nodo del grafo
-    si grado(nodo) = 0
-      agregar nodo a solucion
-      borrar nodo del grafo
-    sino
-      si F(nodo) >= maxF
-        maxF = F(nodo)
-        nodoMax = nodo
-  finPara
-
-  agregar nodoMax a solucion
-  borrar vecindad de nodoMax
-\end{verbatim}
+A continuaci\'on se desarrolar\'a el trabajo realizado sobre heur\'isticas constructivas con el objetivo de reducir significativamente la complejidad temporal a merced de una p\'erdida de eficacia en las soluciones. Para esto, se utilizar\'on distintos algoritmos golosos que tienen en cuenta diversas condiciones sobre los nodos para ir armando una soluci\'on de manera constructiva. Se pensaron varias ideas para buscar aproximarse a la soluci\'on \'optima, todas siguiendo el siguiente esquema de algoritmo goloso:
 
 \begin{verbatim}
 Conjunto solucion = conjunto vacio
 
 mientras haya nodos en el grafo
-  maxF = 0
+  maxF = 0 / minF = n
   para cada nodo del grafo
     si grado(nodo) = 0
       agregar nodo a solucion
       borrar nodo del grafo
     sino
-      si F(nodo) >= maxF
-        maxF = F(nodo)
-        nodoMax = nodo
+      si F(nodo) >= maxF / <= minF
+        maxF / minF = F(nodo)
+        nodoMax / nodoMin = nodo
   finPara
 
   agregar nodoMax a solucion
@@ -287,140 +269,6 @@ mientras haya nodos en el grafo
 
 
 
-\section*{Demostraci\'on de la parte a}
-
-A continuaci\'on se presentar\'a la demostraci\'on de la siguiente propiedad:
-
-Sea $G$ un grafo de $n$ v\'ertices y $m$ aristas, $G$ no contiene un subgrafo diamante como subgrafo inducido si y solamente si para todo v\'ertice $v$, su vecindad $N(v)$ se divide en componentes conexas completas.
-
-Llamaremos $p$ a la proposici\'on ``$G$ no contiene un subgrafo diamante como subgrafo inducido`` y $q$ a la proposici\'on ''para todo v\'ertice $v$, su vecindad $N(v)$ se divide en componentes conexas completas``. Dividiremos la demostraci\'on en dos partes: la implicaci\'on y la rec\'iproca.
-
-\begin{itemize}
-\item $p \Longrightarrow q$
-
-Por propiedades de la l\'ogica $p \Longrightarrow q$ equivale a mostrar $-q \Longrightarrow -p$. De esta manera, probaremos aqu\'i que si existe un v\'ertice $v$ tal que su vecindad $N(v)$ contiene una componente conexa no completa entonces $G$ contiene un subgrafo diamante como subgrafo inducido.
-
-Primero probaremos la siguiente propiedad (propiedad 1): Sea $v$ un v\'ertice de $G$ y sea $N(v)$ su vecindad asociada. Si $N(v)$ tiene a $K_{3}$ menos una arista (lo llamaremos $K_{3}-1$) como subgrafo inducido, entonces $G$ contiene un diamante como subgrafo inducido.
-
-Esto se debe a que, al pertenecer $K_{3}-1$ a la vecindad de $v$, el grafo original contiene a $K_{3}-1$ uniendo todos sus vertices con $v$, esto implica agregarle un nodo ($v$) y tres aristas (ya que $v$ es adyacente a los tres nodos que conforman el $K_{3}-1$ porque pertenecen a su vecindad). Como $K_{3}-1$ tiene dos aristas entonces agregando un nodo y sumando tres aristas tengo un $K_{4}-1$ (definici\'on de diamante).
-
-Viendo esto, basta probar que si existe un v\'ertice $v$ tal que su vecindad $N(v)$ tiene una componente conexa no completa entonces dicha componente contiene un $K_{3}-1$. Para esto, mostraremos ahora que todo grafo $G$ conexo y no completo contiene un $K_{3}-1$ (propiedad 2).
-
-Como $G$ no es completo pero si conexo, existen dos nodos $a$ y $z$ tal que no son adyacentes y existe un camino entre ellos. Sea $b$ un nodo adyacente a $a$ que pertenece al camino entre $a$ y $z$. $b$ es distinto de $z$ ya que si fueran iguales $a$ y $z$ ser\'ian adyacentes y eso es absurdo por hipotesis. Ahora tomamos un nodo adyacente a $b$ que tambi\'en pertenezca al camino entre $a$ y $z$ al que llamaremos $c$. Este nodo puede ser igual a $z$ (en caso de que el camino tenga longitud dos) o un nodo intermedio en el camino entre $a$ y $z$. Si $c$ es igual a $z$ entonces me puedo formar un $K_{3}-1$ ya que $a$ es adyacente a $b$, $b$ es adyacente a $z$ y $z$ no es adyacente a $a$ por hipotesis:
-% \begin{center}
-%  \includegraphics[width=0.34\textwidth]{Grafos/ej2figura1-1.png}
-% \end{center}
-Si $c$ es distinto de $z$ entonces tenemos dos casos: si $c$ no es adyacente a $a$ entonces podemos formar un $K_{3}-1$ con dichos nodos:
-% \begin{center}
-%  \includegraphics[width=0.6\textwidth]{Grafos/ej2figura1-2.png}
-% \end{center}
-Si $c$ si es adyacente a $a$, entonces no podemos formar un $K_{3}-1$ entre $a$ $b$ y $c$:
-% \begin{center}
-%  \includegraphics[width=0.6\textwidth]{Grafos/ej2figura1-3.png}
-% \end{center}
-En este \'ultimo caso tomamos como nuevo nodo $b$ a $c$ (es adyacente a $a$ y pertenece al camino entre $a$ y $z$) y como nuevo nodo $c$ a un nodo adyacente a $c$ que pertenezca al camino entre $a$ y $z$ y todavia no haya sido recorrido (siguiendo el orden alfabetico seria el nodo $d$). Nuevamente caemos en el caso anterior, donde la posibilidad de poder armar un $K_{3}-1$ depende de si $d$ es adyacente o no a $a$. Si no es posible obtener un $K_{3}-1$ con el nodo $d$ (debido a que $d$ es adyacente a $a$), seguiremos avanzando los dos nodos pertenecientes al camino entre $a$ y $z$ hasta llegar a que el primero de los dos es el nodo anterior a $z$ (lo llamaremos $y$) del camino y el segundo nodo es igual a $z$. En este caso, siempre es posible armar un $K_{3}-1$ ya que $z$ no es adyacente a $a$ por hipotesis:
-% \begin{center}
-%  \includegraphics[width=0.85\textwidth]{Grafos/ej2figura1-4.png}
-% \end{center}
-Finalmente hemos probado que si existe un v\'ertice $v$ de $G$ tal que su vecindad $N(v)$ tiene una componente conexa no completa entonces dicha componente contiene un $K_{3}-1$ (por 2), y esto implica que $G$ contiene un subgrafo diamante como subgrafo inducido (por 1).
-
-\item $q \Longrightarrow p$
-
-Por propiedades de la l\'ogica $q \Longrightarrow p$ equivale a mostrar $-p \Longrightarrow -q$. De esta manera, probaremos aqu\'i que si $G$ contiene un subgrafo diamante como subgrafo inducido entonces existe un v\'ertice $v$ tal que su vecindad $N(v)$ contiene una componente conexa no completa.
-
-Sea $G$ un grafo que contiene un subgrafo diamante como subgrafo inducido. Sea $G_{D}$ el subgrafo diamante de $G$:
-% \begin{center}
-%  \includegraphics[width=0.34\textwidth]{Grafos/ej2figura2-1.png}
-% \end{center}
-Si tomo uno de los dos nodos de $G_{D}$ de grado tres, que llamaremos $v$, su vecindad $N_{G_{D}}(v)$ sera:
-% \begin{center}
-%  \includegraphics[width=0.34\textwidth]{Grafos/ej2figura2-2.png}
-% \end{center}
-Podemos ver entonces que $N_{G_{D}}(v)$ tiene una \'unica componente conexa y esta no es completa ya que los dos nodos de grado dos del diamante (en la figura llamados $u$ y $w$) no son adyacentes.
-
-Sea $v$ uno de los dos nodos de grado tres del subgrafo diamante de $G$ y $u$ y $w$ los dos nodos de grado dos de dicho diamante. Si tomo la vecindad $N(v)$ de $v$, como $u$ y $w$ son adyacentes a $v$ (pertenecen al diamante) entonces pertenecen a $N(v)$. Ademas como $u$ y $w$ son los nodos de grado dos del subgrafo diamante entonces no son adyacentes en $G$. Como $u$ y $w$ no son adyacentes en $G$ tampoco lo ser\'an para ningun subgrafo inducido de $G$, en particular para $N(v)$. De esta manera la componente conexa de $N(v)$ que contiene al diamante no es completa.
-
-Concluimos entonces que la propiedad es cierta ya que existe un $v$ para el cual se cumple.
-
-\end{itemize}
-
-\section*{Algoritmo}
-
-A continuaci\'on se presenta el pseudoc\'odigo del algoritmo para resolver el problema propuesto.
-
-\begin{verbatim}
-crear grafo representado por array de lista de adyacencias (llamado 'adyacencias')
-excepto para los nodos de grado 1 y 0
-
-armar la matriz de adyacencias de ese grafo
-
-para cada nodo (que llamaremos superNodo) del grafo
-  si el tamaño de la lista de adyacencia de superNodo es mayor que 3
-    crear la vecindad del superNodo (crearVecindad)
-    buscar el diamante minimo de esa vecindad (buscarDiamanteMinimoEnVecindad)
-    y agregarlo a diamantesMinimos (si es que hay alguno)
-
-  si hay algun diamante en diamantesMinimos retorno minimo(diamantesMinimos)
-
-crearVecindad(superNodo)
-  para cada nodo k de adyacencias[superNodo]
-    para cada nodo j de adyacencias[k]
-      si nodo j es adyacente a superNodo
-        agregar nodo j a listaVecindad
-    vecindadDeSuperNodo[k] = listaVecindad
-  devolver vecindadDeSuperNodo (grafo representado por array de listas de adyacencia)
-
-buscarDiamanteMinimoEnVecindad(vecindadDeSuperNodo)
-  recorrer cada componente conexa de vecindadDeSuperNodo por DFS
-  sumando los grados de los nodos recorridos (sumaGradosCompConexa) y
-  guardando en nodosCompConexa los nodos recorridos y
-  en nodoMinimoCompConexa el nodo minimo de la componente conexa
-
-  si sumaGradosCompConexa != a la cantidad de nodos
-  del grafo completo de los nodos de la comp conexa
-    si diamanteMinimo no existe
-      diamanteMinimo = diamante minimo de comp conexa actual 
-      (buscarDiamanteMinimoDeCompConexa)
-    sino
-      si nodoMinimoCompConexa <= el minimo nodo de diamanteMinimo
-        diamante = diamante minimo de comp conexa actual 
-        (buscarDiamanteMinimoDeCompConexa)
-        si diamante existe y es mas chico que diamanteMinimo
-          diamanteMinimo es ese diamente
-
-  devolver diamanteMinimo (puede ser nulo en caso de que no haya diamante)
-
-buscarDiamanteMinimoDeCompConexa(superNodo, vecindadDeSuperNodo, nodosCompConexa)
-  nodo1 = superNodo
-  nodoMinimo = nodo minimo de nodosCompConexa con grado menor 
-  que cantidad de nodos de la componente conexa - 1
-
-  tuplaMin = <nodo mas grande del grafo, nodo mas grande del grafo>
-  para cada nodo (adyacenteANodo2) de vecindadDeSuperNodo[nodo2]
-    para cada nodo (nodoCandidato) de vecindadDeSuperNodo[adyacenteANodo2]
-      si nodoCandidato no es adyacente a nodo2 
-      y <nodoCandidato, adyacenteANodo2> < tuplaMin
-        tuplaMin = <nodoCandidato, adyacenteANodo2>
-
-  nodo3 = primero(tuplaMin)
-  nodo4 = segundo(tuplaMin)
-
-  diamanteMinimo = ordenar(nodo1, nodo2, nodo3, nodo4)
-
-  devuelvo diamanteMinimo
-
-\end{verbatim}
-
-Como se mencion\'o anteriormente, este algoritmo est\'a basado en la propiedad demostrada en el punto a, es decir, para cada nodo del grafo estudia las componentes conexas de la vecindad de dicho nodo para determinar si existe un diamante. 
-El primer paso del algoritmo consiste en cargar las listas de adyacencias provistas en el archivo de entrada a un estructura que llamada \textit{adyacencias}, que no es más que un arreglo de estas listas, donde cada posicion $i$ está asociada a un nodo $i$. Luego, se eliminan todos los nodos de grado 0 \'o 1, ya que estos no pueden formar parte de ning\'un diamante y eliminarlos no afecta a ning\'un diamante del grafo. Esto se debe a que cualquier nodo que pertenezca a un diamante tiene por lo menos grado 2. Para poder eliminar los nodos y poder reducir efectivamente el tamaño del grafo se realizó el siguiente prodecimiento: se creo un nuevo arreglo de adyacencias del tamaño del nuevo grafo (previamente se contaron la cantidad de nodos de grado mayor a 2) y, mediante el uso de arreglos, se realizó un mapeo entre los nodos del grafo original y los valores de los nodos del nuevo grafo para mantener la coherencia de la estructura. Como se observa en el pseudocódigo, al retornar el diamante en cuestión, se realiza un mapeo inverso restaurando los valores de los nodos originales, manteniendo así la consistencia de la entrada de los nodos de entrada. Por último, se creará la matriz de adyacencia que resultar\'a necesaria verificar si dos nodos son adyacentes en tiempo constante (como veremos mas adelante, condición necesaria para cumplir con los requisitos de complejidad).
-
-Luego, el algoritmo comienza a chequear por cada nodo (en adelante llamaremos \textit{superNodo}) su vecindad para encontrar componentes conexas no completas y as\'i determinar donde se encuentra el diamante. La funci\'on \textit{crearVecindad} se encarga de construir la vecindad (que es un grafo representado con una lista de adyacencia) de cada \textit{superNodo} a partir de la lista \textit{adyacencias}, es decir, por cada elemento $k$ de la lista de adyacencia de \textit{superNodo} se recorre la lista de adyacencia del elemento k agregando en la vecindad los elementos que est\'an relacionados con \textit{superNodo}.
-
-Una vez obtenida la vecindad (\textit{vecindadDeSuperNodo}), se comienza a revisar las componentes conexas de la misma para verificar si son completas a trav\'es de la funci\'on \textit{buscarDiamanteMinimoEnVecindad}. Con este fin, se utiliza la técnica \textit{Depth First Search (DFS)} para recorrer cada componente conexa almacenando la suma de los grados de cada nodo recorrido as\'i como el nodo m\'inimo encontrado (\textit{nodoMinimoCompConexa}) y la lista de nodos por los que se avanz\'o (\textit{nodosCompConexa}). Al terminar de recorrer cada componente conexa, se verifica si la misma es completa o no. En caso de que lo sea, se sabe que ninguno de los nodos de esa componente conexa forma un diamante\footnotemark[1], por lo que se descarta y contin\'ua verificando las siguientes componentes. En caso contrario, se procede a encontrar los nodos que forman el diamante\footnotemark[1] m\'inimo para esa componente conexa por medio de la funci\'on \textit{buscarDiamanteMinimoDeCompConexa}. Esta funci\'on busca primero el nodo m\'inimo de la componente conexa que posea grado menor a $n-1$ siendo $n$ la cantidad de nodos de esa componente conexa (identificado como \textit{nodo2}). Luego, toma la lista de adyacencia de ese \textit{nodo2} y para cada nodo $k$ de dicha lista, recorre todos los elementos $j$ de su lista de adyacencia para determinar si forma un grafo $K_{3}-1$ entre \textit{nodo2}, $k$ y $j$ . En este caso, se sabe que los elementos encontrados (\textit{nodo3} y \textit{nodo4}) forman un diamante con \textit{superNodo} (\textit{nodo1}), ya que \textit{superNodo} es adyacente a los mismos pues pertenecen a su vecindad. Como la funci\'on \textit{buscarDiamanteMinimoDeCompConexa} verifica en cada paso si el diamante obtenido es menor al que se tiene hasta ese momento y se prueban todas las posibles diamantes constru\'idos a partir de \textit{nodo2}, se puede afirmar que obtiene el diamante m\'inimo para dicha componente conexa. Esto se debe a que \textit{nodo2} es el menor nodo que puede formar un diamante\footnotemark[1] y los restantes nodos (\textit{nodo3} y \textit{nodo4}) se obtienen seleccionando el menor de todos los posibles diamantes.
-
-Luego, dentro de la funci\'on \textit{buscarDiamanteMinimoEnVecindad} se verifica si el diamante m\'inimo de la componente conexa actual es menor que el diamante que se tiene hasta ese paso (almacenado en \textit{diamanteMinimo}). Si esto sucede, el diamante de la componente conexa actual pasa a ser el diamante m\'inimo. Una vez verificadas todas las componentes conexas se obtiene, en \textit{diamanteMinimo}, el m\'inimo diamante para la vecindad de \textit{superNodo}. Este diamante se almacena en una lista llamada \textit{diamantesMinimos} que, cuando el algoritmo termina de verificar las vecindades de todos los nodos, contendr\'a los diamantes m\'inimos para cada una de las mismas, en caso de que este exista. Finalmente, se busca el m\'inimo de la lista diamantesMinimos, con lo que se obtiene el diamante m\'inimo de todo el grafo, resolviendo as\'i el problema.
-
-\footnotetext[1]{Las demostraciones de estas propiedades fueron presentadas en la secci\'on ``Demostraci\'on de la parte a''}
 
 \section*{Complejidad}
 
