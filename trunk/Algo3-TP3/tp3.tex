@@ -227,28 +227,6 @@ Como se puede apreciar en el gr\'afico, el tiempo de ejecuci\'on del algoritmo a
 
 Otro aspecto a tener en cuenta es la notable diferencia de los tiempos en relaci\'on a las diversas densidades. Se puede ver que si la densidad del grafo es baja, el tiempo de busqueda del conjunto independiente de mayor peso es mucho mayor que si se lo busca sobre un grafo de densidad media. Lo mismo sucede entre media y alta densidad. Esto se debe a que al disminuir la cantidad de aristas (menor densidad), la cantidad de conjuntos independientes en el grafo aumenta, ya que mientras menos aristas haya, mayor cantidad de nodos no adyacentes entre si habr\'a. De esta manera, mientras menor sea la densidad, mayor ser\'a la cantidad de conjuntos independientes a tener en cuenta por el algoritmo con el fin de buscar el de mayor peso, por lo que demandar\'a mayor tiempo de ejecuci\'on.
 
-\section*{Conclusiones}
-
-Este ejercicio srivió fundamentalmente para descubrir y profundizar las caracteríticas principales de la programación dinómica.
-Los aspectos más relevantes estudiados fueron la comparación en complejidad y dificultad de implementación entre un algoritmo que actúa de manera ingenua y otro que utiliza la técnica de programacién dinámica y lo determinante que es la utilización del principio de optimalidad en este tipo de ejercicios.
-
-En términos de complejidad, el algoritmo tiene una gran eficiencia respecto de su 'competidor'. Claro está que el algoritmo recursivo con el que fue comparado no propone ningún tipo de eficiencia, no obstante es el más natural de imaginarse, lo que también muestra cómo puede optimizarse un algoritmo con complejidad exponencial a otro polinomial utilizando alguna técnica algorítmica aplicable.
-
-Si bien la función recursiva utilizada mostró gran deficiencia, sirvió para tener la idea del algoritmo y a partir de ella, comenzar a pensar en còmo aplicar programación dinámica.
-
-En el análisis de los resultados, se pudo ver como se evitan cálculos utilizando resultados anteriores y se pudo comprobar empíricamente que el algoritmo cumple con la complejidad calculada. Los gráficos también mostraron cómo en este ejercicio en particular, el tiempo de ejecición dependía en mayor medida de la cantidad de zonas que de la cantidad de litros que se tengan aunque la complejidad depende de ambos parámetros $o(n*m^2)$.
-
-Respecto de la dificultad de la implementación, quedò absolutamente claro que la solución recursiva era intuitiva y sencilla mientras que el algoritmo de programación dinámica requiere de un pensamiento más elavorado. Sin embargo, el ejercicio mostró que entendiendo como aplica el principio de optimalidad al problema, las ideas se vuelven mucho más claras y menos desagradables.
-En un comienzo el principio de optimalidad parecía sencillo de entender. Sirvió para construir una matriz que guardara los valores óptimos hasta el momento que eran usados para calcular los siguientes. Una vez obtenido el resultado óptimo para el problema planteado, empezó la parte rebuscada del uso del principio de optimalidad, pero también la más interesante.
-
-No fue para nada sencillo ver como usar los valores calculados, y el principio para calcular los litros que debían emplearse en cada zona para obtener el mejor resultado. Ésta fue la parte más complicada del algoritmo, comprender cómo volver por la matriz para obtener los datos deseados que nos interesaban.
-
-En este punto fue donde el principio de optimalidad necesitó ser realmente comprendido y mostró su importancia en el algoritmo de programación dinámica.
-
-Desde el punto de vista de la demostración también resulta crucial tener claro el principio de optimalidad y demostrarlo ya que en este se basa la programación dinámica. El ejercicio mostrò una relaciòn entre el principio de optimalidad y la posibilidad de la utilizaciòn de inducción para la demostración del algoritmo. Debido a su característica, y teniendo en cuenta que la técnica la utiliza para llegar a la solución, se vuelve natural pensar en partir de un caso base y luego mostrar que se mantiene su correctitud cuando se calcula un valor posterior.
-
-En general, podemos afirmar que los algoritmos de programación dinámica pueden mejorar muchísimo la complejidad sobre otros algoritmos que utilizan otro tipo de técnicas, sin resultar excesivamente complicados. Esa dificultad pasa principalmente por comprender a fondo como aplica el principio de optimalidad en dicho problema y que además, una vez logrado esto, la demostración de correctitud se puede volver màs sencilla.
-
 \bigskip
 
 \begin{center}
