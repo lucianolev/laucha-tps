@@ -88,17 +88,7 @@ Por todo esto, podemos afirmar que el algoritmo encontrará el conjunto independ
 
 \section*{Complejidad}
 
-En la presente secci\'on se calcular\'a la complejidad en el peor caso del algoritmo exacto presentado para resolver el problema. Como se mostr\'o en anteriores secciones, el algoritmo busca conjuntos independientes maximales, qued\'andose con el m\'aximo de dichos conjuntos. De manera sencilla, se puede deducir que buscar conjuntos independientes maximales en un grafo $G$ es an\'alogo a buscar \textit{cliques} en el complemento de $G$. Esto se debe a que en un conjunto independiente ninguno de los nodos est\'an relacionados entre s\'i, por lo que, en el grafo complemento todos los nodos estar\'an relacionados entre s\'i formando un subgrafo completo. Adem\'as, como el conjunto independiente es maximal, cualquier nodo que se agregue no formar\'a un conjunto independiente. Esto implica que en el grafo complemento, cualquier nodo que se agregue no formar\'a un subgrafo completo, que es la definici\'on de subgrafo completo maximal (clique). En consecuencia, se deduce que un conjunto independiente maximal ser\'a una clique en el grafo complemento.
-
-A partir del trabajo \textit{``On cliques in graphs''}\footnotemark[1] se obtiene que la cantidad m\'axima de cliques en un grafo es $3^{n}$, por lo que, la cantidad de conjuntos independientes maximales es del mismo orden. 
-
-A partir de esta cota, podemos analizar la complejidad del algoritmo. Como fue explicado anteriormente, dado un grafo $G$ el algoritmo forma, en cada iteraci\'on $i$, todos los conjuntos independientes maximales a partir del nodo $i$ y todos los nodos mayores que $i$. Es decir, en cada iteraci\'on $i$ elimina del grafo todos los nodos desde 1 a $i-1$ y construye los conjuntos independientes maximales a partir de los nodos restantes. Por medio de la cota presentada, se deduce que en cada paso $i$ analiza a lo sumo $3^{n-i+1}$ conjuntos independientes maximales. Entonces, la cantidad total de conjuntos independientes maximales analizados corresponde a la siguiente forma:
-
-\[\sum_{i = 1}^{n} 3^{n-i+1} = \sum_{i = 1}^{n} 3^{i} = \frac{3^{n+1}-1}{3-1}\]
-
-Como $\frac{3^{n+1}-1}{3-1} \in O(3^{n})$ se deduce que la complejidad del algoritmo en el peor caso es $O(3^{n})$.
-
-\footnotetext[1]{Moon, J. W.; Moser, L. (1965), ``On cliques in graphs''. Ver secci\'on referencias.}
+En la presente secci\'on se calcular\'a la complejidad en el peor caso del algoritmo exacto presentado para resolver el problema. Como se mostr\'o en anteriores secciones, para un grafo $G$ el algoritmo, en cada iteraci\'on $i$, busca todos los conjuntos independientes formados por el nodo $i$ y todos los nodos mayores que $i$ en el subgrafo inducido por dichos nodos. El peor caso de este algoritmo ocurre cuando el grafo est\'a formado solamente por nodos aislados (grado 0). En este caso, el algoritmo deber\'a buscar todos los conjuntos posibles que se pueden formar a partir de los nodos del grafo ya que cualquier combinaci\'on de nodos forma un conjunto independiente. Como la cantidad de conjuntos posibles que se pueden formar con $n$ nodos es $2^{n}-1$, se deduce que la complejidad en el peor caso ser\'a $O(2^{n})$. Sin embargo, en casos donde la cantidad de aristas sea mayor, la cantidad de conjuntos independientes que deber\'a comprobar el algoritmo ser\'a mucho m\'as reducida. Evitando el chequeo de conjuntos innecesarios se espera que el tiempo de ejecuci\'on sea m\'as reducido para grafos con densidades altas, es decir, con gran cantidad de aristas.
 
 \section*{An\'alisis de resultados}
 
@@ -152,6 +142,29 @@ mientras haya nodos en el grafo
 
 
 
+
+\section*{An\'alisis de eficacia de las heur\'isticas}
+
+Con el objetivo de decidir que heur\'istica es m\'as eficaz en relaci\'on a la precisi\'on de la soluci\'on obtenida, se realizaron pruebas para 27 grafos distintos generados de manera aleatoria. En los casos que fue posible, se compar\'o el resultado obtenido con la soluci\'on exacta del problema, obtenida por medio del algoritmo exacto presentado anteriormente.
+
+Los grafos generados de manera aleatoria se dividen en 3 tipos seg\'un la cantidad de nodos. Se crearon 9 grafos de cada tipo, con cantidad de nodos 30, 300 y 600. A su vez, cada tipo de grafo se divide seg\'un la densidad del grafo, es decir, de los 9 grafos de cada tipo se crearon 3 con baja, media y alta densidad. El peso de cada uno de los nodos tambi\'en es aleatorio, en un rango de 1 a $n*10$, siendo $n$ la cantidad de nodos. Estos grafos ser\'an utilizados en todas las pruebas que se realizar\'an en el trabajo, tanto para las heur\'isticas constructivas como para las b\'usquedas locales y la metaheur\'istica GRASP.\footnotemark[1]
+
+Para cada uno de los grafos mencionados se ejecutaron todas las heur\'isticas constructivas mencionadas en la secci\'on anterior, obteniendo los siguientes resultados.
+
+\begin{center}
+ \includegraphics[width=0.75\textwidth]{tablas/tablaHC.png}
+\begin{center}
+Figura 2.1
+\end{center}
+\end{center}
+
+Las pruebas realizadas a grafos de 30 nodos pueden ser comparadas con el resultado exacto obtenido por medio del algoritmo de \textit{backtracking}. Como se puede observar, todos los resultados de las heur\'isticas difieren del resultado exacto en distinta medida. Esto es un resultado esperable ya que en la mayor\'ia de los casos todas las heur\'isticas golosas no son eficaces y se pueden encontrar casos en los que el resultado difiera en gran medida del exacto.
+
+En la tabla presentada fueron remarcados los resultados m\'as altos para cada tipo de grafo. Como se puede apreciar, para grafos con 30 nodos, los mejores resultados fueron obtenidos con la heur\'istica de Peso. Sin embargo, para grafos con mayor cantidad de nodos, como los de 300 y 600 nodos, los resultados de la heur\'istica de Peso/grado son ampliamente mejores.
+
+A partir de estos resultados, se puede concluir que la heur\'istica de Peso/Grado es la m\'as eficaz de las heur\'isticas implementadas.  El fundamento m\'as importante para la elecci\'on de la misma fue que los resultados para grafos con gran cantidad de nodos, son mucho m\'as eficaces a las dem\'as heur\'isticas constructivas. Como las heur\'isiticas fueron pensadas para resolver instancias de tama\~{n}o mucho mayor a lo que el algoritmo exacto puede resolver, es razonable que se elija la heur\'istica que mejor se comporte para grafos con gran cantidad de nodos. Adem\'as, para grafos peque\~{n}os los resultados no difieren demasiado de los obtenidos con la heur\'istica de Peso.
+
+En posteriores secciones estudiaremos el comportamiento de la heur\'istica Peso/grado en relaci\'on al tiempo de ejecuci\'on y compararemos dichos resultados con su complejidad te\'orica.
 
 \section*{Complejidad}
 
@@ -319,7 +332,7 @@ En mayor parte esto se debi\'o a la complejidad exigida por la c\'atedra lo que 
 En cuanto a las pruebas realizadas, estas arrojaron los resultados esperados en los casos en que se utilizaron grafos generados aleatoriamente. Tambi\'en hemos visto que para cierto tipo de grafos de entrada, puede que el algoritmo vari\'e notoriamente su tiempo de ejecuci\'on, a\'un asi cuando la cantidad de nodos es la misma. Esto se debe principalmente a dos razones. Una de ellas es la manera en que se construyen las listas de adyacencia utilizadas como estructura. Al no recibir los par\'ametros de entrada en orden, puede que el algoritmo obtenga primero los diamantes con nodos m\'as grandes, lo que no permitir\'ia evitar una gran cantidad de c\'alculos como si suceder\'ia en caso de obtener inicialmente los m\'inimos. El otro factor importante a tener en cuenta es el de la distribuci\'on de las aristas en el grafo, donde puede ocurrir que casi todas las componentes conexas de cada vecindad tengan la mayor cantidad de aristas pero sin ser completas. Esto implicar\'ia una gran cantidad de diamantes a buscar a comparaci\'on de casos promedio. Estos y otros casos patol\'ogicos son bastante complejos de generar sobre todo en grafos de gran tama\~{n}o por lo que su an\'alisis no pudo ser tan extenso como se dese\'o.
 
 \begin{center}
-\section*{Ejercicio 3: Red Astor}
+\section*{Heur\'isticas de B\'usqueda Local}
 \end{center}
 
 \bigskip

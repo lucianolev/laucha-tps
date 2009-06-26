@@ -1,0 +1,48 @@
+obtengo una solucion (solucionLocal) con una heuristica constructiva 
+
+para i desde 1 hasta cantIteraciones hacer
+	pesoMaximoAnterior = peso(solucionLocal)
+	solucionLocal = intercambioDeNodo(solucionLocal) o intercambioDeUnoAMuchos(solucionLocal)
+	si peso(solucionLocal) = pesoMaximoAnterior
+		devolver solucionLocal
+
+devolver solucionLocal
+
+intercambioDeNodo(solucion)
+	diferenciaMaxima = 0
+	para cada nodo (nodoActual) de solucion
+		para cada nodo (adyacenteANodoActual) adyacente a nodoActual
+			diferenciaActual = peso(adyacenteANodoActual) - peso(nodoActual)
+			si adyacenteANodoActual no es adyacente a algun nodo de solucion excepto nodoActual y
+			   diferenciaActual > diferenciaMaxima
+				diferenciaMaxima = diferenciaActual
+				nodoASacar = nodoActual
+				nodoAInsertar = adyacenteANodoActual
+		finPara
+	finPara
+	
+	si diferenciaMaxima > 0
+		sacar nodoASacar de solucion
+		agregar nodoAInsertar en solucion
+
+
+intercambioDeUnoAMuchos(solucion)
+	diferenciaMaxima = 0
+	
+	para cada nodo (nodoActual) de solucion
+		nodosAInsertarActual = lista vacia
+		para cada nodo (adyacenteANodoActual) adyacente a nodoActual
+			si adyacenteANodoActual no es adyacente a algun nodo de solucion excepto nodoActual
+				si adyacenteANodoActual no es adyacente a algun nodo de nodosAInsertarActual
+					agregar adyacenteANodoActual en nodosAInsertarActual
+		finPara
+		diferenciaActual = peso(nodosAInsertarActual) - peso(nodoActual)
+		si diferenciaActual > diferenciaMaxima
+			diferenciaMaxima = diferenciaActual
+			nodosAInsertar = nodosAInsertarActual
+			nodoASacar = nodoActual
+	finPara
+
+	si diferenciaMaxima > 0
+		sacar nodoASacar de solucion
+		insertar todos los nodos de nodosAInsertar en solucion
