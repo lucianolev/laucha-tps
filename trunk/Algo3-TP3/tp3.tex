@@ -34,13 +34,13 @@ Antes de comenzar el an\'alisis de los algoritmos, cabe mencionar lo siguiente:
  \item Los gr\'aficos se realizaron con \textbf{GNUPlot} y las tablas con OpenOffice Calc. En los casos considerados pertinentes, se utiliz\'o una escala logar\'itmica con el fin de poder visualizar mejor los resultados.
 \end{itemize}
 
-Con respecto al análisis de resultados y a las pruebas realizadas vale hacer la siguiente aclaración. Los grafo generados aletoriamente poseerán nodos con pesos comprendidos entre $10$ y cantidad de nodos del grafo por $10$. Las adyacencias de los nodos es generada también aleatoriamente de modo que el grado de cada nodo sea un número entre 0 y (n-1)*k, con $k$ un parámetro que llamaremos \textit{densidad} de aquí en adelante, donde $0 < k \leq 1$. De este modo, los experimentos mostrarán el comportamiento de los algoritmos para grafos ``promedio'' (sin particularidades) con una cierta cantidad de nodos y de cierta densidad.
+Con respecto al análisis de resultados y a las pruebas realizadas vale hacer la siguiente aclaración. Los grafos generados aletoriamente poseerán nodos con pesos comprendidos entre $10$ y cantidad de nodos del grafo por $10$. Las adyacencias de los nodos es generada también aleatoriamente de modo que el grado de cada nodo sea un número entre 0 y (n-1)*k, con $k$ un parámetro que llamaremos \textit{densidad} de aquí en adelante, donde $0 < k \leq 1$. De este modo, los experimentos mostrarán el comportamiento de los algoritmos para grafos ``promedio'' (sin particularidades) con una cierta cantidad de nodos y de cierta densidad.
 
 \section{Introducci\'on}
 
 El objetivo del siguiente trabajo es presentar diversos m\'etodos para encontrar soluciones exactas y aproximadas para el problema del Conjunto Independiente de Peso M\'aximo (CIPM). En particular, se desarrollar\'a un algoritmo que utiliza la t\'ecnica de \textit{backtracking} para resolver el problema de manera exacta para instancias peque\~{n}as del mismo. Adem\'as, se implementar\'an heur\'isitcas constructivas, de b\'usqueda local y una metaheur\'istica GRASP, la cual ser\'a el foco principal de nuestro estudio.
 
-Para cada tipo de heur\'istica (constructivas y de b\'usqueda local), se realizar\'an pruebas para determinar cual es la m\'as eficaz y, en caso de ser posible, cu\'al es la m\'as precisa en relaci\'on a la soluci\'on exacta del problema. En estas decisiones tambi\'en se tendr\'a en cuenta el tiempo de ejecuci\'on de cada una las heur\'isticas, procurando obtener un balance entre eficacia de la soluc\'on y tiempo de ejecuci\'on.
+Para cada tipo de heur\'istica (constructivas y de b\'usqueda local), se realizar\'an pruebas para determinar cual es la m\'as eficaz y, en caso de ser posible, cu\'al es la m\'as precisa en relaci\'on a la soluci\'on exacta del problema. En estas decisiones tambi\'en se tendr\'a en cuenta el tiempo de ejecuci\'on de cada una las heur\'isticas, procurando obtener un balance entre eficacia de la soluci\'on y tiempo de ejecuci\'on.
 
 Finalmente, se desarrollar\'a una metaheur\'istica GRASP modificando ligeramente las heur\'isticas constructivas y de b\'usqueda local previamente mencionadas. Se realizar\'an pruebas para determinar con cuales de estas heur\'isticas la soluci\'on de GRASP es m\'as precisa. Tambi\'en se har\'an estudios sobre la eficacia de la soluci\'on en relaci\'on a los par\'ametros involucrados en esta metaheur\'istica. A partir de estos resultados se podr\'an concluir los par\'ametros adecuados y las heur\'isticas a utilizar para que el resultado de GRASP sea eficaz y eficiente en relaci\'on al tiempo de ejecuci\'on.
 
@@ -48,7 +48,7 @@ Por \'ultimo, para la metaheur\'istica GRASP obtenida y para las mejores heur\'i
 
 \subsection{Situaciones modeladas}
 
-A continuación presentamos tres situaciones diferentes en las cuales problemas reales pueden ser modelados y resueltos como un problema de conjunto independiente máximo.
+A continuación presentamos tres situaciones diferentes en las cuales problemas reales pueden ser modelados y resueltos como un problema de conjunto independiente de peso máximo.
 
 \subsection*{Situación 1:}
 
@@ -58,7 +58,7 @@ Para no desequilibrar el equipo no debería haber dos jugadores en vidriera que:
 \item Tengan similar jerarquía.
 \item Jugasen en la misma posición.
 \item Compartan alguna habilidad especial.
-\item Tenegan la misma experiencia y lleven el tiempo en el club.
+\item Tengan la misma experiencia y lleven el tiempo en el club.
 \end{itemize}
 
 Teniendo en cuenta estas restricciones, el manager del club decide plantear esta situación como un problema de conjunto independiente de peso máximo. En su modelo los nodos son los jugadores, el peso de éstos se define por su cotización y las adyacencias por las restricciones a tener en cuenta al querer incluir dos jugadores.
@@ -71,16 +71,16 @@ En este caso, los nodos también son los jugadores, pero el peso está dado por 
 \item Jueguen en la misma posición.
 \item Sean de equipos opuestos.
 \item Compartan alguna habilidad especial.
-\item La suma sus cotizaciones superen los dos millones de dólares.
+\item La suma de sus cotizaciones superen los dos millones de dólares.
 \end{itemize}
 
 \subsection*{Situación 2:}
 
-Ante la inminencia de las próximas elecciones, De Narvaez decide cerrar su campaña con una "gira" por las localidades de la provincia de Buenos Aires. Su objetivo es que sus actos sean presenciados por la mayor cantidad de personas posibles, pero evitando dar un discurso
-en dos localidades limítrofes. Esto es debido a que las personas pueden moverse a su localidad vecina para precensiar el acto y será una pérdida de tiempo innecesaria recorrer cada una de las zonas si no aumenta tanto la cantidad de asistentes. 
+Ante la inminencia de las próximas elecciones, De Narvaez decide cerrar su campaña con una ``gira'' por las localidades de la provincia de Buenos Aires. Su objetivo es que sus actos sean presenciados por la mayor cantidad de personas posibles, pero evitando dar un discurso
+en dos localidades limítrofes. Esto es debido a que las personas pueden moverse a su localidad vecina para presenciar el acto y será una pérdida de tiempo innecesaria recorrer cada una de las zonas si no aumenta tanto la cantidad de asistentes. 
 Además que al hacer un acto en localidades vecinas puede suceder que varias personas escuchen más de una vez el acto y empiecen a sospechar de la sinceridad en los proyectos de Francisco.
-Para decidir cuáles serán las provincias a visitar, el PRO cuenta con una gran base de datos que contiene la cantidad de personas aproximada que podría asistir al evento al realizarse en cada localidad. Utilizando estos datos, el grupo de inteligencia de Francisco
-modela el problema de decidir las provincias a visitar como un problema de conjunto independiente máximo donde los nodos son las localidades, los pesos son la cantidad de personas que podrían asistir al acto y la condición de adyacencia es que las localidades sean vecinas.
+Para decidir cuáles serán las provincias a visitar, el PRO cuenta con una gran base de datos que contiene la cantidad de personas aproximada que podrían asistir al evento al realizarse en cada localidad. Utilizando estos datos, el grupo de inteligencia de Francisco
+modela el problema de decidir las provincias a visitar como un problema de conjunto independiente de peso máximo donde los nodos son las localidades, los pesos son la cantidad de personas que podrían asistir al acto y la condición de adyacencia es que las localidades sean vecinas.
 	
 \subsection*{Situación 3:}
 
@@ -123,7 +123,7 @@ Antes de continuar, es importante notar que esto garantiza encontrar el conjunto
 
 A continuación, se mostrará como en cada iteración del ciclo externo, el algoritmo observa los CI de los subgrafos S mencionados.
 
-El ciclo utiliza una pila que comienza conteniendo únicamente al nodo $i$. Luego, se van agregando todos los nodos que vayan conformando un conjunto independiente apartir de ese nodo \textit{i} hasta el último del grafo.
+El ciclo utiliza una pila que comienza conteniendo únicamente al nodo $i$. Luego, se van agregando todos los nodos que vayan conformando un conjunto independiente a partir de ese nodo \textit{i} hasta el último del grafo.
 Inmediatamente después, en caso de que dicho conjunto independiente sea el de peso máximo\footnotemark[2] hasta el momento, se almacena la pila como solución. El siguente paso consiste en desapilar el tope de la pila (que contiene al último nodo insertado), observando si cada nodo posterior a éste puede ser apilado de modo que se siga manteniendo el invariante de conjunto independiente, es decir, se insertan los nodos que no sean adyacentes a \underline{ningún} nodo de la pila. De esta manera, al salir del ciclo, se habrán observado todos conjuntos independientes que contengan al nodo $i$, ya que es condición del ciclo que dicho nodo esté en la pila por ser el primer nodo apilado.
 
 Por todo esto, podemos afirmar que el algoritmo encontrará el conjunto independiente de peso máximo para cualquier grafo G.
@@ -146,13 +146,13 @@ Los resultados arrojados fueron los siguientes:
 \begin{center}
  \includegraphics[width=0.8\textwidth]{graficos/tiemposExacto.png}
 \begin{center}
-Figura 1.1
+Figura 2.1
 \end{center}
 \end{center}
 
 Como se puede apreciar en el gr\'afico, el tiempo de ejecuci\'on del algoritmo aplicado sobre los distintos grafos seleccionados se comporta de acuerdo a la complejidad te\'orica estimada. Adem\'as, podemos ver que se mantiene muy alejado de la cota para el peor caso ($2^{n}$).
 
-Otro aspecto a tener en cuenta es la notable diferencia de los tiempos en relaci\'on a las diversas densidades. Se puede ver que si la densidad del grafo es baja, el tiempo de busqueda del conjunto independiente de mayor peso es mucho mayor que si se lo busca sobre un grafo de densidad media. Lo mismo sucede entre media y alta densidad. Esto se debe a que al disminuir la cantidad de aristas (menor densidad), la cantidad de conjuntos independientes en el grafo aumenta, ya que mientras menos aristas haya, mayor cantidad de nodos no adyacentes entre si habr\'a. De esta manera, mientras menor sea la densidad, mayor ser\'a la cantidad de conjuntos independientes a tener en cuenta por el algoritmo con el fin de buscar el de mayor peso, por lo que demandar\'a mayor tiempo de ejecuci\'on.
+Otro aspecto a tener en cuenta es la notable diferencia de los tiempos en relaci\'on a las diversas densidades. Se puede ver que si la densidad del grafo es baja, el tiempo de busqueda del conjunto independiente de mayor peso es mucho mayor que si se lo busca sobre un grafo de densidad media. Lo mismo sucede entre media y alta densidad. Esto se debe a que al disminuir la cantidad de aristas (menor densidad), la cantidad de conjuntos independientes en el grafo aumenta, ya que mientras menos aristas haya, mayor cantidad de nodos no adyacentes entre s\'i habr\'a. De esta manera, mientras menor sea la densidad, mayor ser\'a la cantidad de conjuntos independientes a tener en cuenta por el algoritmo con el fin de buscar el de mayor peso, por lo que demandar\'a mayor tiempo de ejecuci\'on.
 
 Finalmente estudiaremos la complejidad en funci\'on del tama\~{n}o de la entrada. Sea $t$ el tama\~{n}o de la entrada, $n$ la cantidad de nodos, $m$ la cantidad de aristas ($m_i$ la cantidad de aristas del nodo $i$), $p$ el arreglo de pesos y $a[i]$ las adyacencias del nodo $i$. Tenemos entonces que:
 
@@ -165,7 +165,7 @@ $$>\log(n)+n+\sum_{i=1}^{n}m>\log(n)+n+nm$$
 
 \section{Heur\'isticas constructivas}
 
-A continuaci\'on se desarrolar\'a el trabajo realizado sobre heur\'isticas constructivas con el objetivo de reducir significativamente la complejidad temporal a merced de una p\'erdida de eficacia en las soluciones. Para esto, se utilizar\'on distintos algoritmos golosos que tienen en cuenta diversas condiciones sobre los nodos para ir armando una soluci\'on de manera constructiva. Se pensaron varias ideas para buscar aproximarse a la soluci\'on \'optima, todas siguiendo el siguiente esquema de algoritmo goloso:
+A continuaci\'on se desarrollar\'a el trabajo realizado sobre heur\'isticas constructivas con el objetivo de reducir significativamente la complejidad temporal a merced de una p\'erdida de eficacia en las soluciones. Para esto, se utilizaron distintos algoritmos golosos que tienen en cuenta diversas condiciones sobre los nodos para ir armando una soluci\'on de manera constructiva. Se pensaron varias ideas para buscar aproximarse a la soluci\'on \'optima, todas siguiendo el siguiente esquema de algoritmo goloso:
 
 \begin{verbatim}
 mientras haya nodos en el grafo
@@ -184,7 +184,7 @@ mientras haya nodos en el grafo
   borrar vecindad de nodoMax
 \end{verbatim}
 
-Podemos apreciar que en cada iteraci\'on (del ciclo interno) el algoritmo recorre todos los nodos verificando que se cumpla una condici\'on de acuerdo a una funci\'on aplicada a los mismos (funci\'on $f$). Una vez observados todos los nodos, se agrega el nodo m\'aximo o m\'inimo de acuerdo a la condicion mencionada al conjunto soluci\'on. De inmediato, se procede a borrar la vecindad de dicho nodo del grafo. De esta manera, en cada iteraci\'on, el grafo contendr\'a una cantidad cada vez menor de nodos de modo de garantizar que el algoritmo termina (sale del ciclo principal).
+Podemos apreciar que en cada iteraci\'on (del ciclo interno) el algoritmo recorre todos los nodos verificando que se cumpla una condici\'on de acuerdo a una funci\'on aplicada a los mismos (funci\'on $f$). Una vez observados todos los nodos, se agrega el nodo m\'aximo o m\'inimo de acuerdo a la condici\'on mencionada al conjunto soluci\'on. De inmediato, se procede a borrar la vecindad de dicho nodo del grafo. De esta manera, en cada iteraci\'on, el grafo contendr\'a una cantidad cada vez menor de nodos de modo de garantizar que el algoritmo termina (sale del ciclo principal).
 
 Cabe aclarar que si el grado de los nodos que el algoritmo va recorriendo es igual a 0, inmediatamente son agregados a la soluci\'on. Esto se debe a que, al ser todos los pesos mayores que 0, si un nodo no es adyacente a ning\'un otro (grado 0), siempre deber\'a pertenecer a la soluci\'on.
 
@@ -208,7 +208,7 @@ Para cada uno de los grafos mencionados se ejecutaron todas las heur\'isticas co
 \begin{center}
  \includegraphics[width=0.75\textwidth]{tablas/tablaHC.png}
 \begin{center}
-Figura 2.1
+Tabla 3.1
 \end{center}
 \end{center}
 
@@ -273,7 +273,7 @@ Como hemos visto anteriormente, la complejidad de la heurística constructiva re
 \begin{center}
  \includegraphics[width=0.7\textwidth]{graficos/tiemposHC.png}
 \begin{center}
-Figura 2.1
+Figura 3.1
 \end{center}
 \end{center}
 
@@ -288,7 +288,7 @@ Tomemos el siguiente grafo sobre el cual se aplica la heur\'istica:
 \begin{center}
 \includegraphics[width=0.7\textwidth]{graficos/casoMaloHC.png}
 \begin{center}
-Figura 2.1
+Figura 3.2
 \end{center}
 \end{center}
 
@@ -378,6 +378,9 @@ Con el fin de realizar las comparaciones mencionadas se optó por realizar una v
 
 \begin{center}
  \includegraphics[width=0.75\textwidth]{tablas/tablaHCBL.png}
+\begin{center}
+Tabla 4.1
+\end{center}
 \end{center}
 
 En primer lugar, podemos observar que la busqueda local 2 resulta ampliamente superior a la busqueda local 1 para todos los casos evaluados. Lo interesante de esta tabla es ver como se destacan particularmente 2 heurísticas constructivas como generadores de soluciones iniciales ``buenas'' para esta búsqueda. Por un lado la heurística peso/grado muestra ser eficaz tal como lo era por sí sola. Por otra parte, la heurística de grado que resultaba particularmente ineficiente en análisis previos, resulta aún más eficaz que esta en la gran mayoría de los casos.
@@ -498,11 +501,11 @@ para i desde 1 hasta cantIteracionesGrasp
     pesoMaximo = peso(laMejorSolucion)
 \end{verbatim}
 
-El algoritmo utilizado consta de un ciclo general que está determinado por la cantidad de iteraciones de Grasp. El ciclo se ejecutará tantas veces como este parámetro lo indique. Para determinar su valor apropiado se efectuarán las pruebas necesarias más adelante. Dentro del ciclo se construye una solución mediante la heurística constructiva, se le aplica búsqueda local y, si consigue mejorar a la óptima obtenida hasta el momento, ocupa su lugar. De esta manera, al terminar el ciclo se obtendrá la mejor solución contrada.
+El algoritmo utilizado consta de un ciclo general que está determinado por la cantidad de iteraciones de Grasp. El ciclo se ejecutará tantas veces como este parámetro lo indique. Para determinar su valor apropiado se efectuarán las pruebas necesarias más adelante. Dentro del ciclo se construye una solución mediante la heurística constructiva, se le aplica búsqueda local y, si consigue mejorar a la óptima obtenida hasta el momento, ocupa su lugar. De esta manera, al terminar el ciclo se obtendrá la mejor solución encontrada.
 
-Un punto importante a señalar es el hecho de que las heurísticas constructivas fueron modificadas con el fín de construir distintas soluciones iniciales, tal como indica el esquema de GRASP. Por este motivo, se añadió un parámetro que llamaremos $alfa$ cuyo valor tiene relacion con el factor de aleatoriedad del algoritmo. Más precisamente, en lugar de que la heurística golosa siempre vaya añadiendo a la solución el mejor candidato, agregue alguno de los mejores cantidatos.
+Un punto importante a señalar es el hecho de que las heurísticas constructivas fueron modificadas con el fin de construir distintas soluciones iniciales, tal como indica el esquema de GRASP. Por este motivo, se añadió un parámetro que llamaremos $alfa$ cuyo valor tiene relacion con el factor de aleatoriedad del algoritmo. Más precisamente, en lugar de que la heurística golosa siempre vaya añadiendo a la solución el mejor candidato, agregue alguno de los mejores cantidatos.
 
-Dicho esto, los análisis posteriores se encargarán analizar que valores de los 2 parámetros mencionados son los más adecuados para la metaheurística. 
+Dicho esto, los análisis posteriores se encargarán analizar que valores de los 2 parámetros mencionados son los más adecuados para la metaheurística.
 
 Por un lado, el alfa determinará qué tan aleatoria será la heurística constructiva. Es importante su buena elección ya que una mala decisión podría limitar notablemente la cantidad de soluciones a verificar, mientras que por otro lado podría construir malas soluciones iniciales lo que influiría negativamente en la eficiencia y eficacia de la búsquela local que se le aplique.
 
@@ -592,6 +595,16 @@ Figura 5.2
 
 En el gr\'afico presentado se puede notar que los resultados de GRASP crecen de manera sostenida hasta que la cantidad de iteraciones es 70. A partir de este punto, el crecimiento se vuelve muy leve, es decir, a pesar de que la cantidad de iteraciones aumente la calidad de las soluciones crecer\'a muy poco. Por esta raz\'on, establecer la cantidad de iteraciones en alg\'un valor mayor que 70 no mejorar\'ia demasiado la soluci\'on que se tiene hasta ese paso y el tiempo de ejecuci\'on ser\'ia mayor. En consecuencia, fijaremos la cantidad de iteraciones de GRASP en 70, ya que establece un balance entre la calidad de la soluci\'on y el tiempo de ejecuci\'on.
 
+Para finalizar, se presenta una tabla que resume el comportamiento de todos los algoritmos heur\'isticos con el fin de poder comparar su eficacia y eficiencia para grafos de 600 nodos con distintas densidades.
+
+\begin{center}
+ \includegraphics[width=0.75\textwidth]{tablas/tablaTodos.png}
+\begin{center}
+Figura 5.3
+\end{center}
+\end{center}
+
+Como se observa, GRASP encuentra soluciones a\'un mejores que la b\'usqueda local sola en todos los casos para grafos de gran tama\~{n}o a costa de un mayor tiempo de ejecuci\'on. Por todo lo visto, estos resultados confirman todo lo conjeturado anteriormente.
 
 \section*{Complejidad}
 
@@ -621,7 +634,7 @@ El siguiente gráfico muestra los tiempos de ejecución del algoritmo de GRASP p
 \begin{center}
  \includegraphics[width=0.75\textwidth]{graficos/tiemposGrasp.png}
 \begin{center}
-Figura 5.1
+Figura 5.4
 \end{center}
 \end{center}
 
