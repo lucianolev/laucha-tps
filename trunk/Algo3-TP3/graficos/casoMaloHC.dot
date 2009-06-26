@@ -1,0 +1,18 @@
+graph G {
+  node [shape="circle",height=.75,width=.75]
+  v [pos="0,0!"]
+  w [pos="4,0!"]
+  1 [pos="6,0!"]
+  2 [pos="5.8,1!"]
+  i [pos="4.5,2.5!"]
+  "10^k-2" [pos="2.5,2.5!"]
+  "10^k-1" [pos="1.5,1.5!"]
+
+  v--w
+  1--w
+  2--w
+  "10^k-2"--w
+  i--2 [style="dotted"]
+  i--"10^k-2" [style="dotted"]
+  "10^k-1"--w
+}
