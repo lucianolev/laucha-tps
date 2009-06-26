@@ -278,6 +278,23 @@ Figura 2.1
 
 Como se observa, el comportamiento del algoritmo no tiene correspondencia directa con la complejidad teórica calculada, ya que que para grafos de densidad variada, los tiempos de ejecución siempre se comportan de la forma de $n^2$, lo que haría suponer que la complejidad real del algoritmo podría ser de orden cuadrático con respecto a la cantidad de nodos. La razón de esto probablemente radique en el fenómeno de ``equilibro'' mencionado anteriormente en el apartado de complejidad, el cuál logra que, para un grafo promedio, el algoritmo se comporte en un orden de complejidad menor al calculado y dependiendo únicamente de la cantidad de nodos.
 
+\section*{Casos Patol\'ogicos}
+
+En la siguiente secci\'on se estudiar\'a el comportamiento de la heur\'istica constructiva seleccionada anteriormente cuando recibe como par\'ametro un tipo especifico de grafos. Podremos apreciar que en estos casos patol\'ogicos el peso del conjunto independiente m\'aximo retornado difiere notablemente del \'optimo.
+
+Tomemos el siguiente grafo sobre el cual se aplica la heur\'istica:
+
+\begin{center}
+\includegraphics[width=0.7\textwidth]{graficos/casoMaloHC.png}
+\begin{center}
+Figura 2.1
+\end{center}
+\end{center}
+
+Supongamos ahora que los nodos numerados desde $1$ a $c^{k}-1$ tienen peso 1, el nodo $v$ peso $c^{k}+1$ y el $w$ $c^{2k}$. De esta manera, como $w$ es adyacente a $c^{k}$ nodos (los nodos numerados y $v$), el cociente $peso(w)/grado(w)=c^{2k}/c^{k}=c^{k}$. Como $v$ es \'unicamente adyacente a $w$, su relacion peso-grado ser\'a $c^{k}+1$. Concluimos entonces que el algoritmo seleccionar\'a a $v$ como primer nodo de la soluci\'on. Al hacer esto, descartamos $w$ como posible nodo perteneciente a la soluci\'on por ser adyacente a $v$. El resto de los nodos (1..$c^{k}-1$) pertenecer\'a a la soluci\'on debido a que no son adyacentes a $v$ ni adyacentes entre ellos. Como el peso de estos \'ultimos nodos mencionados es 1, el peso final de la soluci\'on brindada por la heur\'istica constructiva es $c^{k}+1+\sum_{i=1}^{c^{k}-1}1=c^{k}+1+c^{k}-1=2c^{k}$. A simple vista podemos notar que en realidad, el conjunto independiente de mayor peso es el formado solamente por el nodo $w$ cuyo peso es $c^{2k}$ (tomando $c,k>2$). Finalmente vemos que el peso del conjunto independiente m\'aximo hallado por nuestro algoritmo y el \'optimo difieren en $c^{2k}-2c^{k}=c^{k}(c^{k}-2)$.
+
+Vemos entonces que podemos generar un grafo donde el algoritmo sea tan impreciso como uno desee(ajustando los par\'ametros $c$ y $k$ como se considere necesario).
+
 \bigskip
 \section{Heur\'isticas de B\'usqueda Local}
 
@@ -377,8 +394,16 @@ para i desde 1 hasta cantIteraciones hacer
     si peso(solucionLocal) = pesoMaximoAnterior
       devolver solucionLocal
 
-devolver solucionLocal 
+devolver solucionLocal
 \end{verbatim}
+
+\section*{Casos Patol\'ogicos}
+
+En esta secci\'on se estudiar\'a un caso en el que, dado un tipo de soluci\'on inicial, el algoritmo de busqueda local implementado no realiza una mejora sustancial.
+
+Supongamos que el algoritmo de busqueda local recibe una soluci\'on compuesta por dos nodos que llamaremos $v$ y $w$. Supongamos tambien que el peso de $v$ es 1 y que es adyacente a un \'unico nodo $a$ de peso 2. Adem\'as, $a$ es adyacente a todos los nodos adyacentes a $w$ pero no a este \'ultimo. De esta manera, el algoritmo de busqueda local comenzar\'a por colocar en la lista de nodos a insetrar a $a$, ya que sacando a $v$ de la soluci\'on y agregando a $a$, el peso parcial aumenta en 1. En el siguiente paso, el algoritmo intentara reemplazar $w$ por uno o m\'as nodos adyacentes a el que mejoren la soluci\'on. Como el nodo $a$ es adyacente a todos los adyacentes a $w$, y ya es considerado como uno de los nodos a insertar, no podre agregar ninguno de los nodos adyacentes a $w$ a la lista de nodos a insertar en la soluci\'on. En el caso en que los nodos adyacentes a $w$ tuvieran mucho peso y no fueran adyacentes con el nodo $a$ intercambiado ni entre ellos, no estaria teniendolos en cuenta por lo mencionado anteriormente.
+
+Vemos asi que mientras mayor sea el peso de la vecindad de $w$, mas alejado del mejor intercambio se encontrar\'a la soluci\'on. Este caso patol\'ogico podria ser evitado si en lugar de arrancar los intercambios por el nodo $v$ el algoritmo comenzara por $w$.
 
 \section*{An\'alisis de resultados}
 
@@ -396,7 +421,7 @@ para poder apreciar si existe una relación entre ellas y el tiempo de ejecució
 Para poder apreciar el comportamiento del algoritmo con respecto a la complejidad teórica se agregaron al gráfico las curvas definidas por $n^3/9000$ y $n^2/9$, dado que como el orden del algoritmo es $n * m$ debe alternar entre esos valores( ya que $n \leq m \leq n^2$).
 
 \begin{center}
- \includegraphics[width=0.7\textwidth]{graficos6/tiemposBL.png}
+% \includegraphics[width=0.7\textwidth]{graficos6/tiemposBL.png}
 \begin{center}
 Figura 2.1
 \end{center}
