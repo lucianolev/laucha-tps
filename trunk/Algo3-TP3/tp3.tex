@@ -349,7 +349,36 @@ Como fue mencionado anteriormente, las b\'usquedas locales implementadas difiere
 La primer heur\'istica de b\'usqueda local (a la que llamaremos BL1) mejora la soluci\'on por medio de la funci\'on \textit{intercambioDeNodo}. Esta funci\'on saca un nodo de la soluci\'on que recibe como par\'ametro y agrega otro distinto que forme una soluci\'on v\'alida y que maximice el peso de la soluci\'on. Es decir, saca un nodo v de la soluci\'on y para cada nodo adyacente a v, verifica si lo puede insertar en la soluci\'on viendo si no es adyacente a ning\'un nodo de la misma. De los nodos adyacentes a v que puede insertar, 
 \section*{An\'alisis de eficacia}
 
+En la presente sección se intentará observar cuando eficaces resultan las heurísticas de búsqueda local propuestas a la hora de hallar un conjunto independiente de mayor peso. Además, veremos como mejora la calidad de la solución con respecto a cada heurística constructiva presentada anteriormente. El motivo de analizar nuevamente todas las heurísticas es que no necesariamente las soluciones provistas por la mejor heurística hallada harán que las busquedas locales provean los mejores resultados. Es decir, puede ocurrir que, por la forma en la que comporta la busqueda local (en otras palabras, la vecindad a analizar), las soluciones provistas por la heurística golosa de peso/grado no sean las soluciónes iniciales que dén mejores resultados.
+
+Con el fin de realizar las comparaciones mencionadas se optó por realizar una versión extendida de la tabla referida a las heurísticas constructivas. Al igual que antes, cada celda de la tabla contiene el peso de la solución obtenida, aunque para el caso de las búsquedas locales, se muestra también (entre paréntesis) la cantidad de iteraciones realizadas por dicha búsqueda.
+
+\begin{center}
+ \includegraphics[width=0.70\textwidth]{tablas/tablaHCBL.png}
+\end{center}
+
+En primer lugar, podemos observar que la busqueda local 2 resulta \textbf{ámpliamente} superior a la busqueda local 1 para todos los casos evaluados. Lo interesante de esta tabla es ver como se destacan particularmente 2 heurísticas constructivas como generadores de soluciones iniciales ``buenas'' para esta búsqueda. Por un lado la heurística peso/grado muestra ser eficaz tal como lo era por sí sola. Por otra parte, la heurística de grado que resultaba particularmente ineficiente en análisis previos, resulta aún más eficaz que esta en la gran mayoría de los casos.
+
+Otro aspecto interesante a observar es lo que sucede con la cantidad de iteraciones de cada búsqueda en general. La tabla muestra que aún para grafos grandes la cantidad de iteraciones se encuentra acotada por un valor inferior a $100$. Teniendo en cuenta el crecimiento de dicho valor con respecto al tamaño de los grafos y que, debido a cuestiones de complejidad (como veremos más adelante), las grafos sobre los cuales se hará uso este algoritmo no serán mucho más grandes a los grafos analizados (a los sumo del orden de los $10^3$ nodos), podemos concluir que las iteraciones locales nunca superarán un valor del orden de $10^2$. Además, por este motivo y por lo que veremos luego, se puede observar que la cantidad de iteraciones no es un factor determinante sobre el tiempo de ejecución. Por lo tanto, no resulta de importancia al momento de optar por alguna de las 8 busquedas locales (2 por cada heurística constructiva).
+
+Por lo aquí analizado, se puede concluir que la busqueda local 2 junto con la heurística contructiva de grado resultan la combinación más eficaz para la resolución del problema. De aquí en adelante, nos ocuparemos únicamente de dicha heurística.
+
 \section*{Complejidad}
+
+A continuación procederemos a analizar la complejidad de la busqueda local.
+
+\begin{verbatim}
+obtengo una solucion (solucionLocal) con una heuristica constructiva 
+
+para i desde 1 hasta cantIteraciones hacer
+  pesoMaximoAnterior = peso(solucionLocal)
+    solucionLocal = intercambioDeNodo(solucionLocal) o 
+                    intercambioDeUnoAMuchos(solucionLocal)
+    si peso(solucionLocal) = pesoMaximoAnterior
+      devolver solucionLocal
+
+devolver solucionLocal 
+\end{verbatim}
 
 \section*{An\'alisis de resultados}
 
