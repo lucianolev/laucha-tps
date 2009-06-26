@@ -281,6 +281,72 @@ Como se observa, el comportamiento del algoritmo no tiene correspondencia direct
 \bigskip
 \section{Heur\'isticas de B\'usqueda Local}
 
+\section*{Esquema general}
+
+A continuaci\'on se presentar\'an las heur\'isticas de b\'usqueda local implementadas. El objetivo de dichos algoritmos es mejorar una soluc\'on dada (obtenida por medio de alguna de las heur\'isticas constructivas mencionadas), hasta obtener una soluci\'on localmente \'optima. Cada heur\'istica de b\'usqueda local define su concepto de localidad estableciendo una vecindad de soluciones que se revisar\'an para obtener el m\'aximo local. Las b\'usquedas locales implementadas corresponden al siguiente esquema.
+
+\begin{verbatim}
+obtengo una solucion (solucionLocal) con una heuristica constructiva 
+
+para i desde 1 hasta cantIteraciones hacer
+  pesoMaximoAnterior = peso(solucionLocal)
+    solucionLocal = intercambioDeNodo(solucionLocal) o 
+                    intercambioDeUnoAMuchos(solucionLocal)
+    si peso(solucionLocal) = pesoMaximoAnterior
+      devolver solucionLocal
+
+devolver solucionLocal
+
+intercambioDeNodo(solucion)
+  diferenciaMaxima = 0
+  sacar los nodos de grado 0 de solucion e insertarlos en nodosGradoCero 
+
+  para cada nodo (nodoActual) de solucion
+    para cada nodo (adyacenteANodoActual) adyacente a nodoActual
+      diferenciaActual = peso(adyacenteANodoActual) - peso(nodoActual)
+      si (adyacenteANodoActual no es adyacente a algun nodo de solucion 
+         excepto nodoActual y diferenciaActual > diferenciaMaxima)
+           diferenciaMaxima = diferenciaActual
+           nodoASacar = nodoActual
+           nodoAInsertar = adyacenteANodoActual
+    finPara
+  finPara
+
+  si diferenciaMaxima > 0
+    sacar nodoASacar de solucion
+    agregar nodoAInsertar en solucion
+
+  insertar todos los nodos de nodosGradoCero en solucion
+
+
+intercambioDeUnoAMuchos(solucion)
+  diferenciaMaxima = 0
+  sacar los nodos de grado 0 de solucion e insertarlos en nodosGradoCero
+
+  para cada nodo (nodoActual) de solucion
+    nodosAInsertarActual = lista vacia
+    para cada nodo (adyacenteANodoActual) adyacente a nodoActual
+      si adyacenteANodoActual no es adyacente a algun nodo de solucion excepto nodoActual
+        si adyacenteANodoActual no es adyacente a algun nodo de nodosAInsertarActual
+          agregar adyacenteANodoActual en nodosAInsertarActual
+    finPara
+    diferenciaActual = peso(nodosAInsertarActual) - peso(nodoActual)
+    si diferenciaActual > diferenciaMaxima
+      diferenciaMaxima = diferenciaActual
+      nodosAInsertar = nodosAInsertarActual
+      nodoASacar = nodoActual
+  finPara
+
+  si diferenciaMaxima > 0
+    sacar nodoASacar de solucion
+    insertar todos los nodos de nodosAInsertar en solucion
+
+  insertar todos los nodos de nodosGradoCero en solucion
+\end{verbatim}
+
+Como fue mencionado anteriormente, las b\'usquedas locales implementadas difieren en la forma en que definen su vecindad, pero tienen el mismo esquema b\'asico. Las dos heur\'isticas implementadas obtienen una soluci\'on inicial por medio de alguna de las heur\'isticas constructivas (Peso, Grado, Peso/Grado, Peso/Vecindad) estudiadas en secciones anteriores. Luego, intentan mejorar dicha soluci\'on obtenida una cierta cantidad de veces, establecida mediante el par\'ametro cantIteraciones. Si en alguno de los pasos la soluci\'on no mejorase el algoritmo termina ya que, como los procedimientos utilizados para mejorar la soluci\'on son completamente determin\'isticos, no habr\'ia cambios para las posteriores iteraciones del mismo. Cuando esto sucede, se puede afirmar que la soluci\'on obtenida por la heur\'istica corresponde a un m\'aximo local seg\'un la vecindad definida por dicha heur\'istica.
+
+La primer heur\'istica de b\'usqueda local (a la que llamaremos BL1) mejora la soluci\'on por medio de la funci\'on \textit{intercambioDeNodo}. Esta funci\'on saca un nodo de la soluci\'on que recibe como par\'ametro y agrega otro distinto que forme una soluci\'on v\'alida y que maximice el peso de la soluci\'on. Es decir, saca un nodo v de la soluci\'on y para cada nodo adyacente a v, verifica si lo puede insertar en la soluci\'on viendo si no es adyacente a ning\'un nodo de la misma. De los nodos adyacentes a v que puede insertar, 
 \section*{An\'alisis de eficacia}
 
 \section*{Complejidad}
