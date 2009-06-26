@@ -135,7 +135,7 @@ Por todo esto, podemos afirmar que el algoritmo encontrará el conjunto independ
 
 En la presente secci\'on se calcular\'a la complejidad en el peor caso del algoritmo exacto presentado para resolver el problema. Como se mostr\'o en anteriores secciones, para un grafo $G$ el algoritmo, en cada iteraci\'on $i$, busca todos los conjuntos independientes formados por el nodo $i$ y todos los nodos mayores que $i$ en el subgrafo inducido por dichos nodos. El peor caso de este algoritmo ocurre cuando el grafo est\'a formado solamente por nodos aislados (grado 0). En este caso, el algoritmo deber\'a buscar todos los conjuntos posibles que se pueden formar a partir de los nodos del grafo ya que cualquier combinaci\'on de nodos forma un conjunto independiente. Como la cantidad de conjuntos posibles que se pueden formar con $n$ nodos es $2^{n}-1$, se deduce que la complejidad en el peor caso ser\'a $O(2^{n})$. Sin embargo, en casos donde la cantidad de aristas sea mayor, la cantidad de conjuntos independientes que deber\'a comprobar el algoritmo ser\'a mucho m\'as reducida. Evitando el chequeo de conjuntos innecesarios se espera que el tiempo de ejecuci\'on sea m\'as reducido para grafos con densidades altas, es decir, con gran cantidad de aristas.
 
-\section*{An\'alisis de resultados}
+\section*{An\'alisis de tiempo de ejecución}
 
 El siguiente analisis est\'a orientado a estudiar el tiempo de ejecuci\'on del algoritmo exacto en relaci\'on a los datos de entrada (cantidad de nodos de los grafos), comparando el costo real del algoritmo junto con su complejidad te\'orica calculada. Como vimos anteriormente el m\'etodo exacto tiene una alta complejidad temporal por lo que, al momento de realizar las mediciones, se utilizaron grafos en los que su cantidad de nodos var\'ia entre 1 y 36.
 
@@ -264,7 +264,7 @@ $$>\log(n)+n+\sum_{i=1}^{n}m>\log(n)+n+nm$$
 
 \hspace{20pt} $\Longrightarrow$ como $T(n,m) \in O(nm)$ y $nm<\log(n)+n+nm<t \Longrightarrow T(t) \in O(t)$
 
-\section*{An\'alisis de resultados}
+\section*{An\'alisis de tiempo de ejecución}
 
 Al igual que para el análisis del algoritmo exacto, se generaron grafos aleatorios con 3 tipos de densidades con el fin de evaluar el comportamiento de la heurística constructiva elegida sobre diversos grafos según la cantidad de nodos. Sin embargo, al tratarse de un algoritmo polinomial, la cantidad de nodos analizados será mucho mayor (desde 10 hasta 1400 nodos) con el fin de poder observar con claridad su comportamiento.
 
@@ -464,7 +464,7 @@ Supongamos que el algoritmo de busqueda local recibe una soluci\'on compuesta po
 
 Vemos asi que mientras mayor sea el peso de la vecindad de $w$, mas alejado del mejor intercambio se encontrar\'a la soluci\'on. Este caso patol\'ogico podria ser evitado si en lugar de arrancar los intercambios por el nodo $v$ el algoritmo comenzara por $w$.
 
-\section*{An\'alisis de resultados}
+\section*{An\'alisis de tiempo de ejecución}
 
 Manteniendo la política utilizada en los ejercicios anteriores, el análisis empiríco se realizó sobre grafos aleatorios. En este caso el algoritmo se corrió para grafos entre 20 y 4000 nodos, nuevamente con 3 tipos de densidades
 para poder apreciar si existe una relación entre ellas y el tiempo de ejecución demandado.
