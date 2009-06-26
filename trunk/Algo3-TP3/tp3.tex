@@ -268,7 +268,7 @@ $$>\log(n)+n+\sum_{i=1}^{n}m>\log(n)+n+nm$$
 
 Al igual que para el análisis del algoritmo exacto, se generaron grafos aleatorios con 3 tipos de densidades con el fin de evaluar el comportamiento de la heurística constructiva elegida sobre diversos grafos según la cantidad de nodos. Sin embargo, al tratarse de un algoritmo polinomial, la cantidad de nodos analizados será mucho mayor (desde 10 hasta 1400 nodos) con el fin de poder observar con claridad su comportamiento.
 
-Como hemos visto anteriormente, la complejidad de la heurística constructiva resulta del orden $n*m$. Por este motivo, se han incluido en el gráfico las curvas $n^2/25$ y $n^3/15000$ con el fin de observar el comportamiento para grafos de distinta densidad. En principio, los tiempos de ejecución de grafos de alta densidad (donde $m$ tiende a $n^2$) deberían ser similar a la curva $n^3/15000$ mientras que los de baja (donde $m$ tiene a $n$) deberían asimilarse a la curva $n^2/25$.
+Como hemos visto anteriormente, la complejidad de la heurística constructiva resulta del orden $O(n*m)$. Por este motivo, se han incluido en el gráfico las curvas $n^2/25$ y $n^3/15000$ con el fin de observar el comportamiento para grafos de distinta densidad. En principio, los tiempos de ejecución de grafos de alta densidad (donde $m$ tiende a $n^2$) deberían ser similar a la curva $n^3/15000$ mientras que los de baja (donde $m$ tiene a $n$) deberían asimilarse a la curva $n^2/25$.
 
 \begin{center}
  \includegraphics[width=0.7\textwidth]{graficos/tiemposHC.png}
@@ -372,7 +372,7 @@ Cabe aclarar que los nodos agregados a cada lista nodosAInsertarActual depende f
 
 \section*{An\'alisis de eficacia}
 
-En la presente sección se intentará observar cuando eficaces resultan las heurísticas de búsqueda local propuestas a la hora de hallar un conjunto independiente de mayor peso. Además, veremos como mejora la calidad de la solución con respecto a cada heurística constructiva presentada anteriormente. El motivo de analizar nuevamente todas las heurísticas es que no necesariamente las soluciones provistas por la mejor heurística hallada harán que las busquedas locales provean los mejores resultados. Es decir, puede ocurrir que, por la forma en la que comporta la busqueda local (en otras palabras, la vecindad a analizar), las soluciones provistas por la heurística golosa de peso/grado no sean las soluciónes iniciales que dén mejores resultados.
+En la presente sección se intentará observar cuán eficaces resultan las heurísticas de búsqueda local propuestas a la hora de hallar un conjunto independiente de mayor peso. Además, veremos como mejora la calidad de la solución con respecto a cada heurística constructiva presentada anteriormente. El motivo de analizar nuevamente todas las heurísticas es que no necesariamente las soluciones provistas por la mejor heurística hallada harán que las busquedas locales provean los mejores resultados. Es decir, puede ocurrir que, por la forma en la que comporta la busqueda local (en otras palabras, la vecindad a analizar), las soluciones provistas por la heurística golosa de peso/grado no sean las soluciónes iniciales que dén mejores resultados.
 
 Con el fin de realizar las comparaciones mencionadas se optó por realizar una versión extendida de la tabla referida a las heurísticas constructivas. Al igual que antes, cada celda de la tabla contiene el peso de la solución obtenida, aunque para el caso de las búsquedas locales, se muestra también (entre paréntesis) la cantidad de iteraciones realizadas por dicha búsqueda.
 
@@ -639,6 +639,8 @@ Figura 5.4
 \end{center}
 
 Como era de esperarse, el comportamiento del algoritmo es similar al comportamiento de la búsqueda local analizada previamente, ya básicamente el algorimto consiste en realizar sucesivas búsquedas locales. Sin embargo, se puede observar que en este caso la complejidad de GRASP se asemeja más a $n^3$ que en el caso de la búsqueda local. La explicación de este hecho podría recidir en que la búsqueda local de GRASP utiliza la heurística de grado mientras que en GRASP se ha optado por utilizar una búsqueda local con la heurística de peso/grado. De todos modos, se puede observar como claramente el algoritmo respeta la complejidad teórica $O(n*m)$ calculada.
+
+En cuanto a casos patológicos para la metaheurística resulta complejo detectarlos ya que el algoritmo tiene aspectos aleatorios por lo cuál un peor caso para la búsqueda local no necesariamente implica que el algoritmo no pueda hallar una buena solución en otra de sus iteraciones ya que se parten de soluciones iniciales distintas (no determinísticas).
 
 \section{Conclusiones Generales}
 
