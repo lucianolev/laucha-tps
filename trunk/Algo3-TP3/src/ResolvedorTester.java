@@ -10,46 +10,20 @@ public class ResolvedorTester {
 	 */
 	public static void main(String[] args) throws IOException {
 	
-	//medicionesBL("hasta2000.out");
-//	medicionesBL("tiempooos.out");
+		//medicionesBL("hasta2000.out");
 
-//		generarGrafosDePrueba(3);
-		
-//		int tamGrafo = 800;
-//		double alfaRCL = 0.2;
-//		double densidad = 0.5;
-//		int cantIteracionesLocal = 1000;
-//		
-//		GrafoNPonderados elgrafo = new GrafoNPonderados(tamGrafo, densidad);
-//		
-//		ResolvedorCIPM resolvedor = new ResolvedorCIPM(elgrafo);
-//		
-//		//grasp
-//		long inicio = System.currentTimeMillis();
-//		Solucion solucionGrasp = resolvedor.grasp(50, alfaRCL, cantIteracionesLocal);
-//		long fin = System.currentTimeMillis();
-//		//DEBUG
-//		System.out.println("Solucion GRASP con 50 iters: "+solucionGrasp.peso());
-//		//solucionGrasp.mostrarSolucion(elgrafo);
-//		System.out.println("Tiempo: "+(fin - inicio));
-//		
-//		//grasp
-//		solucionGrasp = resolvedor.grasp(1000, alfaRCL, cantIteracionesLocal);
-//		//DEBUG
-//		System.out.println("Solucion GRASP con 1000 iters: "+solucionGrasp.peso());
-//		//solucionGrasp.mostrarSolucion(elgrafo);
-//		System.out.println("Tiempo: "+(fin - inicio));
+		//generarGrafosDePrueba(3);
 		
 		//compararHCBL("tablaPrueba.txt");
 		//pruebasGrasp("testsGrasps.out", 30);
 		//pruebasGrasp("testsGrasps100.out", 100);
 		//pruebasGrasp("testsGrasps300.out", 300);
 		
-//		medicionesExacto("tiemposExacto.txt");
-//		medicionesHC("tiemposHC.txt");
-//		medicionesBL("tiemposBL.txt");
+		//medicionesExacto("tiemposExacto.txt");
+		//medicionesHC("tiemposHC.txt");
+		//medicionesBL("tiemposBL.txt");
 
-		//optimizarCantIterParaAlfa("pesosCantIter2.txt", 0.2);
+		//optimizarCantIterParaAlfa("pesosCantIter.txt", 0.2);
 		//medicionesGrasp("tiemposGrasp.txt", 0.2, 70);
 		//pruebaTodos("pruebaTodos.txt");
 
