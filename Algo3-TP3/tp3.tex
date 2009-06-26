@@ -525,25 +525,73 @@ Las tablas que se presentar\'an a continuaci\'on, muestran la diferencia de los 
 \begin{center}
  \includegraphics[width=0.75\textwidth]{tablas/tablaGrasp30-1.png}
 \begin{center}
-Tabla 5.1
+Tabla 5.1 (30 iteraciones de GRASP)
 \end{center}
 \end{center}
 \begin{center}
  \includegraphics[width=0.75\textwidth]{tablas/tablaGrasp100-1.png}
 \begin{center}
-Tabla 5.2
+Tabla 5.2 (100 iteraciones de GRASP)
 \end{center}
 \end{center}
 \begin{center}
  \includegraphics[width=0.75\textwidth]{tablas/tablaGrasp300-1.png}
 \begin{center}
-Tabla 5.3
+Tabla 5.3 (300 iteraciones de GRASP)
 \end{center}
 \end{center}
 
-Las celdas remarcadas representan los casos en que la diferencia $resultadoGrado - resultadoPeso/Grado$ es mayor que 0, es decir, los casos en los los resultados de GRASP utilizando la heur\'istica de Grado son mayores que utilizando la heur\'istica de Peso/Grado. Como se puede apreciar, cuando la cantidad de iteraciones de GRASP es baja (30) la heur\'istica de Grado es la que otorga los mejores resultados. Sin embargo al aumentar la cantidad de iteraciones la mejores resultados pasan a ser los que se obtienen por medio de la heur\'istica de Peso/Grado. Adem\'as, se puede apreciar que la diferencia en las tablas de 100 y 300 iteraciones es muy remarcada, es decir, los n\'umeros negativos son bastante grandes en m\'odulo, lo que implica que la diferencia entre los resultados es bastante amplia. 
+Las celdas remarcadas representan los casos en que la diferencia \\ $resultadoGrado - resultadoPeso/Grado$ es mayor que 0, es decir, los casos en los los resultados de GRASP utilizando la heur\'istica de Grado son mayores que utilizando la heur\'istica de Peso/Grado. Como se puede apreciar, cuando la cantidad de iteraciones de GRASP es baja (30) la heur\'istica de Grado es la que otorga los mejores resultados. Sin embargo al aumentar la cantidad de iteraciones los mejores resultados pasan a ser los que se obtienen por medio de la heur\'istica de Peso/Grado. Adem\'as, se puede apreciar que la diferencia en las tablas de 100 y 300 iteraciones es muy remarcada, es decir, los n\'umeros negativos son bastante grandes en m\'odulo, lo que implica que la diferencia entre los resultados es bastante amplia. 
 
-A partir de esto se puede concluir que utilizar la heur\'istica de Grado tiene buenos resultados para poca cantidad de iteraciones, pero al aumentar la cantidad de iteraciones, los resultados se estancan. Por el contrario, si se utiliza la heur\'istica de Peso/Grado, la calidad de los resultados para mayor cantidad de iteraciones aumenta. Esto permite obtener mejores resultados a costa de realizar m\'as cantidad de iteraciones y por tanto, m\'as tiempo de ejecuci\'on. Por esta raz\'on, podemos concluir que utilizar la heur\'istica de Peso/Grado es mejor en cuanto a la calidad de las soluciones, cuesti\'on que resulta de mayor inter\'es que los tiempos de ejecuci\'on del algoritmo.
+A partir de esto se puede concluir que utilizar la heur\'istica de Grado tiene buenos resultados para poca cantidad de iteraciones, pero al aumentar la cantidad de iteraciones, los resultados se estancan. Por el contrario, si se utiliza la heur\'istica de Peso/Grado, la calidad de los resultados para mayor cantidad de iteraciones aumenta. El siguiente gr\'afico muestra esta tendencia.
+
+\begin{center}
+ \includegraphics[width=0.75\textwidth]{graficos/pesosCantIter.png}
+\begin{center}
+Figura 5.1
+\end{center}
+\end{center}
+
+Como se puede observar, el gr\'afico muestra que la heur\'istica de Peso/Grado hace que los resultados de GRASP sean mejores que cuando se utiliza la heur\'istica de grado a medida que aumenta la cantidad de iteraciones, tal y como se hab\'ia notado en las tablas anteriores. Entonces, utilizar la heur\'istica de Peso/Grado brinda mejores resultados a costa de realizar m\'as cantidad de iteraciones y por tanto, m\'as tiempo de ejecuci\'on. Por esta raz\'on, podemos concluir que utilizar dicha heur\'istica mejor en cuanto a la calidad de las soluciones, cuesti\'on que resulta de mayor inter\'es que los tiempos de ejecuci\'on del algoritmo.
+
+\subsection*{An\'alisis de los par\'ametros}
+
+Como se mencion\'o anteriormente, se estudiar\'an los par\'ametros que hacen que la metaheur\'istica GRASP tenga un balance entre la calidad de los resultados obtenidos y el tiempo de ejecuci\'on. Las experiencias realizadas para decidir estos par\'ametros, se hicieron utilizando la heur\'istica de Peso/Grado ya que en la secci\'on anterior conclu\'imos que es la mejor, independientemente del alfa y la cantidad de iteraciones.
+
+En primer lugar, presentaremos las pruebas para decidir que alfa hace que los resultados sean mejores. Para esto se ejecut\'o GRASP con 30, 100 y 300 iteraciones, variando en cada caso el alfa de 0.1 a 1 a intervalos de 0.1. Los resultados obtenidos se presentan en las siguientes tablas.
+
+\begin{center}
+ \includegraphics[width=0.75\textwidth]{tablas/tablaGrasp30-2.png}
+\begin{center}
+Tabla 5.4 (30 iteraciones de GRASP)
+\end{center}
+\end{center}
+\begin{center}
+ \includegraphics[width=0.75\textwidth]{tablas/tablaGrasp100-2.png}
+\begin{center}
+Tabla 5.5 (100 iteraciones de GRASP)
+\end{center}
+\end{center}
+\begin{center}
+ \includegraphics[width=0.75\textwidth]{tablas/tablaGrasp300-2.png}
+\begin{center}
+Tabla 5.6 (300 iteraciones de GRASP)
+\end{center}
+\end{center}
+
+En las tablas se encuentran remarcados los mayores resultados para cada nodo estudiado. Se puede notar que para grafos peque\~{n}os (30 nodos) el par\'ametro alfa no incide demasiado en los resultados obtenidos ya que para alfas desde 0.2 a 1 se obtienen pr\'acticamente los mismos resultados, independientemente de la cantidad de iteraciones. A medida que el tama\~{n}o de los grafos crece los mayores resultados obtenidos aparecen para distintos alfa. En particular, se puede notar una tendencia que muestra que los mayores resultados se obtienen para alfas entre 0.2 y 0.3, siendo 0.2 el que m\'as resultados m\'aximos registra. Esta tendencia ocurre en las tres tablas presentadas, pero es mucho m\'as marcada en las que muestran gran cantidad de iteraciones de GRASP. A partir de estos resultados, podemos concluir que el par\'ametro alfa indicado para GRASP es 0.2, ya que es efectivo tanto para grafos peque\~{n}os como para grafos con gran cantidad de nodos. Al parecer resulta que dicho valor equilibra el aspecto aleatorio con la calidad del algoritmo goloso generando as\'i buenas soluciones para distintos tipos de grafos.
+
+Otra de las pruebas realizadas tiene como objetivo determinar la cantidad de iteraciones de GRASP que hacen que la calidad de las soluciones sea buena y que, a su vez, el tiempo de ejecuci\'on no sea excesivo. Con este objetivo se creo una prueba que ejecuta GRASP para grafos aleatorios de 500 nodos y densidad media, variando la cantidad de iteraciones de 1 a 200. Adem\'as fijamos el par\'ametro alfa en 0.2 ya que las pruebas anteriores mostraron que es el valor adecuado para cualquier tipo de grafos. Los resultados de esta prueba fueron los siguientes.
+
+\begin{center}
+ \includegraphics[width=0.75\textwidth]{graficos/pruebaCantIter.png}
+\begin{center}
+Figura 5.2
+\end{center}
+\end{center}
+
+En el gr\'afico presentado se puede notar que los resultados de GRASP crecen de manera sostenida hasta que la cantidad de iteraciones es 70. A partir de este punto, el crecimiento se vuelve muy leve, es decir, a pesar de que la cantidad de iteraciones aumente la calidad de las soluciones crecer\'a muy poco. Por esta raz\'on, establecer la cantidad de iteraciones en alg\'un valor mayor que 70 no mejorar\'ia demasiado la soluci\'on que se tiene hasta ese paso y el tiempo de ejecuci\'on ser\'ia mayor. En consecuencia, fijaremos la cantidad de iteraciones de GRASP en 70, ya que establece un balance entre la calidad de la soluci\'on y el tiempo de ejecuci\'on.
+
 
 \section*{Complejidad}
 
@@ -590,12 +638,9 @@ En la siguiente etapa se estudiaron 2 heurísticas de búsqueda local con el fin
 Por último se estudió una versión del esquema metaheurístico GRASP que muestra como la mejora en la calidad de las soluciones es aún mayor que realizar una búsqueda local. Tal como explica la bibliografía asociada, este resultado tiene relación con el hecho de que se realizan distintas busquedas locales en diversas soluciones iniciales lo que resulta en el aumentar notablemente la posibilidad de hallar soluciones mejores. Además, al haber fijado la cantidad de iteraciones del procedimiento, la complejidad teórica sigue siendo del mismo órden que realizar una única busqueda local, es decir $O(n*m)$. Esto último muestra como este esquema metaheurístico resulta de gran utilidad al momento de querer encontrar soluciones de calidad para problemas de gran tamaño imposibles de resolver de forma exacta.
 
 \section*{Referencias}
-% \begin{itemize}
-%  \item Art\'iculo de Wikipedia sobre Programaci\'on Din\'amica
-%  \item Art\'iculo de Wikipedia sobre Grafos
-%  \item Art\'iculo de Wikipedia sobre Algoritmo de Kruskal
-%  \item Art\'iculo de Wikipedia sobre Estructuras Union-Find
-%  \item Art\'iculo de Wikipedia sobre Depth/Breadth First Search
-% \end{itemize}
+\begin{itemize}
+ \item ``Greedy Randomized Adaptive Search Procedures'' - Thomas A. Feo, Mauricio G.C. Resende
+ \item Art\'iculo de Wikipedia sobre Conjunto independiente
+\end{itemize}
 
 \end{document}
