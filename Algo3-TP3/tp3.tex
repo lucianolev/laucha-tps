@@ -122,26 +122,34 @@ Otro aspecto a tener en cuenta es la notable diferencia de los tiempos en relaci
 A continuaci\'on se desarrolar\'a el trabajo realizado sobre heur\'isticas constructivas con el objetivo de reducir significativamente la complejidad temporal a merced de una p\'erdida de eficacia en las soluciones. Para esto, se utilizar\'on distintos algoritmos golosos que tienen en cuenta diversas condiciones sobre los nodos para ir armando una soluci\'on de manera constructiva. Se pensaron varias ideas para buscar aproximarse a la soluci\'on \'optima, todas siguiendo el siguiente esquema de algoritmo goloso:
 
 \begin{verbatim}
-Conjunto solucion = conjunto vacio
-
 mientras haya nodos en el grafo
-  maxF = 0 / minF = n
+  maxF = 0 | minF = n
   para cada nodo del grafo
     si grado(nodo) = 0
       agregar nodo a solucion
       borrar nodo del grafo
     sino
-      si F(nodo) >= maxF / <= minF
-        maxF / minF = F(nodo)
-        nodoMax / nodoMin = nodo
+      si f(nodo) >= maxF | f(nodo) <= minF
+        maxF | minF = f(nodo)
+        nodoMax | nodoMin = nodo
   finPara
 
   agregar nodoMax a solucion
   borrar vecindad de nodoMax
 \end{verbatim}
 
+Podemos apreciar que en cada iteraci\'on (del ciclo interno) el algoritmo recorre todos los nodos verificando que se cumpla una condici\'on de acuerdo a una funci\'on aplicada a los mismos (funci\'on $f$). Una vez observados todos los nodos, se agrega el nodo m\'aximo o m\'inimo de acuerdo a la condicion mencionada al conjunto soluci\'on. De inmediato, se procede a borrar la vecindad de dicho nodo del grafo. De esta manera, en cada iteraci\'on, el grafo contendr\'a una cantidad cada vez menor de nodos de modo de garantizar que el algoritmo termina (sale del ciclo principal).
 
+Cabe aclarar que si el grado de los nodos que el algoritmo va recorriendo es igual a 0, inmediatamente son agregados a la soluci\'on. Esto se debe a que, al ser todos los pesos mayores que 0, si un nodo no es adyacente a ning\'un otro (grado 0), siempre deber\'a pertenecer a la soluci\'on.
 
+Las distintas funciones $f$ aplicadas sobre los nodos para armar el conjunto soluci\'on fueron:
+
+\begin{itemize}
+\item Peso: en cada iteraci\'on del algoritmo se agrega a la soluci\'on el nodo de mayor peso.
+\item Grado: en cada iteraci\'on del algoritmo se agrega a la soluci\'on el nodo de menor grado. La idea de aplicar dicha funci\'on es que, al agregar a la soluci\'on el nodo de menor grado, solo se borrar\'an del grafo los nodos de su vecindad (que es la de menor tama\~{n}o) descartando asi la menor cantidad de nodos posible.
+\item Peso/Grado: en cada iteraci\'on del algoritmo se agrega a la soluci\'on el nodo de mayor cociente peso/grado. Simplemente una combinaci\'on de las dos t\'ecnicas mencionadas anteriormente.
+\item Peso/Vecindad: en cada iteraci\'on del algoritmo se agrega a la soluci\'on el nodo de mayor cociente peso*grado/pesoVecindad. La intenci\'on en este caso es ponderar tambi\'en el peso y la cantidad de nodos de la vecindad del nodo a agregar a la soluci\'on (si la vecindad del nodo es muy pesada y posee pocos nodos no quiero descartarla).
+\end{itemize}
 
 \section*{An\'alisis de eficacia de las heur\'isticas}
 
