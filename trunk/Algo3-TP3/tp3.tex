@@ -305,31 +305,18 @@ $$t=2m+1\log(n)>m\log(n)$$
 
 \section*{An\'alisis de resultados}
 
-En la presente secci\'on se mostrar\'an los an\'alisis realizados para grafos con distinta cantidad de nodos. El enfoque principal de las pruebas radica en estudiar los tiempos de ejecuci\'on del algoritmo para casos aleatorios y estudiar el comportamiento para los peores casos. Con este fin se implement\'o un algoritmo que genera grafos aleatorios de $n$ cantidad de nodos, siendo $n$ el par\'ametro de dicha funci\'on. De esta manera, utilizando dicho algoritmo para distintos valores de $n$, se contrastaron los tiempos de ejecuci\'on con la cota estudiada. Como se mencion\'o en la secci\'on anterior, la complejidad del algoritmo es $O(n*m)$ pero a fin de estudiar los resultados acotaremos esta complejidad a $O(n^{3})$ ya que en cualquier grafo la cantidad de aristas $m$ est\'a acotada por $n*(n-1)/2$ es decir, $m$ es del orden de $n^{2}$. Esta acotaci\'on aporta simplicidad al estudio de resultados, sin embargo, como el algoritmo tiene una cota menor se espera que los tiempos de ejecuci\'on tengan un crecimiento menor que c\'ubico (en relaci\'on a la cantidad de nodos).
+Al igual que para el análisis del algoritmo exacto, se generaron grafos aleatorios con 3 tipos de densidades con el fin de evaluar el comportamiento de la heurística constructiva elegida sobre diversos grafos según la cantidad de nodos. Sin embargo, al tratarse de un algoritmo polinomial, la cantidad de nodos analizados será mucho mayor (desde 10 hasta 1400 nodos) con el fin de poder observar con claridad su comportamiento.
 
-La primera prueba realizada consisti\'o en generar grafos aleatorios variando su cantidad de nodos entre $1$ y $500$. Para cada grafo se estudi\'o su tiempo de ejecuci\'on y a continuaci\'on se presentan los resultados obtenidos.
-% 
-% \begin{center}
-%  \includegraphics[width=0.7\textwidth]{Plots/Tp2Ej2-Complejidad.png}
-% \begin{center}
-% Figura 2.1
-% \end{center}
-% \end{center}
+Como hemos visto anteriormente, la complejidad de la heurística constructiva resulta del orden $n*m$. Por este motivo, se han incluido en el gráfico las curvas $(n^2)/25$ y $(n^3)/15000$ con el fin de observar el comportamiento para grafos de distinta densidad. De esta manera, los tiempos de ejecución de grafos de alta densidad (donde $m$ tiene a $n^2$) deberían ser similar a la curva $(n^2)/25$ mientras que los de baja (donde $m$ tiene a $n$) deberían asimilarse a la curva $(n^2)/25$. A continuación, se presenta el gráfico en cuestión.
 
-Como se puede apreciar en el gr\'afico, el crecimiento de los tiempos de ejecuci\'on del algoritmo es ligeramente inferior a la cota te\'orica propuesta. Como se mencion\'o anteriormente, esto se corresponde con lo esperado, ya que para este an\'alisis de utiliz\'o una cota mayor a la del algoritmo ($O(n^{3})$). Adem\'as se pueden apreciar irregularidades en la curva obtenida, lo que indica que el tiempo que se tarda en encontrar un diamante en un determinado grafo, adem\'as de depender de la cantidad de nodos, est\'a determinado por la disposici\'on de las aristas del mismo. Es decir, por la forma en la que est\'a hecho el algoritmo, el tiempo de ejecuci\'on va a depender de la cantidad de componentes conexas en las que tenga que buscar el diamante m\'inimo, para cada vecindad de cada nodo. Los peores casos se dar\'an en grafos en los que se busque un diamante en la mayor\'ia de las componentes conexas de cada vecindad. Estos casos hacen que las optimizaciones del algoritmo, que descartan la b\'usqueda de un diamante m\'inimo en ciertas componentes conexas, sean ineficientes. 
+\begin{center}
+ \includegraphics[width=0.7\textwidth]{graficos/tiemposHC.png}
+\begin{center}
+Figura 2.1
+\end{center}
+\end{center}
 
-A continuaci\'on presentaremos alguno de estos casos ``patol\'ogicos'' y se ver\'a por qu\'e no se aplican las optimizaciones.
-
-% \begin{center}
-%  \includegraphics[width=0.7\textwidth]{Grafos/grafomati.png}
-% \begin{center}
-% Figura 2.2
-% \end{center}
-% \end{center}
-
-Como se puede observar en el grafo presentado, la vecindad del nodo $1$ tiene varias componentes conexas que forman un diamante, ya que ninguna es completa. Por esta raz\'on, se deben estudiar todas las componentes conexas para encontrar el diamante m\'inimo. Sin embargo, podr\'ia darse el caso en que el algoritmo implementado no tenga que buscar el diamante m\'inimo para todas debido a que el m\'inimo nodo de una componente conexa (llamado nodoMinimoCompConexa en la secci\'on algoritmo) es menor que el m\'inimo nodo de las otras componentes. Esto suceder\'ia, por ejemplo, si el algoritmo comenzara a estudiar la componente conexa que comienza con el nodo $2$. Por el contrario, en el caso en que comenzara por la componente conexa que tiene el nodo $5$ y recorriera de derecha a izquierda las componentes conexas del gr\'afico, se tendr\'ia que calcular el m\'inimo diamante para todas las componentes, por lo que la cantidad de operaciones ser\'ia mayor. La forma en que se recorren las componentes conexas depende exclusivamente del orden de las listas de adyacencias pasadas como par\'ametro, por lo que la aparici\'on de estos peores casos estar\'a ligada a esta distribuci\'on. 
-
-Cabe aclarar que el esquema presentado en la figura 2.2 representa s\'olo un caso simplificado sobre los peores casos que se pueden encontrar para el algoritmo mencionado. Es decir, en este gr\'afico s\'olo la vecindad del nodo $1$ podr\'ia representar un peor caso. F\'acilmente, este gr\'afico podr\'ia extenderse para formar casos a\'un peores, ya que cualquiera de las vecindades de los otros nodos podr\'ia tener las mismas dificultades que las del nodo $1$. Como los peores casos dependen del orden en que se reciben las listas de adyacencias, se hace dificultosa la b\'usqueda de los mismos. Por esta raz\'on, se opt\'o por explicar en detalle que representar\'ia un peor caso, ya que encontrar y hacer preubas de tiempo de ejecuci\'on sobre los mismos resultaba una tarea muy compleja.
+Como se observa, el comportamiento no es el esperado, ya que que para grafos de densidad variada, los tiempos de ejecución siempre se comportan de la forma de $n^2$, lo que haría suponer que la complejidad real del algoritmo podría ser $O(n^2)$. Sin embargo, este fenómeno podría tener relación con la conjetura realizada al haber conjeturado
 
 \section*{Conclusiones}
 
