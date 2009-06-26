@@ -154,6 +154,13 @@ Como se puede apreciar en el gr\'afico, el tiempo de ejecuci\'on del algoritmo a
 
 Otro aspecto a tener en cuenta es la notable diferencia de los tiempos en relaci\'on a las diversas densidades. Se puede ver que si la densidad del grafo es baja, el tiempo de busqueda del conjunto independiente de mayor peso es mucho mayor que si se lo busca sobre un grafo de densidad media. Lo mismo sucede entre media y alta densidad. Esto se debe a que al disminuir la cantidad de aristas (menor densidad), la cantidad de conjuntos independientes en el grafo aumenta, ya que mientras menos aristas haya, mayor cantidad de nodos no adyacentes entre si habr\'a. De esta manera, mientras menor sea la densidad, mayor ser\'a la cantidad de conjuntos independientes a tener en cuenta por el algoritmo con el fin de buscar el de mayor peso, por lo que demandar\'a mayor tiempo de ejecuci\'on.
 
+Finalmente estudiaremos la complejidad en funci\'on del tama\~{n}o de la entrada. Sea $t$ el tama\~{n}o de la entrada, $n$ la cantidad de nodos, $m$ la cantidad de aristas ($m_i$ la cantidad de aristas del nodo $i$), $p$ el arreglo de pesos y $a[i]$ las adyacencias del nodo $i$. Tenemos entonces que:
+
+$$t=\log(n)+\sum_{i=1}^{n}\log(p)+\sum_{i=1}^{n}\sum_{j=1}^{m_i}\log(a[i])>\log(n)+\sum_{i=1}^{n}1+\sum_{i=1}^{n}\sum_{j=1}^{m_i}1$$
+$$>\log(n)+n+\sum_{i=1}^{n}m>\log(n)+n+nm$$
+
+\hspace{45pt} $\Longrightarrow$ como $T(n) \in O(2^{n})$ y $2^{n}<2^{\log(n)+n+nm}<2^{t} \Longrightarrow T(t) \in O(2^{t})$
+
 \bigskip
 
 \section{Heur\'isticas constructivas}
