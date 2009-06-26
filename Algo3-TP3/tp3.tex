@@ -41,9 +41,7 @@ Antes de comenzar el an\'alisis de cada ejercicio, cabe mencionar lo siguiente:
 
 %EXPLICAR LO DE LAS DENSIDADES!!!!!
 
-\begin{center}
-\section*{Introducci\'on}
-\end{center}
+\section{Introducci\'on}
 
 El objetivo del siguiente trabajo es presentar diversos m\'etodos para encontrar soluciones exactas y aproximadas para el problema del Conjunto Independiente de Peso M\'aximo (CIPM). En particular, se desarrollar\'a un algoritmo que utiliza la t\'ecnica de \textit{backtracking} para resolver el problema de manera exacta para instancias peque\~{n}as del mismo. Adem\'as, se implementar\'an heur\'isitcas constructivas, de b\'usqueda local y una metaheur\'istica GRASP, la cual ser\'a el foco principal de nuestro estudio.
 
@@ -53,12 +51,11 @@ Finalmente, se desarrollar\'a una metaheur\'istica GRASP modificando ligeramente
 
 Por \'ultimo, para la metaheur\'istica GRASP obtenida y para las mejores heur\'isticas (constructiva y de b\'usqueda local) se mostrar\'an casos en donde el resultado de las mismas difiera del exacto en gran medida. Adem\'as, se estudiar\'a la complejidad te\'orica de estos algoritmos y se realizar\'an comparaciones con el tiempo de ejecuci\'on obtenido en las pruebas.
 
-\bigskip
-\section{Situaciones modeladas}
+\subsection{Situaciones modeladas}
 
 A continuación presentamos tres situaciones diferentes en las cuales problemas reales pueden ser modelados y resueltos como un problema de conjunto independiente máximo.
 
-\section*{Situación 1:}
+\subsection*{Situación 1:}
 
 Hundidos en  una profunda crisis económica por las malas gestiones y desconcertados por los pésimos resultados obtenidos en la última temporada, un equipo de fútbol decide cambiar su política de compra/venta de jugadores. Como no se puede comprar sin tener el dinero, el primer paso que llevan a cabo los directivos del club es evaluar cuáles son los jugadores del plantel que van a estar a la venta. 
 Para no desequilibrar el equipo no debería haber dos jugadores en vidriera que:
@@ -87,7 +84,7 @@ En este caso, los nodos también son los jugadores, pero el peso está dado por 
 
 	* La suma sus cotizaciones superen los dos millones de dólares.
 
-\section*{Situación 2:}
+\subsection*{Situación 2:}
 
 Ante la inminencia de las próximas elecciones, De Narvaez decide cerrar su campaña con una "gira" por las localidades de la provincia de Buenos Aires. Su objetivo es que sus actos sean presenciados por la mayor cantidad de personas posibles, pero evitando dar un discurso
 en dos localidades limítrofes. Esto es debido a que las personas pueden moverse a su localidad vecina para precensiar el acto y será una pérdida de tiempo innecesaria recorrer cada una de las zonas si no aumenta tanto la cantidad de asistentes. 
@@ -95,7 +92,7 @@ Además que al hacer un acto en localidades vecinas puede suceder que varias per
 Para decidir cuáles serán las provincias a visitar, el PRO cuenta con una gran base de datos que contiene la cantidad de personas aproximada que podría asistir al evento al realizarse en cada localidad. Utilizando estos datos, el grupo de inteligencia de Francisco
 modela el problema de decidir las provincias a visitar como un problema de conjunto independiente máximo donde los nodos son las localidades, los pesos son la cantidad de personas que podrían asistir al acto y la condición de adyacencia es que las localidades sean vecinas.
 	
-\section*{Situación 3:}
+\subsection*{Situación 3:}
 
 Cuando se acercan las vacaciones de invierno las autoridades de la Facultad de Ciencias Exactas de la UBA deciden cuáles serán las materias optativas a dictarse en el segundo cuatrimestre del año.
 Para esto suben una encuesta a la página web, intentando saber cuántos alumnos se anotarían en cada materia si se dictase. Una vez obtenida esta información se eligen las materias que permitan cursar a la mayor cantidad de alumnos tales que no pase que dos materias:
@@ -107,10 +104,10 @@ Para esto suben una encuesta a la página web, intentando saber cuántos alumnos
 	*	La de el mismo profesor.
 
 	*	requieran más de 12 horas de cursada cada una.
-\bigskip
 
 Para esto organizan los datos y se los derivan a los alumnos de algoritmos 3 para que éstos lo resulevan como un problema de conjunto independiente máximo utilizando lo programado en el TP3.
 En este modelo los nodos son las materias y los pesos la cantidad de personas que cursarían la materia, mientras que dos nodos son adyacentes si representan a dos materias no pueden darse conjuntamente en el cuatrimestre por las condiciones mencinadas anteriormente.
+
 \bigskip
 \section{Algoritmo Exacto}
 
@@ -153,9 +150,7 @@ En la presente secci\'on se calcular\'a la complejidad en el peor caso del algor
 
 El siguiente analisis est\'a orientado a estudiar el tiempo de ejecuci\'on del algoritmo exacto en relaci\'on a los datos de entrada (cantidad de nodos de los grafos), comparando el costo real del algoritmo junto con su complejidad te\'orica calculada. Como vimos anteriormente el m\'etodo exacto tiene una alta complejidad temporal por lo que, al momento de realizar las mediciones, se utilizaron grafos en los que su cantidad de nodos var\'ia entre 1 y 36.
 
-En cuanto al tipo de grafos utilizados, se opt\'o por analizar el comportamiento del algoritmo sobre grafos con distintas densidades debido a que la cantidad de conjuntos independientes se modifica notablemente seg\'un este par\'ametro. De esta manera, para cada grafo de un mismo tama\~{n}o, se realizaron tres pruebas, variando entre altas, medias y bajas densidades.
-
-Cabe mencionar que los grafos sobre los que se aplic\'o el algoritmo fueron generados aleatoriamente y que el tiempo de ejecuci\'on del mismo fue calculado mediante el uso de la funci\'on \textit{nanoTime()} de Java.
+En cuanto al tipo de grafos utilizados, se opt\'o por analizar el comportamiento del algoritmo sobre grafos aleatorios con distintas densidades debido a que la cantidad de conjuntos independientes se modifica notablemente seg\'un este par\'ametro. De esta manera, para cada grafo de un mismo tama\~{n}o, se realizaron tres pruebas, variando entre altas, medias y bajas densidades.
 
 Los resultados arrojados fueron los siguientes:
 
@@ -235,11 +230,9 @@ En posteriores secciones estudiaremos el comportamiento de la heur\'istica Peso/
 
 El modelo elegido para calcular la complejidad de este algoritmo es el uniforme debido a que lo que la define es la cantidad de nodos y de aristas y como inciden las aristas sobre los nodos. Esto se da porque de ellos depende la cantidad de operaciones que deba realizar el algoritmo de acuerdo a las condiciones de los ciclos.
 
-Antes de analizar las operaciones, cabe aclarar que verificar si dos nodos son adyacentes puede hacerse en tiempo constante, dado que poseemos una matriz de adyacencia y que podemos obtenerr el grado asociado a un nodo con la misma complejidad ya que esto lo podemos hacer viendo el tamaño de su lista de adyacencias.
+Antes de analizar las operaciones, cabe aclarar que verificar si dos nodos son adyacentes puede hacerse en tiempo constante, dado que se cuenta con la matriz de adyacencia del grafo. Además se puede obtener el grado asociado a un nodo con la misma complejidad ya que esto se puede realizar viendo el tamaño de su lista de adyacencias.
 
-El cálculo de la complejidad de la heurística es bastante sencilla.
-
-Primero observamos el ciclo de adentro.
+El cálculo de la complejidad de la heurística es bastante sencilla. Primero observamos el ciclo interno.
 
 \begin{verbatim}
   para cada nodo del grafo //n
@@ -253,13 +246,10 @@ Primero observamos el ciclo de adentro.
   finPara
 \end{verbatim}
 
-En el caso en que el nodo tenga relacion peso/grado cero debe insertarlo en la solucion ($O(1)$ al insertar en una lista) y borrarlo del grafo (Como el nodo no tiene adyacentes sólo borramos su lista de adyacencias que está vacía $O(1)$).
-Es importante comentar que a la matriz de adyacencia no la modificamos para no aumentar la complejidad, pero que la información que no modificamos no será utilizada ya que están asociadas a nodos que fueron borrados. 
+En el caso en que el nodo sea de grado $0$, es insertado en la solucion ($O(1)$ al insertar en una lista) y eliminado del grafo ($O(1)$ ya que como el nodo no tiene adyacentes sólo borramos su lista de adyacencias que está vacía).
+Es importante comentar que la matriz de adyacencia no es modificada para no aumentar la complejidad, pero que la información que no es modificada no será utilizada ya que está asociada a nodos que fueron borrados.
 
-En el caso en que la relación de peso/grado del nodo obtenido sea mayor o igual al maxf, se actualiza el max f con el número de dicha relación y se lo guarda al nodo en $nodoMax$. Acá sólo se
-definen dos variables por lo que es de orden constante.
-
-Como dentro del ciclo se realizan sólo operaciones constantes y este recorre todos los nodos del grafo una vez, el orden del ciclo es lineal.
+En el caso en que la relación de peso/grado del nodo obtenido sea mayor o igual al maxF, se actualiza maxF con el número de dicha relación y se lo guarda al nodo en $nodoMax$. En este caso sólo se definen dos variables por lo que es de orden constante. Como dentro del ciclo se realizan sólo operaciones constantes y este recorre todos los nodos del grafo una vez, el orden del ciclo es lineal.
 
 Luego hay dos operaciones:
 \begin{verbatim}
@@ -267,18 +257,17 @@ Luego hay dos operaciones:
   borrar vecindad de nodoMax
 \end{verbatim}
 
-Agregar $nodoMax$ a la solución es lineal debido a que la solución usa como estructura una lista.
+Agregar $nodoMax$ a la solución es constante debido a que la solución usa como estructura una lista. Para borrar la vecindad de $nodoMax$ del grafo, recorremos las listas de adyacencias y borramos de ellas los nodos que son adyacentes a $nodoMax$. Además, si la lista pertenece a un nodo adyacente a $nodomax$, se borra entera. Como la complejidad de esta operacion se basa en recorrer las listas de adyacencias de todos los nodos, tiene orden $O(n + m)$ ($O(m)$ para los casos en los que no haya nodos aislados).
 
-Para borrar la vecindad de $nodoMax$ del grafo, recorremos las listas de adyacencias y borramos de ellas los nodos que son adyacentes a $nodoMax$. Además, si la lista pertenece a un nodo adyacente a $nodomax$, se borra entera.
-Como la complejidad de esta operacion se basa en recorrer las listas de adyacencias de todos los nodos, tiene orden $O( n + m)$.
+Por último, el ciclo de afuera se ejecuta mientras haya nodos en el grafo. Teniendo en cuenta que en cada iteracion se elimina por lo menos un nodo del grafo (ya que seguro se borra el nodo que se agrega al grafo) el ciclo se ejecutará como máximo $n$ veces. Esto sumado a que el orden de las operaciones realizadas dentro de él es $O(n + m)$, podemos concluir que la complejidad de la heurística constructiva es $O(n * m)$.
 
-Por último, el ciclo de afuera se ejecuta mientras haya nodos en el grafo. Teniendo en cuenta que en cada iteracion se elimina por lo menos un nodo del grafo (ya que seguro se borra el nodo que se agrega al grafo) el ciclo se ejecutará menos de $n$ veces. Esto sumado a que el orden de las operaciones realizadas dentro de él es $O(n + m)$, podemos concluir que la complejidad de la heurística constructiva es $O(n * m)$.
+Sin embargo, si se realiza un analisis más minusioso del comportamiento del algoritmo se puede observar lo siguiente. Si el grafo a evaluar resulta muy denso (es decir $m$ cercano $n^2$) la cantidad de nodos de grado alto aumenta proporcionalmente, por lo que la función encargada de borrar la vecindad eliminará del grafo una alta cantidad de nodos en comparación al caso que se trate de un grafo poco denso. Esto último, dará lugar a que la cantidad de veces que itere el ciclo externo disminuya notablemente en grafos densos ya que en cada paso, el grafo resultante contiene una cantidad menor de nodos que en el caso donde la densidad es baja. Este fenómeno de ``equilibro'' podría dar lugar a que el algoritmo en la práctica se comporte mejor de lo que se espera, e incluso que su tiempo de ejecución no dependa de la cantidad de aristas. En la siguiente sección, observaremos empíricamente esta cuestión.
 
 \section*{An\'alisis de resultados}
 
 Al igual que para el análisis del algoritmo exacto, se generaron grafos aleatorios con 3 tipos de densidades con el fin de evaluar el comportamiento de la heurística constructiva elegida sobre diversos grafos según la cantidad de nodos. Sin embargo, al tratarse de un algoritmo polinomial, la cantidad de nodos analizados será mucho mayor (desde 10 hasta 1400 nodos) con el fin de poder observar con claridad su comportamiento.
 
-Como hemos visto anteriormente, la complejidad de la heurística constructiva resulta del orden $n*m$. Por este motivo, se han incluido en el gráfico las curvas $(n^2)/25$ y $(n^3)/15000$ con el fin de observar el comportamiento para grafos de distinta densidad. De esta manera, los tiempos de ejecución de grafos de alta densidad (donde $m$ tiene a $n^2$) deberían ser similar a la curva $(n^2)/25$ mientras que los de baja (donde $m$ tiene a $n$) deberían asimilarse a la curva $(n^2)/25$. A continuación, se presenta el gráfico en cuestión.
+Como hemos visto anteriormente, la complejidad de la heurística constructiva resulta del orden $n*m$. Por este motivo, se han incluido en el gráfico las curvas $n^2/25$ y $n^3/15000$ con el fin de observar el comportamiento para grafos de distinta densidad. En principio, los tiempos de ejecución de grafos de alta densidad (donde $m$ tiene a $n^2$) deberían ser similar a la curva $n^2/25$ mientras que los de baja (donde $m$ tiene a $n$) deberían asimilarse a la curva $n^2/25$.
 
 \begin{center}
  \includegraphics[width=0.7\textwidth]{graficos/tiemposHC.png}
@@ -287,7 +276,7 @@ Figura 2.1
 \end{center}
 \end{center}
 
-Como se observa, el comportamiento no es el esperado, ya que que para grafos de densidad variada, los tiempos de ejecución siempre se comportan de la forma de $n^2$, lo que haría suponer que la complejidad real del algoritmo podría ser $O(n^2)$. Sin embargo, este fenómeno podría tener relación con la conjetura realizada al haber conjeturado
+Como se observa, el comportamiento del algoritmo no tiene correspondencia directa con la complejidad teórica calculada, ya que que para grafos de densidad variada, los tiempos de ejecución siempre se comportan de la forma de $n^2$, lo que haría suponer que la complejidad real del algoritmo podría ser de orden cuadrático con respecto a la cantidad de nodos. La razón de esto probablemente radique en el fenómeno de ``equilibro'' mencionado anteriormente en el apartado de complejidad, el cuál logra que, para un grafo promedio, el algoritmo se comporte en un orden de complejidad menor al calculado y dependiendo únicamente de la cantidad de nodos.
 
 \bigskip
 \section{Heur\'isticas de B\'usqueda Local}
