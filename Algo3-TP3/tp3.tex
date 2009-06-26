@@ -267,7 +267,7 @@ Sin embargo, si se realiza un analisis más minusioso del comportamiento del alg
 
 Al igual que para el análisis del algoritmo exacto, se generaron grafos aleatorios con 3 tipos de densidades con el fin de evaluar el comportamiento de la heurística constructiva elegida sobre diversos grafos según la cantidad de nodos. Sin embargo, al tratarse de un algoritmo polinomial, la cantidad de nodos analizados será mucho mayor (desde 10 hasta 1400 nodos) con el fin de poder observar con claridad su comportamiento.
 
-Como hemos visto anteriormente, la complejidad de la heurística constructiva resulta del orden $n*m$. Por este motivo, se han incluido en el gráfico las curvas $n^2/25$ y $n^3/15000$ con el fin de observar el comportamiento para grafos de distinta densidad. En principio, los tiempos de ejecución de grafos de alta densidad (donde $m$ tiene a $n^2$) deberían ser similar a la curva $n^2/25$ mientras que los de baja (donde $m$ tiene a $n$) deberían asimilarse a la curva $n^2/25$.
+Como hemos visto anteriormente, la complejidad de la heurística constructiva resulta del orden $n*m$. Por este motivo, se han incluido en el gráfico las curvas $n^2/25$ y $n^3/15000$ con el fin de observar el comportamiento para grafos de distinta densidad. En principio, los tiempos de ejecución de grafos de alta densidad (donde $m$ tiende a $n^2$) deberían ser similar a la curva $n^3/15000$ mientras que los de baja (donde $m$ tiene a $n$) deberían asimilarse a la curva $n^2/25$.
 
 \begin{center}
  \includegraphics[width=0.7\textwidth]{graficos/tiemposHC.png}
