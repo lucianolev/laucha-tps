@@ -23,13 +23,13 @@
 \bigskip
 \section*{Aclaraciones generales}
 
-Antes de comenzar el an\'alisis de cada ejercicio, cabe mencionar lo siguiente:
+Antes de comenzar el an\'alisis de cada ejercicio, cabe mencionar lo siguiente: 
 
 \begin{itemize}
  \item La implementaci\'on de los 3 algoritmos se realiz\'o en \textbf{lenguaje Java}, haciendo uso de las librer\'ias est\'andar del mismo.
  \item Para el c\'alculo de tiempo de los algoritmos se utiliz\'o la funci\'on \textbf{nanoTime()} de la clase System de Java. Con el fin de aumentar la precisi\'on de las mediciones, se utiliz\'o el comando \textbf{nice} para darle m\'axima prioridad a la tarea.
  \item El c\'odigo fuente de los algoritmos aqu\'i analizados se encuentran en los archivos \textit{Dengue.java} (Ej 1), \textit{Diamante.java} (Ej 2) y \textit{RedAstor.java} (Ej 3).
- \item El c\'odigo fuente de los programas encargados de hacer uso de los algoritmos y necesarios para compilar las aplicaciones son:
+ \item El c\'odigo fuente de los programas encargados de hacer uso de los algoritmos y necesarios para compilar las aplicaciones son:67
  \begin{itemize}
     \item \underline{Ej 1:} MainDengue.java, Dengue.java e InstanciaDengue.java.
     \item \underline{Ej 2:} MainDiamante.java, Diamante.java, InstanciaDiamante.java.
@@ -259,7 +259,7 @@ Luego hay dos operaciones:
 
 Agregar $nodoMax$ a la solución es constante debido a que la solución usa como estructura una lista. Para borrar la vecindad de $nodoMax$ del grafo, recorremos las listas de adyacencias y borramos de ellas los nodos que son adyacentes a $nodoMax$. Además, si la lista pertenece a un nodo adyacente a $nodomax$, se borra entera. Como la complejidad de esta operacion se basa en recorrer las listas de adyacencias de todos los nodos, tiene orden $O(n + m)$ ($O(m)$ para los casos en los que no haya nodos aislados).
 
-Por último, el ciclo de afuera se ejecuta mientras haya nodos en el grafo. Teniendo en cuenta que en cada iteracion se elimina por lo menos un nodo del grafo (ya que seguro se borra el nodo que se agrega al grafo) el ciclo se ejecutará como máximo $n$ veces. Esto sumado a que el orden de las operaciones realizadas dentro de él es $O(n + m)$, podemos concluir que la complejidad de la heurística constructiva es $O(n * m)$.
+Por último, el ciclo de afuera se ejecuta mientras haya nodos en el grafo. Teniendo en cuenta que en cada iteracion se elimina por lo menos un nodo del grafo (ya que seguro se borra el nodo que se agrega al grafo) el ciclo se ejecutará como máximo $n$ veces. Esto sumado a que el orden de las operaciones realizadas dentro de él es $O(n + m)$, podemos concluir que la complejidad de la heurística constructiva es $O(n*(n + m))$. Pero como los nodos de grado cero fueron eliminados, sabemos que $n \leq m$, lo que deriva a un orden de $O(n*m)$.
 
 Sin embargo, si se realiza un analisis más minusioso del comportamiento del algoritmo se puede observar lo siguiente. Si el grafo a evaluar resulta muy denso (es decir $m$ cercano $n^2$) la cantidad de nodos de grado alto aumenta proporcionalmente, por lo que la función encargada de borrar la vecindad eliminará del grafo una alta cantidad de nodos en comparación al caso que se trate de un grafo poco denso. Esto último, dará lugar a que la cantidad de veces que itere el ciclo externo disminuya notablemente en grafos densos ya que en cada paso, el grafo resultante contiene una cantidad menor de nodos que en el caso donde la densidad es baja. Este fenómeno de ``equilibro'' podría dar lugar a que el algoritmo en la práctica se comporte mejor de lo que se espera, e incluso que su tiempo de ejecución no dependa de la cantidad de aristas. En la siguiente sección, observaremos empíricamente esta cuestión.
 
@@ -360,6 +360,52 @@ La primer heur\'istica de b\'usqueda local (a la que llamaremos BL1) mejora la s
 \section*{Complejidad}
 
 \section*{An\'alisis de resultados}
+
+Manteniendo la polìtica utilizada en los ejercicios anteriores, el anàlisis empiríco se realizó sobre grafos aleatorios. En este caso el algoritmo se corriò para grafos entre 20 y 4000 nodos, nuevamente con 3 tipos de densidades
+para poder apreciar si existe una relaciòn entre ellas y el tiempo de ejecuciòn demandado.
+
+Para poder apreciar el comportamiento del algoritmo con respecto a la complejidad teòrica se agregò en el gràfico la curva definida por $n^3/10000$.
+
+\begin{center}
+ \includegraphics[width=0.7\textwidth]{graficos/tiemposBL.png}
+\begin{center}
+Figura 2.1
+\end{center}
+\end{center}
+
+En el gráfico se puede apreciar como la complejidad teórica acota a las curvas que representan los resultados de los tiempos de ejecución para los tres tipos de densidades., que de todas formas crecen de manera similar al orden teórico $(O(n^3))$. 
+
+Otra característica observable es que la densidad del grafo influye directamente en el tiempo de ejecuciín del algoritmo, ya que a pesar de no mejorar en complejidad, se puede notar que a medida que se van aumentando las 
+densidades disminuye el tiempo requerido. Esto se debe a que al poseer pocas adyacencias un grafo aumenta notablemente la cantidad de posibles soluciones y éstas serán revisadas por el algoritmo a menos que supere la cantidad máxima permitida por la constante pasada como parámetro. 
+
+
+
+\section{Heur\'isticas de Grasp}
+
+La ùltima parte del tp es, probablemente, la màs interesante. En esta secciòn se estudiarà el comportamiento de la heurìstica de Grasp, lo que incluye la utilizaciòn de las heurìsticas anteriores y permite la comparaciòn (Para grafos con un nùmero limitado de nodos) de su rendimiento con respecto al valor òptimo obtenido utilizando el algoritmo exacto. Aquì se terminan de tomar las decisiones con respectos a los paràmetros a utilizar en las heurìsitcas debiendo privilegiar ciertos aspectos por encima de otros. Una vez analizado Grasp, se podrà tener una conclusiòn en conjunto de lo realizado y detallar los beneficios y las contras de la utilzaciòn de esta heurìstica para este problema.
+A continuaciòn se presenta el pseudocòdigo del algoritmo.
+
+\begin{verbatim}
+pesoMaximo = 0;
+mientras no haya hecho todas las iteraciones de Grasp
+  unaSolucion = heuristicaConstructiva(alfa)
+  unaSolucion = busquedaLocal(unaSolucion, cantIteracionesBL)
+  Si peso(unaSolucion) > pesoMaximo
+    laMejorSolucion = unaSolucion
+    pesoMaximo = peso(laMejorSolucion)
+
+\end{verbatim}
+
+El algoritmo utilizado consta de un ciclo general que está determinado por la cantidad de iteraciones de Grasp. El ciclo se ejecutará tantas veces como este parámetro lo indique. Para determinar su valor apropiado se efectuarán las pruebas necesarias más adelante. Dentro del ciclo se construye una solución mediante la heurística constructiva, se le aplica búsqueda local y, si consigue mejorar a la óptima obtenida hasta el momento, ocupa su lugar. De esta manera, al terminar el ciclo se obtendrá la mejor solución contrada.
+
+La elección de los paràmetros que reciben las heurìsticas utilizadas dentro del ciclo son dos de las decisiones más importantes.
+
+ Una de ellas consiste en elegir el alfa que determinará qué tan aleatoria será la heurística constructiva. Es importante su buena elección ya que una mala decisión podría limitar notablemente la cantidad de soluciones a verificar, mientras que por otro lado podría construir malas soluciones lo que influiría negativamente en la eficiencia en tiempo en la búsquela local que se le aplique.
+
+
+La otra decisión consiste en determinar la cantidad de iteraciones que llevará a cabo la búsqueda local en caso de no encontrar una solución local óptima antes. Nuevamente, la relevancia de encontrar un buen valor para éste parámetro se debe a que es necesario encontrar un equilibrio entre la eficiencia temporal la optimalidad de la solución buscada. Para su determinación resulta fundamental ver qué tanto sigue mejorando la solución a medida que van aumentando las iteraciones para seleccionar el número de iteraciones para el cual la soluciòn deja de conseguir mejoras notables.
+
+
 
 \section*{Conclusiones Generales}
 
