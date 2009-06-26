@@ -508,6 +508,41 @@ La otra decisión consiste en determinar la cantidad de iteraciones que llevará
 
 \section*{An\'alisis de eficacia}
 
+En la presente secci\'on estudiaremos la eficacia de la metaheur\'istica GRASP en relaci\'on a la precisi\'on de la soluci\'on obtenida. Con este objetivo, compararemos los resultados de GRASP con las mejores heur\'isticas constructivas y de b\'usqueda local seg\'un lo visto en anteriores secciones. Se probar\'a con distintas heur\'isiticas ya que anteriormente se concluy\'o que la mejor heur\'istica constructiva es la de Peso/Grado pero los mejores resultados para la b\'usqueda local se lograron con una heur\'istica constructiva de Grado y la b\'usqueda local 2 (BL2). Es decir, en principio, se desconoce que combinaci\'on de heur\'isticas tendr\'a mejores resultados. 
+
+Las siguientes pruebas realizadas tienen como objetivo estudiar los resultados de la metaheur\'istica variando los par\'ametros de la misma (cantIteracionesGRASP y alfa). Es decir, se intentar\'an decidir los par\'ametros que logren un balance entre la calidad de las soluciones y el tiempo de ejecuci\'on de la metaheur\'istica.
+
+Siguiendo la misma l\'inea utilizada en las pruebas anteriores, para todas las pruebas se utilizaran los grafos aleatorios con densidades baja, media y alta.
+
+\subsection*{An\'alisis de heur\'isticas}
+
+Como se mencion\'o anteriormente, la primer prueba realizada tiene como objetivo decidir que heur\'isiticas constructivas y de b\'usuqeda local hacen los resultados de GRASP sean m\'as eficaces. Para esto se realizar\'an pruebas de GRASP con la mejor heur\'istica constructiva (Peso/Grado) y la heur\'istica constructiva que hace que la b\'usqueda local sea m\'as eficaz (Grado). La b\'usqueda local utilizada fue BL2 ya que se mostr\'o que los resultados son ampliamente mejores que los de BL1.
+
+Las tablas que se presentar\'an a continuaci\'on, muestran la diferencia de los resultados obtenidos de GRASP utilizando la heur\'istica de Grado y los resultados utilizando Peso/Grado (ambas usando BL2 y variando el par\'ametro alfa de 0.1 a 1). Es decir, cada celda de la tabla contiene la diferencia $resultadoGrado - resultadoPeso/Grado$.  Adem\'as, se presentan estos resultados variando la cantidad de iteraciones de GRASP 30, 100 y 300.
+
+\begin{center}
+ \includegraphics[width=0.75\textwidth]{tablas/tablaGrasp30-1.png}
+\begin{center}
+Tabla 5.1
+\end{center}
+\end{center}
+\begin{center}
+ \includegraphics[width=0.75\textwidth]{tablas/tablaGrasp100-1.png}
+\begin{center}
+Tabla 5.2
+\end{center}
+\end{center}
+\begin{center}
+ \includegraphics[width=0.75\textwidth]{tablas/tablaGrasp300-1.png}
+\begin{center}
+Tabla 5.3
+\end{center}
+\end{center}
+
+Las celdas remarcadas representan los casos en que la diferencia $resultadoGrado - resultadoPeso/Grado$ es mayor que 0, es decir, los casos en los los resultados de GRASP utilizando la heur\'istica de Grado son mayores que utilizando la heur\'istica de Peso/Grado. Como se puede apreciar, cuando la cantidad de iteraciones de GRASP es baja (30) la heur\'istica de Grado es la que otorga los mejores resultados. Sin embargo al aumentar la cantidad de iteraciones la mejores resultados pasan a ser los que se obtienen por medio de la heur\'istica de Peso/Grado. Adem\'as, se puede apreciar que la diferencia en las tablas de 100 y 300 iteraciones es muy remarcada, es decir, los n\'umeros negativos son bastante grandes en m\'odulo, lo que implica que la diferencia entre los resultados es bastante amplia. 
+
+A partir de esto se puede concluir que utilizar la heur\'istica de Grado tiene buenos resultados para poca cantidad de iteraciones, pero al aumentar la cantidad de iteraciones, los resultados se estancan. Por el contrario, si se utiliza la heur\'istica de Peso/Grado, la calidad de los resultados para mayor cantidad de iteraciones aumenta. Esto permite obtener mejores resultados a costa de realizar m\'as cantidad de iteraciones y por tanto, m\'as tiempo de ejecuci\'on. Por esta raz\'on, podemos concluir que utilizar la heur\'istica de Peso/Grado es mejor en cuanto a la calidad de las soluciones, cuesti\'on que resulta de mayor inter\'es que los tiempos de ejecuci\'on del algoritmo.
+
 \section*{Complejidad}
 
 \begin{verbatim}
