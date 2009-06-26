@@ -257,6 +257,13 @@ Por último, el ciclo de afuera se ejecuta mientras haya nodos en el grafo. Teni
 
 Sin embargo, si se realiza un analisis más minusioso del comportamiento del algoritmo se puede observar lo siguiente. Si el grafo a evaluar resulta muy denso (es decir $m$ cercano $n^2$) la cantidad de nodos de grado alto aumenta proporcionalmente, por lo que la función encargada de borrar la vecindad eliminará del grafo una alta cantidad de nodos en comparación al caso que se trate de un grafo poco denso. Esto último, dará lugar a que la cantidad de veces que itere el ciclo externo disminuya notablemente en grafos densos ya que en cada paso, el grafo resultante contiene una cantidad menor de nodos que en el caso donde la densidad es baja. Este fenómeno de ``equilibro'' podría dar lugar a que el algoritmo en la práctica se comporte mejor de lo que se espera, e incluso que su tiempo de ejecución no dependa de la cantidad de aristas. En la siguiente sección, observaremos empíricamente esta cuestión.
 
+Analizaremos ahora la complejidad en funci\'on del tama\~{n}o de la entrada. Sea $t$ el tama\~{n}o de la entrada, $n$ la cantidad de nodos, $m$ la cantidad de aristas ($m_i$ la cantidad de aristas del nodo $i$), $p$ el arreglo de pesos y $a[i]$ las adyacencias del nodo $i$. Tenemos entonces que:
+
+$$t=\log(n)+\sum_{i=1}^{n}\log(p)+\sum_{i=1}^{n}\sum_{j=1}^{m_i}\log(a[i])>\log(n)+\sum_{i=1}^{n}1+\sum_{i=1}^{n}\sum_{j=1}^{m_i}1$$
+$$>\log(n)+n+\sum_{i=1}^{n}m>\log(n)+n+nm$$
+
+\hspace{20pt} $\Longrightarrow$ como $T(n,m) \in O(nm)$ y $nm<\log(n)+n+nm<t \Longrightarrow T(t) \in O(t)$
+
 \section*{An\'alisis de resultados}
 
 Al igual que para el análisis del algoritmo exacto, se generaron grafos aleatorios con 3 tipos de densidades con el fin de evaluar el comportamiento de la heurística constructiva elegida sobre diversos grafos según la cantidad de nodos. Sin embargo, al tratarse de un algoritmo polinomial, la cantidad de nodos analizados será mucho mayor (desde 10 hasta 1400 nodos) con el fin de poder observar con claridad su comportamiento.
@@ -442,6 +449,13 @@ Como sacar un nodo resulta de orden lineal respecto a $n$ al igual que la últim
 
 Con todo lo analizado, podemos ver que la complejidad total del algoritmo completo es $O(n*m + n + m*n + 2*n) = O(n*m)$.
 
+Finalmente analizaremos la complejidad en funci\'on del tama\~{n}o de la entrada. Sea $t$ el tama\~{n}o de la entrada, $n$ la cantidad de nodos, $m$ la cantidad de aristas ($m_i$ la cantidad de aristas del nodo $i$), $p$ el arreglo de pesos y $a[i]$ las adyacencias del nodo $i$. Tenemos entonces que:
+
+$$t=\log(n)+\sum_{i=1}^{n}\log(p)+\sum_{i=1}^{n}\sum_{j=1}^{m_i}\log(a[i])>\log(n)+\sum_{i=1}^{n}1+\sum_{i=1}^{n}\sum_{j=1}^{m_i}1$$
+$$>\log(n)+n+\sum_{i=1}^{n}m>\log(n)+n+nm$$
+
+\hspace{20pt} $\Longrightarrow$ como $T(n,m) \in O(nm)$ y $nm<\log(n)+n+nm<t \Longrightarrow T(t) \in O(t)$
+
 \section*{Casos Patol\'ogicos}
 
 En esta secci\'on se estudiar\'a un caso en el que, dado un tipo de soluci\'on inicial, el algoritmo de busqueda local implementado no realiza una mejora sustancial.
@@ -507,6 +521,13 @@ para i desde 1 hasta cantIteracionesGrasp
 \end{verbatim}
 
 En primer lugar, cabe notar que el ciclo principal itera una cantidad constante de veces ya que, tal como se mencionó anteriormente, el parámetro \textit{cantIteracionesGrasp} es un número prefijado que no depende del tamaño de la entrada. Por lo tanto, la complejidad estará dada por el resto de las operaciones dentro del mismo. En particular, la llamada a la heurística contructiva junto con la llamada a la búsqueda local son las operaciones relevantes. Como se mencionó, se optó por utilizar la heurística constructiva peso/grado de complejidad de orden $O(n*m)$. Asímismo, la búsqueda local elegida tiene la misma complejidad, lo que resulta en que la complejidad total de GRASP es de orden $O(n*m)$. A continuación, analizaremos empíricamente este resultado.
+
+A contunuaci\'on analizaremos la complejidad en funci\'on del tama\~{n}o de la entrada. Sea $t$ el tama\~{n}o de la entrada, $n$ la cantidad de nodos, $m$ la cantidad de aristas ($m_i$ la cantidad de aristas del nodo $i$), $p$ el arreglo de pesos y $a[i]$ las adyacencias del nodo $i$. Tenemos entonces que:
+
+$$t=\log(n)+\sum_{i=1}^{n}\log(p)+\sum_{i=1}^{n}\sum_{j=1}^{m_i}\log(a[i])>\log(n)+\sum_{i=1}^{n}1+\sum_{i=1}^{n}\sum_{j=1}^{m_i}1$$
+$$>\log(n)+n+\sum_{i=1}^{n}m>\log(n)+n+nm$$
+
+\hspace{20pt} $\Longrightarrow$ como $T(n,m) \in O(nm)$ y $nm<\log(n)+n+nm<t \Longrightarrow T(t) \in O(t)$
 
 \section{Conclusiones Generales}
 
