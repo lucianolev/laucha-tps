@@ -464,18 +464,17 @@ densidades disminuye el tiempo requerido.
 
 \section{Metaheur\'istica GRASP}
 
-La última parte del tp es, probablemente, la más interesante. En esta sección se estudiará el comportamiento de la heurística de Grasp, lo que incluye la utilización de las heurísticas anteriores y permite la comparación (Para grafos con un número limitado de nodos) de su rendimiento con respecto al valor óptimo obtenido utilizando el algoritmo exacto. Aquí se terminan de tomar las decisiones con respectos a los parámetros a utilizar en las heurísitcas debiendo privilegiar ciertos aspectos por encima de otros. Una vez analizado Grasp, se podrá tener una conclusión en conjunto de lo realizado y detallar los beneficios y las contras de la utilzación de esta heurística para este problema.
+La última parte del trabajo es, probablemente, la más interesante. En esta sección se estudiará el comportamiento de la heurística de Grasp, lo que incluye la utilización de las heurísticas anteriores y permite la comparación (Para grafos con un número limitado de nodos) de su rendimiento con respecto al valor óptimo obtenido utilizando el algoritmo exacto. Aquí se terminan de tomar las decisiones con respectos a los parámetros a utilizar en las heurísitcas debiendo privilegiar ciertos aspectos por encima de otros. Una vez analizado Grasp, se podrá tener una conclusión en conjunto de lo realizado y detallar los beneficios y las contras de la utilzación de esta heurística para este problema.
 A continuación se presenta el pseudocódigo del algoritmo.
 
 \begin{verbatim}
 pesoMaximo = 0
-mientras no haya hecho todas las iteraciones de Grasp
+para i desde 1 hasta cantIteracionesGrasp
   unaSolucion = heuristicaConstructiva(alfa)
   unaSolucion = busquedaLocal(unaSolucion, cantIteracionesBL)
-  Si peso(unaSolucion) > pesoMaximo
+  si peso(unaSolucion) > pesoMaximo
     laMejorSolucion = unaSolucion
     pesoMaximo = peso(laMejorSolucion)
-
 \end{verbatim}
 
 El algoritmo utilizado consta de un ciclo general que está determinado por la cantidad de iteraciones de Grasp. El ciclo se ejecutará tantas veces como este parámetro lo indique. Para determinar su valor apropiado se efectuarán las pruebas necesarias más adelante. Dentro del ciclo se construye una solución mediante la heurística constructiva, se le aplica búsqueda local y, si consigue mejorar a la óptima obtenida hasta el momento, ocupa su lugar. De esta manera, al terminar el ciclo se obtendrá la mejor solución contrada.
@@ -489,6 +488,18 @@ La otra decisión consiste en determinar la cantidad de iteraciones que llevará
 \section*{An\'alisis de eficacia}
 
 \section*{Complejidad}
+
+\begin{verbatim}
+pesoMaximo = 0
+para i desde 1 hasta cantIteracionesGrasp
+  unaSolucion = heuristicaConstructiva(alfaRCL)
+  unaSolucion = busquedaLocal(unaSolucion, cantIteracionesBL)
+  si peso(unaSolucion) > pesoMaximo
+    laMejorSolucion = unaSolucion
+    pesoMaximo = peso(laMejorSolucion)
+\end{verbatim}
+
+En primer lugar, cabe notar que el ciclo principal itera una cantidad constante de veces ya que, tal como se mencionó anteriormente, el parámetro \textit{cantIteracionesGrasp} es un número prefijado que no depende del tamaño de la entrada. Por lo tanto, la complejidad estará dada por el resto de las operaciones dentro del mismo. En particular, la llamada a la heurística contructiva junto con la llamada a la búsqueda local son las operaciones relevantes. Como se mencionó, se optó por utilizar la heurística constructiva peso/grado de complejidad de orden $O(n*m)$. Asímismo, la búsqueda local elegida tiene la misma complejidad, lo que resulta en que la complejidad total de GRASP es de orden $O(n*m)$. A continuación, analizaremos empíricamente este resultado.
 
 \section{Conclusiones Generales}
 
