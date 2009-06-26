@@ -581,6 +581,14 @@ Como era de esperarse, el comportamiento del algoritmo es similar al comportamie
 
 \section{Conclusiones Generales}
 
+El trabajo aqui realizado se encargó de mostrar diversos algoritmos para resolver el problema del conjunto independiente de peso máximo para un grafo de nodos ponderados cualquiera. En primer lugar se realizó un simple algoritmo exacto de orden $O(2^n)$ para posteriores comparaciones con las heuristicas propuestas. Este orden exponencial, mostró luego que el algoritmo sólo termina en un tiempo razonable para grafos relativamente pequeños (hasta 36 nodos, con baja densidad). 
+
+Luego, se comenzó por mostrar distintas heurísticas constructivas para generar soluciones al problema para grafos más grandes. Como vimos, si bien se mostraron heurísticas mejores que otras, todas ellas resultaron estar relativamente lejos de la solución exacta. Por pruebas realizadas, se concluyó que la mejor heurística resultó ser una heurística golosa que añade los nodos con mayor relación peso/grado del grafo a la solucion parcial. De este modo, el algorimto encontraría soluciones en un tiempo polinomial $O(n*m)$ permitiendo ser ejecutado sobre grafos de un orden de $10^3$ de baja densidad en tiempos razonables.
+
+En la siguiente etapa se estudiaron 2 heurísticas de búsqueda local con el fin de mejorar las soluciones contructivas obtenidas. Resultó interesante ver como una busqueda local bastante más inteligente dió resultados notablemente mejores, aún siendo de una complejidad temporal aceptable como ser $O(n*m)$. Más aún, realizar la heurística sola o utilizar una busqueda local a posteriori conserva la complejidad de $O(n*m)$ por lo cual se puede concluir que la heurística por sí sola carece de utilidad. Otro punto interesante, es que la búsqueda realiza una cantidad de iteraciónes que aumenta muy levemente con respecto al tamaño del grafo, por lo cual fue posible acotar dicho parámetro sin perder en calidad de soluciones encontradas.
+
+Por último se estudió una versión del esquema metaheurístico GRASP que muestra como la mejora en la calidad de las soluciones es aún mayor que realizar una búsqueda local. Tal como explica la bibliografía asociada, este resultado tiene relación con el hecho de que se realizan distintas busquedas locales en diversas soluciones iniciales lo que resulta en el aumentar notablemente la posibilidad de hallar soluciones mejores. Además, al haber fijado la cantidad de iteraciones del procedimiento, la complejidad teórica sigue siendo del mismo órden que realizar una única busqueda local, es decir $O(n*m)$. Esto último muestra como este esquema metaheurístico resulta de gran utilidad al momento de querer encontrar soluciones de calidad para problemas de gran tamaño imposibles de resolver de forma exacta.
+
 \section*{Referencias}
 % \begin{itemize}
 %  \item Art\'iculo de Wikipedia sobre Programaci\'on Din\'amica
