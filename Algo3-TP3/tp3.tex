@@ -10,7 +10,7 @@
 \begin{document}
 
 \titulo{Trabajo Pr\'actico Nro. 3}
-\fecha{08/05/2009}
+\fecha{26/6/2009}
 \materia{Algoritmos y Estructuras de Datos III}
 \grupo{}
 \integrante{Dinota, Mat\'ias}{076/07}{matiasgd@gmail.com}
@@ -23,23 +23,18 @@
 \bigskip
 \section*{Aclaraciones generales}
 
-Antes de comenzar el an\'alisis de cada ejercicio, cabe mencionar lo siguiente: 
+Antes de comenzar el an\'alisis de los algoritmos, cabe mencionar lo siguiente:
 
 \begin{itemize}
- \item La implementaci\'on de los 3 algoritmos se realiz\'o en \textbf{lenguaje Java}, haciendo uso de las librer\'ias est\'andar del mismo.
+ \item La implementaci\'on de los todos algoritmos se realiz\'o en \textbf{lenguaje Java}, haciendo uso de las librer\'ias est\'andar del mismo.
  \item Para el c\'alculo de tiempo de los algoritmos se utiliz\'o la funci\'on \textbf{nanoTime()} de la clase System de Java. Con el fin de aumentar la precisi\'on de las mediciones, se utiliz\'o el comando \textbf{nice} para darle m\'axima prioridad a la tarea.
- \item El c\'odigo fuente de los algoritmos aqu\'i analizados se encuentran en los archivos \textit{Dengue.java} (Ej 1), \textit{Diamante.java} (Ej 2) y \textit{RedAstor.java} (Ej 3).
- \item El c\'odigo fuente de los programas encargados de hacer uso de los algoritmos y necesarios para compilar las aplicaciones son:67
- \begin{itemize}
-    \item \underline{Ej 1:} MainDengue.java, Dengue.java e InstanciaDengue.java.
-    \item \underline{Ej 2:} MainDiamante.java, Diamante.java, InstanciaDiamante.java.
-    \item \underline{Ej 3:} MainRedAstor.java, RedAstor.java, InstanciaRedAstor.java, Arista.java, AristaComparator.java, Dupla.java, DuplaComparator.java.
-  \end{itemize}
+ \item El c\'odigo fuente de los algoritmos aqu\'i analizados se encuentran en el archivo \textit{ResolvedorCIPM.java}.
+ \item El c\'odigo fuente de los programas encargados de hacer uso de los algoritmos y necesarios para compilar la aplicaciones son: MainCIPM.java, ResolvedorCIPM.java, GrafoNPonderados.java, PesoNodoComparator.java, LectorDeGrafos.java y EscritorDeSoluciones.java.
  \item Para la lectura y escritura de los datos se utilizaron clases provistas por el lenguaje Java. No se har\'a referencia a estos algoritmos ya que no resultan de inter\'es para el trabajo aqu\'i presentado.
- \item Los gr\'aficos se realizaron con \textbf{GNUPlot} y Calc. En los casos considerados pertinentes, se utiliz\'o una escala logar\'itmica con el fin de poder visualizar mejor los resultados.
+ \item Los gr\'aficos se realizaron con \textbf{GNUPlot} y las tablas con OpenOffice Calc. En los casos considerados pertinentes, se utiliz\'o una escala logar\'itmica con el fin de poder visualizar mejor los resultados.
 \end{itemize}
 
-%EXPLICAR LO DE LAS DENSIDADES!!!!!
+Con respecto al análisis de resultados y a las pruebas realizadas vale hacer la siguiente aclaración. Los grafo generados aletoriamente poseerán nodos con pesos comprendidos entre $10$ y cantidad de nodos del grafo por $10$. Las adyacencias de los nodos es generada también aleatoriamente de modo que el grado de cada nodo sea un número entre 0 y (n-1)*k, con $k$ un parámetro que llamaremos \textit{densidad} de aquí en adelante, donde $0 < k \leq 1$. De este modo, los experimentos mostrarán el comportamiento de los algoritmos para grafos ``promedio'' (sin particularidades) con una cierta cantidad de nodos y de cierta densidad.
 
 \section{Introducci\'on}
 
@@ -59,15 +54,12 @@ A continuación presentamos tres situaciones diferentes en las cuales problemas 
 
 Hundidos en  una profunda crisis económica por las malas gestiones y desconcertados por los pésimos resultados obtenidos en la última temporada, un equipo de fútbol decide cambiar su política de compra/venta de jugadores. Como no se puede comprar sin tener el dinero, el primer paso que llevan a cabo los directivos del club es evaluar cuáles son los jugadores del plantel que van a estar a la venta. 
 Para no desequilibrar el equipo no debería haber dos jugadores en vidriera que:
-	
-	* Tengan similar jerarquía.
-
-	* Jugasen en la misma posición.
-
-	* Compartan alguna habilidad especial.
-
-	* Tenegan la misma experiencia y lleven el tiempo en el club.
-\bigskip
+\begin{itemize}
+\item Tengan similar jerarquía.
+\item Jugasen en la misma posición.
+\item Compartan alguna habilidad especial.
+\item Tenegan la misma experiencia y lleven el tiempo en el club.
+\end{itemize}
 
 Teniendo en cuenta estas restricciones, el manager del club decide plantear esta situación como un problema de conjunto independiente de peso máximo. En su modelo los nodos son los jugadores, el peso de éstos se define por su cotización y las adyacencias por las restricciones a tener en cuenta al querer incluir dos jugadores.
 \bigskip
@@ -75,14 +67,12 @@ Teniendo en cuenta estas restricciones, el manager del club decide plantear esta
 Felices por el funcionamiento de su política de ventas, el club decide también modelar el problema de la compra de los jugadores como el de un conjunto independiente de peso máximo, comprando sólo jugadores del fútbol local, debido a la alta cotización de los jugadores residentes en Europa.
 
 En este caso, los nodos también son los jugadores, pero el peso está dado por la calidad del jugador. Las adyacencias se dan entre los nodos que representan a dos jugadores que:
-
-	* Jueguen en la misma posición.
-
-	* Sean de equipos opuestos.
-
-	* Compartan alguna habilidad especial.
-
-	* La suma sus cotizaciones superen los dos millones de dólares.
+\begin{itemize}
+\item Jueguen en la misma posición.
+\item Sean de equipos opuestos.
+\item Compartan alguna habilidad especial.
+\item La suma sus cotizaciones superen los dos millones de dólares.
+\end{itemize}
 
 \subsection*{Situación 2:}
 
@@ -97,13 +87,12 @@ modela el problema de decidir las provincias a visitar como un problema de conju
 Cuando se acercan las vacaciones de invierno las autoridades de la Facultad de Ciencias Exactas de la UBA deciden cuáles serán las materias optativas a dictarse en el segundo cuatrimestre del año.
 Para esto suben una encuesta a la página web, intentando saber cuántos alumnos se anotarían en cada materia si se dictase. Una vez obtenida esta información se eligen las materias que permitan cursar a la mayor cantidad de alumnos tales que no pase que dos materias:
 
-	*	compartan los mismos días y horario.
-
-	*	Sean de la misma área de estudio.
-
-	*	La de el mismo profesor.
-
-	*	requieran más de 12 horas de cursada cada una.
+\begin{itemize}
+\item Compartan los mismos días y horario.
+\item Sean de la misma área de estudio.
+\item La dé el mismo profesor.
+\item Requieran más de 12 horas de cursada cada una.
+\end{itemize}
 
 Para esto organizan los datos y se los derivan a los alumnos de algoritmos 3 para que éstos lo resulevan como un problema de conjunto independiente máximo utilizando lo programado en el TP3.
 En este modelo los nodos son las materias y los pesos la cantidad de personas que cursarían la materia, mientras que dos nodos son adyacentes si representan a dos materias no pueden darse conjuntamente en el cuatrimestre por las condiciones mencinadas anteriormente.
@@ -155,7 +144,7 @@ En cuanto al tipo de grafos utilizados, se opt\'o por analizar el comportamiento
 Los resultados arrojados fueron los siguientes:
 
 \begin{center}
- \includegraphics[width=0.9\textwidth]{graficos/tiemposExacto.png}
+ \includegraphics[width=0.8\textwidth]{graficos/tiemposExacto.png}
 \begin{center}
 Figura 1.1
 \end{center}
@@ -168,8 +157,6 @@ Otro aspecto a tener en cuenta es la notable diferencia de los tiempos en relaci
 \bigskip
 
 \section{Heur\'isticas constructivas}
-
-\section*{Esquema general}
 
 A continuaci\'on se desarrolar\'a el trabajo realizado sobre heur\'isticas constructivas con el objetivo de reducir significativamente la complejidad temporal a merced de una p\'erdida de eficacia en las soluciones. Para esto, se utilizar\'on distintos algoritmos golosos que tienen en cuenta diversas condiciones sobre los nodos para ir armando una soluci\'on de manera constructiva. Se pensaron varias ideas para buscar aproximarse a la soluci\'on \'optima, todas siguiendo el siguiente esquema de algoritmo goloso:
 
@@ -197,17 +184,17 @@ Cabe aclarar que si el grado de los nodos que el algoritmo va recorriendo es igu
 Las distintas funciones $f$ aplicadas sobre los nodos para armar el conjunto soluci\'on fueron:
 
 \begin{itemize}
-\item Peso: en cada iteraci\'on del algoritmo se agrega a la soluci\'on el nodo de mayor peso.
-\item Grado: en cada iteraci\'on del algoritmo se agrega a la soluci\'on el nodo de menor grado. La idea de aplicar dicha funci\'on es que, al agregar a la soluci\'on el nodo de menor grado, solo se borrar\'an del grafo los nodos de su vecindad (que es la de menor tama\~{n}o) descartando asi la menor cantidad de nodos posible.
-\item Peso/Grado: en cada iteraci\'on del algoritmo se agrega a la soluci\'on el nodo de mayor cociente peso/grado. Simplemente una combinaci\'on de las dos t\'ecnicas mencionadas anteriormente.
-\item Peso/Vecindad: en cada iteraci\'on del algoritmo se agrega a la soluci\'on el nodo de mayor cociente peso*grado/pesoVecindad. La intenci\'on en este caso es ponderar tambi\'en el peso y la cantidad de nodos de la vecindad del nodo a agregar a la soluci\'on (si la vecindad del nodo es muy pesada y posee pocos nodos no quiero descartarla).
+\item \textbf{Peso:} en cada iteraci\'on del algoritmo se agrega a la soluci\'on el nodo de mayor peso.
+\item \textbf{Grado:} en cada iteraci\'on del algoritmo se agrega a la soluci\'on el nodo de menor grado. La idea de aplicar dicha funci\'on es que, al agregar a la soluci\'on el nodo de menor grado, solo se borrar\'an del grafo los nodos de su vecindad (que es la de menor tama\~{n}o) descartando asi la menor cantidad de nodos posible.
+\item \textbf{Peso/Grado:} en cada iteraci\'on del algoritmo se agrega a la soluci\'on el nodo de mayor cociente peso/grado. Simplemente una combinaci\'on de las dos t\'ecnicas mencionadas anteriormente.
+\item \textbf{Peso/Vecindad:} en cada iteraci\'on del algoritmo se agrega a la soluci\'on el nodo de mayor cociente peso*grado/pesoVecindad. La intenci\'on en este caso es ponderar tambi\'en el peso y la cantidad de nodos de la vecindad del nodo a agregar a la soluci\'on (si la vecindad del nodo es muy pesada y posee pocos nodos no quiero descartarla).
 \end{itemize}
 
 \section*{An\'alisis de eficacia de las heur\'isticas constructivas}
 
 Con el objetivo de decidir que heur\'istica es m\'as eficaz en relaci\'on a la precisi\'on de la soluci\'on obtenida, se realizaron pruebas para 27 grafos distintos generados de manera aleatoria. En los casos que fue posible, se compar\'o el resultado obtenido con la soluci\'on exacta del problema, obtenida por medio del algoritmo exacto presentado anteriormente.
 
-Los grafos generados de manera aleatoria se dividen en 3 tipos seg\'un la cantidad de nodos. Se crearon 9 grafos de cada tipo, con cantidad de nodos 30, 300 y 600. A su vez, cada tipo de grafo se divide seg\'un la densidad del grafo, es decir, de los 9 grafos de cada tipo se crearon 3 con baja, media y alta densidad. El peso de cada uno de los nodos tambi\'en es aleatorio, en un rango de 1 a $n*10$, siendo $n$ la cantidad de nodos. Estos grafos ser\'an utilizados en todas las pruebas que se realizar\'an en el trabajo, tanto para las heur\'isticas constructivas como para las b\'usquedas locales y la metaheur\'istica GRASP.\footnotemark[1]
+Los grafos generados de manera aleatoria se dividen en 3 tipos seg\'un la cantidad de nodos. Se crearon 9 grafos de cada tipo, con cantidad de nodos 30, 300 y 600. A su vez, cada tipo de grafo se divide seg\'un la densidad del grafo, es decir, de los 9 grafos de cada tipo se crearon 3 con baja, media y alta densidad. El peso de cada uno de los nodos tambi\'en es aleatorio, en un rango de 1 a $n*10$, siendo $n$ la cantidad de nodos. Estos grafos ser\'an utilizados en todas las pruebas que se realizar\'an en el trabajo, tanto para las heur\'isticas constructivas como para las b\'usquedas locales y la metaheur\'istica GRASP.
 
 Para cada uno de los grafos mencionados se ejecutaron todas las heur\'isticas constructivas mencionadas en la secci\'on anterior, obteniendo los siguientes resultados.
 
@@ -298,8 +285,6 @@ Vemos entonces que podemos generar un grafo donde el algoritmo sea tan impreciso
 \bigskip
 \section{Heur\'isticas de B\'usqueda Local}
 
-\section*{Esquema general}
-
 A continuaci\'on se presentar\'an las heur\'isticas de b\'usqueda local implementadas. El objetivo de dichos algoritmos es mejorar una soluc\'on dada (obtenida por medio de alguna de las heur\'isticas constructivas mencionadas), hasta obtener una soluci\'on localmente \'optima. Cada heur\'istica de b\'usqueda local define su concepto de localidad estableciendo una vecindad de soluciones que se revisar\'an para obtener el m\'aximo local. Las b\'usquedas locales implementadas corresponden al siguiente esquema.
 
 \begin{verbatim}
@@ -378,7 +363,7 @@ En la presente sección se intentará observar cuando eficaces resultan las heur
 Con el fin de realizar las comparaciones mencionadas se optó por realizar una versión extendida de la tabla referida a las heurísticas constructivas. Al igual que antes, cada celda de la tabla contiene el peso de la solución obtenida, aunque para el caso de las búsquedas locales, se muestra también (entre paréntesis) la cantidad de iteraciones realizadas por dicha búsqueda.
 
 \begin{center}
- \includegraphics[width=0.70\textwidth]{tablas/tablaHCBL.png}
+ \includegraphics[width=0.75\textwidth]{tablas/tablaHCBL.png}
 \end{center}
 
 En primer lugar, podemos observar que la busqueda local 2 resulta \textbf{ámpliamente} superior a la busqueda local 1 para todos los casos evaluados. Lo interesante de esta tabla es ver como se destacan particularmente 2 heurísticas constructivas como generadores de soluciones iniciales ``buenas'' para esta búsqueda. Por un lado la heurística peso/grado muestra ser eficaz tal como lo era por sí sola. Por otra parte, la heurística de grado que resultaba particularmente ineficiente en análisis previos, resulta aún más eficaz que esta en la gran mayoría de los casos.
