@@ -49,8 +49,9 @@ public class ResolvedorTester {
 //		medicionesHC("tiemposHC.txt");
 //		medicionesBL("tiemposBL.txt");
 
-		optimizarCantIterParaAlfa("pesosCantIter2.txt", 0.2);
+		//optimizarCantIterParaAlfa("pesosCantIter2.txt", 0.2);
 		//medicionesGrasp("tiemposGrasp.txt", 0.2, 70);
+		//pruebaTodos("pruebaTodos.txt");
 
 		return;
 	}
@@ -397,6 +398,65 @@ public class ResolvedorTester {
 		finally {
 			if (outputStream != null) {
 				System.out.println("Se han guardado los resultados en el archivo "+nombreDelArchivo);
+				outputStream.close();
+			}
+		}
+	}
+	
+	public static void pruebaTodos(String nombreDelArchivo) throws IOException {
+		BufferedWriter outputStream = null;
+		try {
+			outputStream = new BufferedWriter(new FileWriter(nombreDelArchivo));
+			int cantIteracionesLocal = 200;
+			int cantIteracionesGrasp = 70;
+			double alfaRCL = 0.2;
+			
+			String[] archivos = new String[3];
+			archivos[0] = "grafos600bd.in";
+			archivos[1] = "grafos600md.in";
+			archivos[2] = "grafos600ad.in";
+
+			long inicio;
+			long fin;
+			long tiempoHC;
+			long tiempoBL;
+			long tiempoGrasp;
+			
+			for(int i = 0; i < 3 ; i++) { 
+				LectorDeGrafos lector = new LectorDeGrafos("../grafos/"+archivos[i]);
+				while(lector.quedanGrafos()) {
+					 GrafoNPonderados elgrafo = lector.dameProximoGrafo();
+					 ResolvedorCIPM resolvedor = new ResolvedorCIPM(elgrafo);
+								
+					 inicio = System.nanoTime();
+					 Solucion solucionHCPG = resolvedor.heuristicaConstructivaPesoGrado();
+					 fin = System.nanoTime();
+					 tiempoHC = (fin - inicio)/(1000*1000);
+					 
+					 inicio = System.nanoTime();
+					 Solucion solucionBL = resolvedor.heuristicaConstructivaConGrado();
+					 solucionBL = resolvedor.busquedaLocal2(solucionBL, cantIteracionesLocal);
+					 fin = System.nanoTime();
+					 tiempoBL = (fin - inicio)/(1000*1000);
+					 
+					 inicio = System.nanoTime();
+					 Solucion solucionGrasp = resolvedor.grasp(cantIteracionesGrasp, alfaRCL, cantIteracionesLocal);
+					 fin = System.nanoTime();
+					 tiempoGrasp = (fin - inicio)/(1000*1000);					 
+					 
+					 String line = new String();
+					 line += solucionHCPG.peso()+" ("+tiempoHC+" ms.);"+solucionBL.peso()+" ("+tiempoBL+" ms.);"+solucionGrasp.peso()+" ("+tiempoGrasp+" ms.);";
+					 
+					 System.out.println("Se han realizado todas las pruebas para un grafo");
+					 
+					 outputStream.write(line, 0, line.length());
+					 outputStream.newLine();
+				}
+			}
+		}
+		finally {
+			if (outputStream != null) {
+				System.out.println("Se han guardado los datos totales en el archivo "+nombreDelArchivo);
 				outputStream.close();
 			}
 		}
