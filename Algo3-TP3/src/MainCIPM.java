@@ -23,19 +23,20 @@ public class MainCIPM {
 			escritorExacto.agregarSolucion(solucionExacta);
 			
 			//encuentro una solucion mediante una heuristica constructiva
-			//Solucion solucionHConstructiva = resolvedor.heuristicaConstructiva();
-			//escritorHC.agregarSolucion(solucionHConstructiva);
+			Solucion solucionHConstructiva = resolvedor.heuristicaConstructivaPesoGrado();
+			escritorHC.agregarSolucion(solucionHConstructiva);
 			
 			//busqueda local
-			int cantIteracionesLocal = 100;
-			//Solucion solucionBLocal = resolvedor.busquedaLocal(cantIteracionesLocal);
-			//escritorBL.agregarSolucion(solucionBLocal);
+			int cantIteracionesLocal = 200;
+			Solucion solucionInicial = resolvedor.heuristicaConstructivaConGrado();
+			Solucion solucionBLocal = resolvedor.busquedaLocal2(solucionInicial, cantIteracionesLocal);
+			escritorBL.agregarSolucion(solucionBLocal);
 			
 			//grasp
-			double alfaRCL = 0.8;
-			int cantIteracionesGrasp = 100;
+			double alfaRCL = 0.2;
+			int cantIteracionesGrasp = 70;
 			Solucion solucionGrasp = resolvedor.grasp(cantIteracionesGrasp, alfaRCL, cantIteracionesLocal);
-			escritorGrasp.agregarSolucion(solucionGrasp);			
+			escritorGrasp.agregarSolucion(solucionGrasp);		
 		}
 		
 		escritorExacto.guardarSoluciones("TP3exacto.out");

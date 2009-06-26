@@ -12,7 +12,7 @@ public class ResolvedorCIPM {
 
 	/** ----- ALGORITMO DE BACKTRACKING EXACTO ----- **/
 	
-	//O(n!)
+	//O(2^n)
 	public Solucion resolverExacto() {
 		Solucion laSolucion = new Solucion();
 		
@@ -47,6 +47,7 @@ public class ResolvedorCIPM {
 
 	/** ----- HEURISTICAS CONSTRUCTIVAS ----- **/
 	
+	//O(n*m)
 	public Solucion heuristicaConstructivaPesoGrado() {
 		Solucion laSolucion = new Solucion();
 		
@@ -229,7 +230,7 @@ public class ResolvedorCIPM {
 
 	}
 	
-	//O(n*n*n)
+	//O(m*n)
 	private Solucion intercambioDeUnoAMuchos(Solucion unaSolucion) {
 	
 		if(unaSolucion.tamSolucion() == 1) {
