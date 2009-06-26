@@ -390,29 +390,29 @@ devolver solucionLocal
 
 \section*{An\'alisis de resultados}
 
-Manteniendo la polìtica utilizada en los ejercicios anteriores, el anàlisis empiríco se realizó sobre grafos aleatorios. En este caso el algoritmo se corriò para grafos entre 20 y 4000 nodos, nuevamente con 3 tipos de densidades
-para poder apreciar si existe una relaciòn entre ellas y el tiempo de ejecuciòn demandado.
+Manteniendo la política utilizada en los ejercicios anteriores, el análisis empiríco se realizó sobre grafos aleatorios. En este caso el algoritmo se corrió para grafos entre 20 y 4000 nodos, nuevamente con 3 tipos de densidades
+para poder apreciar si existe una relación entre ellas y el tiempo de ejecución demandado.
 
-Para poder apreciar el comportamiento del algoritmo con respecto a la complejidad teòrica se agregò en el gràfico la curva definida por $n^3/10000$.
+Para poder apreciar el comportamiento del algoritmo con respecto a la complejidad teórica se agregaron al gráfico las curvas definidas por $n^3/9000$ y $n^2/9$, dado que como el orden del algoritmo es $n * m$ debe alternar entre esos valores( ya que $n \leq m \leq n^2$).
 
 \begin{center}
- \includegraphics[width=0.7\textwidth]{graficos/tiemposBL.png}
+ \includegraphics[width=0.7\textwidth]{graficos6/tiemposBL.png}
 \begin{center}
 Figura 2.1
 \end{center}
 \end{center}
 
-En el gráfico se puede apreciar como la complejidad teórica acota a las curvas que representan los resultados de los tiempos de ejecución para los tres tipos de densidades., que de todas formas crecen de manera similar al orden teórico $(O(n^3))$. 
+En el gráfico se puede apreciar como la curva de orden $(O(n^3))$ acota superiormente a las curvas que representan los resultados de los tiempos de ejecución para los tres tipos de densidades, mientras la curva de orden $(O(n^2))$ la acota inferiormente lo que coincide con los esperado debido a la relación entre $n$ y $m$.
 
-Otra característica observable es que la densidad del grafo influye directamente en el tiempo de ejecuciín del algoritmo, ya que a pesar de no mejorar en complejidad, se puede notar que a medida que se van aumentando las 
-densidades disminuye el tiempo requerido. Esto se debe a que al poseer pocas adyacencias un grafo aumenta notablemente la cantidad de posibles soluciones y éstas serán revisadas por el algoritmo a menos que supere la cantidad máxima permitida por la constante pasada como parámetro. 
+Otra característica observable es que la densidad del grafo influye directamente en el tiempo de ejecución del algoritmo, ya que a pesar de no mejorar en complejidad, se puede notar que a medida que se van aumentando las 
+densidades disminuye el tiempo requerido. Esto se debe a que al poseer pocas adyacencias un grafo aumenta notablemente la cantidad de posibles soluciones y éstas serán revisadas por el algoritmo a menos que supere la cantidad máxima permitida por la constante pasada como parámetro. Acá se ve la influencia que tiene tambien la variable $m$, más allá de que no esté expresamente representada en el gráfico. 
 
 
 
 \section{Heur\'isticas de Grasp}
 
-La ùltima parte del tp es, probablemente, la màs interesante. En esta secciòn se estudiarà el comportamiento de la heurìstica de Grasp, lo que incluye la utilizaciòn de las heurìsticas anteriores y permite la comparaciòn (Para grafos con un nùmero limitado de nodos) de su rendimiento con respecto al valor òptimo obtenido utilizando el algoritmo exacto. Aquì se terminan de tomar las decisiones con respectos a los paràmetros a utilizar en las heurìsitcas debiendo privilegiar ciertos aspectos por encima de otros. Una vez analizado Grasp, se podrà tener una conclusiòn en conjunto de lo realizado y detallar los beneficios y las contras de la utilzaciòn de esta heurìstica para este problema.
-A continuaciòn se presenta el pseudocòdigo del algoritmo.
+La última parte del tp es, probablemente, la más interesante. En esta sección se estudiará el comportamiento de la heurística de Grasp, lo que incluye la utilización de las heurísticas anteriores y permite la comparación (Para grafos con un número limitado de nodos) de su rendimiento con respecto al valor óptimo obtenido utilizando el algoritmo exacto. Aquí se terminan de tomar las decisiones con respectos a los parámetros a utilizar en las heurísitcas debiendo privilegiar ciertos aspectos por encima de otros. Una vez analizado Grasp, se podrá tener una conclusión en conjunto de lo realizado y detallar los beneficios y las contras de la utilzación de esta heurística para este problema.
+A continuación se presenta el pseudocódigo del algoritmo.
 
 \begin{verbatim}
 pesoMaximo = 0;
@@ -427,12 +427,12 @@ mientras no haya hecho todas las iteraciones de Grasp
 
 El algoritmo utilizado consta de un ciclo general que está determinado por la cantidad de iteraciones de Grasp. El ciclo se ejecutará tantas veces como este parámetro lo indique. Para determinar su valor apropiado se efectuarán las pruebas necesarias más adelante. Dentro del ciclo se construye una solución mediante la heurística constructiva, se le aplica búsqueda local y, si consigue mejorar a la óptima obtenida hasta el momento, ocupa su lugar. De esta manera, al terminar el ciclo se obtendrá la mejor solución contrada.
 
-La elección de los paràmetros que reciben las heurìsticas utilizadas dentro del ciclo son dos de las decisiones más importantes.
+La elección de los parámetros que reciben las heurísticas utilizadas dentro del ciclo son dos de las decisiones más importantes.
 
  Una de ellas consiste en elegir el alfa que determinará qué tan aleatoria será la heurística constructiva. Es importante su buena elección ya que una mala decisión podría limitar notablemente la cantidad de soluciones a verificar, mientras que por otro lado podría construir malas soluciones lo que influiría negativamente en la eficiencia en tiempo en la búsquela local que se le aplique.
 
 
-La otra decisión consiste en determinar la cantidad de iteraciones que llevará a cabo la búsqueda local en caso de no encontrar una solución local óptima antes. Nuevamente, la relevancia de encontrar un buen valor para éste parámetro se debe a que es necesario encontrar un equilibrio entre la eficiencia temporal la optimalidad de la solución buscada. Para su determinación resulta fundamental ver qué tanto sigue mejorando la solución a medida que van aumentando las iteraciones para seleccionar el número de iteraciones para el cual la soluciòn deja de conseguir mejoras notables.
+La otra decisión consiste en determinar la cantidad de iteraciones que llevará a cabo la búsqueda local en caso de no encontrar una solución local óptima antes. Nuevamente, la relevancia de encontrar un buen valor para éste parámetro se debe a que es necesario encontrar un equilibrio entre la eficiencia temporal la optimalidad de la solución buscada. Para su determinación resulta fundamental ver qué tanto sigue mejorando la solución a medida que van aumentando las iteraciones para seleccionar el número de iteraciones para el cual la solución deja de conseguir mejoras notables.
 
 
 
