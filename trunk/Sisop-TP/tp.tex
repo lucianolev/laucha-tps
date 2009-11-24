@@ -1,0 +1,70 @@
+\documentclass[a4paper,11pt] {article}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{caratula}
+\usepackage{a4wide}
+\usepackage{graphicx}
+% \usepackage{dot2texi}
+% \usepackage{graphs}
+
+\begin{document}
+
+\titulo{Trabajo Pr\'actico}
+\fecha{10/12/2009}
+\materia{Sistemas Operativos}
+\grupo{Nro. 10}
+\integrante{Dinota, Mat\'ias}{076/07}{matiasgd@gmail.com}
+\integrante{Leveroni, Luciano}{360/07}{lucianolev@gmail.com}
+\integrante{Mosteiro, Agust\'in}{125/07}{agustinmosteiro@gmail.com}
+
+\maketitle
+
+\bigskip
+\section*{Aclaraciones generales}
+
+Antes de comenzar el an\'alisis de cada ejercicio, cabe mencionar lo siguiente: 
+
+\section{Comandos básicos de Unix}
+
+\begin{enumerate}
+	\item \begin{enumerate}
+		\item El directorio actual pasa a ser \textbf{/usr/bin}
+		\item El directorio actual pasa a ser \textbf{/home/tpsisop}
+		\item Al no ingresar ningún parámetro, el comando \textit{cd} cambia el directorio actual al directorio personal del usuario actual.
+	\end{enumerate}
+	\item El contenido del archivo es:
+	\begin{verbatim}
+# ~/.profile: executed by the command interpreter for login shells.
+# This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
+# exists.
+# see /usr/share/doc/bash/examples/startup-files for examples.
+# the files are located in the bash-doc package.
+
+# the default umask is set in /etc/profile
+#umask 022
+
+# if running bash
+if [ -n "$BASH_VERSION" ]; then
+    # include .bashrc if it exists
+    if [ -f "$HOME/.bashrc" ]; then
+	. "$HOME/.bashrc"
+    fi
+fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+	\end{verbatim}
+	\item El único archivo encontrado es \textbf{/vmlinuz}
+	\setcounter{enumi}{8}
+	\item 
+	\begin{verbatim}
+	 127.0.0.1	localhost
+::1     ip6-localhost ip6-loopback
+	\end{verbatim}
+	\item La nueva password es guiguigui
+\end{enumerate}
+
+
+\end{document}
