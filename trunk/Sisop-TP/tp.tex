@@ -28,8 +28,8 @@ Antes de comenzar el an\'alisis de cada ejercicio, cabe mencionar lo siguiente:
 
 \begin{enumerate}
 	\item \begin{enumerate}
-		\item El directorio actual pasa a ser \textbf{/usr/bin}
-		\item El directorio actual pasa a ser \textbf{/home/tpsisop}
+		\item El directorio actual pasa a ser \textbf{/usr/bin}.
+		\item El directorio actual pasa a ser \textbf{/home/tpsisop}.
 		\item Al no ingresar ningún parámetro, el comando \textit{cd} cambia el directorio actual al directorio personal del usuario actual.
 	\end{enumerate}
 	\item El contenido del archivo es:
@@ -56,14 +56,66 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 	\end{verbatim}
-	\item El único archivo encontrado es \textbf{/vmlinuz}
-	\setcounter{enumi}{8}
+	\item El único archivo encontrado es \textbf{/vmlinuz}.
+	\item Se generó el directorio utilizando el comando \textbf{mkdir /home/tpsisop/tp}.
+	\item Se copió el archivo utilizando el comando \textbf{cp /etc/passwd /home/tpsisop/tp/}.
+	\item Se cambió el grupo utilizando el comando \textbf{chgrp tpsisop /home/tpsisop/tp/passwd}.
+	\item Se cambió el usuario utilizando el comando \textbf{chown tpsisop /home/tpsisop/tp/passwd}.
+	\item Se cambiaron los permiso del archivo \textbf{/home/tpsisop/tp/passwd}.
+		\begin{itemize}
+			\item Para que el propietario tenga permisos de lectura, escritura y ejecución: \textbf{chmod u$+$rwx /home/tpsisop/tp/passwd}.
+			\item Para que el grupo tenga sólo permisos de lectura y ejecución: \textbf{chmod g$-$w$+$rx /home/tpsisop/tp/passwd}.
+			\item Para que el resto tenga sólo permisos de ejecución: \textbf{chmod o$-$rw$+$x /home/tpsisop/tp/passwd}.
+		\end{itemize}
 	\item 
+		\begin{itemize}
+		 \item 	
+			\begin{verbatim}
+	 			127.0.0.1	localhost
+			::1     ip6-localhost ip6-loopback
+			\end{verbatim}
+		 \item 	
+		\end{itemize}
+	\item La nueva password es \textit{guiguigui} con el comando \textbf{passwd}.
+	\item Se borró el archivo con el comando \textbf{rm /home/tpsisop/tp/passwd}.
+	\item Se enlazaron los archivos con los comandos \textbf{ln /etc/passwd /tmp/contra1}, \textbf{ln /etc/passwd /tmp/contra2} y \textbf{ln -s /etc/passwd /tmp/contra3} respectivamente.
+	\item Se montó el CD-ROM de instalacion de Ubuntu JeOS con el comando \textbf{mount /dev/sr0/ /home/tpsisop/tp/}. El contenido del directorio es:
 	\begin{verbatim}
-	 127.0.0.1	localhost
-::1     ip6-localhost ip6-loopback
+		-r-xr-xr-x 1 root root   942 2008-04-22 03:07 cdromupgrade
+		dr-xr-xr-x 3 root root  2048 2009-07-14 13:23 dists
+		dr-xr-xr-x 3 root root  2048 2009-07-14 13:23 doc
+		dr-xr-xr-x 3 root root  2048 2009-07-14 13:24 install
+		dr-xr-xr-x 2 root root 12288 2009-07-14 13:24 isolinux
+		-r--r--r-- 1 root root 47110 2009-07-14 13:24 md5sum.txt
+		dr-xr-xr-x 2 root root  2048 2009-07-14 13:23 pics
+		dr-xr-xr-x 4 root root  2048 2009-07-14 13:23 pool
+		dr-xr-xr-x 2 root root  2048 2009-07-14 13:23 preseed
+		-r--r--r-- 1 root root   228 2009-07-14 13:23 README.diskdefines
+		lr-xr-xr-x 1 root root     1 2009-07-14 13:23 ubuntu -> .
 	\end{verbatim}
-	\item La nueva password es guiguigui
+	Se utilizó el comando \textbf{mount} para mostrar los siguientes \textit{filesystems} montados:
+	\begin{verbatim}
+		/dev/sda1 on / type ext3 (rw,relatime,errors=remount-ro)
+		proc on /proc type proc (rw,noexec,nosuid,nodev)
+		/sys on /sys type sysfs (rw,noexec,nosuid,nodev)
+		varrun on /var/run type tmpfs (rw,noexec,nosuid,nodev,mode=0755)
+		varlock on /var/lock type tmpfs (rw,noexec,nosuid,nodev,mode=1777)
+		udev on /dev type tmpfs (rw,mode=0755)
+		devshm on /dev/shm type tmpfs (rw)
+		devpts on /dev/pts type devpts (rw,gid=5,mode=620)
+		/dev/scd0 on /home/tpsisop/tp type iso9660 (ro)
+	\end{verbatim}
+	\item Se utilizó el comando \textbf{df} para mostrar el espacio libre de los \textit{filesystems} montados:
+	\begin{verbatim}
+		Filesystem            Size  Used Avail Use% Mounted on
+		/dev/sda1             494M  423M   46M  91% /
+		varrun                252M   32K  252M   1% /var/run
+		varlock               252M     0  252M   0% /var/lock
+		udev                  252M   40K  252M   1% /dev
+		devshm                252M     0  252M   0% /dev/shm
+		/dev/scd0             101M  101M     0 100% /home/tpsisop/tp
+	\end{verbatim}
+
 \end{enumerate}
 
 
