@@ -115,7 +115,49 @@ fi
 		devshm                252M     0  252M   0% /dev/shm
 		/dev/scd0             101M  101M     0 100% /home/tpsisop/tp
 	\end{verbatim}
+	\item TODO
+	\item Se desmont\'o el CD-ROM de instalaci\'on de Ubuntu JeOS con el comando \textbf{unmount /dev/scd0}.
+	\item La maquina virtual lleva 58 minutos de ejecuci\'on. Esto se corrobor\'o con el comando \textbf{uptime}.
+	\item La versi\'on de kernel utilizada es la 2.6.24-24-virtual. Esta informaci\'on se obtuvo utilizando el comando \textbf{uname -a}.
 
+\end{enumerate}
+
+\section{Comandos Extendidos de Unix}
+
+\begin{enumerate}
+	\item Para escribir HOLA en la pantalla cada vez que se loguee un usuario se agreg\'o la siguiente l\'inea al archivo 	/etc/bash.bashrc:
+	\textbf{echo "HOLA"}
+	
+	Para escribir BUENOS DIAS en la pantalla cada vez que se encienda la m\'aquina se agreg\'o la siguiente l\'inea al 			archivo /etc/rc.local:
+	\textbf{echo "BUENOS DIAS"}
+	
+	Para escribir ADIOS en la pantalla cada vez que se desloguee un usuario se cre\'o un archivo llamado logout en el 			directorio /etc. El contenido del archivo es el siguiente:
+	\textbf{echo "ADIOS"}
+	Luego, se agreg\'o en el archivo /etc/rc.local la siguiente l\'inea:
+	\textbf{trap '/etc/logout;exit' 0}
+	
+	Para escribir HASTA LA VISTA BABY en la pantalla cada vez que se apague la m\'aquina se agreg\'o la siguiente l\'inea 	al archivo /etc/rc0.d:
+	\textbf{echo "HASTA LA VISTA BABY"}
+	
+	\item Para montar una imagen de floppy se utiliz\'o el siguiente comando:
+		\textbf{mount -o loop imagen.img /media/floppy1/}
+		
+		Para montar una imagen iso se utiliz\'o el siguiente comando:
+		\textbf{mount -o loop imagen.iso /media/iso/}
+		
+	\item Se agreg\'o un alias en el archivo .bashrc sin modificar su fecha (timestamp). Para esto se utiliz\'o el comando \textbf{touch -t timestamp}. El timestamp del archivo previo a la modificaci\'on se obtuvo con el comando  \textbf{ls -l}.
+	El d\'ia y la hora del sistema se modific\'o con el comando \textbf{date timestamp}.
+	
+	\item TODO
+	\item
+		\begin{enumerate}
+			\item Se guard\'o la informaci\'on en el archivo \textit{config} utilizando el comando \textbf{ls -Rl /etc > 			/home/tpsisop/tp/config}.
+			\item El archivo \textit{config} posee 789 l\'ineas, 5061 palabras y 39070 caracteres. Se obtuvo la informaci\'on mediante el comando \textbf{wc config}.
+			\item Se agrego el contenido ordenado del archivo \textit{/etc/passwd} al final del archivo \textit{config} con el comando \textbf{sort /etc/passwd >> /home/tpsisop/tp/config}.
+			\item El archivo \textit{config} posee 813 l\'ineas, 5090 palabras y 40051 caracteres. Se obtuvo la informaci\'on mediante el comando \textbf{wc config}.
+			\item Se realiz\'o lo pedido ejecutando el siguiente comando: \textbf{ls -l /usr/bin/a* | grep apt | wc}.
+		\end{enumerate}
+	
 \end{enumerate}
 
 
