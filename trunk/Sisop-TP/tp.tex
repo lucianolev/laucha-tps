@@ -151,14 +151,41 @@ fi
 	\item TODO
 	\item
 		\begin{enumerate}
-			\item Se guard\'o la informaci\'on en el archivo \textit{config} utilizando el comando \textbf{ls -Rl /etc > 			/home/tpsisop/tp/config}.
+			\item Se guard\'o la informaci\'on en el archivo \textit{config} utilizando el comando \textbf{ls -Rl /etc > /home/tpsisop/tp/config}.
 			\item El archivo \textit{config} posee 789 l\'ineas, 5061 palabras y 39070 caracteres. Se obtuvo la informaci\'on mediante el comando \textbf{wc config}.
-			\item Se agrego el contenido ordenado del archivo \textit{/etc/passwd} al final del archivo \textit{config} con el comando \textbf{sort /etc/passwd >> /home/tpsisop/tp/config}.
+			\item Se agrego el contenido ordenado del archivo \textit{/etc/passwd} al final del archivo \textit{config} con el comando \textbf{sort /etc/passwd $>>$ /home/tpsisop/tp/config}.
 			\item El archivo \textit{config} posee 813 l\'ineas, 5090 palabras y 40051 caracteres. Se obtuvo la informaci\'on mediante el comando \textbf{wc config}.
 			\item Se realiz\'o lo pedido ejecutando el siguiente comando: \textbf{ls -l /usr/bin/a* | grep apt | wc}.
 		\end{enumerate}
 	
 \end{enumerate}
+
+\section*{Temas del Sistema Operativo}
+
+\begin{enumerate}
+  \item \textbf{File System}
+    Los \textit{hardlinks} apuntan a una estructura llamada i-nodo que contiene información sobre el archivo al que hace referencia el link y punteros a los bloques de memoria física en donde está alojado dicho archivo. Cada i-nodo almacena en uno de sus campos la cantidad de links que existen al archivo al que referencia. De este modo, sólo se elimina un i-nodo, y su correspondiente archivo, cuando la cantidad de links al archivo es 0, es decir, si se elimina un \textit{hardlink}, pero siguen existiendo links al archivo, este no será eliminado.
+    Un i-nodo contiene la siguiente información:
+    \begin{itemize}
+      \item Modo (tipo de archivo y permisos)
+      \item Cantidad de links
+      \item UID del owner
+      \item GID del owner
+      \item Tamaño del archivo (en bytes)
+      \item Fecha en la que el archivo fue accedido por última vez
+      \item Fecha en la que el archivo fue modificado por última vez
+      \item Fecha en la que el i-nodo fue modificado por última vez
+      \item 12 punteros a bloques
+      \item 1 puntero indirecto a bloques
+      \item 1 puntero doble indirecto a bloques
+      \item 1 puntero triple indirecto a bloques
+      \item Estado del i-nodo (flags)
+      \item Cantidad de bloques que ocupa el archivo
+      \item Campos extra o reservados
+    \end{itemize}
+
+\end{enumerate}
+
 
 
 \end{document}
