@@ -163,6 +163,14 @@ fi
 \section*{Temas del Sistema Operativo}
 
 \begin{enumerate}
+  \item \textbf{Comunicaci\'on}
+    Para realizar transferencia de archivos entre la m\'aquina virtual y el sistema operativo anfitri\'on se opt\'o por utilizar carpetas compartidas. Esto se logr\'o mediante los siguientes pasos:
+    \begin{itemize}
+      \item Dentro de la m\'aquina virtual se accede a \textit{Directorios compartidos} dentro del men\'u \textit{Dispositivos}.
+      \item Se selecciona la carpeta que se desea compartir en la m\'aquina anfitrion y se le asigna un nombre.
+      \item Se ejecuta el comando \textbf{mount -t vboxsf 'nombre-carpeta' $/$mnt$/$} para montar la carpeta compartida en la m\'aquina virtual.
+    \end{itemize}
+
   \item \textbf{File System}
     Los \textit{hardlinks} apuntan a una estructura llamada i-nodo que contiene informaci¨®n sobre el archivo al que hace referencia el link y punteros a los bloques de memoria f¨ªsica en donde est¨¢ alojado dicho archivo. Cada i-nodo almacena en uno de sus campos la cantidad de links que existen al archivo al que referencia. De este modo, s¨®lo se elimina un i-nodo, y su correspondiente archivo, cuando la cantidad de links al archivo es 0, es decir, si se elimina un \textit{hardlink}, pero siguen existiendo links al archivo, este no ser¨¢ eliminado.
     Un i-nodo contiene la siguiente informaci¨®n:
@@ -182,6 +190,17 @@ fi
       \item Estado del i-nodo (flags)
       \item Cantidad de bloques que ocupa el archivo
       \item Campos extra o reservados
+    \end{itemize}
+
+  \item \textbf{Prioridades}
+
+    Para lograr ejecutar procesos con distintas prioridades utilizamos el comando \textbf{nice}. En este caso se quieren ejecutar tres procesos (\textit{loop1}, \textit{loop2} y \textit{loop3}) y darle mayor prioridad a uno de ellos. Con este objetivo se ejecutaron los procesos \textit{loop1} y \textit{loop2} asignandoles una muy baja prioridad (\textbf{nice -15 ./loop1} y \textbf{nice -15 ./loop2}). Luego se ejecut\'o el proceso \textit{loop3} normalmente logrando asi que tenga m\'as prioridad que los otros procesos mencionados.
+
+    Para verificar el uso del CPU por parte de cada uno de los procesos se utiliz\'o el comando \textbf{top}. De esta manera se obtuvieron los siguientes resultados:
+    \begin{itemize}
+      \item \textit{loop1}: 3.3\%
+      \item \textit{loop2}: 3.3\%
+      \item \textit{loop3}: 93.1\%
     \end{itemize}
 
 \end{enumerate}
