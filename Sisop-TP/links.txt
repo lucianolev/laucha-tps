@@ -1,0 +1,17 @@
+Hijacking Linux Syscalls & Writing a Linux Keylogger: A Case Study
+http://www.epanastasi.com/?page_id=52 
+
+sys_call_table module
+http://blinkeye.ch/dokuwiki/doku.php/projects/lkm
+
+Access the Linux kernel using the /proc filesystem
+http://www.ibm.com/developerworks/linux/library/l-proc.html
+
+Console IOCTLs Under Linux
+http://www.w00w00.org/files/articles/conioctls.txt
+
+The Linux Kernel Module Programming Guide: Chapter 10. Replacing Printks
+http://www.linuxtopia.org/online_books/linux_kernel/linux_kernel_module_programming_2.6/x1194.html
+
+The Linux Kernel Module Programming Guide: Chapter 7. Talking To Device Files
+http://www.linuxtopia.org/online_books/Linux_Kernel_Module_Programming_Guide/x872.html
