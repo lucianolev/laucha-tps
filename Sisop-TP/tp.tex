@@ -160,6 +160,13 @@ fi
 	
 \end{enumerate}
 
+\section*{El kernel de Linux}
+	\begin{enumerate}
+		\item Ej 1
+		\item Ej 2
+		\item mi ej
+	\end{enumerate}
+
 \section*{Temas del Sistema Operativo}
 
 \begin{enumerate}
@@ -172,17 +179,17 @@ fi
     \end{itemize}
 
   \item \textbf{File System}
-    Los \textit{hardlinks} apuntan a una estructura llamada i-nodo que contiene información sobre el archivo al que hace referencia el link y punteros a los bloques de memoria física en donde está alojado dicho archivo. Cada i-nodo almacena en uno de sus campos la cantidad de links que existen al archivo al que referencia. De este modo, sólo se elimina un i-nodo, y su correspondiente archivo, cuando la cantidad de links al archivo es 0, es decir, si se elimina un \textit{hardlink}, pero siguen existiendo links al archivo, este no será eliminado.
-    Un i-nodo contiene la siguiente información:
+    Los \textit{hardlinks} apuntan a una estructura llamada i-nodo que contiene informaci贸n sobre el archivo al que hace referencia el link y punteros a los bloques de memoria f铆sica en donde est谩 alojado dicho archivo. Cada i-nodo almacena en uno de sus campos la cantidad de links que existen al archivo al que referencia. De este modo, s贸lo se elimina un i-nodo, y su correspondiente archivo, cuando la cantidad de links al archivo es 0, es decir, si se elimina un \textit{hardlink}, pero siguen existiendo links al archivo, este no ser谩 eliminado.
+    Un i-nodo contiene la siguiente informaci贸n:
     \begin{itemize}
       \item Modo (tipo de archivo y permisos)
       \item Cantidad de links
       \item UID del owner
       \item GID del owner
-      \item Tamaño del archivo (en bytes)
-      \item Fecha en la que el archivo fue accedido por última vez
-      \item Fecha en la que el archivo fue modificado por última vez
-      \item Fecha en la que el i-nodo fue modificado por última vez
+      \item Tama帽o del archivo (en bytes)
+      \item Fecha en la que el archivo fue accedido por 煤ltima vez
+      \item Fecha en la que el archivo fue modificado por 煤ltima vez
+      \item Fecha en la que el i-nodo fue modificado por 煤ltima vez
       \item 12 punteros a bloques
       \item 1 puntero indirecto a bloques
       \item 1 puntero doble indirecto a bloques
