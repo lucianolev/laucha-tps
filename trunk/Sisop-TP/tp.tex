@@ -161,10 +161,54 @@ fi
 \end{enumerate}
 
 \section*{El kernel de Linux}
+\subsection*{Funcionamiento del kernel linux}
 	\begin{enumerate}
 		\item Ej 1
-		\item Ej 2
-		\item mi ej
+
+		\item \textbf{Administraci\'on de la memoria}
+
+		Para administrar la memoria linux utiliza un esquema de paginaci\'on por demanda de tres niveles con paginas fijas de 4KB. Dentro de este esquema cada proceso de usuario tiene su propio espacio de direcciones virtual. Mediante el uso de memoria swap se tiene un espacio virtual de 4GB donde 3 son para procesos de usuario y el restante para uso del kernel.
+		
+		Para administrar los tres niveles de paginaci\'on se utilizan las siguientes tablas:
+			\begin{enumerate}
+			\item Directorio global: cada proceso tiene solo una que ha de estar en memoria y su tamaño es de una p\'agina.
+			\item Directorio intermedio de p\'aginas: puede ocupar varias p\'aginas. Cada entrada señala a una p\'agina de la tabla de p\'aginas final
+			\item Tabla de p\'aginas: cada una de sus entradas hace referencia a la p\'agina virtual requerida.
+			\end{enumerate}
+		En cuanto a la administraci\'on de la memoria f\'isica, una parte es utilizada por el kernel. Esta partici\'on es permanente, es decir, ninguna de sus partes se pagina a disco.
+		El resto de la memoria esta disponible para:
+			\begin{enumerate}
+			\item P\'aginas de usuario
+			\item El cache de buffer: Contiene bloques de disco que se han leido recientemente, su tamaño es din\'amico y compite por la misma reserva de p\'aginas que las p\'aginas de usuario.
+			\item El cache de paginaci\'on: formado por un conjunto de p\'aginas de usuario que ya no se necesitan y estan esperando que se les pagine a disco.
+			\end{enumerate}
+
+		\item 
+			\begin{enumerate}
+				\item \textbf{Sistema de archivos} 
+
+				El sistema de archivos utilizado en UbuntuJeOS es extended 3 (ext3). Este sistema de archivos tiene un tipo de tabla de tamaño fijo donde se almacenan los i-nodos. Estos almacenan información del archivo como por ejemplo la ruta o path, tamaño, permisos, ubicación física, etc (la descripción completa de un i-nodo se presentará en posteriores secciones). En cuanto a la ubicación física, los i-nodos contienen referencias a bloques ubicados en el disco. Estos bloques son de tamaño especificable cuando se crea el sistema de archivos, desde los 512 bytes hasta los 4 KB, lo cual asegura un buen aprovechamiento del espacio libre con archivos pequeños.
+	
+				El espacio en ext3 está dividido en bloques, y los bloques organizados en grupos. Esto se hace para reducir la fragmentación externa y reducir al mínimo el número de búsquedas de disco cuando se lee una gran cantidad de datos consecutivos.
+				Cada bloque contiene un superbloque grupo, el grupo de bloques de mapa de bits, mapa de bits i-nodo, seguidos por los bloques de datos reales.
+				El superbloque contiene información importante que es crucial para el arranque del sistema operativo, con lo que las copias se realizan en cada bloque de grupo de cada bloque en el sistema de archivos. Sin embargo, sólo la primera copia de la misma, que se encuentra en el primer bloque del sistema de archivos, se utiliza en el arranque.
+				El grupo descriptor almacena el valor del bloque de mapa de bits, mapa de bits inodo y el comienzo de la tabla de i-nodos por cada bloque de grupo y estos, a su vez, se almacena en un grupo descriptor tabla.
+		
+				A diferencia de su antecesor ext3 implementa un sistema de registro por diario (journaling) para hacer posible el uso de transacciones. Este sistema se basa en mantener un registro en el que se almacena la información necesaria para restablecer los datos afectados por la transacción en caso de que esta falle.
+
+				\item El kernel de Linux contiene una capa llamada Virtual File System (VFS) que se utiliza en las system call que actúan sobre archivos. El VFS es una capa de indirección encargada de recibir las llamadas al sistema relacionadas al manejo de archivos y llamar a las funciones necesarias en el sistema de archivos físico. 
+				Cuando un proceso hace una llamada al sistema para acceder a un archivo, el kernel llama a una función en el VFS. Esta función hace las operaciones que son independientes a la estructura del archivo y llama a la correspondiente función en el sistema de archivos físico para realizar las operaciones que dependen de la estructura. A continuación se presenta una figura que presenta el esquema mencionado.
+				\begin{center}
+				\includegraphics[width=0.65\textwidth]{ext2-vfs.png}
+				% ext2-vfs.png: 0x0 pixel, 300dpi, 0.00x0.00 cm, bb=
+				\end{center}
+
+			\end{enumerate}
+
+
+		
+
+		
 	\end{enumerate}
 
 \section*{Temas del Sistema Operativo}
