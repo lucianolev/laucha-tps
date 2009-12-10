@@ -18,7 +18,7 @@ asmlinkage int (*original_sys_call) (const char *pathname);
 asmlinkage int fake_mkdir_function(const char __user *pathname) {
 	printk(KERN_ALERT "No se permite la ejecucion de mkdir!\n");
 
-	return original_sys_call( pathname );
+	return 0;
 }
 
 static int my_init (void) {
