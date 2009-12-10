@@ -71,7 +71,7 @@ fi
 		\begin{itemize}
 			\item Para que el propietario tenga permisos de lectura, escritura y ejecuci\'on: \textbf{chmod u$+$rwx /home/tpsisop/tp/passwd}.
 			\item Para que el grupo tenga s\'olo permisos de lectura y ejecuci\'on: \textbf{chmod g$-$w$+$rx /home/tpsisop/tp/passwd}.
-			\item Para que el resto tenga s\'olo permisos de ejecuci\'on: \textbf{chmod o$-$rw$+$x /home/tpsisop/tp/passwd}.
+			\item Para que el resto tenga s\'olo permisos de ejecuci\'on: \\ \textbf{chmod o$-$rw$+$x /home/tpsisop/tp/passwd}.
 		\end{itemize}
 	\item \textbf{grep}: El comando \textit{grep} toma una expresión regular de la línea de comandos, lee la entrada est\'andar o una lista de archivos, e imprime las l\'ineas que contengan coincidencias para la expresi\'on regular. Para mostrar las l\'ineas de \textit{/etc/hosts} que contienen el texto ``localhost'' se utiliz\'o el comando \textbf{grep localhost /etc/hosts} arrojando el siguiente resultado:
 		\begin{verbatim}
@@ -80,7 +80,7 @@ fi
 		\end{verbatim}
 Luego para mostrar las l\'ineas de todos los archivos en \textit{/etc} que contienen el texto ``POSIX'' se utiliz\'o el comando \textbf{grep -r POSIX | grep -v} en la carpeta \textit{/etc}.
 	\item \textbf{passwd}: El comando \textit{passwd} se utiliza para cambiar la contraseña de un usuario. Cambiamos entonces la password de nuestro usuario a \textit{guiguigui} con el comando \textbf{passwd}.
-	\item \textbf{rm}: El comando \textit{rm} se utiliza para remover archivos. Se borr\'o el archivo \textit{/home/tpsisop/tp/passwd} con el comando \textbf{rm /home/tpsisop/tp/passwd}.
+	\item \textbf{rm}: El comando \textit{rm} se utiliza para remover archivos. Se borr\'o el archivo \\ \textit{/home/tpsisop/tp/passwd} con el comando \textbf{rm /home/tpsisop/tp/passwd}.
 	\item \textbf{ln}: El comando \textit{ln} es utilizado para enlazar archivos. Se enlazaron los archivos con los comandos \textbf{ln /etc/passwd /tmp/contra1}, \textbf{ln /etc/passwd /tmp/contra2} y \textbf{ln -s /etc/passwd /tmp/contra3} respectivamente.
 	\item \textbf{mount}: El comando \textit{mount} se utiliza para montar dispositivos y particiones para su uso por el sistema operativo. Se mont\'o el CD-ROM de instalacion de Ubuntu JeOS con el comando \textbf{mount /dev/sr0/ /home/tpsisop/tp/}. El contenido del directorio es:
 	\begin{verbatim}
@@ -145,7 +145,7 @@ Luego para mostrar las l\'ineas de todos los archivos en \textit{/etc} que conti
 	\item Se agreg\'o un alias en el archivo .bashrc sin modificar su fecha (timestamp). Para esto se utiliz\'o el comando \textbf{touch -t timestamp}. El timestamp del archivo previo a la modificaci\'on se obtuvo con el comando  \textbf{ls -l}.
 	El d\'ia y la hora del sistema se modific\'o con el comando \textbf{date timestamp}.
 	
-	\item Con el comando \textit{last} podemos ver los ultimos usuarios que se han logueado en el sistema y que 	terminales usaron, asi como tambi\'en los \'ultimos reinicios del sistema. Entre la informaci\'on que nos muestra se 	encuentran de izquierda a derecha, el usuario, la terminal que uso, el kernel con que arranc\'o este usuario, la 	fecha del login, la hora de acceso y la hora de salida, asi como un resumen (entre parentes\'is) de la cantidad de 	horas que este usuario estuvo en el sistema.
+	\item Con el comando \textit{last} podemos ver los ultimos usuarios que se han logueado en el sistema y que 	terminales usaron, asi como tambi\'en los \'ultimos reinicios del sistema. Entre la informaci\'on que nos muestra se 	encuentran de izquierda a derecha, el usuario, la terminal que uso, el kernel con que arranc\'o este usuario, la 	fecha del login, la hora de acceso y la hora de salida, asi como un resumen (entre par\'entesis) de la cantidad de 	horas que este usuario estuvo en el sistema.
 	\item \textbf{STDOUOT}
 		\begin{enumerate}
 			\item Se guard\'o la informaci\'on en el archivo \textit{config} utilizando el comando \textbf{ls -R /etc 			$>$ /home/tpsisop/tp/config}. Con el comando $>$ se logra que la salida del primer par\'ametro se escriba 			en el archivo especificado.
@@ -266,7 +266,9 @@ El segundo paso consisti\'o en ejecutar el proceso en \textit{background}. Esto 
 
 \begin{enumerate}
 
-	\item \textbf{Pipes}: Para lograr exclusi'on mutua entre dos procesos utilizando un solo pipe utilizamos la idea vista en las diapositivas de pipes de las clases de TP. El c\'odigo del programa es el siguiente:
+	\item \textbf{Pipes}
+
+	Para lograr exclusi\'on mutua entre dos procesos utilizando un solo pipe utilizamos la idea vista en las diapositivas de pipes de las clases de TP. El c\'odigo del programa es el siguiente:
 	\begin{verbatim}
 #include <stdio.h>
 #include <stdlib.h>
@@ -310,7 +312,7 @@ int main()
 }
 	\end{verbatim}
 
-	Se puede apreciar como inicialmente se crea un pipe y se chequea que no haya ningun error. A continuaci\'on, con el comando \textit{fork}, se genera un proceso hijo que ser\'a id\'entico al padre salvo por su PID y se chequea nuevamente que no haya habido errores. De esta manera, a traves de la variable \textit{cpid} logramos establecer si el permiso de ejecuci\'on lo tendra hijo o padre y utilizando el pipe creado podremos realizar la exclusi\'on mutua entre ambos procesos permitiendo al hijo leer del pipe sin ejecuci\'on del padre y a este \'ultimo escribir sin que el hijo se este ejecutando.
+	Se puede apreciar como inicialmente se crea un pipe y se chequea que no haya ning\'un error. A continuaci\'on, con el comando \textit{fork}, se genera un proceso hijo que ser\'a id\'entico al padre salvo por su PID y se chequea nuevamente que no haya habido errores. De esta manera, a trav\'es de la variable \textit{cpid} logramos establecer si el permiso de ejecuci\'on lo tendra hijo o padre y utilizando el pipe creado podremos realizar la exclusi\'on mutua entre ambos procesos permitiendo al hijo leer del pipe sin ejecuci\'on del padre y a este \'ultimo escribir sin que el hijo se este ejecutando.
 
 	\item \textbf{Threads}
 
@@ -322,13 +324,13 @@ int main()
 	#define BSIZE 10
 	
 	typedef struct {
-	char         buf[BSIZE];
-	pthread_mutex_t        lock;
-	pthread_cond_t        less;
-	pthread_cond_t        more;
-	int         nextin;
-	int         nextout;
-	int         occupied;
+	  char         buf[BSIZE];
+	  pthread_mutex_t        lock;
+	  pthread_cond_t        less;
+	  pthread_cond_t        more;
+	  int         nextin;
+	  int         nextout;
+	  int         occupied;
 	} buffer_t;
 	
 	void consumer(buffer_t * b);
@@ -337,110 +339,110 @@ int main()
 	void produce(buffer_t * b, char item);
 	
 	int main(int argc, char* argv[]) {
-		pthread_t threads[2];
-		buffer_t buffer;
-		pthread_mutexattr_t mutex_attr;
-		pthread_condattr_t cond_attr;
-		buffer.occupied = 0;
-		buffer.nextin = 0;
-		buffer.nextout = 0;
+	  pthread_t threads[2];
+	  buffer_t buffer;
+	  pthread_mutexattr_t mutex_attr;
+	  pthread_condattr_t cond_attr;
+	  buffer.occupied = 0;
+	  buffer.nextin = 0;
+	  buffer.nextout = 0;
+
+	  int i;
+	  for(i = 0; i < BSIZE; i++) {
+	    buffer.buf[i] = 0;
+	  }
 	
-		int i;
-		for(i = 0; i < BSIZE; i++) {
-			buffer.buf[i] = 0;
-		}
-		
-		pthread_mutexattr_init(&mutex_attr);
-		pthread_mutexattr_setpshared(&mutex_attr,PTHREAD_PROCESS_SHARED);
-		pthread_mutex_init(&buffer.lock, &mutex_attr);
-		pthread_condattr_init(&cond_attr);
-		pthread_condattr_setpshared(&cond_attr, PTHREAD_PROCESS_SHARED);
-		pthread_cond_init(&buffer.less, &cond_attr);
-		pthread_cond_init(&buffer.more, &cond_attr);
-	
-		int rc;
-		rc =  pthread_create(&threads[0], NULL, producer, (void*)&buffer);
-		if (rc) {
-			printf("Error al crear el thread 0");
-			exit(1);
-		}
-	
-		rc =  pthread_create(&threads[1], NULL, consumer, (void*)&buffer);
-		if (rc) {
-			printf("Error al crear el thread 1");
-			exit(1);
-		}
-		pthread_exit(0);
+	  pthread_mutexattr_init(&mutex_attr);
+	  pthread_mutexattr_setpshared(&mutex_attr,PTHREAD_PROCESS_SHARED);
+	  pthread_mutex_init(&buffer.lock, &mutex_attr);
+	  pthread_condattr_init(&cond_attr);
+	  pthread_condattr_setpshared(&cond_attr, PTHREAD_PROCESS_SHARED);
+	  pthread_cond_init(&buffer.less, &cond_attr);
+	  pthread_cond_init(&buffer.more, &cond_attr);
+
+	  int rc;
+	  rc =  pthread_create(&threads[0], NULL, producer, (void*)&buffer);
+	  if (rc) {
+	    printf("Error al crear el thread 0");
+	    exit(1);
+	  }
+
+	  rc =  pthread_create(&threads[1], NULL, consumer, (void*)&buffer);
+	  if (rc) {
+	    printf("Error al crear el thread 1");
+	    exit(1);
+	  }
+	  pthread_exit(0);
 	}
 	
 	void consumer(buffer_t * b){
-		char item;
-	// 	printf("Consumidor - %d\n", getpid());
-		FILE* salida = fopen("salida.txt","w");
-		while (1) { 
-			if(salida == NULL) {
-				exit(0);
-			}
-			item = consume(b);
-			if (item == '\0')
-				break;
-			fputc((int)item,salida);
-		}
-		fclose(salida);
+	  char item;
+// 	  printf("Consumidor - %d\n", getpid());
+	  FILE* salida = fopen("salida.txt","w");
+	  while (1) { 
+	    if(salida == NULL) {
+	      exit(0);
+	    }
+	    item = consume(b);
+	    if (item == '\0')
+	      break;
+	    fputc((int)item,salida);
+	  }
+	  fclose(salida);
 	}
 	
 	void producer(buffer_t * b) {
-		char item[20];
-	//       printf("Productor - %d\n", getpid());
-		while (1) {
-			printf("Introduzca item: ");
-			scanf("%s", item);
+	  char item[20];
+	  //printf("Productor - %d\n", getpid());
+	  while (1) {
+	    printf("Introduzca item: ");
+	    scanf("%s", item);
 	
-			if (item[0] == 'q') {
-				produce(b, '\0');
-				break;
-			} else
-				produce(b, (char) item[0]);
-			}
+	    if (item[0] == 'q') {
+	      produce(b, '\0');
+	      break;
+	    } else
+	      produce(b, (char) item[0]);
+	    }
 	}
 	
 	char consume(buffer_t * b){
-		char         item;
-		pthread_mutex_lock(&b->lock);
-		
-		while (b->occupied == 0)
-			pthread_cond_wait(&b->more, &b->lock);
+	  char         item;
+	  pthread_mutex_lock(&b->lock);
 	
-		printf("Consume\n");
-		item = b->buf[b->nextout];
+	  while (b->occupied == 0)
+	    pthread_cond_wait(&b->more, &b->lock);
+
+	  printf("Consume\n");
+	  item = b->buf[b->nextout];
+
+	  if(b->nextout != 0)
+	    b->nextout--;
+
+	  b->nextin--;
+	  b->occupied--;
 	
-		if(b->nextout != 0)
-			b->nextout--;
-	
-		b->nextin--;
-		b->occupied--;
-		
-		pthread_cond_signal(&b->less);
-		pthread_mutex_unlock(&b->lock);
-		return (item);
+	  pthread_cond_signal(&b->less);
+	  pthread_mutex_unlock(&b->lock);
+	  return (item);
 	}
 	
 	void produce(buffer_t * b, char item) {
-		pthread_mutex_lock(&b->lock);
-		
-		while (b->occupied == BSIZE)
-			pthread_cond_wait(&b->less, &b->lock);
+	  pthread_mutex_lock(&b->lock);
 	
-		printf("Produce\n");
-		b->buf[b->nextin] = item;
-		
-		b->nextin++;
-		if(b->nextin > 1)
-			b->nextout++;
+	  while (b->occupied == BSIZE)
+	    pthread_cond_wait(&b->less, &b->lock);
+
+	  printf("Produce\n");
+	  b->buf[b->nextin] = item;
 	
-		b->occupied++;
-		pthread_cond_signal(&b->more);
-		pthread_mutex_unlock(&b->lock);
+	  b->nextin++;
+	  if(b->nextin > 1)
+	    b->nextout++;
+
+	  b->occupied++;
+	  pthread_cond_signal(&b->more);
+	  pthread_mutex_unlock(&b->lock);
 	}
 	\end{verbatim}
 
@@ -454,7 +456,24 @@ int main()
 \subsection*{Funcionamiento del kernel linux}
 
 \begin{enumerate}
-	\item Ej 1
+	\item \textbf{Administraci\'on del procesador}
+
+		La administraci\'on del procesador se basa en manejar los procesos para que operen de la manera m\'as eficiente posible. Estos procesos desde que son invocados hasta que se terminan de utilizar pasan por diferentes estados. El sistema operativo linux los clasifica en los siguientes estados:
+
+		\begin{enumerate}
+			\item \textbf{Running}: El proceso se encuentra ejecutando y tiene asignados todos los recursos que necesita.
+			\item \textbf{Sleeping}: Estos procesos se encuentran dormidos esperando alg\'un suceso para continuar.
+			\item \textbf{Zombie}: Un proceso se encuentra en este estado cuando ya no esta en funcionamiento pero que todav\'ia tiene una entrada en la tabla de procesos.
+			\item \textbf{Stopped}: Son procesos detenidos totalmente, pero que pueden ser reiniciados para continuar su ejecuci\'on.
+			\item \textbf{Uninterruptible sleep}: Procesos que se encuentran durmiendo pero que no pueden ser interrumpidos, en general estan asociados a operaciones de entrada/salida.
+			\item \textbf{Dead}: Proceso terminado que puede seguir apareciendo en el listado de procesos.
+		\end{enumerate}
+
+		Tambi\'en es importante analizar como se organizan los distintos procesos para su ejecuci\'on. Para esto linux divide a los procesos en dos grupos: procesos del sistema y procesos de usuarios.
+		\begin{enumerate}
+			\item \textbf{Procesos del sistema}: Para este tipo de procesos linux tiene 100 listas de prioridad con dos pol\'iticas distintas para manejarlas ambas vistas en clase: \textit{FIFO} y \textit{Round Robin}. 
+			\item \textbf{Procesos de usuario}: Para estos procesos linux posee 40 listas de prioridad. El sistema operativo se encarga de alternarlos de la manera m\'as eficiente posible para que ninguno de ellos se encuentre inactivo por mucho tiempo. Adem\'as el usuario puede alterar las prioridades de los distintos procesos con el comando \textit{nice}.
+		\end{enumerate}
 
 	\item \textbf{Administraci\'on de la memoria}
 
@@ -616,6 +635,7 @@ module_exit(detener_modulo);
 
 \begin{enumerate}
   \item \textbf{Comunicaci\'on}
+
     Para realizar transferencia de archivos entre la m\'aquina virtual y el sistema operativo anfitri\'on se opt\'o por utilizar carpetas compartidas. Esto se logr\'o mediante los siguientes pasos:
     \begin{itemize}
       \item Dentro de la m\'aquina virtual se accede a \textit{Directorios compartidos} dentro del men\'u \textit{Dispositivos}.
@@ -624,6 +644,7 @@ module_exit(detener_modulo);
     \end{itemize}
 
   \item \textbf{File System}
+
     Los \textit{hardlinks} apuntan a una estructura llamada i-nodo que contiene información sobre el archivo al que hace referencia el link y punteros a los bloques de memoria física en donde está alojado dicho archivo. Cada i-nodo almacena en uno de sus campos la cantidad de links que existen al archivo al que referencia. De este modo, sólo se elimina un i-nodo, y su correspondiente archivo, cuando la cantidad de links al archivo es 0, es decir, si se elimina un \textit{hardlink}, pero siguen existiendo links al archivo, este no será eliminado.
     Un i-nodo contiene la siguiente información:
     \begin{itemize}
@@ -712,7 +733,7 @@ asmlinkage int (*original_sys_call) (const char *pathname);
 asmlinkage int fake_mkdir_function(const char __user *pathname) {
     printk(KERN_ALERT "No se permite la ejecucion de mkdir!\n");
 
-    return original_sys_call( pathname );
+    return 0;
 }
 
 static int my_init (void) {
@@ -921,5 +942,32 @@ module_exit(probabilidad_exit);
 	\end{itemize}
 
 \end{itemize}
+
+\section*{Referencias}
+\begin{itemize}
+ 	\item Hijacking Linux Syscalls \& Writing a Linux Keylogger: A Case Study 
+
+	(www.epanastasi.com/?page\_id=52)
+	\item sys\_call\_table module 
+
+	(blinkeye.ch/dokuwiki/doku.php/projects/lkm)
+	\item Access the Linux kernel using the /proc filesystem 
+
+	(www.ibm.com/developerworks/linux/library/l-proc.html)
+	\item Console IOCTLs Under Linux 
+
+	(www.w00w00.org/files/articles/conioctls.txt)
+	\item 	The Linux Kernel Module Programming Guide: Chapter 7. Talking To Device Files
+
+			The Linux Kernel Module Programming Guide: Chapter 10. Replacing Printks
+
+			(www.linuxtopia.org/online\_books/Linux\_Kernel\_Module\_Programming\_Guide/)
+
+	\item Scheduling Priorities - Windows 
+
+			(http://msdn.microsoft.com/en-us/library/ms685100(VS.85).aspx)
+
+\end{itemize}
+
 
 \end{document}
