@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Arch Linux) (format=pdflatex 2009.8.31)  10 DEC 2009 18:33
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Arch Linux) (format=pdflatex 2009.8.31)  10 DEC 2009 19:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -427,54 +427,65 @@ Overfull \hbox (4.37552pt too wide) in paragraph at lines 251--251
 d " useridF "..."[] 
  []
 
-[7] [8] [9] <ext2-vfs.png, id=45, 462.72874pt x 497.86pt>
+[7] [8] [9] [10] <ext2-vfs.png, id=48, 462.72874pt x 497.86pt>
 File: ext2-vfs.png Graphic file (type png)
- <use ext2-vfs.png>
-[10 <./ext2-vfs.png>]
-Overfull \hbox (67.61108pt too wide) in paragraph at lines 414--414
+
+<use ext2-vfs.png> [11] [12 <./ext2-vfs.png>]
+Overfull \hbox (67.61108pt too wide) in paragraph at lines 476--476
  []    \OT1/cmtt/m/n/10.95 (leds_driver->ioctl) (vc_cons[fg_console].d->vc_tty,
  NULL, KDSETLED, leds_code);[] 
  []
 
-[11]
-Overfull \hbox (27.37027pt too wide) in paragraph at lines 414--414
+[13]
+Overfull \hbox (27.37027pt too wide) in paragraph at lines 476--476
  []            \OT1/cmtt/m/n/10.95 printk(KERN_INFO "leds: No se pudo crear la 
 entrada en /proc\n");[] 
  []
 
-[12] [13]
-Overfull \hbox (7.32433pt too wide) in paragraph at lines 465--466
+[14] [15]
+Overfull \hbox (7.32433pt too wide) in paragraph at lines 527--528
 []\OT1/cmr/m/n/10.95 Una vez arran-ca-do el sis-te-ma, el uso de la me-mo-ria R
 AM, sin con-si-de-rar los \OT1/cmr/m/it/10.95 ca-ches/buffers\OT1/cmr/m/n/10.95
  ,
  []
 
-[14] [15] [16] [17] [18] [19] [20] (./tp.aux) ) 
+[16] [17] [18] [19] [20]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 771.
+
+ (/usr/share/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 771.
+
+[21] <virtual.png, id=87, 486.81876pt x 373.395pt>
+File: virtual.png Graphic file (type png)
+ <use virtual.png> [22 <./virtual.png (PNG copy)>] (./tp.aux) ) 
 Here is how much of TeX's memory you used:
- 2193 strings out of 493848
- 27820 string characters out of 3154032
+ 2215 strings out of 493848
+ 28173 string characters out of 3154032
  92183 words of memory out of 3000000
- 5441 multiletter control sequences out of 15000+200000
+ 5459 multiletter control sequences out of 15000+200000
  9676 words of font info for 34 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 54i,8n,27p,901b,317s stack positions out of 5000i,500n,10000p,200000b,50000s
- </home/luciano/.texlive/texmf-v
-ar/fonts/pk/ljfour/public/cm/cmbxti10.657pk> </home/luciano/.texlive/texmf-var/
-fonts/pk/ljfour/public/cm/cmbx12.600pk> </home/luciano/.texlive/texmf-var/fonts
-/pk/ljfour/public/cm/cmmi10.657pk> </home/luciano/.texlive/texmf-var/fonts/pk/l
-jfour/public/cm/cmsy10.657pk> </home/luciano/.texlive/texmf-var/fonts/pk/ljfour
-/public/cm/cmti10.657pk> </usr/share/texmf-dist/fonts/pk/ljfour/public/cm/dpi72
-0/cmbx12.pk> </usr/share/texmf-dist/fonts/pk/ljfour/public/cm/dpi600/cmr8.pk> <
-/home/luciano/.texlive/texmf-var/fonts/pk/ljfour/public/cm/cmss10.657pk> </home
-/luciano/.texlive/texmf-var/fonts/pk/ljfour/public/cm/cmssbx10.657pk> </home/lu
-ciano/.texlive/texmf-var/fonts/pk/ljfour/public/cm/cmtt10.657pk> </home/luciano
-/.texlive/texmf-var/fonts/pk/ljfour/public/cm/cmr10.657pk> </home/luciano/.texl
-ive/texmf-var/fonts/pk/ljfour/public/cm/cmbx10.657pk> </usr/share/texmf-dist/fo
-nts/pk/ljfour/public/cm/dpi600/cmr12.pk> </home/luciano/.texlive/texmf-var/font
-s/pk/ljfour/public/cm/cmbx12.1037pk>
-Output written on tp.pdf (20 pages, 562578 bytes).
+ 54i,8n,27p,901b,340s stack positions out of 5000i,500n,10000p,200000b,50000s
+ </home/luciano/
+.texlive/texmf-var/fonts/pk/ljfour/public/cm/cmbxti10.657pk> </home/luciano/.te
+xlive/texmf-var/fonts/pk/ljfour/public/cm/cmbx12.600pk> </home/luciano/.texlive
+/texmf-var/fonts/pk/ljfour/public/cm/cmmi10.657pk> </home/luciano/.texlive/texm
+f-var/fonts/pk/ljfour/public/cm/cmsy10.657pk> </home/luciano/.texlive/texmf-var
+/fonts/pk/ljfour/public/cm/cmti10.657pk> </usr/share/texmf-dist/fonts/pk/ljfour
+/public/cm/dpi720/cmbx12.pk> </usr/share/texmf-dist/fonts/pk/ljfour/public/cm/d
+pi600/cmr8.pk> </home/luciano/.texlive/texmf-var/fonts/pk/ljfour/public/cm/cmss
+10.657pk> </home/luciano/.texlive/texmf-var/fonts/pk/ljfour/public/cm/cmssbx10.
+657pk> </home/luciano/.texlive/texmf-var/fonts/pk/ljfour/public/cm/cmtt10.657pk
+> </home/luciano/.texlive/texmf-var/fonts/pk/ljfour/public/cm/cmr10.657pk> </ho
+me/luciano/.texlive/texmf-var/fonts/pk/ljfour/public/cm/cmbx10.657pk> </usr/sha
+re/texmf-dist/fonts/pk/ljfour/public/cm/dpi600/cmr12.pk> </home/luciano/.texliv
+e/texmf-var/fonts/pk/ljfour/public/cm/cmbx12.1037pk>
+Output written on tp.pdf (22 pages, 579333 bytes).
 PDF statistics:
- 583 PDF objects out of 1000 (max. 8388607)
+ 598 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

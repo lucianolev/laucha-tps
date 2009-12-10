@@ -254,6 +254,68 @@ END {
 
 \end{enumerate}
 
+\section*{Ejecuci\'on de procesos en background}
+
+El programa en lenguaje C que se pide crear se trata b\'asicamente de un ciclo infinito que imprime distintos n\'umeros en pantalla. El ejecutable correspondiente se obtuvo mediante el comando \textbf{gcc}. 
+
+El primer paso fue correr el proceso en \textit{foreground}. Para esto simplemente se lo ejecut\'o con el comando \textbf{./loop}. Cuando se corre un proceso en \textit{foreground} el usuario debe esperar que este termine antes de poder ejecutar otro. En este caso entonces el proceso imprime indefinidamente n\'umeros en pantalla sin que podamos volver a tener el control de la consola. Para solucionar esto matamos el proceso con las teclas Ctrl+c.
+
+El segundo paso consisti\'o en ejecutar el proceso en \textit{background}. Esto se logro ejecutando el comando \textbf{./loop $>$ /dev/null \&}. Con $>$ evitamos que imprima en pantalla enviando los datos a \textit{/dev/null} y con \& indicamos que el proceso debe correrse en \textit{background}. A diferencia de los procesos que corren en \textit{foreground}, la consola no debe esperar que los procesos terminen para poder correr otros. De esta manera, luego de ejecutar el comando mencionado tenemos el control de la consola nuevamente. Para terminar procesos que se encuentren corriendo en \textit{background} se utiliza el comando \textit{kill} seguido del ID del proceso. Los IDs de los distintos procesos que se encuentran corriendo en el sistema se pueden obtener mediante el comando \textit{top}.
+
+\section*{IPC y sincronizaci\'on}
+
+\begin{enumerate}
+
+	\item \textbf{Pipes}: Para lograr exclusi'on mutua entre dos procesos utilizando un solo pipe utilizamos la idea vista en las diapositivas de pipes de las clases de TP. El c\'odigo del programa es el siguiente:
+	\begin{verbatim}
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/wait.h>
+
+int main()
+{
+        int pfd[2];
+        pid_t cpid;
+        char buf[80];
+
+        if(pipe(pfd)== -1) {
+            perror("pipe");
+            exit(EXIT_FAILURE);
+        }
+
+
+        cpid = fork();
+        if (cpid == -1){
+            perror("fork");
+            exit(EXIT_FAILURE);
+        }
+
+
+        if (cpid == 0){
+            close(pfd[1]);
+            printf("Se ejecuta el hijo\n");
+            read(pfd[0], &buf, 1);
+            close(pfd[0]);
+            exit(EXIT_SUCCESS);
+
+        }else {
+            close(pfd[0]);
+            printf("Se ejecuta el padre\n");
+            write(pfd[1], &buf, 1);
+            close(pfd[1]);
+            wait(NULL);
+            exit(EXIT_SUCCESS);
+        }
+
+}
+	\end{verbatim}
+
+	Se puede apreciar como inicialmente se crea un pipe y se chequea que no haya ningun error. A continuaci\'on, con el comando \textit{fork}, se genera un proceso hijo que ser\'a id\'entico al padre salvo por su PID y se chequea nuevamente que no haya habido errores. De esta manera, a traves de la variable \textit{cpid} logramos establecer si el permiso de ejecuci\'on lo tendra hijo o padre y utilizando el pipe creado podremos realizar la exclusi\'on mutua entre ambos procesos permitiendo al hijo leer del pipe sin ejecuci\'on del padre y a este \'ultimo escribir sin que el hijo se este ejecutando.
+
+	\item \textbf{threads}:
+
+\end{enumerate}
+
 \section*{El kernel de Linux}
 
 \subsection*{Funcionamiento del kernel linux}
@@ -703,8 +765,28 @@ module_exit(probabilidad_exit);
 
 	El presente módulo se encarga de crear un dipositivo de tipo MISC en /dev/probabilidad que, al ser leído, retorna una letra aleatoria. Para leer el dispositivo, basta con ejecutar el comando \textbf{cat /dev/probabilidad}. Además, provee la opción de cambiar la semilla utilizada para ir generando la secuencia aleatoria, mediante el comando \textbf{echo \textit{semilla} /proc/probabilidad}. Por otro lado, tal como pide el ejercicio, este módulo permite retornar la cantidad de veces que fue leído.
 
-	\item \textbf{Cosas de Windows}
+	\item \textbf{Scheduling y Administración de memoria en Windows}
 
+	\begin{itemize}
+		\item \textbf{Scheduling}
+
+		Windows utiliza un esquema de \textit{scheduling} basado en prioridades. A cada proceso se le asigna una prioridad, que puede ir desde 0 (prioridad más baja) hasta 31 (prioridad más alta). Sin embargo, sólo el proceso zero-page, encargado de asignar ceros a las páginas libres cuando ningún otro proceso se está ejecutando, es el único que puede tener prioridad 0.
+
+		El \textit{scheduler} trata de la misma manera a todos los procesos con igual prioridad. Es decir, utiliza un modelo de \textit{round-robin} para procesos con la misma prioridad. El scheduler chequea si existe algún proceso listo para ejecutar en el nivel de prioridad más alto. Si no llega a encontrar ningún proceso en ese nivel, pasa a buscar en el siguiente nivel de prioridad. En el caso de que un proceso de mayor prioridad pase a estar listo durante la ejecución de un proceso de menor prioridad, el scheduler interrumpirá la ejecución de este último para poder ejecutar el proceso de mayor prioridad.
+		Para determinar la prioridad de cada uno de los procesos, el scheduler se vale de dos estructuras llamadas clase de prioridad y nivel de prioridad.
+
+		\item \textbf{Administración de memoria}
+
+		En los sistemas Windows el espacio de memoria virtual está dividido en 2 secciones: espacio de usuario y espacio de sistema. En arquitecturas de 32 bit, los 2 GB de memoria virtual más bajos están asignados al usuario, mientras que los 2 GB de direcciones más altas, al sistema. Sin embargo, la memoria asignada al usuario se puede extender hasta 3 GB.
+		
+		En cuanto al manejo de memoria, los sistemas Windows utilizan paginación por demanda. Para poder mapear direcciones virtuales a direcciones físicas Windows utiliza dos páginas de tablas. Cada página de memoria virtual tiene una entrada en la página de tablas. A partir de la información que se encuentra en cada entrada de la tabla de páginas se puede conocer la página física a la que referencia dicha página virtual. En máquinas de 32 bits, se utilizan dos niveles de tablas, es decir, una es un índice a un directorio de páginas y la segunda apunta directamente a la página de memoria física. El esquema de mapeo de memoria virtual a memoria física se puede representar con el siguiente esquema.
+
+		\begin{center}
+		\includegraphics[width=0.7\textwidth]{virtual.png}
+		% virtual.png: 0x0 pixel, 300dpi, 0.00x0.00 cm, bb=
+		\end{center}
 	\end{itemize}
+
+\end{itemize}
 
 \end{document}
