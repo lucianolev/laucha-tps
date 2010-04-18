@@ -1,0 +1,68 @@
+\documentclass[a4paper,11pt] {article}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{caratula}
+\usepackage{a4wide}
+%\usepackage{graphicx}
+% \usepackage{dot2texi}
+% \usepackage{graphs}
+
+\begin{document}
+
+\titulo{Trabajo Pr\'actico Nro. 1}
+\fecha{21/04/2010}
+\materia{Ingenier\'ia de Software I}
+\grupo{}
+\integrante{Dinota, Mat\'ias}{076/07}{matiasgd@gmail.com}
+\integrante{Frid, Igal Pablo}{231/07}{ipfrid@gmail.com}
+\integrante{Huel, Federico Ariel}{329/07}{federico.huel@gmail.com}
+\integrante{Leveroni, Luciano}{360/07}{lucianolev@gmail.com}
+\integrante{Mosteiro, Agust\'in}{125/07}{agustinmosteiro@gmail.com}
+
+\maketitle
+
+\bigskip
+\section*{Aclaraciones generales}
+
+%Antes de comenzar el an\'alisis de los algoritmos, cabe mencionar lo siguiente:
+%
+%\begin{itemize}
+% \item La implementaci\'on de los todos algoritmos se realiz\'o en \textbf{lenguaje Java}, haciendo uso de las librer\'ias est\'andar del mismo.
+% \item Para el c\'alculo de tiempo de los algoritmos se utiliz\'o la funci\'on \textbf{nanoTime()} de la clase System de Java. Con el fin de aumentar la precisi\'on de las mediciones, se utiliz\'o el comando \textbf{nice} para darle m\'axima prioridad a la tarea.
+% \item El c\'odigo fuente de los algoritmos aqu\'i analizados se encuentran en el archivo \textit{ResolvedorCIPM.java}.
+% \item El c\'odigo fuente de los programas encargados de hacer uso de los algoritmos y necesarios para compilar la aplicaciones son: MainCIPM.java, ResolvedorCIPM.java, GrafoNPonderados.java, PesoNodoComparator.java, LectorDeGrafos.java y EscritorDeSoluciones.java.
+% \item Para la lectura y escritura de los datos se utilizaron clases provistas por el lenguaje Java. No se har\'a referencia a estos algoritmos ya que no resultan de inter\'es para el trabajo aqu\'i presentado.
+% \item Los gr\'aficos se realizaron con \textbf{GNUPlot} y las tablas con OpenOffice Calc. En los casos considerados pertinentes, se utiliz\'o una escala logar\'itmica con el fin de poder visualizar mejor los resultados.
+%\end{itemize}
+%
+%Con respecto al análisis de resultados y a las pruebas realizadas vale hacer la siguiente aclaración. Los grafos generados aletoriamente poseerán nodos con pesos comprendidos entre $10$ y cantidad de nodos del grafo por $10$. Las adyacencias de los nodos es generada también aleatoriamente de modo que el grado de cada nodo sea un número entre 0 y (n-1)*k, con $k$ un parámetro que llamaremos \textit{densidad} de aquí en adelante, donde $0 < k \leq 1$. De este modo, los experimentos mostrarán el comportamiento de los algoritmos para grafos ``promedio'' (sin particularidades) con una cierta cantidad de nodos y de cierta densidad.
+
+\section{Introducci\'on}
+
+%El objetivo del siguiente trabajo es presentar diversos m\'etodos para encontrar soluciones exactas y aproximadas para el problema del Conjunto Independiente de Peso M\'aximo (CIPM). En particular, se desarrollar\'a un algoritmo que utiliza la t\'ecnica de \textit{backtracking} para resolver el problema de manera exacta para instancias peque\~{n}as del mismo. Adem\'as, se implementar\'an heur\'isitcas constructivas, de b\'usqueda local y una metaheur\'istica GRASP, la cual ser\'a el foco principal de nuestro estudio.
+%
+%Para cada tipo de heur\'istica (constructivas y de b\'usqueda local), se realizar\'an pruebas para determinar cual es la m\'as eficaz y, en caso de ser posible, cu\'al es la m\'as precisa en relaci\'on a la soluci\'on exacta del problema. En estas decisiones tambi\'en se tendr\'a en cuenta el tiempo de ejecuci\'on de cada una las heur\'isticas, procurando obtener un balance entre eficacia de la soluci\'on y tiempo de ejecuci\'on.
+%
+%Finalmente, se desarrollar\'a una metaheur\'istica GRASP modificando ligeramente las heur\'isticas constructivas y de b\'usqueda local previamente mencionadas. Se realizar\'an pruebas para determinar con cuales de estas heur\'isticas la soluci\'on de GRASP es m\'as precisa. Tambi\'en se har\'an estudios sobre la eficacia de la soluci\'on en relaci\'on a los par\'ametros involucrados en esta metaheur\'istica. A partir de estos resultados se podr\'an concluir los par\'ametros adecuados y las heur\'isticas a utilizar para que el resultado de GRASP sea eficaz y eficiente en relaci\'on al tiempo de ejecuci\'on.
+%
+%Por \'ultimo, para la metaheur\'istica GRASP obtenida y para las mejores heur\'isticas (constructiva y de b\'usqueda local) se mostrar\'an casos en donde el resultado de las mismas difiera del exacto en gran medida. Adem\'as, se estudiar\'a la complejidad te\'orica de estos algoritmos y se realizar\'an comparaciones con el tiempo de ejecuci\'on obtenido en las pruebas.
+
+
+
+\section{Conclusiones Generales}
+
+%El trabajo aqui realizado se encargó de mostrar diversos algoritmos para resolver el problema del conjunto independiente de peso máximo para un grafo de nodos ponderados cualquiera. En primer lugar se realizó un simple algoritmo exacto de orden $O(2^n)$ para posteriores comparaciones con las heuristicas propuestas. Este orden exponencial, mostró luego que el algoritmo sólo termina en un tiempo razonable para grafos relativamente pequeños (hasta 36 nodos, con baja densidad). 
+%
+%Luego, se comenzó por mostrar distintas heurísticas constructivas para generar soluciones al problema para grafos más grandes. Como vimos, si bien se mostraron heurísticas mejores que otras, todas ellas resultaron estar relativamente lejos de la solución exacta. Por pruebas realizadas, se concluyó que la mejor heurística resultó ser una heurística golosa que añade los nodos con mayor relación peso/grado del grafo a la solucion parcial. De este modo, el algorimto encontraría soluciones en un tiempo polinomial $O(n*m)$ permitiendo ser ejecutado sobre grafos de un orden de $10^3$ de baja densidad en tiempos razonables.
+%
+%En la siguiente etapa se estudiaron 2 heurísticas de búsqueda local con el fin de mejorar las soluciones contructivas obtenidas. Resultó interesante ver como una busqueda local bastante más inteligente dió resultados notablemente mejores, aún siendo de una complejidad temporal aceptable como ser $O(n*m)$. Más aún, realizar la heurística sola o utilizar una busqueda local a posteriori conserva la complejidad de $O(n*m)$ por lo cual se puede concluir que la heurística por sí sola carece de utilidad. Otro punto interesante, es que la búsqueda realiza una cantidad de iteraciónes que aumenta muy levemente con respecto al tamaño del grafo, por lo cual fue posible acotar dicho parámetro sin perder en calidad de soluciones encontradas.
+%
+%Por último se estudió una versión del esquema metaheurístico GRASP que muestra como la mejora en la calidad de las soluciones es aún mayor que realizar una búsqueda local. Tal como explica la bibliografía asociada, este resultado tiene relación con el hecho de que se realizan distintas busquedas locales en diversas soluciones iniciales lo que resulta en el aumentar notablemente la posibilidad de hallar soluciones mejores. Además, al haber fijado la cantidad de iteraciones del procedimiento, la complejidad teórica sigue siendo del mismo órden que realizar una única busqueda local, es decir $O(n*m)$. Esto último muestra como este esquema metaheurístico resulta de gran utilidad al momento de querer encontrar soluciones de calidad para problemas de gran tamaño imposibles de resolver de forma exacta.
+
+\section*{Referencias}
+%\begin{itemize}
+% \item ``Greedy Randomized Adaptive Search Procedures'' - Thomas A. Feo, Mauricio G.C. Resende
+% \item Art\'iculo de Wikipedia sobre Conjunto independiente
+%\end{itemize}
+
+\end{document}
