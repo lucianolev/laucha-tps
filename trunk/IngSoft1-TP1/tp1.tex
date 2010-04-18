@@ -37,7 +37,13 @@
 %
 %Con respecto al análisis de resultados y a las pruebas realizadas vale hacer la siguiente aclaración. Los grafos generados aletoriamente poseerán nodos con pesos comprendidos entre $10$ y cantidad de nodos del grafo por $10$. Las adyacencias de los nodos es generada también aleatoriamente de modo que el grado de cada nodo sea un número entre 0 y (n-1)*k, con $k$ un parámetro que llamaremos \textit{densidad} de aquí en adelante, donde $0 < k \leq 1$. De este modo, los experimentos mostrarán el comportamiento de los algoritmos para grafos ``promedio'' (sin particularidades) con una cierta cantidad de nodos y de cierta densidad.
 
-\section{Introducci\'on}
+\section*{Introducci\'on}
+
+El objetivo del siguiente trabajo es modelar un sistema para una cadena de pizzer\'ias, denominada Pizza Hack. Con este fin, se utilizar\'an t\'ecnicas de ingenier\'ia de requerimientos, a saber: Diagrama de Contexto y de Objetivos. A su vez, se incluyen en el presente trabajo las explicaciones y detalles de cada uno de los diagramas para clarificar lo expuesto de forma gr\'afica en dichos diagramas. 
+
+El sistema a modelar pretende resolver las necesidades y problemas de una cadena de pizzer\'ias t\'ipica, en la que cada uno de los locales atiende al p\'ublico a trav\'es de un mostrador, es decir, no ofrece la posibilidad de consumir las pizzas en el mismo local. Adem\'as, cabe aclarar que la cadena de pizzer\'ias desea mantener el mismo men\'u en todos sus locales, por lo que un cambio en el men\'u de un local deber\'a verse reflejado en la cartilla de los restantes. Tambi\'en se debe mencionar que los locales no ofrecen servicio de delivery y, en caso de que alg\'un pedido no se pueda preparar en el local donde se encuentra el cliente, se ofrecer\'a derivar su pedido a otro local de la cadena.
+
+
 
 %El objetivo del siguiente trabajo es presentar diversos m\'etodos para encontrar soluciones exactas y aproximadas para el problema del Conjunto Independiente de Peso M\'aximo (CIPM). En particular, se desarrollar\'a un algoritmo que utiliza la t\'ecnica de \textit{backtracking} para resolver el problema de manera exacta para instancias peque\~{n}as del mismo. Adem\'as, se implementar\'an heur\'isitcas constructivas, de b\'usqueda local y una metaheur\'istica GRASP, la cual ser\'a el foco principal de nuestro estudio.
 %
@@ -48,8 +54,13 @@
 %Por \'ultimo, para la metaheur\'istica GRASP obtenida y para las mejores heur\'isticas (constructiva y de b\'usqueda local) se mostrar\'an casos en donde el resultado de las mismas difiera del exacto en gran medida. Adem\'as, se estudiar\'a la complejidad te\'orica de estos algoritmos y se realizar\'an comparaciones con el tiempo de ejecuci\'on obtenido en las pruebas.
 
 
+\section*{Presunciones}
 
-\section{Conclusiones Generales}
+\section*{Vistas}
+
+\section*{Discusi�n}
+
+\section*{Conclusiones Generales}
 
 %El trabajo aqui realizado se encargó de mostrar diversos algoritmos para resolver el problema del conjunto independiente de peso máximo para un grafo de nodos ponderados cualquiera. En primer lugar se realizó un simple algoritmo exacto de orden $O(2^n)$ para posteriores comparaciones con las heuristicas propuestas. Este orden exponencial, mostró luego que el algoritmo sólo termina en un tiempo razonable para grafos relativamente pequeños (hasta 36 nodos, con baja densidad). 
 %
