@@ -41,22 +41,20 @@
 
 El objetivo del siguiente trabajo es modelar un sistema para una cadena de pizzer\'ias, denominada Pizza Hack. Con este fin, se utilizar\'an t\'ecnicas de ingenier\'ia de requerimientos, a saber: Diagrama de Contexto y de Objetivos. A su vez, se incluyen en el presente trabajo las explicaciones y detalles de cada uno de los diagramas para clarificar lo expuesto de forma gr\'afica en dichos diagramas. 
 
-El sistema a modelar pretende resolver las necesidades y problemas de una cadena de pizzer\'ias t\'ipica, en la que cada uno de los locales atiende al p\'ublico a trav\'es de un mostrador, es decir, no ofrece la posibilidad de consumir las pizzas en el mismo local. Adem\'as, cabe aclarar que la cadena de pizzer\'ias desea mantener el mismo men\'u en todos sus locales, por lo que un cambio en el men\'u de un local deber\'a verse reflejado en la cartilla de los restantes. Tambi\'en se debe mencionar que los locales no ofrecen servicio de delivery y, en caso de que alg\'un pedido no se pueda preparar en el local donde se encuentra el cliente, se ofrecer\'a derivar su pedido a otro local de la cadena.
+El sistema a modelar pretende resolver las necesidades y problemas de una cadena de pizzer\'ias t\'ipica, en la que cada uno de los locales atiende al p\'ublico a trav\'es de un mostrador, es decir, no ofrece la posibilidad de consumir las pizzas en el mismo local. Adem\'as, cabe aclarar que la cadena de pizzer\'ias desea mantener el mismo men\'u en todos sus locales, por lo que un cambio en el men\'u de un local deber\'a verse reflejado en la cartilla de los restantes. Tambi\'en se debe mencionar que los locales no ofrecen servicio de delivery y, en caso de que alg\'un pedido no se pueda preparar en el local donde se encuentra el cliente, se ofrecer\'a derivar su pedido a otro local de la cadena. Por \'ultimo, hay que tener en cuenta que el sistema no debe tener un servidor centralizado para la coordinaci\'on entre locales.
 
-
-
-%El objetivo del siguiente trabajo es presentar diversos m\'etodos para encontrar soluciones exactas y aproximadas para el problema del Conjunto Independiente de Peso M\'aximo (CIPM). En particular, se desarrollar\'a un algoritmo que utiliza la t\'ecnica de \textit{backtracking} para resolver el problema de manera exacta para instancias peque\~{n}as del mismo. Adem\'as, se implementar\'an heur\'isitcas constructivas, de b\'usqueda local y una metaheur\'istica GRASP, la cual ser\'a el foco principal de nuestro estudio.
-%
-%Para cada tipo de heur\'istica (constructivas y de b\'usqueda local), se realizar\'an pruebas para determinar cual es la m\'as eficaz y, en caso de ser posible, cu\'al es la m\'as precisa en relaci\'on a la soluci\'on exacta del problema. En estas decisiones tambi\'en se tendr\'a en cuenta el tiempo de ejecuci\'on de cada una las heur\'isticas, procurando obtener un balance entre eficacia de la soluci\'on y tiempo de ejecuci\'on.
-%
-%Finalmente, se desarrollar\'a una metaheur\'istica GRASP modificando ligeramente las heur\'isticas constructivas y de b\'usqueda local previamente mencionadas. Se realizar\'an pruebas para determinar con cuales de estas heur\'isticas la soluci\'on de GRASP es m\'as precisa. Tambi\'en se har\'an estudios sobre la eficacia de la soluci\'on en relaci\'on a los par\'ametros involucrados en esta metaheur\'istica. A partir de estos resultados se podr\'an concluir los par\'ametros adecuados y las heur\'isticas a utilizar para que el resultado de GRASP sea eficaz y eficiente en relaci\'on al tiempo de ejecuci\'on.
-%
-%Por \'ultimo, para la metaheur\'istica GRASP obtenida y para las mejores heur\'isticas (constructiva y de b\'usqueda local) se mostrar\'an casos en donde el resultado de las mismas difiera del exacto en gran medida. Adem\'as, se estudiar\'a la complejidad te\'orica de estos algoritmos y se realizar\'an comparaciones con el tiempo de ejecuci\'on obtenido en las pruebas.
-
+Por medio de la aplicaci\'on de las t\'ecnicas de inginier\'ia de requerimientos se busca explorar distintas opciones para modelar el sistema deseado por la cadena de pizzas. Finalmente, se estudiar\'an las ventajas y desventajas que conlleva elegir cada una de estas alternativas en los aspectos que consideramos relevantes para el funcionamiento del sistema y el beneficio de la cadena de pizzas.  
 
 \section*{Presunciones}
 
 \section*{Vistas}
+
+\section*{Escenarios}
+A continuaci\'on se mostrar\'an algunos de los posibles escenarios que se podr\'ian llegar a presentarse en la cadena de pizzas describida. 
+\begin{itemize}
+	\item Un cliente realiza un pedido en un local y el mismo puede ser preparado. Una vez listo el pedido, se le entrega al cliente y este se retira satisfecho.
+	\item Un cliente realiza un pedido en un local y el mismo no puede ser preparado. Se le ofrece al cliente la opci\'on de derivar su pedido al local m\'as cercano 
+\end{itemize}
 
 \section*{Discusión}
 
