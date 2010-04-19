@@ -47,16 +47,30 @@ Por medio de la aplicaci\'on de las t\'ecnicas de inginier\'ia de requerimientos
 
 \section*{Presunciones}
 
+Para la confección del trabajo, se hicieron las siguientes presunciones:
+
+\begin{itemize}
+    \item Pizza Hack no brinda servicio de delivery ni tampoco brinda la posibilidad de comer en el local.
+    \item La máquina no contempla manejo de dinero.
+
+\end{itemize}
+
 \section*{Vistas}
 
 \section*{Escenarios}
 A continuaci\'on se mostrar\'an algunos de los posibles escenarios que se podr\'ian llegar a presentarse en la cadena de pizzas describida. 
 \begin{itemize}
 	\item Un cliente realiza un pedido en un local y el mismo puede ser preparado. Una vez listo el pedido, se le entrega al cliente y este se retira satisfecho.
-	\item Un cliente realiza un pedido en un local y el mismo no puede ser preparado. Se le ofrece al cliente la opci\'on de derivar su pedido al local m\'as cercano 
+	\item Un cliente realiza un pedido en un local y el mismo no puede ser preparado. Se le ofrece al cliente la opci\'on de derivar su pedido al local m\'as cercano y este acepta, retirando posteriormente el pedido en el otro local.
+    \item Al pizzero se le cae una de las pizzas al suelo. En ese instante, el pizzero informa al encargado lo ocurrido y el mismo da de baja el stock correspondiente. A continuación, el pizzero vuelve a realizar la pizza.
+    \item Al pizzero se le cae una de las pizzas al suelo. Debido a la falta de stock, el pizzero no puede preparar la pizza nuevamente por lo que no puede cumplir con el pedido.
+    \item Un cliente realiza un pedido que no se puede realizar en el local debido a la falta de stock. Además, al haber una falla en la red de comunicación entre locales, tampoco es posible ofrecer retirar el pedido en otro local.
+    \item Luego de preparar una pizza, el stock de uno de los ingredientes necesarios para preparar alguna pizza popular se está agotando por lo que el sistema informa al repositor que debe comprar dicho ingrediente de inmediato.
+    \item Luego de realizar el pedido, el cliente se arrepiente y decide cancelarlo. En este caso, la cajera ingresa dicha cancelación en el sistema. Si la pizza ya fue preparada, los ingredientes se pierden.
+    \item Se realiza una derivación de un pedido a otro local pero el cliente que lo había efectuado no se presenta en el mismo pasada las 3 hrs. Al igual que en el escenario anterior, los ingredientes se pierden.
 \end{itemize}
 
-\section*{Discusi�n}
+\section*{Discusión}
 
 \section*{Conclusiones Generales}
 
