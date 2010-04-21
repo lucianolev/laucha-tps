@@ -22,7 +22,6 @@
 \maketitle
 
 \bigskip
-\section*{Aclaraciones generales}
 
 %Antes de comenzar el an\'alisis de los algoritmos, cabe mencionar lo siguiente:
 %
@@ -60,14 +59,12 @@ Para la confección del trabajo, se hicieron las siguientes presunciones:
 \section*{Escenarios}
 A continuaci\'on se mostrar\'an algunos de los posibles escenarios que se podr\'ian llegar a presentarse en la cadena de pizzas describida. 
 \begin{itemize}
-	\item Un cliente realiza un pedido en un local y el mismo puede ser preparado. Una vez listo el pedido, se le entrega al cliente y este se retira satisfecho.
-	\item Un cliente realiza un pedido en un local y el mismo no puede ser preparado. Se le ofrece al cliente la opci\'on de derivar su pedido al local m\'as cercano y este acepta, retirando posteriormente el pedido en el otro local.
-    \item Al pizzero se le cae una de las pizzas al suelo. En ese instante, el pizzero informa al encargado lo ocurrido y el mismo da de baja el stock correspondiente. A continuación, el pizzero vuelve a realizar la pizza.
-    \item Al pizzero se le cae una de las pizzas al suelo. Debido a la falta de stock, el pizzero no puede preparar la pizza nuevamente por lo que no puede cumplir con el pedido.
-    \item Un cliente realiza un pedido que no se puede realizar en el local debido a la falta de stock. Además, al haber una falla en la red de comunicación entre locales, tampoco es posible ofrecer retirar el pedido en otro local.
-    \item Luego de preparar una pizza, el stock de uno de los ingredientes necesarios para preparar alguna pizza popular se está agotando por lo que el sistema informa al repositor que debe comprar dicho ingrediente de inmediato.
-    \item Luego de realizar el pedido, el cliente se arrepiente y decide cancelarlo. En este caso, la cajera ingresa dicha cancelación en el sistema. Si la pizza ya fue preparada, los ingredientes se pierden.
-    \item Se realiza una derivación de un pedido a otro local pero el cliente que lo había efectuado no se presenta en el mismo pasada las 3 hrs. Al igual que en el escenario anterior, los ingredientes se pierden.
+	\item Un cliente realiza un pedido a la cajera de un local. La cajera ingresa los datos del pedido a verificar y la m\'aquina le informa si puede preparar o no el pedido. El mismo puede ser preparado. La cajera confirma el pedido con el cliente y lo carga en el sistema. En este momento, \'este se almacena junto con los dem\'as pedidos pendientes y se reservan los ingredientes necesarios para su preparaci\'on. Mientras tanto, el pizzero se encuentra preparando distintos pedidos cuando, en un determinado momento, el sistema le informa que el siguiente es el del cliente anteriormente mencionado. Una vez listo el pedido, se le entrega al cliente y \'este se retira.
+	\item Un cliente realiza un pedido a la cajera de un local. La cajera ingresa los datos del pedido a verificar y la m\'aquina le informa si puede preparar o no el pedido. El mismo no puede ser preparado. El sistema le informa a la cajera el local m\'as cercano donde se puede preparar dicho pedido. Se le ofrece al cliente la opci\'on de derivar su pedido a ese local y \'este acepta. La cajera deriva el pedido y el cliente lo retira posteriormente en el otro local.
+	\item Al pizzero se le cae una de las pizzas al suelo. En ese instante, el pizzero informa al encargado lo ocurrido y el mismo da de baja el stock correspondiente. A continuación, el pizzero vuelve a realizar la pizza.
+%     \item Luego de preparar una pizza, el stock de uno de los ingredientes necesarios para preparar alguna pizza popular se está agotando por lo que el sistema informa al repositor que debe comprar dicho ingrediente de inmediato.
+    \item Luego de realizar el pedido, el cliente se arrepiente y decide cancelarlo. En este caso, la cajera ingresa dicha cancelación en el sistema retirando el pedido de la lista de pedidos pendientes. Si la pizza no se comenz\'o a preparar, los ingredientes reservados para dicho pedido estan disponibles para ser utilizados en alg\'un otro. Si la pizza ya fue preparada o se encuentra en preparaci\'on, los ingredientes se pierden.
+%     \item Se realiza una derivación de un pedido a otro local pero el cliente que lo había efectuado no se presenta en el mismo pasada las 3 hrs. Al igual que en el escenario anterior, los ingredientes se pierden.
 \end{itemize}
 
 \section*{Discusión}
