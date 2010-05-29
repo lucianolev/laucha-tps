@@ -1,6 +1,6 @@
 \documentclass[a4paper,11pt] {article}
 \usepackage[spanish]{babel}
-\usepackage[utf8]{inputenc}
+%\usepackage[utf8]{inputenc}
 \usepackage{caratula}
 \usepackage{a4wide}
 %\usepackage{graphicx}
@@ -25,84 +25,121 @@
 
 \section*{Introducci\'on}
 
-El objetivo del siguiente trabajo es realizar una segunda etapa en el modelado de un sistema para una cadena de pizzer\'ias, denominada Pizza Hack. Con este fin, se utilizar\'an t\'ecnicas de ingenier\'ia del software, a saber: Diagrama de Casos de uso, Diagramas de Actividad, Diagramas de Máquinas de estado (FSM) y Diagrama de modelo Conceptual. A su vez, se incluyen en el presente trabajo las decisiones tomadas durante el proceso de elaboración del mismo que llevaron a la elección y confección de los distintos diagramas que se presentarán a continuación. 
+El objetivo del siguiente trabajo es realizar una segunda etapa en el modelado de un sistema para una cadena de pizzer\'ias, denominada Pizza Hack. Con este fin, se utilizar\'an t\'ecnicas de ingenier\'ia del software, a saber: Diagrama de Casos de uso, Diagramas de Actividad, Diagramas de M\'aquinas de estado (FSM) y Diagrama de modelo Conceptual. A su vez, se incluyen en el presente trabajo las decisiones tomadas durante el proceso de elaboraci\'on del mismo que llevaron a la elecci\'on y confecci\'on de los distintos diagramas que se presentar\'an a continuaci\'on. 
 
-El sistema a modelar pretende resolver las necesidades y problemas de una cadena de pizzer\'ias t\'ipica, en la que cada uno de los locales atiende al p\'ublico a trav\'es de un mostrador, y a su vez brinda la opción de sentarse a consumir los productos dentro de las mesas que posee el mismo. Adem\'as, cabe aclarar que la cadena de pizzer\'ias desea mantener el mismo men\'u en todos sus locales, por lo que un cambio en el men\'u de un local deber\'a verse reflejado en la cartilla de los restantes. Tambi\'en se debe mencionar que los locales no ofrecen servicio de delivery y, en caso de que alg\'un pedido realizado en el mostrador de un local no se pueda preparar en el mismo, por falta de stock, se ofrecer\'a la posibilidad de derivar el pedido a otro local de la cadena que pueda prepararlo.
+El sistema a modelar pretende resolver las necesidades y problemas de una cadena de pizzer\'ias t\'ipica, en la que cada uno de los locales atiende al p\'ublico a trav\'es de un mostrador, y a su vez brinda la opci\'on de sentarse a consumir los productos dentro de las mesas que posee el mismo. Adem\'as, cabe aclarar que la cadena de pizzer\'ias desea mantener el mismo men\'u en todos sus locales, por lo que un cambio en el men\'u de un local deber\'a verse reflejado en la cartilla de los restantes. Tambi\'en se debe mencionar que los locales no ofrecen servicio de delivery y, en caso de que alg\'un pedido realizado en el mostrador de un local no se pueda preparar en el mismo, por falta de stock, se ofrecer\'a la posibilidad de derivar el pedido a otro local de la cadena que pueda prepararlo.
 
-Por medio de la aplicación de las t\'ecnicas se busca explicitar la interacción de los distintos actores involucrados en la utilización del sistema, y cómo se relacionan los unos con los otros. A su vez explicaremos como son las principales actividades que se realizan, es decir quienes están involucrados en las mismas y cómo se llevan a cabo.
+Por medio de la aplicaci\'on de las t\'ecnicas se busca explicitar la interacci\'on de los distintos actores involucrados en la utilizaci\'on del sistema, y c\'omo se relacionan los unos con los otros. A su vez explicaremos como son las principales actividades que se realizan, es decir quienes est\'an involucrados en las mismas y c\'omo se llevan a cabo.
 
 \section*{Presunciones}
 
 Debido a la presencia de algunas inconsistencias encontradas entre los distintos diagramas presentes en el enunciado, se tomaron las siguientes decisiones.
 
-En
-
 \begin{itemize}
     \item Pizza Hack no brinda servicio de delivery.
-    \item La máquina no contempla manejo de dinero.
-    \item Hay un único mozo por local para atender las distintas mesas.
-    \item Necesariamente debe haber un encargado, un jefe de chef (puede o no haber algún otro cocinero), un mozo y un repositor de stock en cada local para su correcto funcionamiento.
+    \item La m\'aquina no contempla manejo de dinero.
+    \item Hay un \'unico mozo por local para atender las distintas mesas.
+    \item Necesariamente debe haber un encargado, un jefe de chef (puede o no haber alg\'un otro cocinero), un mozo y un repositor de stock en cada local para su correcto funcionamiento.
     \item Los pedidos siempre pasan por el encargado para ingresarse en el sistema.
     \item Cuando un pedido se realiza al mozo en una mesa, el mismo le pasa el pedido al encargado para que el mismo lo ingrese en el sistema.
     \item El operador solo se encarga de dar de alta a un nuevo local, no es un empleado del mismo.
-		\item Cuando un local tiene el turno para realizar una operación que requiera comunicación con otros locales, el turno no se puede terminar en el medio de la operación.
+		\item Cuando un local tiene el turno para realizar una operaci\'on que requiera comunicaci\'on con otros locales, el turno no se puede terminar en el medio de la operaci\'on.
 \end{itemize}
 
 \section*{Vistas}
 
-\section*{Discusión}
+\section*{Discusi\'on}
 
-En primera instancia, se optó por realizar un diagrama conceptual a modo de conocer los distintos conceptos involucrados en el sistema. Además, al comenzar con elaboración del mismo se pudo reconocer atributos de los objetos junto con las formas de relacionarse entre sí con el objetivo de familiarizarse con las partes que lo conforman. A continuación se muestra lo realizado:
-
-DIAGRAMA de Conceptos
-
-Una vez fijados los conceptos, se procedió a desarrollar un diagrama de casos de uso ya que, en primera instancia, se pueden desprender interacciones y agentes fácilmente del diagrama de contexto provisto. Sin embargo, al observar los escenarios se notó que los agentes presentes en el sistema realizaban distintas actividades no contempladas o de manera distinta a lo expuesto en el diagrama de contexto. Luego de una discusión extensa sobre que tener en cuenta en cada diagrama, el grupo decidió en dar más relevancia a los escenarios presentados ya que resultaban más coherentes a la idea general del sistema.
-
-A continuación se presenta el diagrama de casos de uso realizado junto con las descripciones asociadas:
+En primera instancia, se opt\'o por realizar un diagrama conceptual a modo de conocer los distintos conceptos involucrados en el sistema. Adem\'as, al comenzar con elaboraci\'on del mismo se pudo reconocer atributos de los objetos junto con las formas de relacionarse entre s\'i con el objetivo de familiarizarse con las partes que lo conforman. A continuaci\'on se muestra lo realizado:
 
 \begin{center}
- \includegraphics[width=0.7\textwidth]{DiagramaConceptual.png}
+ \includegraphics[width=0.7\textwidth]{Diagramas/DiagramaConceptual.png}
+\end{center}
 
-Luego de tener en claro el rol de los diferentes actores en el sistema, se empezó a analizar que casos de uso resultaban interesantes describir más en detalle. En primer lugar, se optó por observar el caso de uso 'Ingresando pedido' ya que resulta ser una de las tareas principales del sistema. Luego de una breve discusión, se decidió por realizar un diagrama de actividad ya que es el que mejor describe lo que sucede globalmente en los casos donde interviene dicha interacción con el sistema. Al comenzar con dicho diagrama, se notó que había dos escenarios ligeramente distintos al momento de ingresar un nuevo pedido. Por un lado, el cliente podría interactuar directamente con el encargado en caso de que se trate de una persona que va a realizar un pedido para llevar o bien será el mozo quien le comunique los pedidos al encargado si se trata de un simple comensal sentado en una mesa (Ver 'Cliente Mostrador' y 'Comensal' en el Diagrama Conceptual). Por este motivo, se realizaron los siguientes dos diagramas de actividad para mostrar ambas situaciones:
+Una vez fijados los conceptos, se procedi\'o a desarrollar un diagrama de casos de uso ya que, en primera instancia, se pueden desprender interacciones y agentes f\'acilmente del diagrama de contexto provisto. Sin embargo, al observar los escenarios se not\'o que los agentes presentes en el sistema realizaban distintas actividades no contempladas o de manera distinta a lo expuesto en el diagrama de contexto. Luego de una discusi\'on extensa sobre que tener en cuenta en cada diagrama, el grupo decidi\'o en dar m\'as relevancia a los escenarios presentados ya que resultaban m\'as coherentes a la idea general del sistema.
 
-DIAGRAMA de actividad 'Pedido Local para llevar'
+A continuaci\'on se presenta el diagrama de casos de uso realizado junto con las descripciones asociadas:
 
-DIAGRAMA de actividad 'Pedido Local de comensal'
+\begin{center}
+ \includegraphics[width=0.7\textwidth]{Diagramas/CasosDeUso.png}
+\end{center}
 
-Como se puede observar, las actividades también hacen referencia al caso de uso 'Derivando pedido a otro local' y a 'Informando entrega de pedido'. La razón de esto es que ambas actividades se encuentran intimamente relacionadas con lo que sucede al ingresar un pedido. Sin embargo, se vió que resultaba interesante presentar también un diagrama de actividad que describiera lo que sucede al recibir una derivación de parte de otro local ya que los diagramas anteriores no explicitaban este hecho.
+Luego de tener en claro el rol de los diferentes actores en el sistema, se empez\'o a analizar que casos de uso resultaban interesantes describir m\'as en detalle. En primer lugar, se opt\'o por observar el caso de uso \textit{Ingresando pedido} ya que resulta ser una de las tareas principales del sistema. Luego de una breve discusi\'on, se decidi\'o por realizar un diagrama de actividad ya que es el que mejor describe lo que sucede globalmente en los casos donde interviene dicha interacci\'on con el sistema. Al comenzar con dicho diagrama, se not\'o que hab\'ia dos escenarios ligeramente distintos al momento de ingresar un nuevo pedido. Por un lado, el cliente podr\'ia interactuar directamente con el encargado en caso de que se trate de una persona que va a realizar un pedido para llevar o bien ser\'a el mozo quien le comunique los pedidos al encargado si se trata de un simple comensal sentado en una mesa (Ver \textit{Cliente Mostrador} y \textit{Comensal} en el Diagrama Conceptual). Por este motivo, se realizaron los siguientes dos diagramas de actividad para mostrar ambas situaciones:
 
-DIAGRAMA de actividad 'Pedido Externo'
+\begin{center}
+ \includegraphics[width=0.7\textwidth]{Diagramas/DiagramaActividadPedidoLocalMesa.png}
+\end{center}
 
-En los diagramas presentados se puede notar referencias a una Máquina de Estado llamada 'Buscar local derivar'. Este diagrama tiene como objetivo mostrar el comportamiento en detalle de la búsqueda de los locales en donde se pueda derivar un pedido no realizable localmente. Al tratarse de una operación sincronizada realizada exclusivamente por las máquinas de los locales, pareció oportuno utilizar este tipo de esquema como se muestra a continuación:
+\begin{center}
+ \includegraphics[width=0.7\textwidth]{Diagramas/DiagramaActividadPedidoLocal.png}
+\end{center}
 
-DIAGRAMA de FSM 'Buscar local derivar'
+Como se puede observar, las actividades tambi\'en hacen referencia al caso de uso \textit{Derivando pedido a otro local} y a \textit{Informando entrega de pedido}. La raz\'on de esto es que ambas actividades se encuentran intimamente relacionadas con lo que sucede al ingresar un pedido. Sin embargo, se vi\'o que resultaba interesante presentar tambi\'en un diagrama de actividad que describiera lo que sucede al recibir una derivaci\'on de parte de otro local ya que los diagramas anteriores no explicitaban este hecho.
 
-Continuando con el diagrama de casos de uso, los siguientes casos analizados fueron los relativos al Jefe de Chef: 'Incorporando nueva variedad de pizza' y 'Cambiando datos variedad de pizza'. Al igual que antes, para profundizar lo vinculado a estos casos se decidió hacer un diagrama de actividad que muestre que sucede al querer incorporar una nueva variedad de pizza. No se creyó necesario mostrar el caso en el que se cambian los datos porque resulta muy similar caso a continuación elaborado:
+\begin{center}
+ \includegraphics[width=0.7\textwidth]{Diagramas/DiagramaActividadPedidoExterno.png}
+\end{center}
 
-DIAGRAMA de actividad 'Pizza nueva'
+En los diagramas presentados se puede notar referencias a una M\'aquina de Estado llamada \textit{Buscar local derivar}. Este diagrama tiene como objetivo mostrar el comportamiento en detalle de la b\'usqueda de los locales en donde se pueda derivar un pedido no realizable localmente. Al tratarse de una operaci\'on sincronizada realizada exclusivamente por las m\'aquinas de los locales, pareci\'o oportuno utilizar este tipo de esquema como se muestra a continuaci\'on:
 
-Esta actividad tiene la particularidad de involucrar a la máquina de todos los locales del sistema por lo cual, tal como se ve en la figura, se procedió a confeccionar una Máquina de Estado. Como el caso anterior, de esta manera se puede reflejar como funciona operacionalmente el proceso de comunicacion y sincronizacion al momento de querer informar al resto de los locales de los cambios efectuados.
+\begin{figure}
+\centering
+ \includegraphics[width=0.7\textwidth]{Diagramas/FSMPrepararPedido.png}
+ \caption{M\'aquina derivadora}
+ \label{fig:FSMPrepararPedidoDerivador}
+\end{figure}
 
-DIAGRAMA de FSM Actualizar menu'
+\begin{figure}
+\centering
+ \includegraphics[width=0.7\textwidth]{Diagramas/FSMPrepararPedidoi.png}
+ \caption{M\'aquina$_{i}$}
+ \label{fig:FSMPrepararPedidoMaquinai}
+\end{figure}
 
-Retornando nuevamente al diagrama principal de casos de uso, por último interesó incluir un diagrama que muestre que ocurre al tener que realizar una reposición de stock, de manera de mostrar interacciones no observables en el caso de uso en cuestión. A continuación, se muestra este diagrama:
+Continuando con el diagrama de casos de uso, los siguientes casos analizados fueron los relativos al Jefe de Chef: \textit{Incorporando nueva variedad de pizza} y \textit{Cambiando datos variedad de pizza}. Al igual que antes, para profundizar lo vinculado a estos casos se decidi\'o hacer un diagrama de actividad que muestre que sucede al querer incorporar una nueva variedad de pizza. No se crey\'o necesario mostrar el caso en el que se cambian los datos porque resulta muy similar caso a continuaci\'on elaborado:
 
-DIAGRAMA de actividad 'Reponer stock'
+\begin{center}
+ \includegraphics[width=0.7\textwidth]{Diagramas/DiagramaActividadNuevaPizza.png}
+\end{center}
+
+Esta actividad tiene la particularidad de involucrar a la m\'aquina de todos los locales del sistema por lo cual, tal como se ve en la figura, se procedi\'o a confeccionar una M\'aquina de Estado. Como el caso anterior, de esta manera se puede reflejar como funciona operacionalmente el proceso de comunicacion y sincronizacion al momento de querer informar al resto de los locales de los cambios efectuados.
+
+\begin{figure}
+\centering
+ \includegraphics[width=0.7\textwidth]{Diagramas/FSMActualizacionActualizadora.png}
+	\caption{M\'aquina Actualizadora}
+	\label{fig:FSMActualizacionMaquinai}
+\end{figure}
+
+
+\begin{figure}
+	\centering
+		\includegraphics[width=0.7\textwidth]{Diagramas/FSMActualizacionMaquinai.png}
+	\caption{M\'aquina$_{i}$}
+	\label{fig:FSMActualizacionMaquinai}
+\end{figure}
+
+
+Retornando nuevamente al diagrama principal de casos de uso, por \'ultimo interes\'o incluir un diagrama que muestre que ocurre al tener que realizar una reposici\'on de stock, de manera de mostrar interacciones no observables en el caso de uso en cuesti\'on. A continuaci\'on, se muestra este diagrama:
+
+\begin{center}
+ \includegraphics[width=0.7\textwidth]{Diagramas/DiagramaActividadReponerStock.png}
+\end{center}
 
 \section*{Conclusiones Generales}
 
-A la hora de encarar el trabajo práctico se presentaron varios caminos posibles por los cuales
+A la hora de encarar el trabajo pr\'actico se presentaron varios caminos posibles por los cuales
 comenzar con el modelado requerido. Pudimos haber comenzado realizando el diagrama de
-casos de uso o el diagrama de modelo conceptual, ya que el resto de los diagramas, al ser tan específicos, podrían surgir a partir de los diagramas mencionados. Luego de una discusión se optó por realizar primero el diagrama de modelo conceptual ya que nos pareció más conveniente tener primero una visión global de los conceptos que forman parte del sistema, para luego tener en claro cuáles serían las interacciones entre los diferentes actores del sistema.
+casos de uso o el diagrama de modelo conceptual, ya que el resto de los diagramas, al ser tan espec\'ificos, podr\'ian surgir a partir de los diagramas mencionados. Luego de una discusi\'on se opt\'o por realizar primero el diagrama de modelo conceptual ya que nos pareci\'o m\'as conveniente tener primero una visi\'on global de los conceptos que forman parte del sistema, para luego tener en claro cu\'ales ser\'ian las interacciones entre los diferentes actores del sistema.
 
-Una vez realizado el modelo conceptual se procedió al desarrollo del diagrama de casos de uso, el cual era el otro diagrama general que debíamos realizar.
+Una vez realizado el modelo conceptual se procedi\'o al desarrollo del diagrama de casos de uso, el cual era el otro diagrama general que deb\'iamos realizar.
 
-A partir del mismo salieron a la luz las actividades principales del sistema, las cuales fueron expllicadas en los diagramas de actividad. Hicimos primero los diagramas de actividad antes que las FSM ya que nos parecía muy complicado realizar esta última tarea porque no contábamos con los conocimientos necesarios en ese momento. Luego de realizar consultas a los docentes, estuvimos en condiciones de realizar los diagramas de FSM que nos parecieron pertinentes. El criterio utilizado fue modelar mediante FSM toda funcionalidad que requiera cierta sincronización entre las distintas máquinas.
+A partir del mismo salieron a la luz las actividades principales del sistema, las cuales fueron expllicadas en los diagramas de actividad. Hicimos primero los diagramas de actividad antes que las FSM ya que nos parec\'ia muy complicado realizar esta \'ultima tarea porque no cont\'abamos con los conocimientos necesarios en ese momento. Luego de realizar consultas a los docentes, estuvimos en condiciones de realizar los diagramas de FSM que nos parecieron pertinentes. El criterio utilizado fue modelar mediante FSM toda funcionalidad que requiera cierta sincronizaci\'on entre las distintas m\'aquinas.
 
-Entre los principales problemas que se presentaron estuvo el hecho de que el material brindado no era del todo consistente, por lo que tuvimos que tomar varias decisiones, lo cual consumió bastante tiempo hasta que llegamos a un esquema libre de contradicciones. 
+Entre los principales problemas que se presentaron estuvo el hecho de que el material brindado no era del todo consistente, por lo que tuvimos que tomar varias decisiones, lo cual consumi\'o bastante tiempo hasta que llegamos a un esquema libre de contradicciones. 
 
-Durante la realización del diagrama de modelo conceptual, surgieron varias discusiones sobré cuáles eran los aspectos a tener en cuenta. Esto desencadenó en la necesidad de rehacer el diagrama por completo una vez que estaba casi finalizado. La causa principal del conflicto fue el hecho de que aparecieran mesas y mozos (los cuales no estaban en el trabajo práctico anterior) que no sabíamos bien como tratar. Luego de una larga discusión decidimos que en cada local haya solo un mozo para atender todas las mesas (ver presunciones).
+Durante la realizaci\'on del diagrama de modelo conceptual, surgieron varias discusiones sobr\'e cu\'ales eran los aspectos a tener en cuenta. Esto desencaden\'o en la necesidad de rehacer el diagrama por completo una vez que estaba casi finalizado. La causa principal del conflicto fue el hecho de que aparecieran mesas y mozos (los cuales no estaban en el trabajo pr\'actico anterior) que no sab\'iamos bien como tratar. Luego de una larga discusi\'on decidimos que en cada local haya solo un mozo para atender todas las mesas (ver presunciones).
 
-Como conclusión final del trabajo pudimos observar que al tener realizados todos los diagramas presentados, tuvimos una visión muy amplia y completa de todas las funcionalidades del sistema, como asi también de la interacción entre todos los involucrados en el mismo. Además pudimos conocer con cierta profundidad el detalle de cada actividad y responsabilidad de cada individuo que forma parte del sistema. Sin conocer todos estos datos, no estaríamos en condiciones de comenzar con la etapa de diseño del sorftware ya que cualquier interpretación incorrecta de alguna funcionalidad representaría un costo muy alto en un futuro. Es por esto que consideramos muy importante realizar esta etapa en el desarrollo de software.
+Como conclusi\'on final del trabajo pudimos observar que al tener realizados todos los diagramas presentados, tuvimos una visi\'on muy amplia y completa de todas las funcionalidades del sistema, como asi tambi\'en de la interacci\'on entre todos los involucrados en el mismo. Además pudimos conocer con cierta profundidad el detalle de cada actividad y responsabilidad de cada individuo que forma parte del sistema. Sin conocer todos estos datos, no estar\'iamos en condiciones de comenzar con la etapa de diseño del sorftware ya que cualquier interpretaci\'on incorrecta de alguna funcionalidad representar\'ia un costo muy alto en un futuro. Es por esto que consideramos muy importante realizar esta etapa en el desarrollo de software.
 
 \end{document}
