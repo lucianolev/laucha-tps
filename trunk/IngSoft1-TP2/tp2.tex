@@ -9,8 +9,8 @@
 
 \begin{document}
 
-\titulo{Trabajo Pr\'actico Nro. 1}
-\fecha{21/04/2010}
+\titulo{Trabajo Pr\'actico Nro. 2}
+\fecha{02/06/2010}
 \materia{Ingenier\'ia de Software I}
 \grupo{}
 \integrante{Dinota, Mat\'ias}{076/07}{matiasgd@gmail.com}
@@ -23,66 +23,47 @@
 
 \bigskip
 
-%Antes de comenzar el an\'alisis de los algoritmos, cabe mencionar lo siguiente:
-%
-%\begin{itemize}
-% \item La implementaci\'on de los todos algoritmos se realiz\'o en \textbf{lenguaje Java}, haciendo uso de las librer\'ias est\'andar del mismo.
-% \item Para el c\'alculo de tiempo de los algoritmos se utiliz\'o la funci\'on \textbf{nanoTime()} de la clase System de Java. Con el fin de aumentar la precisi\'on de las mediciones, se utiliz\'o el comando \textbf{nice} para darle m\'axima prioridad a la tarea.
-% \item El c\'odigo fuente de los algoritmos aqu\'i analizados se encuentran en el archivo \textit{ResolvedorCIPM.java}.
-% \item El c\'odigo fuente de los programas encargados de hacer uso de los algoritmos y necesarios para compilar la aplicaciones son: MainCIPM.java, ResolvedorCIPM.java, GrafoNPonderados.java, PesoNodoComparator.java, LectorDeGrafos.java y EscritorDeSoluciones.java.
-% \item Para la lectura y escritura de los datos se utilizaron clases provistas por el lenguaje Java. No se har\'a referencia a estos algoritmos ya que no resultan de inter\'es para el trabajo aqu\'i presentado.
-% \item Los gr\'aficos se realizaron con \textbf{GNUPlot} y las tablas con OpenOffice Calc. En los casos considerados pertinentes, se utiliz\'o una escala logar\'itmica con el fin de poder visualizar mejor los resultados.
-%\end{itemize}
-%
-%Con respecto al an√°lisis de resultados y a las pruebas realizadas vale hacer la siguiente aclaraci√≥n. Los grafos generados aletoriamente poseer√°n nodos con pesos comprendidos entre $10$ y cantidad de nodos del grafo por $10$. Las adyacencias de los nodos es generada tambi√©n aleatoriamente de modo que el grado de cada nodo sea un n√∫mero entre 0 y (n-1)*k, con $k$ un par√°metro que llamaremos \textit{densidad} de aqu√≠ en adelante, donde $0 < k \leq 1$. De este modo, los experimentos mostrar√°n el comportamiento de los algoritmos para grafos ``promedio'' (sin particularidades) con una cierta cantidad de nodos y de cierta densidad.
-
 \section*{Introducci\'on}
 
-El objetivo del siguiente trabajo es modelar un sistema para una cadena de pizzer\'ias, denominada Pizza Hack. Con este fin, se utilizar\'an t\'ecnicas de ingenier\'ia de requerimientos, a saber: Diagrama de Contexto y de Objetivos. A su vez, se incluyen en el presente trabajo las explicaciones y detalles de cada uno de los diagramas para clarificar lo expuesto de forma gr\'afica en dichos diagramas. 
+El objetivo del siguiente trabajo es realizar una segunda etapa en el modelado de un sistema para una cadena de pizzer\'ias, denominada Pizza Hack. Con este fin, se utilizar\'an t\'ecnicas de ingenier\'ia del software, a saber: Diagrama de Casos de uso, Diagramas de Actividad, Diagramas de M·quinas de estado (FSM) y Diagrama de modelo Conceptual. A su vez, se incluyen en el presente trabajo las decisiones tomadas durante el proceso de elaboraciÛn del mismo que llevaron a la elecciÛn y confecciÛn de los distintos diagramas que se presentar·n a continuaciÛn. 
 
-El sistema a modelar pretende resolver las necesidades y problemas de una cadena de pizzer\'ias t\'ipica, en la que cada uno de los locales atiende al p\'ublico a trav\'es de un mostrador, es decir, no ofrece la posibilidad de consumir las pizzas en el mismo local. Adem\'as, cabe aclarar que la cadena de pizzer\'ias desea mantener el mismo men\'u en todos sus locales, por lo que un cambio en el men\'u de un local deber\'a verse reflejado en la cartilla de los restantes. Tambi\'en se debe mencionar que los locales no ofrecen servicio de delivery y, en caso de que alg\'un pedido no se pueda preparar en el local donde se encuentra el cliente, se ofrecer\'a derivar su pedido a otro local de la cadena. Por \'ultimo, hay que tener en cuenta que el sistema no debe tener un servidor centralizado para la coordinaci\'on entre locales.
+El sistema a modelar pretende resolver las necesidades y problemas de una cadena de pizzer\'ias t\'ipica, en la que cada uno de los locales atiende al p\'ublico a trav\'es de un mostrador, y a su vez brinda la opciÛn de sentarse a consumir los productos dentro de las mesas que posee el mismo. Adem\'as, cabe aclarar que la cadena de pizzer\'ias desea mantener el mismo men\'u en todos sus locales, por lo que un cambio en el men\'u de un local deber\'a verse reflejado en la cartilla de los restantes. Tambi\'en se debe mencionar que los locales no ofrecen servicio de delivery y, en caso de que alg\'un pedido realizado en el mostrador de un local no se pueda preparar en el mismo, por falta de stock, se ofrecer\'a la posibilidad de derivar el pedido a otro local de la cadena que pueda prepararlo.
 
-Por medio de la aplicaci\'on de las t\'ecnicas de inginier\'ia de requerimientos se busca explorar distintas opciones para modelar el sistema deseado por la cadena de pizzas. Finalmente, se estudiar\'an las ventajas y desventajas que conlleva elegir cada una de estas alternativas en los aspectos que consideramos relevantes para el funcionamiento del sistema y el beneficio de la cadena de pizzas.  
+Por medio de la aplicaciÛn de las t\'ecnicas se busca explicitar la interacciÛn de los distintos actores involucrados en la utilizaciÛn del sistema, y cÛmo se relacionan los unos con los otros. A su vez explicaremos como son las principales actividades que se realizan, es decir quienes est·n involucrados en las mismas y cÛmo se llevan a cabo.
 
 \section*{Presunciones}
 
 Para la confecci√≥n del trabajo, se hicieron las siguientes presunciones:
 
 \begin{itemize}
-    \item Pizza Hack no brinda servicio de delivery ni tampoco brinda la posibilidad de comer en el local.
-    \item La m√°quina no contempla manejo de dinero.
-
+    \item Pizza Hack no brinda servicio de delivery.
+    \item La m·quina no contempla manejo de dinero.
+    \item Hay un ˙nico mozo por local para atender las distintas mesas.
+    \item Necesariamente debe haber un encargado, un jefe de chef (puede o no haber alg˙n otro cocinero), un mozo y un repositor de stock en cada local para su correcto funcionamiento.
+    \item Los pedidos siempre pasan por el encargado para ingresarse en el sistema.
+    \item Cuando un pedido se realiza al mozo en una mesa, el mismo le pasa el pedido al encargado para que el mismo lo ingrese en el sistema.
+    \item El operador solo se encarga de dar de alta a un nuevo local, no es un empleado del mismo.
+		\item Cuando un local tiene el turno para realizar una operaciÛn que requiera comunicaciÛn con otros locales, el turno no se puede terminar en el medio de la operaciÛn.
 \end{itemize}
 
 \section*{Vistas}
-
-\section*{Escenarios}
-A continuaci\'on se mostrar\'an algunos de los posibles escenarios que se podr\'ian llegar a presentarse en la cadena de pizzas describida. 
-\begin{itemize}
-	\item Un cliente realiza un pedido a la cajera de un local. La cajera ingresa los datos del pedido a verificar y la m\'aquina le informa si puede preparar o no el pedido. El mismo puede ser preparado. La cajera confirma el pedido con el cliente y lo carga en el sistema. En este momento, \'este se almacena junto con los dem\'as pedidos pendientes y se reservan los ingredientes necesarios para su preparaci\'on. Mientras tanto, el pizzero se encuentra preparando distintos pedidos cuando, en un determinado momento, el sistema le informa que el siguiente es el del cliente anteriormente mencionado. Una vez listo el pedido, se le entrega al cliente y \'este se retira.
-	\item Un cliente realiza un pedido a la cajera de un local. La cajera ingresa los datos del pedido a verificar y la m\'aquina le informa si puede preparar o no el pedido. El mismo no puede ser preparado. El sistema le informa a la cajera el local m\'as cercano donde se puede preparar dicho pedido. Se le ofrece al cliente la opci\'on de derivar su pedido a ese local y \'este acepta. La cajera deriva el pedido y el cliente lo retira posteriormente en el otro local.
-	\item Al pizzero se le cae una de las pizzas al suelo. En ese instante, el pizzero informa al encargado lo ocurrido y el mismo da de baja el stock correspondiente. A continuaci√≥n, el pizzero vuelve a realizar la pizza.
-%     \item Luego de preparar una pizza, el stock de uno de los ingredientes necesarios para preparar alguna pizza popular se est√° agotando por lo que el sistema informa al repositor que debe comprar dicho ingrediente de inmediato.
-    \item Luego de realizar el pedido, el cliente se arrepiente y decide cancelarlo. En este caso, la cajera ingresa dicha cancelaci√≥n en el sistema retirando el pedido de la lista de pedidos pendientes. Si la pizza no se comenz\'o a preparar, los ingredientes reservados para dicho pedido estan disponibles para ser utilizados en alg\'un otro. Si la pizza ya fue preparada o se encuentra en preparaci\'on, los ingredientes se pierden.
-%     \item Se realiza una derivaci√≥n de un pedido a otro local pero el cliente que lo hab√≠a efectuado no se presenta en el mismo pasada las 3 hrs. Al igual que en el escenario anterior, los ingredientes se pierden.
-\end{itemize}
 
 \section*{Discusi√≥n}
 
 \section*{Conclusiones Generales}
 
-%El trabajo aqui realizado se encarg√≥ de mostrar diversos algoritmos para resolver el problema del conjunto independiente de peso m√°ximo para un grafo de nodos ponderados cualquiera. En primer lugar se realiz√≥ un simple algoritmo exacto de orden $O(2^n)$ para posteriores comparaciones con las heuristicas propuestas. Este orden exponencial, mostr√≥ luego que el algoritmo s√≥lo termina en un tiempo razonable para grafos relativamente peque√±os (hasta 36 nodos, con baja densidad). 
-%
-%Luego, se comenz√≥ por mostrar distintas heur√≠sticas constructivas para generar soluciones al problema para grafos m√°s grandes. Como vimos, si bien se mostraron heur√≠sticas mejores que otras, todas ellas resultaron estar relativamente lejos de la soluci√≥n exacta. Por pruebas realizadas, se concluy√≥ que la mejor heur√≠stica result√≥ ser una heur√≠stica golosa que a√±ade los nodos con mayor relaci√≥n peso/grado del grafo a la solucion parcial. De este modo, el algorimto encontrar√≠a soluciones en un tiempo polinomial $O(n*m)$ permitiendo ser ejecutado sobre grafos de un orden de $10^3$ de baja densidad en tiempos razonables.
-%
-%En la siguiente etapa se estudiaron 2 heur√≠sticas de b√∫squeda local con el fin de mejorar las soluciones contructivas obtenidas. Result√≥ interesante ver como una busqueda local bastante m√°s inteligente di√≥ resultados notablemente mejores, a√∫n siendo de una complejidad temporal aceptable como ser $O(n*m)$. M√°s a√∫n, realizar la heur√≠stica sola o utilizar una busqueda local a posteriori conserva la complejidad de $O(n*m)$ por lo cual se puede concluir que la heur√≠stica por s√≠ sola carece de utilidad. Otro punto interesante, es que la b√∫squeda realiza una cantidad de iteraci√≥nes que aumenta muy levemente con respecto al tama√±o del grafo, por lo cual fue posible acotar dicho par√°metro sin perder en calidad de soluciones encontradas.
-%
-%Por √∫ltimo se estudi√≥ una versi√≥n del esquema metaheur√≠stico GRASP que muestra como la mejora en la calidad de las soluciones es a√∫n mayor que realizar una b√∫squeda local. Tal como explica la bibliograf√≠a asociada, este resultado tiene relaci√≥n con el hecho de que se realizan distintas busquedas locales en diversas soluciones iniciales lo que resulta en el aumentar notablemente la posibilidad de hallar soluciones mejores. Adem√°s, al haber fijado la cantidad de iteraciones del procedimiento, la complejidad te√≥rica sigue siendo del mismo √≥rden que realizar una √∫nica busqueda local, es decir $O(n*m)$. Esto √∫ltimo muestra como este esquema metaheur√≠stico resulta de gran utilidad al momento de querer encontrar soluciones de calidad para problemas de gran tama√±o imposibles de resolver de forma exacta.
+A la hora de encarar el trabajo pr·ctico se presentaron varios caminos posibles por los cuales
+comenzar con el modelado requerido. Pudimos haber comenzado realizando el diagrama de
+casos de uso o el diagrama de modelo conceptual, ya que el resto de los diagramas, al ser tan especÌficos, podrÌan surgir a partir de los diagramas mencionados. Luego de una discusiÛn se optÛ por realizar primero el diagrama de modelo conceptual ya que nos pareciÛ m·s conveniente tener primero una visiÛn global de los conceptos que forman parte del sistema, para luego tener en claro cu·les serÌan las interacciones entre los diferentes actores del sistema.
 
-\section*{Referencias}
-%\begin{itemize}
-% \item ``Greedy Randomized Adaptive Search Procedures'' - Thomas A. Feo, Mauricio G.C. Resende
-% \item Art\'iculo de Wikipedia sobre Conjunto independiente
-%\end{itemize}
+Una vez realizado el modelo conceptual se procediÛ al desarrollo del diagrama de casos de uso, el cual era el otro diagrama general que debÌamos realizar.
+
+A partir del mismo salieron a la luz las actividades principales del sistema, las cuales fueron expllicadas en los diagramas de actividad. Hicimos primero los diagramas de actividad antes que las FSM ya que nos parecÌa muy complicado realizar esta ˙ltima tarea porque no cont·bamos con los conocimientos necesarios en ese momento. Luego de realizar consultas a los docentes, estuvimos en condiciones de realizar los diagramas de FSM que nos parecieron pertinentes. El criterio utilizado fue modelar mediante FSM toda funcionalidad que requiera cierta sincronizaciÛn entre las distintas m·quinas.
+
+Entre los principales problemas que se presentaron estuvo el hecho de que el material brindado no era del todo consistente, por lo que tuvimos que tomar varias decisiones, lo cual consumiÛ bastante tiempo hasta que llegamos a un esquema libre de contradicciones. 
+
+Durante la realizaciÛn del diagrama de modelo conceptual, surgieron varias discusiones sobrÈ cu·les eran los aspectos a tener en cuenta. Esto desencadenÛ en la necesidad de rehacer el diagrama por completo una vez que estaba casi finalizado. La causa principal del conflicto fue el hecho de que aparecieran mesas y mozos (los cuales no estaban en el trabajo pr·ctico anterior) que no sabÌamos bien como tratar. Luego de una larga discusiÛn decidimos que en cada local haya solo un mozo para atender todas las mesas (ver presunciones).
+
+Como conclusiÛn final del trabajo pudimos observar que al tener realizados todos los diagramas presentados, tuvimos una visiÛn muy amplia y completa de todas las funcionalidades del sistema, como asi tambiÈn de la interacciÛn entre todos los involucrados en el mismo. Adem·s pudimos conocer con cierta profundidad el detalle de cada actividad y responsabilidad de cada individuo que forma parte del sistema. Sin conocer todos estos datos, no estarÌamos en condiciones de comenzar con la etapa de diseÒo del sorftware ya que cualquier interpretaciÛn incorrecta de alguna funcionalidad representarÌa un costo muy alto en un futuro. Es por esto que consideramos muy importante realizar esta etapa en el desarrollo de software.
 
 \end{document}
