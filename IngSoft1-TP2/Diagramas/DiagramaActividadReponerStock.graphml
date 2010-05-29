@@ -12,7 +12,7 @@
     <node id="n0">
       <data key="d3">
         <y:GenericNode configuration="com.yworks.flowchart.start1">
-          <y:Geometry height="40.0" width="80.0" x="135.5" y="45.299999999999955"/>
+          <y:Geometry height="40.0" width="80.0" x="164.25" y="45.299999999999955"/>
           <y:Fill color="#FFFFFF" color2="#FFFFFF" transparent="false"/>
           <y:BorderStyle color="#FFFFFF" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="55.357421875" x="12.3212890625" y="10.6494140625">Repositor</y:NodeLabel>
@@ -63,18 +63,18 @@ de compra</y:NodeLabel>
     <node id="n5">
       <data key="d3">
         <y:GenericNode configuration="com.yworks.flowchart.start1">
-          <y:Geometry height="40.0" width="87.5" x="160.5" y="404.0"/>
+          <y:Geometry height="46.0" width="91.25" x="156.75" y="398.0"/>
           <y:Fill color="#FFFFFF" color2="#FFFFFF" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="48.015625" x="19.7421875" y="3.298828125">Realizar
-compra</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="84.05078125" x="3.599609375" y="6.298828125">Entregar orden
+de compra</y:NodeLabel>
         </y:GenericNode>
       </data>
     </node>
     <node id="n6">
       <data key="d3">
         <y:GenericNode configuration="com.yworks.flowchart.start1">
-          <y:Geometry height="46.0" width="95.0" x="156.75" y="485.0"/>
+          <y:Geometry height="46.0" width="95.0" x="156.75" y="505.0"/>
           <y:Fill color="#FFFFFF" color2="#FFFFFF" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="76.708984375" x="9.1455078125" y="6.298828125">Cargar nuevo
@@ -85,7 +85,7 @@ stock</y:NodeLabel>
     <node id="n7">
       <data key="d3">
         <y:GenericNode configuration="com.yworks.flowchart.start1">
-          <y:Geometry height="46.0" width="95.0" x="375.0" y="516.0"/>
+          <y:Geometry height="46.0" width="95.0" x="375.0" y="545.5"/>
           <y:Fill color="#FFFFFF" color2="#FFFFFF" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="68.037109375" x="13.4814453125" y="6.298828125">Almacenar
@@ -134,7 +134,6 @@ nuevo stock</y:NodeLabel>
       </data>
     </node>
     <node id="n12">
-      <data key="d2"/>
       <data key="d3">
         <y:ShapeNode>
           <y:Geometry height="30.0" width="30.0" x="387.0" y="274.65"/>
@@ -156,6 +155,37 @@ de stock</y:NodeLabel>
         </y:GenericNode>
       </data>
     </node>
+    <node id="n14">
+      <data key="d3">
+        <y:GenericNode configuration="com.yworks.flowchart.start1">
+          <y:Geometry height="40.0" width="80.0" x="33.5" y="45.299999999999955"/>
+          <y:Fill color="#FFFFFF" color2="#FFFFFF" transparent="false"/>
+          <y:BorderStyle color="#FFFFFF" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="59.365234375" x="10.3173828125" y="10.6494140625">Proveedor</y:NodeLabel>
+        </y:GenericNode>
+      </data>
+    </node>
+    <node id="n15">
+      <data key="d3">
+        <y:GenericNode configuration="com.yworks.flowchart.start1">
+          <y:Geometry height="40.0" width="87.5" x="29.75" y="453.0"/>
+          <y:Fill color="#FFFFFF" color2="#FFFFFF" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="64.69140625" x="11.404296875" y="3.298828125">Entregar
+mercadería</y:NodeLabel>
+        </y:GenericNode>
+      </data>
+    </node>
+    <node id="n16">
+      <data key="d3">
+        <y:GenericNode configuration="com.yworks.flowchart.process">
+          <y:Geometry height="602.0" width="1.0" x="138.375" y="45.299999999999926"/>
+          <y:Fill color="#E8EEF7" color2="#B7C9E3" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="4.0" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="4.0" x="-1.5" y="299.0"/>
+        </y:GenericNode>
+      </data>
+    </node>
     <edge id="e0" source="n4" target="n5">
       <data key="d6">
         <y:PolyLineEdge>
@@ -166,7 +196,7 @@ de stock</y:NodeLabel>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e1" source="n5" target="n6">
+    <edge id="e1" source="n6" target="n7">
       <data key="d6">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -176,7 +206,7 @@ de stock</y:NodeLabel>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e2" source="n6" target="n7">
+    <edge id="e2" source="n7" target="n8">
       <data key="d6">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -186,7 +216,7 @@ de stock</y:NodeLabel>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e3" source="n7" target="n8">
+    <edge id="e3" source="n3" target="n13">
       <data key="d6">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -196,7 +226,7 @@ de stock</y:NodeLabel>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e4" source="n3" target="n13">
+    <edge id="e4" source="n13" target="n12">
       <data key="d6">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -206,17 +236,7 @@ de stock</y:NodeLabel>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e5" source="n13" target="n12">
-      <data key="d6">
-        <y:PolyLineEdge>
-          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
-          <y:LineStyle color="#000000" type="line" width="1.0"/>
-          <y:Arrows source="none" target="standard"/>
-          <y:BendStyle smoothed="false"/>
-        </y:PolyLineEdge>
-      </data>
-    </edge>
-    <edge id="e6" source="n12" target="n4">
+    <edge id="e5" source="n12" target="n4">
       <data key="d6">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -228,7 +248,7 @@ tolerable ]</y:EdgeLabel>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e7" source="n12" target="n8">
+    <edge id="e6" source="n12" target="n8">
       <data key="d6">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
@@ -238,6 +258,26 @@ tolerable ]</y:EdgeLabel>
           <y:Arrows source="none" target="standard"/>
           <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" modelName="six_pos" modelPosition="shead" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="79.36328125" x="-158.1549815796277" y="8.789465886896323">[ &gt;= al minimo
 tolerable ]</y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e7" source="n5" target="n15">
+      <data key="d6">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e8" source="n15" target="n6">
+      <data key="d6">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
       </data>
