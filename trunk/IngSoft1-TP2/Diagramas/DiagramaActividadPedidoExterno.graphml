@@ -108,10 +108,10 @@ pedido</y:NodeLabel>
     <node id="n9">
       <data key="d3">
         <y:GenericNode configuration="com.yworks.flowchart.process">
-          <y:Geometry height="830.0125000000004" width="1.0" x="871.5241000931887" y="-18.887500000000784"/>
+          <y:Geometry height="907.4655662400004" width="1.0" x="871.5241000931887" y="-18.887500000000784"/>
           <y:Fill color="#E8EEF7" color2="#B7C9E3" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="4.0" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="4.0" x="-1.5" y="413.0062500000002"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="4.0" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="4.0" x="-1.5" y="451.7327831200002"/>
         </y:GenericNode>
       </data>
     </node>
@@ -139,10 +139,10 @@ el local</y:NodeLabel>
     <node id="n12">
       <data key="d3">
         <y:GenericNode configuration="com.yworks.flowchart.process">
-          <y:Geometry height="842.6375000000002" width="1.0" x="546.8357001863646" y="-19.387500000000557"/>
+          <y:Geometry height="907.9655662400002" width="1.0" x="546.8357001863646" y="-19.387500000000557"/>
           <y:Fill color="#E8EEF7" color2="#B7C9E3" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="4.0" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="4.0" x="-1.5" y="419.3187500000001"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="4.0" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="4.0" x="-1.5" y="451.9827831200001"/>
         </y:GenericNode>
       </data>
     </node>
@@ -182,7 +182,7 @@ el local</y:NodeLabel>
           <y:Geometry height="51.0" width="158.1233333333331" x="709.0398121248295" y="-18.887500000000784"/>
           <y:Fill color="#FFFFFF" color2="#FFFFFF" transparent="false"/>
           <y:BorderStyle color="#FFFFFF" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="132.0859375" x="13.01869791666661" y="16.1494140625">Encargado local destino</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="132.0859375" x="13.018697916666497" y="16.1494140625">Encargado local destino</y:NodeLabel>
         </y:GenericNode>
       </data>
     </node>
@@ -199,20 +199,40 @@ el local</y:NodeLabel>
     <node id="n18">
       <data key="d3">
         <y:GenericNode configuration="com.yworks.flowchart.process">
-          <y:Geometry height="830.0125000000004" width="1.0" x="705.026553124396" y="-22.637500000000802"/>
+          <y:Geometry height="911.2155662400004" width="1.0" x="705.026553124396" y="-22.637500000000784"/>
           <y:Fill color="#E8EEF7" color2="#B7C9E3" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="4.0" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="4.0" x="-1.5" y="413.0062500000002"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="4.0" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="4.0" x="-1.5" y="453.6077831200002"/>
         </y:GenericNode>
       </data>
     </node>
     <node id="n19">
       <data key="d3">
         <y:GenericNode configuration="com.yworks.flowchart.process">
-          <y:Geometry height="842.6375000000002" width="1.0" x="395.963153217572" y="-17.45000000000058"/>
+          <y:Geometry height="906.0280662400002" width="1.0" x="395.963153217572" y="-17.450000000000557"/>
           <y:Fill color="#E8EEF7" color2="#B7C9E3" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="4.0" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="4.0" x="-1.5" y="419.3187500000001"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="4.0" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="4.0" x="-1.5" y="451.0140331200001"/>
+        </y:GenericNode>
+      </data>
+    </node>
+    <node id="n20">
+      <data key="d3">
+        <y:GenericNode configuration="com.yworks.flowchart.start2">
+          <y:Geometry height="40.0" width="80.0" x="749.2500000000002" y="841.1249999999995"/>
+          <y:Fill color="#E8EEF7" color2="#FFFFFF" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="4.0" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="4.0" x="38.0" y="18.0"/>
+        </y:GenericNode>
+      </data>
+    </node>
+    <node id="n21">
+      <data key="d3">
+        <y:GenericNode configuration="com.yworks.flowchart.start2">
+          <y:Geometry height="15.0" width="51.0" x="763.7500000000002" y="853.6249999999995"/>
+          <y:Fill color="#000000" color2="#000000" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="4.0" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="4.0" x="23.5" y="5.5"/>
         </y:GenericNode>
       </data>
     </node>
@@ -317,6 +337,16 @@ el local</y:NodeLabel>
       </data>
     </edge>
     <edge id="e10" source="n10" target="n7">
+      <data key="d6">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e11" source="n8" target="n20">
       <data key="d6">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
