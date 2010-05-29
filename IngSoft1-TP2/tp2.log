@@ -1,4 +1,4 @@
-This is pdfeTeX, Version 3.141592-1.30.6-2.2 (MiKTeX 2.5) (preloaded format=pdflatex 2007.12.11)  29 MAY 2010 11:33
+This is pdfeTeX, Version 3.141592-1.30.6-2.2 (MiKTeX 2.5) (preloaded format=pdflatex 2007.12.11)  29 MAY 2010 12:42
 entering extended mode
 **C:/Migs/UBA/SVN/IngSoft1-TP2/tp2.tex
 (C:\Migs\UBA\SVN\IngSoft1-TP2\tp2.tex
@@ -313,8 +313,7 @@ Package: a4wide 1994/08/30
 
 ("C:\Program Files\MiKTeX 2.5\tex\latex\ntgclass\a4.sty"
 Package: a4 2004/04/15 v1.2g A4 based page layout
-))
-No file tp2.aux.
+)) (tp2.aux)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
 LaTeX Font Info:    ... okay on input line 10.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 10.
@@ -327,6 +326,7 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 10.
 LaTeX Font Info:    ... okay on input line 10.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 10.
 LaTeX Font Info:    ... okay on input line 10.
+
 ("C:\Program Files\MiKTeX 2.5\tex\context\base\supp-pdf.tex"
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count92
@@ -360,24 +360,226 @@ Underfull \hbox (badness 10000) in paragraph at lines 22--22
 
 [1
 
-{psfonts.map} <logo_dc.jpg> <logo_uba.jpg>] [2] [3] (tp2.aux) ) 
+{psfonts.map} <logo_dc.jpg> <logo_uba.jpg>]
+
+! Package inputenc Error: Unicode char \u8:áqu not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.28 ... Diagramas de Actividad, Diagramas de Máqu
+                                                  inas de estado (FSM) y Dia...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! Package inputenc Error: Unicode char \u8:ónde not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.28 ...madas durante el proceso de elaboración de
+                                                  l mismo que llevaron a la ...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! Package inputenc Error: Unicode char \u8:ónyc not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.28 ...n del mismo que llevaron a la elección y c
+                                                  onfección de los distintos...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! Package inputenc Error: Unicode char \u8:ónde not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.28 ...que llevaron a la elección y confección de
+                                                   los distintos diagramas q...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! Package inputenc Error: Unicode char \u8:ána not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.28 ...s distintos diagramas que se presentarán a
+                                                   continuación.
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+Runaway argument?
+! Paragraph ended before \UTFviii@four@octets was complete.
+<to be read again> 
+                   \par 
+l.29 
+     
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+
+! Package inputenc Error: Unicode char \u8:ónde not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.30 ... mostrador, y a su vez brinda la opción de
+                                                   sentarse a consumir los p...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! Package inputenc Error: Unicode char \u8:ónde not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.32 ...icas se busca explicitar la interacción de
+                                                   los distintos actores inv...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! Package inputenc Error: Unicode char \u8:ónde not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.32 ... actores involucrados en la utilización de
+                                                  l sistema, y cómo se relac...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! Package inputenc Error: Unicode char \u8:ómos not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.32 ...os en la utilización del sistema, y cómo s
+                                                  e relacionan los unos con ...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! Package inputenc Error: Unicode char \u8:áni not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.32 ... que se realizan, es decir quienes están i
+                                                  nvolucrados en las mismas ...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! Package inputenc Error: Unicode char \u8:ómos not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.32 ... están involucrados en las mismas y cómo s
+                                                  e llevan a cabo.
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! Package inputenc Error: Unicode char \u8:áqu not set up for use with LaTeX.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.40     \item La máqu
+                      ina no contempla manejo de dinero.
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! Package inputenc Error: Keyboard character used is undefined
+(inputenc)                in inputencoding `utf8'.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.41     \item Hay un ú
+                       nico mozo por local para atender las distintas mesas.
+You need to provide a definition with \DeclareInputText 
+or \DeclareInputMath before using this key.
+
+
+! Package inputenc Error: Keyboard character used is undefined
+(inputenc)                in inputencoding `utf8'.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.42 ...rgado, jefe de chef (puede o no haber algú
+                                                  n otro cocinero), un mozo ...
+
+You need to provide a definition with \DeclareInputText 
+or \DeclareInputMath before using this key.
+
+[2] [3] (tp2.aux) ) 
 Here is how much of TeX's memory you used:
- 1821 strings out of 95419
- 20108 string characters out of 1187331
- 77112 words of memory out of 1077740
- 4907 multiletter control sequences out of 60000
+ 1831 strings out of 95419
+ 20168 string characters out of 1187331
+ 76600 words of memory out of 1077740
+ 4913 multiletter control sequences out of 60000
  8664 words of font info for 31 fonts, out of 1000000 for 2000
  14 hyphenation exceptions out of 8191
- 32i,8n,25p,885b,203s stack positions out of 5000i,500n,10000p,200000b,32768s
+ 32i,8n,25p,862b,203s stack positions out of 5000i,500n,10000p,200000b,32768s
 PDF statistics:
  33 PDF objects out of 300000
  0 named destinations out of 300000
  11 words of extra memory for PDF output out of 10000
-<C:/Program File
-s/MiKTeX 2.5/fonts/type1/bluesky/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.5/fonts
-/type1/bluesky/cm/cmss10.pfb><C:/Program Files/MiKTeX 2.5/fonts/type1/bluesky/c
-m/cmssbx10.pfb><C:/Program Files/MiKTeX 2.5/fonts/type1/bluesky/cm/cmtt10.pfb><
-C:/Program Files/MiKTeX 2.5/fonts/type1/bluesky/cm/cmr10.pfb><C:/Program Files/
-MiKTeX 2.5/fonts/type1/bluesky/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.5/fonts/
-type1/bluesky/cm/cmbx12.pfb>
-Output written on tp2.pdf (3 pages, 416198 bytes).
+<C:/Program Files/MiKTeX 2.5/fonts/type1/bluesky/cm/cmr8.pfb
+><C:/Program Files/MiKTeX 2.5/fonts/type1/bluesky/cm/cmss10.pfb><C:/Program Fil
+es/MiKTeX 2.5/fonts/type1/bluesky/cm/cmssbx10.pfb><C:/Program Files/MiKTeX 2.5/
+fonts/type1/bluesky/cm/cmtt10.pfb><C:/Program Files/MiKTeX 2.5/fonts/type1/blue
+sky/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.5/fonts/type1/bluesky/cm/cmr12.pfb>
+<C:/Program Files/MiKTeX 2.5/fonts/type1/bluesky/cm/cmbx12.pfb>
+Output written on tp2.pdf (3 pages, 415488 bytes).
