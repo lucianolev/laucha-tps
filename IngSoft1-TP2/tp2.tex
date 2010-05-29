@@ -33,7 +33,9 @@ Por medio de la aplicación de las t\'ecnicas se busca explicitar la interacción 
 
 \section*{Presunciones}
 
-Para la confecciÃ³n del trabajo, se hicieron las siguientes presunciones:
+Debido a la presencia de algunas inconsistencias encontradas entre los distintos diagramas presentes en el enunciado, se tomaron las siguientes decisiones.
+
+En
 
 \begin{itemize}
     \item Pizza Hack no brinda servicio de delivery.
@@ -48,7 +50,44 @@ Para la confecciÃ³n del trabajo, se hicieron las siguientes presunciones:
 
 \section*{Vistas}
 
-\section*{DiscusiÃ³n}
+\section*{Discusión}
+
+En primera instancia, se optó por realizar un diagrama conceptual a modo de conocer los distintos conceptos involucrados en el sistema. Además, al comenzar con elaboración del mismo se pudo reconocer atributos de los objetos junto con las formas de relacionarse entre sí con el objetivo de familiarizarse con las partes que lo conforman. A continuación se muestra lo realizado:
+
+DIAGRAMA de Conceptos
+
+Una vez fijados los conceptos, se procedió a desarrollar un diagrama de casos de uso ya que, en primera instancia, se pueden desprender interacciones y agentes fácilmente del diagrama de contexto provisto. Sin embargo, al observar los escenarios se notó que los agentes presentes en el sistema realizaban distintas actividades no contempladas o de manera distinta a lo expuesto en el diagrama de contexto. Luego de una discusión extensa sobre que tener en cuenta en cada diagrama, el grupo decidió en dar más relevancia a los escenarios presentados ya que resultaban más coherentes a la idea general del sistema.
+
+A continuación se presenta el diagrama de casos de uso realizado junto con las descripciones asociadas:
+
+\begin{center}
+ \includegraphics[width=0.7\textwidth]{DiagramaConceptual.png}
+
+Luego de tener en claro el rol de los diferentes actores en el sistema, se empezó a analizar que casos de uso resultaban interesantes describir más en detalle. En primer lugar, se optó por observar el caso de uso 'Ingresando pedido' ya que resulta ser una de las tareas principales del sistema. Luego de una breve discusión, se decidió por realizar un diagrama de actividad ya que es el que mejor describe lo que sucede globalmente en los casos donde interviene dicha interacción con el sistema. Al comenzar con dicho diagrama, se notó que había dos escenarios ligeramente distintos al momento de ingresar un nuevo pedido. Por un lado, el cliente podría interactuar directamente con el encargado en caso de que se trate de una persona que va a realizar un pedido para llevar o bien será el mozo quien le comunique los pedidos al encargado si se trata de un simple comensal sentado en una mesa (Ver 'Cliente Mostrador' y 'Comensal' en el Diagrama Conceptual). Por este motivo, se realizaron los siguientes dos diagramas de actividad para mostrar ambas situaciones:
+
+DIAGRAMA de actividad 'Pedido Local para llevar'
+
+DIAGRAMA de actividad 'Pedido Local de comensal'
+
+Como se puede observar, las actividades también hacen referencia al caso de uso 'Derivando pedido a otro local' y a 'Informando entrega de pedido'. La razón de esto es que ambas actividades se encuentran intimamente relacionadas con lo que sucede al ingresar un pedido. Sin embargo, se vió que resultaba interesante presentar también un diagrama de actividad que describiera lo que sucede al recibir una derivación de parte de otro local ya que los diagramas anteriores no explicitaban este hecho.
+
+DIAGRAMA de actividad 'Pedido Externo'
+
+En los diagramas presentados se puede notar referencias a una Máquina de Estado llamada 'Buscar local derivar'. Este diagrama tiene como objetivo mostrar el comportamiento en detalle de la búsqueda de los locales en donde se pueda derivar un pedido no realizable localmente. Al tratarse de una operación sincronizada realizada exclusivamente por las máquinas de los locales, pareció oportuno utilizar este tipo de esquema como se muestra a continuación:
+
+DIAGRAMA de FSM 'Buscar local derivar'
+
+Continuando con el diagrama de casos de uso, los siguientes casos analizados fueron los relativos al Jefe de Chef: 'Incorporando nueva variedad de pizza' y 'Cambiando datos variedad de pizza'. Al igual que antes, para profundizar lo vinculado a estos casos se decidió hacer un diagrama de actividad que muestre que sucede al querer incorporar una nueva variedad de pizza. No se creyó necesario mostrar el caso en el que se cambian los datos porque resulta muy similar caso a continuación elaborado:
+
+DIAGRAMA de actividad 'Pizza nueva'
+
+Esta actividad tiene la particularidad de involucrar a la máquina de todos los locales del sistema por lo cual, tal como se ve en la figura, se procedió a confeccionar una Máquina de Estado. Como el caso anterior, de esta manera se puede reflejar como funciona operacionalmente el proceso de comunicacion y sincronizacion al momento de querer informar al resto de los locales de los cambios efectuados.
+
+DIAGRAMA de FSM Actualizar menu'
+
+Retornando nuevamente al diagrama principal de casos de uso, por último interesó incluir un diagrama que muestre que ocurre al tener que realizar una reposición de stock, de manera de mostrar interacciones no observables en el caso de uso en cuestión. A continuación, se muestra este diagrama:
+
+DIAGRAMA de actividad 'Reponer stock'
 
 \section*{Conclusiones Generales}
 
