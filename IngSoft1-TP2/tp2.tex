@@ -64,6 +64,302 @@ A continuaci\'on se presenta el diagrama de casos de uso realizado junto con las
  \includegraphics[width=0.7\textwidth]{Diagramas/CasosDeUso.png}
 \end{center}
 
+\textbf{Detalle Casos de uso}
+
+\begin{center}
+	\begin{tabular}{ | p{6.5cm} | p{6.5cm} | }
+		\hline
+			\multicolumn{2}{|l|}{\textbf{Caso de Uso:} Ingresando pedido} \\
+		\hline
+			\multicolumn{2}{|l|}{\textbf{Actores:} Encargado} \\
+		\hline
+			\multicolumn{2}{|l|}{\textbf{Pre:} True} \\
+		\hline
+			\multicolumn{2}{|l|}{\textbf{Post:} Si el pedido es realizable, el pedido es ingresado} \\
+		\hline
+			\textbf{Caso Normal} & \textbf{Caso Alternativo}	\\
+		\hline
+		1. El encargado ingresa al sistema cada pizza que el cliente ordena. &	\\
+		\hline
+		2. El sistema le informa al encargado si el pedido se puede realizar. &	\\
+		\hline
+		2.1. En caso afirmativo, se reservan los ingredientes necesarios para preparar el pedido, luego ir al fin de caso de uso. &	\\
+		\hline
+		2.2. Si no se puede realizar, el sistema busca si se puede realizar en otro local. &	\\
+		\hline
+		3.1 Si se puede realizar en otro local, EXTIENDE CASO DE USO "`Derivando pedido a otro local"' &	\\
+		\hline
+		3.2 Si no se puede, se le informa de esto al encargado y el mismo le comunica al cliente que no puede realizar la compra. &	\\
+		\hline
+		4. Fin de caso de uso. &	\\
+		\hline
+	\end{tabular}
+\end{center}
+
+\begin{center}
+	\begin{tabular}{ | p{6.5cm} | p{6.5cm} | }
+		\hline
+			\multicolumn{2}{|l|}{\textbf{Caso de Uso:} Cancelando pedido} \\
+		\hline
+			\multicolumn{2}{|l|}{\textbf{Actores:} Encargado} \\
+		\hline
+			\multicolumn{2}{|l|}{\textbf{Pre:} El pedido debe estar pendiente} \\
+		\hline
+			\multicolumn{2}{|l|}{\textbf{Post:} El pedido es cancelado} \\
+		\hline
+		\textbf{Caso Normal} & \textbf{Caso Alternativo}	\\
+		\hline
+		1. El encargado ingresa al sistema el pedido que desea cancelar. &	\\
+		\hline
+		2. El sistema le quita la reserva a los ingredientes que se hab\'ian reservado para ese pedido. &	\\
+		\hline
+		3. El sistema cancela el pedido y lo quita de la cola de pedidos pendientes. &	\\
+		\hline
+		4. Fin de caso de uso. &	\\
+		\hline
+	\end{tabular}
+\end{center}
+
+\begin{center}
+	\begin{tabular}{ | p{6.5cm} | p{6.5cm} | }
+		\hline
+			\multicolumn{2}{|l|}{\textbf{Caso de Uso:} Derivando pedido a otro local} \\
+		\hline
+			\multicolumn{2}{|l|}{\textbf{Actores:} Encargado} \\
+		\hline
+			\multicolumn{2}{|l|}{\textbf{Pre:} Se ingres\'o un pedido que puede ser derivado.} \\
+		\hline
+			\multicolumn{2}{|l|}{\textbf{Post:} Pedido derivado.} \\
+		\hline
+		\textbf{Caso Normal} & \textbf{Caso Alternativo}	\\
+		\hline
+		1. El sistema le informa al encargado cuales son los locales que tienen stock para tomar el pedido. [Ver FSM B\'usqueda locales para derivar] &	\\
+		\hline
+		2.1. Si el cliente está conforme con alguna de las opciones, el encargado selecciona dicha opci\'on. &	\\
+		\hline
+		2.2. En caso contrario el pedido no se deriva. &	\\
+		\hline
+		3. Si se acept\'o la derivaci\'on, se reservan los ingredientes necesarios para preparar el pedido. &	\\
+		\hline
+		4. Fin de caso de uso. &	\\
+		\hline
+	\end{tabular}
+\end{center}
+
+\begin{center}
+	\begin{tabular}{ | p{6.5cm} | p{6.5cm} | }
+		\hline
+			\multicolumn{2}{|l|}{\textbf{Caso de Uso:} Informando entrega de pedido} \\
+		\hline
+			\multicolumn{2}{|l|}{\textbf{Actores:} Encargado} \\
+		\hline
+			\multicolumn{2}{|l|}{\textbf{Pre:} Hay un pedido listo para entregar} \\
+		\hline
+			\multicolumn{2}{|l|}{\textbf{Post:} Informe de entrega realizado} \\
+		\hline
+		\textbf{Caso Normal} & \textbf{Caso Alternativo}	\\
+		\hline
+		1. El encargado le indica al sistema que un pedido pendiente de entrega ha sido entregado al cliente. &	\\
+		\hline
+		2. Fin de caso de uso. &	\\
+		\hline
+	\end{tabular}
+\end{center}
+
+\begin{center}
+	\begin{tabular}{ | p{6.5cm} | p{6.5cm} | }
+		\hline
+			\multicolumn{2}{|l|}{\textbf{Caso de Uso:} Imprimiendo orden de compra} \\
+		\hline
+			\multicolumn{2}{|l|}{\textbf{Actores:} Repositor, Impresora} \\
+		\hline
+			\multicolumn{2}{|l|}{\textbf{Pre:} True} \\
+		\hline
+			\multicolumn{2}{|l|}{\textbf{Post:} Orden de compra impresa} \\
+		\hline
+		\textbf{Caso Normal} & \textbf{Caso Alternativo}	\\
+		\hline
+		1. Se realiza orden de compra al sistema por falta de stock. &	\\
+		\hline
+		2. El sistema le env\'ia a la impresora la \'orden a imprimir. &	\\
+		\hline
+		3. Una vez impresa la \'orden, el repositor la retira de la impresora. & 3. La impresora no dispone de los insumos necesarios para realizar la impresi\'on.	\\
+		\hline
+		4. Fin de caso de uso. & 4. Fin de caso de uso.	\\
+		\hline
+	\end{tabular}
+\end{center}
+
+\begin{center}
+	\begin{tabular}{ | p{6.5cm} | p{6.5cm} | }
+		\hline
+			\multicolumn{2}{|l|}{\textbf{Caso de Uso:} Cargando Stock} \\
+		\hline
+			\multicolumn{2}{|l|}{\textbf{Actores:} Repositor} \\
+		\hline
+			\multicolumn{2}{|l|}{\textbf{Pre:} True} \\
+		\hline
+			\multicolumn{2}{|l|}{\textbf{Post:} Stock cargado.} \\
+		\hline
+		\textbf{Caso Normal} & \textbf{Caso Alternativo}	\\
+		\hline
+		1. El repositor va ingresando al sistema cada ingrediente que fue repuesto con su correspondiente cantidad. &	\\
+		\hline
+		2. Se repite el paso 1 hasta que el respositor haya terminado de cargar todos los ingrediente repuestos. &	\\
+		\hline
+		3. Fin de caso de uso. &	\\
+		\hline
+	\end{tabular}
+\end{center}
+
+\begin{center}
+	\begin{tabular}{ | p{6.5cm} | p{6.5cm} | }
+		\hline
+			\multicolumn{2}{|l|}{\textbf{Caso de Uso:} Actualizando l\'imite tolerable de stock.} \\
+		\hline
+			\multicolumn{2}{|l|}{\textbf{Actores:} Repositor} \\
+		\hline
+			\multicolumn{2}{|l|}{\textbf{Pre:} True} \\
+		\hline
+			\multicolumn{2}{|l|}{\textbf{Post:} Stock cargado.} \\
+		\hline
+		\textbf{Caso Normal} & \textbf{Caso Alternativo}	\\
+		\hline
+		1. El repositor selecciona el ingrediente del cual quiere actualizar el limite tolerable. &	\\
+		\hline
+		2. Se ingresa un nuevo valor y se aplican los cambios. & 2. El valor ingresado es inválido y el sistema le informa al repositor que ingrese otro valor.	\\
+		\hline
+		3. Fin de caso de uso. & 3. Fin de caso de uso.	\\
+		\hline
+	\end{tabular}
+\end{center}
+
+\begin{center}
+	\begin{tabular}{ | p{6.5cm} | p{6.5cm} | }
+		\hline
+			\multicolumn{2}{|l|}{\textbf{Caso de Uso:} Informando finalizaci\'on preparaci\'on de pedido.} \\
+		\hline
+			\multicolumn{2}{|l|}{\textbf{Actores:} Chef} \\
+		\hline
+			\multicolumn{2}{|l|}{\textbf{Pre:} True} \\
+		\hline
+			\multicolumn{2}{|l|}{\textbf{Post:} El pedido figura como preparado.} \\
+		\hline
+		\textbf{Caso Normal} & \textbf{Caso Alternativo}	\\
+		\hline
+		1. El chef selecciona el pedido que termin\'o y lo marca como terminado en el sistema. &	\\
+		\hline
+		2. El sistema actualiza el estado del pedido, pasando dicho pedido a pendiente de entrega. &	\\
+		\hline
+		3. Se descuenta el stock utilizado en el pedido. &	\\
+		\hline
+		4. Fin de caso de uso. &	\\
+		\hline
+	\end{tabular}
+\end{center}
+
+\begin{center}
+	\begin{tabular}{ | p{6.5cm} | p{6.5cm} | }
+		\hline
+			\multicolumn{2}{|l|}{\textbf{Caso de Uso:} Incorporando nueva variedad de pizza} \\
+		\hline
+			\multicolumn{2}{|l|}{\textbf{Actores:} Jefe de chefs} \\
+		\hline
+			\multicolumn{2}{|l|}{\textbf{Pre:} True} \\
+		\hline
+			\multicolumn{2}{|l|}{\textbf{Post:} Nueva variedad de pizza cargada} \\
+		\hline
+		\textbf{Caso Normal} & \textbf{Caso Alternativo}	\\
+		\hline
+		1. El jefe de chefs ingresa el nombre de la nueva pizza a ingresar. & 1.1 La pizza ya existe. Ir a fin de caso de uso.	\\
+		\hline
+		2. El jefe de chefs ingresa un ingrediente y su cantidad. &	\\
+		\hline
+		3. Se repite el paso 2 hasta que no queden ingredientes por agregar. &	\\
+		\hline
+		4. Se ingresa el precio de pizza. &	\\
+		\hline
+		5. El sistema registra la nueva variedad de pizza, actualizando el men\'u en todos los locales [Ver FSM ActualizacionMenu]. &	\\
+		\hline
+		6. Fin de caso de uso. & 6. Fin de caso de uso.	\\
+		\hline
+	\end{tabular}
+\end{center}
+
+\begin{center}
+	\begin{tabular}{ | p{6.5cm} | p{6.5cm} | }
+		\hline
+			\multicolumn{2}{|l|}{\textbf{Caso de Uso:} Cambiando datos variedad de pizza} \\
+		\hline
+			\multicolumn{2}{|l|}{\textbf{Actores:} Jefe de chefs} \\
+		\hline
+			\multicolumn{2}{|l|}{\textbf{Pre:} True} \\
+		\hline
+			\multicolumn{2}{|l|}{\textbf{Post:} Datos de la variedad de pizza modificados.} \\
+		\hline
+		\textbf{Caso Normal} & \textbf{Caso Alternativo}	\\
+		\hline
+		1. El jefe de chefs selecciona en el sistema la variedad de pizza que desea modificar. & 	\\
+		\hline
+		2. El jefe de chefs modifica los datos de cualquiera de los ingredientes y su cantidad.  &	\\
+		\hline
+		3. Se repite el paso 2 hasta que el jefe de chefs termina de modificar todos los ingredientes que desee cambiar. &	\\
+		\hline
+		4. El sistema registra los cambios en la variedad de pizza y modifica el men\'u en todos los locales [Ver FSM ActualizacionMenu].  &	\\
+		\hline
+		5. Fin de caso de uso. &	\\
+		\hline
+	\end{tabular}
+\end{center}
+
+\begin{center}
+	\begin{tabular}{ | p{6.5cm} | p{6.5cm} | }
+		\hline
+			\multicolumn{2}{|l|}{\textbf{Caso de Uso:} Informando la hora} \\
+		\hline
+			\multicolumn{2}{|l|}{\textbf{Actores:} Servidor de hora.} \\
+		\hline
+			\multicolumn{2}{|l|}{\textbf{Pre:} True} \\
+		\hline
+			\multicolumn{2}{|l|}{\textbf{Post:} El sistema conoce la hora del servidor de hora.} \\
+		\hline
+		\textbf{Caso Normal} & \textbf{Caso Alternativo}	\\
+		\hline
+		1. El sistema solicita la hora al servidor de hora. & 1. El servidor de hora no se encuentra disponible. Ir a fin de caso de uso.	\\
+		\hline
+		2. El sistema recibe la respuesta del servidor de hora. &	\\
+		\hline
+		3. Fin de caso de uso. & 3. Fin de caso de uso.	\\
+		\hline
+	\end{tabular}
+\end{center}
+
+\begin{center}
+	\begin{tabular}{ | p{6.5cm} | p{6.5cm} | }
+		\hline
+			\multicolumn{2}{|l|}{\textbf{Caso de Uso:} Dando de alta nuevo local} \\
+		\hline
+			\multicolumn{2}{|l|}{\textbf{Actores:} Operador} \\
+		\hline
+			\multicolumn{2}{|l|}{\textbf{Pre:} True} \\
+		\hline
+			\multicolumn{2}{|l|}{\textbf{Post:} Local registrado en el sistema} \\
+		\hline
+		\textbf{Caso Normal} & \textbf{Caso Alternativo}	\\
+		\hline
+		1. El operador registra los datos del local en el sistema. & 1.1. El local ya se encuentra registrado en el sistema. Ir a fin de caso de uso.	\\
+		\hline
+		2. El sistema crea un men\'u vac\'io para el local registrado. &	\\
+		\hline
+		3. Si ya existe un local registrado, el sistema obtiene el men\'u de cualquiera de los locales registrados y se lo asigna al nuevo local &	\\
+		\hline
+		4. El sistema notifica a los demás locales el nuevo local registrado. &	\\
+		\hline
+		5. Fin de caso de uso &	5. Fin de caso de uso \\
+		\hline
+	\end{tabular}
+\end{center}
+
 Luego de tener en claro el rol de los diferentes actores en el sistema, se empez\'o a analizar que casos de uso resultaban interesantes describir m\'as en detalle. En primer lugar, se opt\'o por observar el caso de uso \textit{Ingresando pedido} ya que resulta ser una de las tareas principales del sistema. Luego de una breve discusi\'on, se decidi\'o por realizar un diagrama de actividad ya que es el que mejor describe lo que sucede globalmente en los casos donde interviene dicha interacci\'on con el sistema. Al comenzar con dicho diagrama, se not\'o que hab\'ia dos escenarios ligeramente distintos al momento de ingresar un nuevo pedido. Por un lado, el cliente podr\'ia interactuar directamente con el encargado en caso de que se trate de una persona que va a realizar un pedido para llevar o bien ser\'a el mozo quien le comunique los pedidos al encargado si se trata de un simple comensal sentado en una mesa (Ver \textit{Cliente Mostrador} y \textit{Comensal} en el Diagrama Conceptual). Por este motivo, se realizaron los siguientes dos diagramas de actividad para mostrar ambas situaciones:
 
 \begin{center}
@@ -140,6 +436,6 @@ Entre los principales problemas que se presentaron estuvo el hecho de que el mat
 
 Durante la realizaci\'on del diagrama de modelo conceptual, surgieron varias discusiones sobr\'e cu\'ales eran los aspectos a tener en cuenta. Esto desencaden\'o en la necesidad de rehacer el diagrama por completo una vez que estaba casi finalizado. La causa principal del conflicto fue el hecho de que aparecieran mesas y mozos (los cuales no estaban en el trabajo pr\'actico anterior) que no sab\'iamos bien como tratar. Luego de una larga discusi\'on decidimos que en cada local haya solo un mozo para atender todas las mesas (ver presunciones).
 
-Como conclusi\'on final del trabajo pudimos observar que al tener realizados todos los diagramas presentados, tuvimos una visi\'on muy amplia y completa de todas las funcionalidades del sistema, como asi tambi\'en de la interacci\'on entre todos los involucrados en el mismo. Además pudimos conocer con cierta profundidad el detalle de cada actividad y responsabilidad de cada individuo que forma parte del sistema. Sin conocer todos estos datos, no estar\'iamos en condiciones de comenzar con la etapa de diseño del sorftware ya que cualquier interpretaci\'on incorrecta de alguna funcionalidad representar\'ia un costo muy alto en un futuro. Es por esto que consideramos muy importante realizar esta etapa en el desarrollo de software.
+Como conclusi\'on final del trabajo pudimos observar que al tener realizados todos los diagramas presentados, tuvimos una visi\'on muy amplia y completa de todas las funcionalidades del sistema, como asi tambi\'en de la interacci\'on entre todos los involucrados en el mismo. Adem\'as pudimos conocer con cierta profundidad el detalle de cada actividad y responsabilidad de cada individuo que forma parte del sistema. Sin conocer todos estos datos, no estar\'iamos en condiciones de comenzar con la etapa de diseño del sorftware ya que cualquier interpretaci\'on incorrecta de alguna funcionalidad representar\'ia un costo muy alto en un futuro. Es por esto que consideramos muy importante realizar esta etapa en el desarrollo de software.
 
 \end{document}
