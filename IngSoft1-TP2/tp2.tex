@@ -53,8 +53,65 @@ Debido a la presencia de algunas inconsistencias encontradas entre los distintos
 En primera instancia, se opt\'o por realizar un diagrama conceptual a modo de conocer los distintos conceptos involucrados en el sistema. Adem\'as, al comenzar con elaboraci\'on del mismo se pudo reconocer atributos de los objetos junto con las formas de relacionarse entre s\'i con el objetivo de familiarizarse con las partes que lo conforman. A continuaci\'on se muestra lo realizado:
 
 \begin{center}
- \includegraphics[width=0.9\textwidth]{Diagramas/DiagramaConceptual.png}
+ \includegraphics[width=1\textwidth]{Diagramas/DiagramaConceptual.png}
 \end{center}
+
+\subsection*{Ocl}
+
+\textbf{Context Local}
+
+\begin{itemize}
+	\item Def: Todos los locales tienen un menú con mismas pizzas.
+	
+				$inv: Local.AllInstances()\rightarrow forAll(l | l.menu.pizzas == self.menu.pizzas);$
+				
+	\item	Def: Hay un repositor, un mozo, un encargado y un jefe de chef por local.
+	
+	$inv: self.empleados\rightarrow select(e | e.isTypeOf(Repositor de Stock))\rightarrow size() == 1 $ and $ \\
+	self.empleados\rightarrow select(e | e.isTypeOf(Mozo))\rightarrow size() == 1 $ and $	\\
+	self.empleados\rightarrow select(e | e.isTypeOf(Encargado))\rightarrow size() == 1 $ and $	\\
+	self.empleados\rightarrow select(e | e.isTypeOf(Jefe de Chef))\rightarrow size() == 1;$	\\
+	
+	\item	Def: Todos los pedidos de un local son preparados por chefs del mismo local.
+	
+	$inv: self.pedidos\rightarrow collect(preparadoPor)\rightarrow forAll(c | self.empleados \rightarrow exists(e | e.isTypeOf(chef) $ and $e == c));$
+	
+	\item	Def: Todos los pedidos de un local que sean realizados por una mesa son realizados por mesas del local.
+	
+	$inv: self.pedidos\rightarrow collect(realizadoPorMesa)\rightarrow forAll(m | self.mesas\rightarrow exists(m' | m' = m));$
+	
+\end{itemize}
+
+\textbf{Context Stock}
+
+\begin{itemize}
+	\item Def: Cada ingrediente posee un stock total mayor al reservado para realizar pizzas.
+	
+	$inv: self.total >= self.reservados;$
+\end{itemize}
+
+\textbf{Context Pizza}
+
+\begin{itemize}
+	\item Def: Si dos pizzas son iguales tienen la misma cantidad de cada uno de sus ingredientes.
+	
+	$inv: Pizzas.AllInstances()\rightarrow forAll(p1 p2 | p1 == p2 $ implies $ p1.\#ingredientes.cantidad == p2.\#ingredientes.cantidad);$
+\end{itemize}
+
+\textbf{Context Pedido}
+
+\begin{itemize}
+	\item Def: Los pedidos son hechos por un cliente en el mostrador o por una mesa.
+	
+	$inv: self.realizadoPorCliente\rightarrow size() + self.realizadoPorMesa\rightarrow size() == 1;$
+	
+	\item Def: Si el pedido no esta pendiente hay al menos un chef involucrado en su preparación.
+	
+	$inv: self.estadoPedido \neq pendiente$ implies $self.preparadoPor\rightarrow size() > 0;$
+\end{itemize}
+
+
+\bigskip
 
 Una vez fijados los conceptos, se procedi\'o a desarrollar un diagrama de casos de uso ya que, en primera instancia, se pueden desprender interacciones y agentes f\'acilmente del diagrama de contexto provisto. Sin embargo, al observar los escenarios se not\'o que los agentes presentes en el sistema realizaban distintas actividades no contempladas o de manera distinta a lo expuesto en el diagrama de contexto. Luego de una discusi\'on extensa sobre que tener en cuenta en cada diagrama, el grupo decidi\'o en dar m\'as relevancia a los escenarios presentados ya que resultaban m\'as coherentes a la idea general del sistema.
 
