@@ -75,13 +75,12 @@ en sistema</y:NodeLabel>
     <node id="n6">
       <data key="d3">
         <y:GenericNode configuration="com.yworks.flowchart.start1">
-          <y:Geometry height="94.36712749615981" width="136.0" x="565.2685250233015" y="425.5960061443933"/>
+          <y:Geometry height="51.0" width="136.0" x="565.2685250233015" y="458.33498943932415"/>
           <y:Fill color="#FFFFFF" color2="#FFFFFF" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="62.8046875" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="123.3671875" x="6.31640625" y="15.781219998079905">Buscar local más
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="100.71484375" x="17.642578125" y="8.798828125">Buscar local más
 cercano con stock
-[Ver FSM Buscar local
-derivar]</y:NodeLabel>
+</y:NodeLabel>
         </y:GenericNode>
       </data>
     </node>
@@ -233,13 +232,11 @@ stock</y:NodeLabel>
     <node id="n21">
       <data key="d3">
         <y:GenericNode configuration="com.yworks.flowchart.start1">
-          <y:Geometry height="69.63230769230779" width="128.9071716193647" x="408.53032838063524" y="895.6619303635441"/>
+          <y:Geometry height="40.0" width="128.9071716193647" x="413.7731855234925" y="909.2933589349727"/>
           <y:Fill color="#FFFFFF" color2="#FFFFFF" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="62.8046875" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="108.736328125" x="10.085421747182352" y="3.4138100961538385">Entregar pedido
-[Ver caso de uso
-Informando entrega
-de pedido]</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="89.39453125" x="19.75632018468235" y="10.6494140625">Entregar pedido
+</y:NodeLabel>
         </y:GenericNode>
       </data>
     </node>

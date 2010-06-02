@@ -54,12 +54,12 @@
       <data key="d2"><![CDATA[UMLUseCase]]></data>
       <data key="d3">
         <y:ShapeNode>
-          <y:Geometry height="63.0" width="119.0" x="628.0" y="163.0"/>
+          <y:Geometry height="73.81538461538457" width="173.0" x="634.0938461538462" y="151.0"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="51.77880859375" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="63.25537109375" x="27.872314453125" y="5.610595703125">Derivando
-pedido a
-otro local</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="51.77880859375" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="128.29345703125" x="22.353271484375" y="11.018288010817287">Derivando pedido 
+a otro local 
+[Ver DA PedidoLocal]</y:NodeLabel>
           <y:Shape type="ellipse"/>
         </y:ShapeNode>
       </data>
@@ -322,7 +322,7 @@ pedido</y:NodeLabel>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
           <y:LineStyle color="#000000" type="dashed" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="tail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="68.060546875" x="-73.74422419621396" y="9.689787557004621">&lt;&lt;extend&gt;&gt;</y:EdgeLabel>
+          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="tail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="68.060546875" x="-78.75864145132209" y="11.230044975969946">&lt;&lt;extend&gt;&gt;</y:EdgeLabel>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
       </data>
@@ -434,11 +434,11 @@ pedido</y:NodeLabel>
       <data key="d6">
         <y:ArcEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="483.15203857421875" y="147.51904296875"/>
+            <y:Point x="498.5475158691406" y="138.44253540039062"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="none"/>
-          <y:Arc height="69.14965057373047" ratio="0.6986629366874695" type="fixedRatio"/>
+          <y:Arc height="75.02326965332031" ratio="0.6986629366874695" type="fixedRatio"/>
         </y:ArcEdge>
       </data>
     </edge>
