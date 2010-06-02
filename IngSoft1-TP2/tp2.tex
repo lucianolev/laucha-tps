@@ -103,7 +103,7 @@ En primera instancia, se opt\'o por realizar un diagrama conceptual a modo de co
 	
 	$inv: self.realizadoPorCliente\rightarrow size() + self.realizadoPorMesa\rightarrow size() == 1;$
 	
-	\item Def: Si el pedido no esta pendiente hay al menos un chef involucrado en su preparación.
+	\item Def: Si el pedido no esta pendiente hay al menos un chef involucrado en su preparaciï¿½n.
 	
 	$inv: self.estadoPedido \neq pendiente$ implies $self.preparadoPor\rightarrow size() > 0;$
 \end{itemize}
@@ -190,7 +190,7 @@ A continuaci\'on se presenta el diagrama de casos de uso realizado junto con las
 		\hline
 		1. El sistema le informa al encargado cuales son los locales que tienen stock para tomar el pedido. [Ver FSM B\'usqueda locales para derivar] &	\\
 		\hline
-		2.1. Si el cliente está conforme con alguna de las opciones, el encargado selecciona dicha opci\'on. &	\\
+		2.1. Si el cliente estï¿½ conforme con alguna de las opciones, el encargado selecciona dicha opci\'on. &	\\
 		\hline
 		2.2. En caso contrario el pedido no se deriva. &	\\
 		\hline
@@ -282,7 +282,7 @@ A continuaci\'on se presenta el diagrama de casos de uso realizado junto con las
 		\hline
 		1. El repositor selecciona el ingrediente del cual quiere actualizar el limite tolerable. &	\\
 		\hline
-		2. Se ingresa un nuevo valor y se aplican los cambios. & 2. El valor ingresado es inválido y el sistema le informa al repositor que ingrese otro valor.	\\
+		2. Se ingresa un nuevo valor y se aplican los cambios. & 2. El valor ingresado es invï¿½lido y el sistema le informa al repositor que ingrese otro valor.	\\
 		\hline
 		3. Fin de caso de uso. & 3. Fin de caso de uso.	\\
 		\hline
@@ -408,7 +408,7 @@ A continuaci\'on se presenta el diagrama de casos de uso realizado junto con las
 		\hline
 		3. Si ya existe un local registrado, el sistema obtiene el men\'u de cualquiera de los locales registrados y se lo asigna al nuevo local &	\\
 		\hline
-		4. El sistema notifica a los demás locales el nuevo local registrado. &	\\
+		4. El sistema notifica a los demï¿½s locales el nuevo local registrado. &	\\
 		\hline
 		5. Fin de caso de uso &	5. Fin de caso de uso \\
 		\hline
@@ -425,7 +425,7 @@ Luego de tener en claro el rol de los diferentes actores en el sistema, se empez
  \includegraphics[width=0.7\textwidth]{Diagramas/DiagramaActividadPedidoLocal.png}
 \end{center}
 
-Como se puede observar, las actividades tambi\'en hacen referencia al caso de uso \textit{Derivando pedido a otro local} y a \textit{Informando entrega de pedido}. La raz\'on de esto es que ambas actividades se encuentran intimamente relacionadas con lo que sucede al ingresar un pedido. Sin embargo, se vi\'o que resultaba interesante presentar tambi\'en un diagrama de actividad que describiera lo que sucede al recibir una derivaci\'on de parte de otro local ya que los diagramas anteriores no explicitaban este hecho.
+Como se puede observar, el diagrama contiene a las actividades referenciadas en los casos de uso \textit{Derivando pedido a otro local} y \textit{Informando entrega de pedido}. La raz\'on de esto es que ambas actividades se encuentran intimamente relacionadas con lo que sucede al ingresar un pedido. Sin embargo, se vi\'o que resultaba interesante presentar tambi\'en un diagrama de actividad que describiera lo que sucede al recibir una derivaci\'on de parte de otro local ya que los diagramas anteriores no explicitaban este hecho.
 
 \begin{center}
  \includegraphics[width=0.7\textwidth]{Diagramas/DiagramaActividadPedidoExterno.png}
