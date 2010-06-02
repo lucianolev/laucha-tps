@@ -46,8 +46,6 @@ Debido a la presencia de algunas inconsistencias encontradas entre los distintos
 		\item Cuando un local tiene el turno para realizar una operaci\'on que requiera comunicaci\'on con otros locales, el turno no se puede terminar en el medio de la operaci\'on.
 \end{itemize}
 
-\section*{Vistas}
-
 \section*{Discusi\'on}
 
 En primera instancia, se opt\'o por realizar un diagrama conceptual a modo de conocer los distintos conceptos involucrados en el sistema. Adem\'as, al comenzar con elaboraci\'on del mismo se pudo reconocer atributos de los objetos junto con las formas de relacionarse entre s\'i con el objetivo de familiarizarse con las partes que lo conforman. A continuaci\'on se muestra lo realizado:
@@ -61,7 +59,7 @@ En primera instancia, se opt\'o por realizar un diagrama conceptual a modo de co
 \textbf{Context Local}
 
 \begin{itemize}
-	\item Def: Todos los locales tienen un menú con mismas pizzas.
+	\item Def: Todos los locales tienen un men\'u con mismas pizzas.
 	
 				$inv: Local.AllInstances()\rightarrow forAll(l | l.menu.pizzas == self.menu.pizzas);$
 				
@@ -435,19 +433,14 @@ Como se puede observar, las actividades tambi\'en hacen referencia al caso de us
 
 En los diagramas presentados se puede notar referencias a una M\'aquina de Estado llamada \textit{Buscar local derivar}. Este diagrama tiene como objetivo mostrar el comportamiento en detalle de la b\'usqueda de los locales en donde se pueda derivar un pedido no realizable localmente. Al tratarse de una operaci\'on sincronizada realizada exclusivamente por las m\'aquinas de los locales, pareci\'o oportuno utilizar este tipo de esquema como se muestra a continuaci\'on:
 
-\begin{figure}
-\centering
+\begin{center}
+ \textit{FSM: M\'aquina Derivadora}
  \includegraphics[width=0.7\textwidth]{Diagramas/FSMPrepararPedido.png}
- \caption{M\'aquina derivadora}
- \label{fig:FSMPrepararPedidoDerivador}
-\end{figure}
-
-\begin{figure}
-\centering
+\end{center}
+\begin{center}
+ \textit{FSM: M\'aquina$_{i}$}
  \includegraphics[width=0.7\textwidth]{Diagramas/FSMPrepararPedidoi.png}
- \caption{M\'aquina$_{i}$}
- \label{fig:FSMPrepararPedidoMaquinai}
-\end{figure}
+\end{center}
 
 Continuando con el diagrama de casos de uso, los siguientes casos analizados fueron los relativos al Jefe de Chef: \textit{Incorporando nueva variedad de pizza} y \textit{Cambiando datos variedad de pizza}. Al igual que antes, para profundizar lo vinculado a estos casos se decidi\'o hacer un diagrama de actividad que muestre que sucede al querer incorporar una nueva variedad de pizza. No se crey\'o necesario mostrar el caso en el que se cambian los datos porque resulta muy similar caso a continuaci\'on elaborado:
 
@@ -457,21 +450,14 @@ Continuando con el diagrama de casos de uso, los siguientes casos analizados fue
 
 Esta actividad tiene la particularidad de involucrar a la m\'aquina de todos los locales del sistema por lo cual, tal como se ve en la figura, se procedi\'o a confeccionar una M\'aquina de Estado. Como el caso anterior, de esta manera se puede reflejar como funciona operacionalmente el proceso de comunicacion y sincronizacion al momento de querer informar al resto de los locales de los cambios efectuados.
 
-\begin{figure}
-\centering
+\begin{center}
+ \textit{FSM: M\'aquina Actualizadora}
  \includegraphics[width=0.7\textwidth]{Diagramas/FSMActualizacionActualizadora.png}
-	\caption{M\'aquina Actualizadora}
-	\label{fig:FSMActualizacionMaquinai}
-\end{figure}
-
-
-\begin{figure}
-	\centering
-		\includegraphics[width=0.7\textwidth]{Diagramas/FSMActualizacionMaquinai.png}
-	\caption{M\'aquina$_{i}$}
-	\label{fig:FSMActualizacionMaquinai}
-\end{figure}
-
+\end{center}
+\begin{center}
+ \textit{FSM: M\'aquina$_{i}$}
+ \includegraphics[width=0.7\textwidth]{Diagramas/FSMActualizacionMaquinai.png}
+\end{center}
 
 Retornando nuevamente al diagrama principal de casos de uso, por \'ultimo interes\'o incluir un diagrama que muestre que ocurre al tener que realizar una reposici\'on de stock, de manera de mostrar interacciones no observables en el caso de uso en cuesti\'on. A continuaci\'on, se muestra este diagrama:
 
@@ -493,6 +479,6 @@ Entre los principales problemas que se presentaron estuvo el hecho de que el mat
 
 Durante la realizaci\'on del diagrama de modelo conceptual, surgieron varias discusiones sobr\'e cu\'ales eran los aspectos a tener en cuenta. Esto desencaden\'o en la necesidad de rehacer el diagrama por completo una vez que estaba casi finalizado. La causa principal del conflicto fue el hecho de que aparecieran mesas y mozos (los cuales no estaban en el trabajo pr\'actico anterior) que no sab\'iamos bien como tratar. Luego de una larga discusi\'on decidimos que en cada local haya solo un mozo para atender todas las mesas (ver presunciones).
 
-Como conclusi\'on final del trabajo pudimos observar que al tener realizados todos los diagramas presentados, tuvimos una visi\'on muy amplia y completa de todas las funcionalidades del sistema, como asi tambi\'en de la interacci\'on entre todos los involucrados en el mismo. Adem\'as pudimos conocer con cierta profundidad el detalle de cada actividad y responsabilidad de cada individuo que forma parte del sistema. Sin conocer todos estos datos, no estar\'iamos en condiciones de comenzar con la etapa de diseño del sorftware ya que cualquier interpretaci\'on incorrecta de alguna funcionalidad representar\'ia un costo muy alto en un futuro. Es por esto que consideramos muy importante realizar esta etapa en el desarrollo de software.
+Como conclusi\'on final del trabajo pudimos observar que al tener realizados todos los diagramas presentados, tuvimos una visi\'on muy amplia y completa de todas las funcionalidades del sistema, como asi tambi\'en de la interacci\'on entre todos los involucrados en el mismo. Adem\'as pudimos conocer con cierta profundidad el detalle de cada actividad y responsabilidad de cada individuo que forma parte del sistema. Sin conocer todos estos datos, no estar\'iamos en condiciones de comenzar con la etapa de dise\~{n}o del software ya que cualquier interpretaci\'on incorrecta de alguna funcionalidad representar\'ia un costo muy alto en un futuro. Es por esto que consideramos muy importante realizar esta etapa en el desarrollo de software.
 
 \end{document}
