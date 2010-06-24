@@ -43,7 +43,8 @@ Debido a la presencia de algunas inconsistencias encontradas entre los distintos
     \item Los pedidos siempre pasan por el encargado para ingresarse en el sistema.
     \item Cuando un pedido se realiza al mozo en una mesa, el mismo le pasa el pedido al encargado para que el mismo lo ingrese en el sistema.
     \item El operador solo se encarga de dar de alta a un nuevo local, no es un empleado del mismo.
-		\item Cuando un local tiene el turno para realizar una operaci\'on que requiera comunicaci\'on con otros locales, el turno no se puede terminar en el medio de la operaci\'on.
+    \item Cuando un local tiene el turno para realizar una operaci\'on que requiera comunicaci\'on con otros locales, el turno no se puede terminar en el medio de la operaci\'on.
+    \item El jefe de chefs interactúa con el sistema al incorporar una nueva variedad de pizza o al cambiar los datos de alguna de ellas.
 \end{itemize}
 
 \section*{Discusi\'on}
@@ -69,6 +70,10 @@ En primera instancia, se opt\'o por realizar un diagrama conceptual a modo de co
 	self.empleados\rightarrow select(e | e.isTypeOf(Mozo))\rightarrow size() == 1 $ and $	\\
 	self.empleados\rightarrow select(e | e.isTypeOf(Encargado))\rightarrow size() == 1 $ and $	\\
 	self.empleados\rightarrow select(e | e.isTypeOf(Jefe de Chef))\rightarrow size() == 1;$	\\
+
+	\item	Def: No puede haber un mismo mozo en dos locales distintos.
+
+	local.AllInstances\rightarrowforAll (l1, l2 |  l1  == l2 implies l1.empleados.mozo != l2.empleados.mozo)$	\\
 	
 	\item	Def: Todos los pedidos de un local son preparados por chefs del mismo local.
 	
@@ -103,7 +108,7 @@ En primera instancia, se opt\'o por realizar un diagrama conceptual a modo de co
 	
 	$inv: self.realizadoPorCliente\rightarrow size() + self.realizadoPorMesa\rightarrow size() == 1;$
 	
-	\item Def: Si el pedido no esta pendiente hay al menos un chef involucrado en su preparaci�n.
+	\item Def: Si el pedido no esta pendiente hay al menos un chef involucrado en su preparaci\'on.
 	
 	$inv: self.estadoPedido \neq pendiente$ implies $self.preparadoPor\rightarrow size() > 0;$
 \end{itemize}
@@ -111,7 +116,7 @@ En primera instancia, se opt\'o por realizar un diagrama conceptual a modo de co
 
 \bigskip
 
-Una vez fijados los conceptos, se procedi\'o a desarrollar un diagrama de casos de uso ya que, en primera instancia, se pueden desprender interacciones y agentes f\'acilmente del diagrama de contexto provisto. Sin embargo, al observar los escenarios se not\'o que los agentes presentes en el sistema realizaban distintas actividades no contempladas o de manera distinta a lo expuesto en el diagrama de contexto. Luego de una discusi\'on extensa sobre que tener en cuenta en cada diagrama, el grupo decidi\'o en dar m\'as relevancia a los escenarios presentados ya que resultaban m\'as coherentes a la idea general del sistema.
+Una vez fijados los conceptos, se procedi\'o a desarrollar un diagrama de casos de uso ya que, en primera instancia, se pueden desprender interacciones y agentes facilmente del diagrama de contexto provisto. Sin embargo, al observar los escenarios se not\'o que los agentes presentes en el sistema realizaban distintas actividades no contempladas o de manera distinta a lo expuesto en el diagrama de contexto. Luego de una discusi\'on extensa sobre que tener en cuenta en cada diagrama, el grupo decidi\'o en dar m\'as relevancia a los escenarios presentados ya que resultaban m\'as coherentes a la idea general del sistema.
 
 A continuaci\'on se presenta el diagrama de casos de uso realizado junto con las descripciones asociadas:
 
@@ -190,9 +195,9 @@ A continuaci\'on se presenta el diagrama de casos de uso realizado junto con las
 		\hline
 		1. El sistema le informa al encargado cuales son los locales que tienen stock para tomar el pedido. [Ver FSM B\'usqueda locales para derivar] &	\\
 		\hline
-		2.1. Si el cliente est� conforme con alguna de las opciones, el encargado selecciona dicha opci\'on. &	\\
+		2.1. Si el cliente est\'a conforme con alguna de las opciones, el encargado selecciona dicha opci\'on. &	\\
 		\hline
-		2.2. En caso contrario el pedido no se deriva. &	\\
+		2.2. En caso contrario el pedido no se deriva. Ir a paso 4. &	\\
 		\hline
 		3. Si se acept\'o la derivaci\'on, se reservan los ingredientes necesarios para preparar el pedido. &	\\
 		\hline
@@ -234,13 +239,11 @@ A continuaci\'on se presenta el diagrama de casos de uso realizado junto con las
 		\hline
 		\textbf{Caso Normal} & \textbf{Caso Alternativo}	\\
 		\hline
-		1. Se realiza orden de compra al sistema por falta de stock. &	\\
+		1. El repositor realiza la orden de compra al sistema por falta de stock. &	\\
 		\hline
-		2. El sistema le env\'ia a la impresora la \'orden a imprimir. &	\\
+		2. El sistema le env\'ia a la impresora la orden a imprimir. & 2. La impresora no dispone de los insumos necesarios para realizar la impresi\'on.	\\
 		\hline
-		3. Una vez impresa la \'orden, el repositor la retira de la impresora. & 3. La impresora no dispone de los insumos necesarios para realizar la impresi\'on.	\\
-		\hline
-		4. Fin de caso de uso. & 4. Fin de caso de uso.	\\
+		3. Fin de caso de uso. & 3. Fin de caso de uso.	\\
 		\hline
 	\end{tabular}
 \end{center}
@@ -282,9 +285,9 @@ A continuaci\'on se presenta el diagrama de casos de uso realizado junto con las
 		\hline
 		1. El repositor selecciona el ingrediente del cual quiere actualizar el limite tolerable. &	\\
 		\hline
-		2. Se ingresa un nuevo valor y se aplican los cambios. & 2. El valor ingresado es inv�lido y el sistema le informa al repositor que ingrese otro valor.	\\
+		2. Se ingresa un nuevo valor y se aplican los cambios. & 2.1. El valor ingresado es inv\'alido y el sistema le informa al repositor que ingrese otro valor. Ir al paso 2.	\\
 		\hline
-		3. Fin de caso de uso. & 3. Fin de caso de uso.	\\
+		3. Fin de caso de uso. & 3.1. Fin de caso de uso.	\\
 		\hline
 	\end{tabular}
 \end{center}
@@ -320,7 +323,7 @@ A continuaci\'on se presenta el diagrama de casos de uso realizado junto con las
 		\hline
 			\multicolumn{2}{|l|}{\textbf{Actores:} Jefe de chefs} \\
 		\hline
-			\multicolumn{2}{|l|}{\textbf{Pre:} True} \\
+			\multicolumn{2}{|l|}{\textbf{Pre:} Es el turno del local} \\
 		\hline
 			\multicolumn{2}{|l|}{\textbf{Post:} Nueva variedad de pizza cargada} \\
 		\hline
@@ -332,7 +335,7 @@ A continuaci\'on se presenta el diagrama de casos de uso realizado junto con las
 		\hline
 		3. Se repite el paso 2 hasta que no queden ingredientes por agregar. &	\\
 		\hline
-		4. Se ingresa el precio de pizza. &	\\
+		4.EL jefe de chef ingresa el precio de pizza. &	\\
 		\hline
 		5. El sistema registra la nueva variedad de pizza, actualizando el men\'u en todos los locales [Ver FSM ActualizacionMenu]. &	\\
 		\hline
@@ -348,7 +351,7 @@ A continuaci\'on se presenta el diagrama de casos de uso realizado junto con las
 		\hline
 			\multicolumn{2}{|l|}{\textbf{Actores:} Jefe de chefs} \\
 		\hline
-			\multicolumn{2}{|l|}{\textbf{Pre:} True} \\
+			\multicolumn{2}{|l|}{\textbf{Pre:} Es el turno del local} \\
 		\hline
 			\multicolumn{2}{|l|}{\textbf{Post:} Datos de la variedad de pizza modificados.} \\
 		\hline
@@ -408,7 +411,7 @@ A continuaci\'on se presenta el diagrama de casos de uso realizado junto con las
 		\hline
 		3. Si ya existe un local registrado, el sistema obtiene el men\'u de cualquiera de los locales registrados y se lo asigna al nuevo local &	\\
 		\hline
-		4. El sistema notifica a los dem�s locales el nuevo local registrado. &	\\
+		4. El sistema notifica a los dem\'as locales el nuevo local registrado. &	\\
 		\hline
 		5. Fin de caso de uso &	5. Fin de caso de uso \\
 		\hline
