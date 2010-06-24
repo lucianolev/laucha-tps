@@ -15,7 +15,7 @@
           <y:Geometry height="29.0" width="146.0" x="625.75" y="18.25"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="34.0" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="131.0" x="7.5" y="-2.5">[Lograr] Atender
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="110.072265625" x="17.9638671875" y="-2.201171875">[Lograr] Atender
  pedidos de clientes</y:NodeLabel>
           <y:Shape type="rectangle"/>
         </y:ShapeNode>
@@ -27,7 +27,7 @@
           <y:Geometry height="40.0" width="151.25" x="145.5" y="118.4375"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="34.0" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="153.0" x="-0.875" y="3.0">[Lograr] Entregar todos
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="127.404296875" x="11.9228515625" y="3.298828125">[Lograr] Entregar todos
 los pedidos realizables</y:NodeLabel>
           <y:Shape type="rectangle"/>
         </y:ShapeNode>
@@ -39,8 +39,7 @@ los pedidos realizables</y:NodeLabel>
           <y:Geometry height="37.5" width="155.0" x="599.25" y="143.4375"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="34.0" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="159.0" x="-2.0" y="1.75">[Lograr] Tomar 
-correctamente el pedido</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="132.0625" x="11.46875" y="9.3994140625">[Lograr] Tomar  pedidos</y:NodeLabel>
           <y:Shape type="rectangle"/>
         </y:ShapeNode>
       </data>
@@ -59,11 +58,11 @@ correctamente el pedido</y:NodeLabel>
     <node id="n4">
       <data key="d3">
         <y:ShapeNode>
-          <y:Geometry height="38.75" width="127.5" x="1251.75" y="170.9375"/>
+          <y:Geometry height="35.0" width="137.15473441108543" x="1320.9006928406468" y="170.9375"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="34.0" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="125.0" x="1.25" y="2.375">[Lograr] Permitir
-cancelar un pedido</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="138.712890625" x="-0.7790781069572859" y="0.798828125">[Lograr] Permitir cancelar
+ un pedido pendiente</y:NodeLabel>
           <y:Shape type="rectangle"/>
         </y:ShapeNode>
       </data>
@@ -74,7 +73,7 @@ cancelar un pedido</y:NodeLabel>
           <y:Geometry height="36.25" width="125.77838559039361" x="-39.5" y="252.1875"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="34.0" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="116.0" x="4.889192795196806" y="1.125">[Lograr] Preparar
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="97.3984375" x="14.189974045196806" y="1.423828125">[Lograr] Preparar
 todos los pedidos</y:NodeLabel>
           <y:Shape type="rectangle"/>
         </y:ShapeNode>
@@ -86,7 +85,7 @@ todos los pedidos</y:NodeLabel>
           <y:Geometry height="38.75" width="213.472981987992" x="131.67521681120746" y="257.5766927951968"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="34.0" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="210.0" x="1.736490993996" y="2.375">[Lograr] Que el próximo pedido
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="176.763671875" x="18.354655056496" y="2.673828125">[Lograr] Que el próximo pedido
 sea el más rápido en prepararse</y:NodeLabel>
           <y:Shape type="rectangle"/>
         </y:ShapeNode>
@@ -109,7 +108,7 @@ sea el más rápido en prepararse</y:NodeLabel>
           <y:Geometry height="38.75" width="167.5" x="368.0" y="261.5625"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="34.0" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="165.0" x="1.25" y="2.375">[Lograr] Conocer si
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="138.103515625" x="14.6982421875" y="2.673828125">[Lograr] Conocer si
 puedo preparar el pedido</y:NodeLabel>
           <y:Shape type="rectangle"/>
         </y:ShapeNode>
@@ -121,7 +120,7 @@ puedo preparar el pedido</y:NodeLabel>
           <y:Geometry height="57.5" width="172.5" x="573.0" y="276.5625"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="49.0" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="170.0" x="1.25" y="4.25">Si puedo realizar el pedido
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="48.103515625" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="146.095703125" x="13.2021484375" y="4.6982421875">Si puedo realizar el pedido
 =&gt; [Lograr] Cargar el 
 pedido en el sistema</y:NodeLabel>
           <y:Shape type="rectangle"/>
@@ -134,7 +133,7 @@ pedido en el sistema</y:NodeLabel>
           <y:Geometry height="51.25" width="161.25" x="770.5" y="286.5625"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="49.0" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="148.0" x="6.625" y="1.125">[Lograr] Saber el local
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="48.103515625" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="125.40625" x="17.921875" y="1.5732421875">[Lograr] Saber el local
 mas cercano en el que
 puedo derivar</y:NodeLabel>
           <y:Shape type="rectangle"/>
@@ -147,7 +146,7 @@ puedo derivar</y:NodeLabel>
           <y:Geometry height="51.25" width="188.75" x="969.2499999999999" y="270.3125"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="49.0" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="177.0" x="5.875" y="1.125">Si no puedo preparar el
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="48.103515625" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="147.384765625" x="20.6826171875" y="1.5732421875">Si no puedo preparar el
 pedido y puedo derivar
 =&gt; [Lograr] Permitir derivar</y:NodeLabel>
           <y:Shape type="rectangle"/>
@@ -193,7 +192,7 @@ pedido y puedo derivar
           <y:Geometry height="35.0" width="174.35590393595726" x="276.2936624416277" y="369.766102401601"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="34.0" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="172.0" x="1.177951967978629" y="0.5">[Lograr] Ingresar los datos
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="144.07421875" x="15.140842592978629" y="0.798828125">[Lograr] Ingresar los datos
 del pedido a verificar</y:NodeLabel>
           <y:Shape type="rectangle"/>
         </y:ShapeNode>
@@ -205,7 +204,7 @@ del pedido a verificar</y:NodeLabel>
           <y:Geometry height="32.5" width="128.15857238158776" x="460.50000000000006" y="371.5625"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="34.0" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="123.0" x="2.57928619079388" y="-0.75">[Lograr] Verificar si
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="104.69921875" x="11.72967681579388" y="-0.451171875">[Lograr] Verificar si
 puedo preparar</y:NodeLabel>
           <y:Shape type="rectangle"/>
         </y:ShapeNode>
@@ -217,7 +216,7 @@ puedo preparar</y:NodeLabel>
           <y:Geometry height="32.5" width="150.0" x="866.75" y="391.5625"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="34.0" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="143.0" x="3.5" y="-0.75">[Lograr] Conocer si el 
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="122.0546875" x="13.97265625" y="-0.451171875">[Lograr] Conocer si el 
 cliente acepta derivar</y:NodeLabel>
           <y:Shape type="rectangle"/>
         </y:ShapeNode>
@@ -226,10 +225,10 @@ cliente acepta derivar</y:NodeLabel>
     <node id="n18">
       <data key="d3">
         <y:ShapeNode>
-          <y:Geometry height="35.0" width="181.66666666666674" x="1069.25" y="394.0625"/>
+          <y:Geometry height="35.0" width="152.5" x="1069.25" y="394.0625"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="34.0" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="173.0" x="4.333333333333485" y="0.5">Si acepta ser derivado =&gt; 
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="144.0859375" x="4.20703125" y="0.798828125">Si acepta ser derivado =&gt; 
 [Lograr] Derivar el pedido</y:NodeLabel>
           <y:Shape type="rectangle"/>
         </y:ShapeNode>
@@ -238,11 +237,11 @@ cliente acepta derivar</y:NodeLabel>
     <node id="n19">
       <data key="d3">
         <y:ShapeNode>
-          <y:Geometry height="36.25" width="149.48335557038035" x="1255.6684901045144" y="278.12690960640424"/>
+          <y:Geometry height="35.0" width="114.31870669745967" x="1188.0" y="320.53125"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="34.0" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="146.0" x="1.741677785190177" y="1.125">[Lograr] Dar de baja el
-pedido en el sistema</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="113.423828125" x="0.4474392862298373" y="0.798828125">[Lograr] Ingresar el 
+pedido a dar de baja</y:NodeLabel>
           <y:Shape type="rectangle"/>
         </y:ShapeNode>
       </data>
@@ -253,7 +252,7 @@ pedido en el sistema</y:NodeLabel>
           <y:Geometry height="32.53757961783435" width="80.75159235668787" x="-38.06835882833589" y="473.913668631783"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="19.0" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="46.0" x="17.375796178343933" y="6.768789808917177">Pizzero</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="44.013671875" x="18.368960240843933" y="6.918203871417177">Pizzero</y:NodeLabel>
           <y:Shape type="hexagon"/>
         </y:ShapeNode>
       </data>
@@ -261,10 +260,10 @@ pedido en el sistema</y:NodeLabel>
     <node id="n21">
       <data key="d3">
         <y:ShapeNode>
-          <y:Geometry height="32.53757961783435" width="80.75159235668787" x="802.7858940068877" y="484.40657223418464"/>
+          <y:Geometry height="32.53757961783435" width="80.75159235668787" x="597.4513218262855" y="608.8908137179981"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="19.0" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="57.0" x="11.87579617834399" y="6.768789808917177">Maquina</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="39.349609375" x="20.700991490843933" y="6.918203871417177">Cajera</y:NodeLabel>
           <y:Shape type="hexagon"/>
         </y:ShapeNode>
       </data>
@@ -272,10 +271,10 @@ pedido en el sistema</y:NodeLabel>
     <node id="n22">
       <data key="d3">
         <y:ShapeNode>
-          <y:Geometry height="32.53757961783435" width="80.75159235668787" x="409.6608940068876" y="475.34407223418464"/>
+          <y:Geometry height="32.53757961783435" width="80.75159235668787" x="255.19466998841187" y="565.0509140355703"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="19.0" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="44.0" x="18.375796178343933" y="6.768789808917177">Cajera</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="50.03125" x="15.360171178343933" y="6.918203871417177">Maquina</y:NodeLabel>
           <y:Shape type="hexagon"/>
         </y:ShapeNode>
       </data>
@@ -283,37 +282,15 @@ pedido en el sistema</y:NodeLabel>
     <node id="n23">
       <data key="d3">
         <y:ShapeNode>
-          <y:Geometry height="32.53757961783435" width="80.75159235668787" x="233.7858940068876" y="466.28157223418464"/>
+          <y:Geometry height="32.53757961783435" width="80.75159235668787" x="871.9151902431532" y="453.8064926163503"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="19.0" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="57.0" x="11.875796178343933" y="6.768789808917177">Maquina</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="41.353515625" x="19.69903836584399" y="6.918203871417177">Cliente</y:NodeLabel>
           <y:Shape type="hexagon"/>
         </y:ShapeNode>
       </data>
     </node>
     <node id="n24">
-      <data key="d3">
-        <y:ShapeNode>
-          <y:Geometry height="32.53757961783435" width="80.75159235668787" x="1102.0717880137754" y="501.3131444683693"/>
-          <y:Fill color="#FFCC00" transparent="false"/>
-          <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="19.0" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="47.0" x="16.87579617834399" y="6.768789808917177">Cliente</y:NodeLabel>
-          <y:Shape type="hexagon"/>
-        </y:ShapeNode>
-      </data>
-    </node>
-    <node id="n25">
-      <data key="d3">
-        <y:ShapeNode>
-          <y:Geometry height="32.53757961783435" width="80.75159235668787" x="1334.169486479419" y="487.70889163314575"/>
-          <y:Fill color="#FFCC00" transparent="false"/>
-          <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="19.0" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="44.0" x="18.37579617834399" y="6.768789808917177">Cajera</y:NodeLabel>
-          <y:Shape type="hexagon"/>
-        </y:ShapeNode>
-      </data>
-    </node>
-    <node id="n26">
       <data key="d3">
         <y:ShapeNode>
           <y:Geometry height="11.0" width="12.0" x="9.5" y="323.75"/>
@@ -324,63 +301,231 @@ pedido en el sistema</y:NodeLabel>
         </y:ShapeNode>
       </data>
     </node>
-    <node id="n27">
+    <node id="n25">
       <data key="d3">
         <y:ShapeNode>
           <y:Geometry height="31.25" width="149.39349566377584" x="-109.959472981988" y="383.06700300200123"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="34.0" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="143.0" x="3.196747831887919" y="-1.375">[Lograr] Preparar
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="124.08203125" x="12.655732206887919" y="-1.076171875">[Lograr] Preparar
 cada pizzar del pedido</y:NodeLabel>
           <y:Shape type="rectangle"/>
         </y:ShapeNode>
       </data>
     </node>
-    <node id="n28">
+    <node id="n26">
       <data key="d3">
         <y:ShapeNode>
           <y:Geometry height="52.53739159439624" width="157.54503002001337" x="51.5" y="375.27510840560376"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="49.0" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="147.0" x="5.2725150100066855" y="1.76869579719812">[Lograr] Informar al 
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="48.103515625" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="123.42578125" x="17.059624385006686" y="2.21693798469812">[Lograr] Informar al 
 sistema comienzo de 
 preparación de pedido</y:NodeLabel>
           <y:Shape type="rectangle"/>
         </y:ShapeNode>
       </data>
     </node>
-    <node id="n29">
+    <node id="n27">
       <data key="d3">
         <y:GenericNode configuration="com.yworks.flowchart.start1">
           <y:Geometry height="66.25" width="187.5" x="335.25" y="-25.9375"/>
           <y:Fill color="#E8EEF7" color2="#B7C9E3" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="49.0" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="162.0" x="12.75" y="8.625">[Lograr] Que todos los 
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="48.103515625" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="135.431640625" x="26.0341796875" y="9.0732421875">[Lograr] Que todos los 
 pedidos se entreguen lo 
 más rápido posible</y:NodeLabel>
         </y:GenericNode>
       </data>
     </node>
-    <node id="n30">
+    <node id="n28">
       <data key="d3">
         <y:GenericNode configuration="com.yworks.flowchart.start1">
           <y:Geometry height="65.0" width="163.75" x="830.25" y="-20.9375"/>
           <y:Fill color="#E8EEF7" color2="#B7C9E3" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="34.0" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="148.0" x="7.875" y="15.5">[Lograr] Maximizar la
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="124.064453125" x="19.8427734375" y="15.798828125">[Lograr] Maximizar la
 satisfacción del cliente</y:NodeLabel>
         </y:GenericNode>
       </data>
     </node>
-    <node id="n31">
+    <node id="n29">
       <data key="d3">
         <y:GenericNode configuration="com.yworks.flowchart.start1">
           <y:Geometry height="46.25" width="152.5" x="1109.0" y="46.5625"/>
           <y:Fill color="#E8EEF7" color2="#B7C9E3" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="34.0" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="117.0" x="17.75" y="6.125">[Lograr] Maximizar
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="103.357421875" x="24.5712890625" y="6.423828125">[Lograr] Maximizar
 la ganancia</y:NodeLabel>
         </y:GenericNode>
+      </data>
+    </node>
+    <node id="n30">
+      <data key="d3">
+        <y:ShapeNode>
+          <y:Geometry height="11.0" width="12.0" x="653.25" y="371.5625"/>
+          <y:Fill color="#FFCC00" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="4.0" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="4.0" x="4.0" y="3.5"/>
+          <y:Shape type="ellipse"/>
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="n31">
+      <data key="d3">
+        <y:ShapeNode>
+          <y:Geometry height="40.0" width="128.15857238158776" x="550.0443418013856" y="420.0625"/>
+          <y:Fill color="#FFCC00" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="130.744140625" x="-1.2927841217061768" y="3.298828125">[Lograr] Reservar
+ingredientes necesarios</y:NodeLabel>
+          <y:Shape type="rectangle"/>
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="n32">
+      <data key="d3">
+        <y:ShapeNode>
+          <y:Geometry height="51.25" width="128.15857238158776" x="695.25" y="420.0625"/>
+          <y:Fill color="#FFCC00" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="48.103515625" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="108.0859375" x="10.036317440793937" y="1.5732421875">[Lograr] Encolar el
+pedido en lalista de
+pedidos pendientes</y:NodeLabel>
+          <y:Shape type="rectangle"/>
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="n33">
+      <data key="d3">
+        <y:ShapeNode>
+          <y:Geometry height="11.0" width="12.0" x="1139.5" y="475.34407223418464"/>
+          <y:Fill color="#FFCC00" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="4.0" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="4.0" x="4.0" y="3.5"/>
+          <y:Shape type="ellipse"/>
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="n34">
+      <data key="d3">
+        <y:ShapeNode>
+          <y:Geometry height="32.5" width="114.31870669745956" x="871.2759815242495" y="565.0697038444874"/>
+          <y:Fill color="#FFCC00" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="114.748046875" x="-0.21467008877027638" y="-0.451171875">[Lograr] Confirmar
+derivación de pedido</y:NodeLabel>
+          <y:Shape type="rectangle"/>
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="n35">
+      <data key="d3">
+        <y:ShapeNode>
+          <y:Geometry height="32.5" width="150.0" x="1015.594688221709" y="565.0697038444874"/>
+          <y:Fill color="#FFCC00" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="144.75390625" x="2.623046875" y="-0.451171875">[Lograr] Ingresar el pedido
+en el local a derivar</y:NodeLabel>
+          <y:Shape type="rectangle"/>
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="n36">
+      <data key="d3">
+        <y:ShapeNode>
+          <y:Geometry height="51.25" width="137.15473441108543" x="1184.3614318706698" y="555.6947038444874"/>
+          <y:Fill color="#FFCC00" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="48.103515625" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="130.744140625" x="3.205296893042714" y="1.5732421875">[Lograr] Reservar 
+ingredientes necesarios
+ en el local a derivar</y:NodeLabel>
+          <y:Shape type="rectangle"/>
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="n37">
+      <data key="d3">
+        <y:ShapeNode>
+          <y:Geometry height="65.0" width="114.31870669745967" x="1370.4399538106236" y="541.9447038444874"/>
+          <y:Fill color="#FFCC00" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="62.8046875" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="110.74609375" x="1.7863064737298373" y="1.09765625">[Lograr] Encolar el
+pedido en la lista de
+pendientes del local
+a derivar</y:NodeLabel>
+          <y:Shape type="rectangle"/>
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="n38">
+      <data key="d3">
+        <y:ShapeNode>
+          <y:Geometry height="32.53757961783435" width="80.75159235668787" x="1212.5630028978685" y="690.5954770318797"/>
+          <y:Fill color="#FFCC00" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="50.03125" x="15.360171178343933" y="6.918203871417177">Maquina</y:NodeLabel>
+          <y:Shape type="hexagon"/>
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="n39">
+      <data key="d3">
+        <y:ShapeNode>
+          <y:Geometry height="43.43559039359576" width="114.31870669745967" x="1332.3187066974597" y="322.3914784484773"/>
+          <y:Fill color="#FFCC00" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="48.103515625" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="109.38671875" x="2.4659939737298373" y="-2.3339626157020916">[Lograr] Desencolar
+el pedido de la lista
+de pendientes</y:NodeLabel>
+          <y:Shape type="rectangle"/>
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="n40">
+      <data key="d3">
+        <y:ShapeNode>
+          <y:Geometry height="11.0" width="12.0" x="1383.4780600461895" y="258.66448922423865"/>
+          <y:Fill color="#FFCC00" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="4.0" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="4.0" x="4.0" y="3.5"/>
+          <y:Shape type="ellipse"/>
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="n41">
+      <data key="d3">
+        <y:ShapeNode>
+          <y:Geometry height="43.43559039359576" width="137.15473441108543" x="1476.6374133949193" y="322.3914784484773"/>
+          <y:Fill color="#FFCC00" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="48.103515625" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="132.07421875" x="2.540257830542714" y="-2.3339626157021485">[Lograr] Marcar los
+ingredientes reservados
+como disponibles</y:NodeLabel>
+          <y:Shape type="rectangle"/>
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="n42">
+      <data key="d3">
+        <y:ShapeNode>
+          <y:Geometry height="32.53757961783435" width="80.75159235668787" x="1404.0070681513953" y="437.6170965343631"/>
+          <y:Fill color="#FFCC00" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="50.03125" x="15.36017117834399" y="6.918203871417177">Maquina</y:NodeLabel>
+          <y:Shape type="hexagon"/>
+        </y:ShapeNode>
+      </data>
+    </node>
+    <node id="n43">
+      <data key="d3">
+        <y:ShapeNode>
+          <y:Geometry height="32.53757961783435" width="80.75159235668787" x="1251.75" y="429.0625"/>
+          <y:Fill color="#FFCC00" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="39.349609375" x="20.70099149084399" y="6.918203871417177">Cajera</y:NodeLabel>
+          <y:Shape type="hexagon"/>
+        </y:ShapeNode>
       </data>
     </node>
     <edge id="e0" source="n3" target="n0">
@@ -388,7 +533,7 @@ la ganancia</y:NodeLabel>
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
-          <y:Arrows source="none" target="none"/>
+          <y:Arrows source="none" target="standard"/>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
       </data>
@@ -398,7 +543,7 @@ la ganancia</y:NodeLabel>
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
-          <y:Arrows source="none" target="standard"/>
+          <y:Arrows source="none" target="none"/>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
       </data>
@@ -408,7 +553,7 @@ la ganancia</y:NodeLabel>
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
-          <y:Arrows source="none" target="standard"/>
+          <y:Arrows source="none" target="none"/>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
       </data>
@@ -418,7 +563,7 @@ la ganancia</y:NodeLabel>
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
-          <y:Arrows source="none" target="standard"/>
+          <y:Arrows source="none" target="none"/>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
       </data>
@@ -428,7 +573,7 @@ la ganancia</y:NodeLabel>
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
-          <y:Arrows source="none" target="none"/>
+          <y:Arrows source="none" target="standard"/>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
       </data>
@@ -438,7 +583,7 @@ la ganancia</y:NodeLabel>
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
-          <y:Arrows source="none" target="standard"/>
+          <y:Arrows source="none" target="none"/>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
       </data>
@@ -448,7 +593,7 @@ la ganancia</y:NodeLabel>
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
-          <y:Arrows source="none" target="standard"/>
+          <y:Arrows source="none" target="none"/>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
       </data>
@@ -458,7 +603,7 @@ la ganancia</y:NodeLabel>
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
-          <y:Arrows source="none" target="none"/>
+          <y:Arrows source="none" target="standard"/>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
       </data>
@@ -468,7 +613,7 @@ la ganancia</y:NodeLabel>
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
-          <y:Arrows source="none" target="standard"/>
+          <y:Arrows source="none" target="none"/>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
       </data>
@@ -478,7 +623,7 @@ la ganancia</y:NodeLabel>
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
-          <y:Arrows source="none" target="standard"/>
+          <y:Arrows source="none" target="none"/>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
       </data>
@@ -488,7 +633,7 @@ la ganancia</y:NodeLabel>
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
-          <y:Arrows source="none" target="standard"/>
+          <y:Arrows source="none" target="none"/>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
       </data>
@@ -498,7 +643,7 @@ la ganancia</y:NodeLabel>
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
-          <y:Arrows source="none" target="standard"/>
+          <y:Arrows source="none" target="none"/>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
       </data>
@@ -508,7 +653,7 @@ la ganancia</y:NodeLabel>
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
-          <y:Arrows source="none" target="none"/>
+          <y:Arrows source="none" target="standard"/>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
       </data>
@@ -518,7 +663,7 @@ la ganancia</y:NodeLabel>
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
-          <y:Arrows source="none" target="none"/>
+          <y:Arrows source="none" target="standard"/>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
       </data>
@@ -528,7 +673,7 @@ la ganancia</y:NodeLabel>
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
-          <y:Arrows source="none" target="standard"/>
+          <y:Arrows source="none" target="none"/>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
       </data>
@@ -538,7 +683,7 @@ la ganancia</y:NodeLabel>
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
-          <y:Arrows source="none" target="standard"/>
+          <y:Arrows source="none" target="none"/>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
       </data>
@@ -548,7 +693,7 @@ la ganancia</y:NodeLabel>
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
-          <y:Arrows source="none" target="standard"/>
+          <y:Arrows source="none" target="none"/>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
       </data>
@@ -558,12 +703,12 @@ la ganancia</y:NodeLabel>
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
-          <y:Arrows source="none" target="standard"/>
+          <y:Arrows source="none" target="none"/>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e18" source="n23" target="n6">
+    <edge id="e18" source="n22" target="n6">
       <data key="d6">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -573,7 +718,7 @@ la ganancia</y:NodeLabel>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e19" source="n22" target="n15">
+    <edge id="e19" source="n21" target="n15">
       <data key="d6">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -583,7 +728,7 @@ la ganancia</y:NodeLabel>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e20" source="n23" target="n16">
+    <edge id="e20" source="n22" target="n16">
       <data key="d6">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -593,7 +738,7 @@ la ganancia</y:NodeLabel>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e21" source="n21" target="n9">
+    <edge id="e21" source="n23" target="n17">
       <data key="d6">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -603,7 +748,7 @@ la ganancia</y:NodeLabel>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e22" source="n21" target="n10">
+    <edge id="e22" source="n24" target="n5">
       <data key="d6">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -613,37 +758,7 @@ la ganancia</y:NodeLabel>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e23" source="n24" target="n17">
-      <data key="d6">
-        <y:PolyLineEdge>
-          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
-          <y:LineStyle color="#000000" type="line" width="1.0"/>
-          <y:Arrows source="none" target="standard"/>
-          <y:BendStyle smoothed="false"/>
-        </y:PolyLineEdge>
-      </data>
-    </edge>
-    <edge id="e24" source="n25" target="n18">
-      <data key="d6">
-        <y:PolyLineEdge>
-          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
-          <y:LineStyle color="#000000" type="line" width="1.0"/>
-          <y:Arrows source="none" target="standard"/>
-          <y:BendStyle smoothed="false"/>
-        </y:PolyLineEdge>
-      </data>
-    </edge>
-    <edge id="e25" source="n25" target="n19">
-      <data key="d6">
-        <y:PolyLineEdge>
-          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
-          <y:LineStyle color="#000000" type="line" width="1.0"/>
-          <y:Arrows source="none" target="standard"/>
-          <y:BendStyle smoothed="false"/>
-        </y:PolyLineEdge>
-      </data>
-    </edge>
-    <edge id="e26" source="n26" target="n5">
+    <edge id="e23" source="n24" target="n25">
       <data key="d6">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -653,7 +768,17 @@ la ganancia</y:NodeLabel>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e27" source="n26" target="n27">
+    <edge id="e24" source="n24" target="n26">
+      <data key="d6">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="none"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e25" source="n20" target="n25">
       <data key="d6">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -663,7 +788,7 @@ la ganancia</y:NodeLabel>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e28" source="n26" target="n28">
+    <edge id="e26" source="n20" target="n26">
       <data key="d6">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -673,7 +798,7 @@ la ganancia</y:NodeLabel>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e29" source="n20" target="n27">
+    <edge id="e27" source="n22" target="n26">
       <data key="d6">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -683,38 +808,18 @@ la ganancia</y:NodeLabel>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e30" source="n20" target="n28">
-      <data key="d6">
-        <y:PolyLineEdge>
-          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
-          <y:LineStyle color="#000000" type="line" width="1.0"/>
-          <y:Arrows source="none" target="standard"/>
-          <y:BendStyle smoothed="false"/>
-        </y:PolyLineEdge>
-      </data>
-    </edge>
-    <edge id="e31" source="n23" target="n28">
-      <data key="d6">
-        <y:PolyLineEdge>
-          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
-          <y:LineStyle color="#000000" type="line" width="1.0"/>
-          <y:Arrows source="none" target="standard"/>
-          <y:BendStyle smoothed="false"/>
-        </y:PolyLineEdge>
-      </data>
-    </edge>
-    <edge id="e32" source="n29" target="n6">
+    <edge id="e28" source="n27" target="n6">
       <data key="d6">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
           <y:LineStyle color="#000000" type="dashed" width="2.0"/>
           <y:Arrows source="none" target="none"/>
-          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="19.0" modelName="six_pos" modelPosition="tail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="24.0" x="-68.75605195307986" y="100.15015135975659">++</y:EdgeLabel>
+          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="tail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="18.015625" x="-68.86161292730219" y="100.29956542225659">++</y:EdgeLabel>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e33" source="n29" target="n10">
+    <edge id="e29" source="n27" target="n10">
       <data key="d6">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
@@ -724,34 +829,35 @@ la ganancia</y:NodeLabel>
           </y:Path>
           <y:LineStyle color="#000000" type="dashed" width="2.0"/>
           <y:Arrows source="none" target="none"/>
-          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="19.0" modelName="six_pos" modelPosition="tail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="14.0" x="270.82718912760413" y="163.76597699252042">+</y:EdgeLabel>
+          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="tail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="11.0078125" x="272.32328287760413" y="163.75322619351473">+</y:EdgeLabel>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e34" source="n30" target="n10">
+    <edge id="e30" source="n28" target="n10">
       <data key="d6">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
           <y:LineStyle color="#000000" type="dashed" width="2.0"/>
           <y:Arrows source="none" target="none"/>
-          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="19.0" modelName="six_pos" modelPosition="tail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="14.0" x="-20.69478122766691" y="111.84620666503906">+</y:EdgeLabel>
+          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="tail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="11.0078125" x="-20.72509892517212" y="111.99562072753906">+</y:EdgeLabel>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e35" source="n31" target="n11">
+    <edge id="e31" source="n29" target="n11">
       <data key="d6">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
           <y:LineStyle color="#000000" type="dashed" width="2.0"/>
           <y:Arrows source="none" target="none"/>
-          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="19.0" modelName="six_pos" modelPosition="tail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="14.0" x="-40.75531228418504" y="79.53457641601562">+</y:EdgeLabel>
+          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="tail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="11.0078125" x="-40.8356326614296" y="79.68399047851562">+</y:EdgeLabel>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e36" source="n4" target="n19">
+    <edge id="e32" source="n30" target="n9">
+      <data key="d5"/>
       <data key="d6">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -761,11 +867,34 @@ la ganancia</y:NodeLabel>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e37" source="n21" target="n19">
+    <edge id="e33" source="n31" target="n30">
+      <data key="d5"/>
+      <data key="d6">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="none"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e34" source="n32" target="n30">
+      <data key="d5"/>
+      <data key="d6">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="none"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e35" source="n22" target="n10">
+      <data key="d5"/>
       <data key="d6">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="1305.7727818545698" y="459.6650700466978"/>
+            <y:Point x="842.2632794457273" y="497.94545958429575"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
@@ -773,12 +902,198 @@ la ganancia</y:NodeLabel>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e38" source="n22" target="n9">
+    <edge id="e36" source="n33" target="n18">
+      <data key="d5"/>
       <data key="d6">
         <y:PolyLineEdge>
-          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="628.5543695797198" y="430.0245096731154"/>
-          </y:Path>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e37" source="n34" target="n33">
+      <data key="d5"/>
+      <data key="d6">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="none"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e38" source="n35" target="n33">
+      <data key="d5"/>
+      <data key="d6">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="none"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e39" source="n36" target="n33">
+      <data key="d5"/>
+      <data key="d6">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="none"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e40" source="n37" target="n33">
+      <data key="d5"/>
+      <data key="d6">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="none"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e41" source="n38" target="n36">
+      <data key="d5"/>
+      <data key="d6">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e42" source="n38" target="n37">
+      <data key="d5"/>
+      <data key="d6">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e43" source="n38" target="n35">
+      <data key="d5"/>
+      <data key="d6">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e44" source="n21" target="n34">
+      <data key="d5"/>
+      <data key="d6">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e45" source="n22" target="n31">
+      <data key="d5"/>
+      <data key="d6">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e46" source="n22" target="n32">
+      <data key="d5"/>
+      <data key="d6">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e47" source="n40" target="n4">
+      <data key="d5"/>
+      <data key="d6">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e48" source="n19" target="n40">
+      <data key="d5"/>
+      <data key="d6">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="none"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e49" source="n39" target="n40">
+      <data key="d5"/>
+      <data key="d6">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="none"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e50" source="n41" target="n40">
+      <data key="d5"/>
+      <data key="d6">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="none"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e51" source="n42" target="n39">
+      <data key="d5"/>
+      <data key="d6">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e52" source="n42" target="n41">
+      <data key="d5"/>
+      <data key="d6">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e53" source="n43" target="n19">
+      <data key="d5"/>
+      <data key="d6">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
           <y:BendStyle smoothed="false"/>
