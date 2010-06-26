@@ -441,7 +441,7 @@ manejo del stock</y:NodeLabel>
           <y:Geometry height="46.25" width="152.5" x="942.4622395833335" y="281.11978521939955"/>
           <y:Fill color="#E8EEF7" color2="#B7C9E3" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="106.046875" x="23.2265625" y="6.423828125">[Lograr] Reducir el 
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="116.03125" x="18.234375" y="6.423828125">[Lograr] Minimizar el 
 costo del sistema</y:NodeLabel>
         </y:GenericNode>
       </data>
