@@ -12,7 +12,7 @@
     <node id="n0">
       <data key="d3">
         <y:GenericNode configuration="com.yworks.flowchart.start1">
-          <y:Geometry height="51.0" width="121.55346246505047" x="251.44653753494956" y="120.0"/>
+          <y:Geometry height="51.0" width="121.55346246505047" x="251.44653753494956" y="245.0"/>
           <y:Fill color="#FFFFFF" color2="#FFFFFF" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="100.064453125" x="10.744504670025236" y="8.798828125">Cargar pedido en 
@@ -23,7 +23,7 @@ el local destino</y:NodeLabel>
     <node id="n1">
       <data key="d3">
         <y:GenericNode configuration="com.yworks.flowchart.start1">
-          <y:Geometry height="45.0" width="87.0" x="427.0" y="253.5"/>
+          <y:Geometry height="45.0" width="87.0" x="427.0" y="296.5"/>
           <y:Fill color="#FFFFFF" color2="#FFFFFF" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="85.38671875" x="0.806640625" y="13.1494140625">Encolar Pedido</y:NodeLabel>
@@ -33,7 +33,7 @@ el local destino</y:NodeLabel>
     <node id="n2">
       <data key="d3">
         <y:GenericNode configuration="com.yworks.flowchart.start1">
-          <y:Geometry height="51.0" width="87.0" x="427.0" y="350.0"/>
+          <y:Geometry height="51.0" width="87.0" x="427.0" y="393.0"/>
           <y:Fill color="#FFFFFF" color2="#FFFFFF" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="69.37890625" x="8.810546875" y="8.798828125">Reservar 
@@ -42,16 +42,6 @@ ingredientes</y:NodeLabel>
       </data>
     </node>
     <node id="n3">
-      <data key="d3">
-        <y:GenericNode configuration="com.yworks.flowchart.start2">
-          <y:Geometry height="40.0" width="80.0" x="272.2232687674748" y="45.0"/>
-          <y:Fill color="#000000" color2="#000000" transparent="false"/>
-          <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="4.0" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="4.0" x="38.0" y="18.0"/>
-        </y:GenericNode>
-      </data>
-    </node>
-    <node id="n4">
       <data key="d3">
         <y:GenericNode configuration="com.yworks.flowchart.start1">
           <y:Geometry height="51.0" width="87.0" x="577.5185250233015" y="415.0"/>
@@ -62,7 +52,7 @@ pedido</y:NodeLabel>
         </y:GenericNode>
       </data>
     </node>
-    <node id="n5">
+    <node id="n4">
       <data key="d3">
         <y:GenericNode configuration="com.yworks.flowchart.start1">
           <y:Geometry height="65.0" width="136.0" x="553.0185250233015" y="510.0"/>
@@ -74,7 +64,7 @@ pedido terminado</y:NodeLabel>
         </y:GenericNode>
       </data>
     </node>
-    <node id="n6">
+    <node id="n5">
       <data key="d3">
         <y:GenericNode configuration="com.yworks.flowchart.start1">
           <y:Geometry height="45.0" width="87.0" x="427.0" y="591.3"/>
@@ -85,7 +75,7 @@ stock</y:NodeLabel>
         </y:GenericNode>
       </data>
     </node>
-    <node id="n7">
+    <node id="n6">
       <data key="d3">
         <y:GenericNode configuration="com.yworks.flowchart.process">
           <y:Geometry height="6.0" width="792.0715375349495" x="265.81250000000006" y="689.375"/>
@@ -95,7 +85,7 @@ stock</y:NodeLabel>
         </y:GenericNode>
       </data>
     </node>
-    <node id="n8">
+    <node id="n7">
       <data key="d3">
         <y:GenericNode configuration="com.yworks.flowchart.start1">
           <y:Geometry height="51.0" width="87.0" x="749.2500000000002" y="748.45"/>
@@ -106,7 +96,7 @@ pedido</y:NodeLabel>
         </y:GenericNode>
       </data>
     </node>
-    <node id="n9">
+    <node id="n8">
       <data key="d3">
         <y:GenericNode configuration="com.yworks.flowchart.process">
           <y:Geometry height="907.4655662400004" width="1.0" x="871.5241000931887" y="-18.887500000000784"/>
@@ -116,28 +106,28 @@ pedido</y:NodeLabel>
         </y:GenericNode>
       </data>
     </node>
-    <node id="n10">
+    <node id="n9">
       <data key="d3">
         <y:GenericNode configuration="com.yworks.flowchart.start1">
           <y:Geometry height="48.00000000000006" width="103.04307692307702" x="918.3305750698894" y="249.99999999999994"/>
           <y:Fill color="#FFFFFF" color2="#FFFFFF" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="80.025390625" x="11.508843149038512" y="7.298828125000028">Dirigirse hacia
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="80.025390625" x="11.508843149038512" y="7.298828125000057">Dirigirse hacia
 el local</y:NodeLabel>
         </y:GenericNode>
       </data>
     </node>
-    <node id="n11">
+    <node id="n10">
       <data key="d3">
         <y:GenericNode configuration="com.yworks.flowchart.process">
-          <y:Geometry height="6.0" width="806.4375000000001" x="251.44653753494953" y="196.0"/>
+          <y:Geometry height="6.0" width="806.4375000000001" x="251.44653753494953" y="199.5"/>
           <y:Fill color="#000000" color2="#000000" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="4.0" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="4.0" x="401.21875000000006" y="1.0"/>
         </y:GenericNode>
       </data>
     </node>
-    <node id="n12">
+    <node id="n11">
       <data key="d3">
         <y:GenericNode configuration="com.yworks.flowchart.process">
           <y:Geometry height="907.9655662400002" width="1.0" x="546.8357001863646" y="-19.387500000000557"/>
@@ -147,7 +137,7 @@ el local</y:NodeLabel>
         </y:GenericNode>
       </data>
     </node>
-    <node id="n13">
+    <node id="n12">
       <data key="d3">
         <y:GenericNode configuration="com.yworks.flowchart.start1">
           <y:Geometry height="51.0" width="175.5033333333331" x="221.21495303120759" y="-19.262500000000784"/>
@@ -157,7 +147,7 @@ el local</y:NodeLabel>
         </y:GenericNode>
       </data>
     </node>
-    <node id="n14">
+    <node id="n13">
       <data key="d3">
         <y:GenericNode configuration="com.yworks.flowchart.start1">
           <y:Geometry height="51.0" width="125.34509393758515" x="412.09240606241485" y="-19.200000000000067"/>
@@ -167,7 +157,7 @@ el local</y:NodeLabel>
         </y:GenericNode>
       </data>
     </node>
-    <node id="n15">
+    <node id="n14">
       <data key="d3">
         <y:GenericNode configuration="com.yworks.flowchart.start1">
           <y:Geometry height="51.00000000000002" width="103.04307692307702" x="577.7198590936222" y="-18.887500000000806"/>
@@ -177,7 +167,7 @@ el local</y:NodeLabel>
         </y:GenericNode>
       </data>
     </node>
-    <node id="n16">
+    <node id="n15">
       <data key="d3">
         <y:GenericNode configuration="com.yworks.flowchart.start1">
           <y:Geometry height="51.0" width="158.1233333333331" x="709.0398121248295" y="-18.887500000000784"/>
@@ -187,7 +177,7 @@ el local</y:NodeLabel>
         </y:GenericNode>
       </data>
     </node>
-    <node id="n17">
+    <node id="n16">
       <data key="d3">
         <y:GenericNode configuration="com.yworks.flowchart.start1">
           <y:Geometry height="51.0" width="145.8158333333331" x="897.1631454581626" y="-18.887500000000784"/>
@@ -197,7 +187,7 @@ el local</y:NodeLabel>
         </y:GenericNode>
       </data>
     </node>
-    <node id="n18">
+    <node id="n17">
       <data key="d3">
         <y:GenericNode configuration="com.yworks.flowchart.process">
           <y:Geometry height="911.2155662400004" width="1.0" x="705.026553124396" y="-22.637500000000784"/>
@@ -207,7 +197,7 @@ el local</y:NodeLabel>
         </y:GenericNode>
       </data>
     </node>
-    <node id="n19">
+    <node id="n18">
       <data key="d3">
         <y:GenericNode configuration="com.yworks.flowchart.process">
           <y:Geometry height="906.0280662400002" width="1.0" x="395.963153217572" y="-17.450000000000557"/>
@@ -217,7 +207,7 @@ el local</y:NodeLabel>
         </y:GenericNode>
       </data>
     </node>
-    <node id="n20">
+    <node id="n19">
       <data key="d3">
         <y:GenericNode configuration="com.yworks.flowchart.start2">
           <y:Geometry height="40.0" width="80.0" x="749.2500000000002" y="841.1249999999995"/>
@@ -227,13 +217,34 @@ el local</y:NodeLabel>
         </y:GenericNode>
       </data>
     </node>
-    <node id="n21">
+    <node id="n20">
       <data key="d3">
         <y:GenericNode configuration="com.yworks.flowchart.start2">
           <y:Geometry height="15.0" width="51.0" x="763.7500000000002" y="853.6249999999995"/>
           <y:Fill color="#000000" color2="#000000" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="4.0" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="4.0" x="23.5" y="5.5"/>
+        </y:GenericNode>
+      </data>
+    </node>
+    <node id="n21">
+      <data key="d3">
+        <y:GenericNode configuration="com.yworks.flowchart.start2">
+          <y:Geometry height="40.0" width="80.0" x="930.0710621248292" y="40.30624999999961"/>
+          <y:Fill color="#000000" color2="#000000" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="4.0" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="4.0" x="38.0" y="18.0"/>
+        </y:GenericNode>
+      </data>
+    </node>
+    <node id="n22">
+      <data key="d3">
+        <y:GenericNode configuration="com.yworks.flowchart.start1">
+          <y:Geometry height="51.0" width="121.55346246505047" x="909.2943308923038" y="114.40312499999982"/>
+          <y:Fill color="#FFFFFF" color2="#FFFFFF" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="112.064453125" x="4.744504670025208" y="8.798828125">Acepta la derivación
+al local destino</y:NodeLabel>
         </y:GenericNode>
       </data>
     </node>
@@ -247,7 +258,7 @@ el local</y:NodeLabel>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e1" source="n2" target="n4">
+    <edge id="e1" source="n2" target="n3">
       <data key="d6">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -257,7 +268,7 @@ el local</y:NodeLabel>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e2" source="n4" target="n5">
+    <edge id="e2" source="n3" target="n4">
       <data key="d6">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -267,7 +278,7 @@ el local</y:NodeLabel>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e3" source="n5" target="n6">
+    <edge id="e3" source="n4" target="n5">
       <data key="d6">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -277,7 +288,7 @@ el local</y:NodeLabel>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e4" source="n6" target="n7">
+    <edge id="e4" source="n5" target="n6">
       <data key="d6">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="-7.747469381071347" ty="-0.6875"/>
@@ -287,7 +298,7 @@ el local</y:NodeLabel>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e5" source="n7" target="n8">
+    <edge id="e5" source="n6" target="n7">
       <data key="d6">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -297,7 +308,7 @@ el local</y:NodeLabel>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e6" source="n11" target="n10">
+    <edge id="e6" source="n10" target="n9">
       <data key="d6">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -307,7 +318,7 @@ el local</y:NodeLabel>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e7" source="n10" target="n7">
+    <edge id="e7" source="n9" target="n6">
       <data key="d6">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -317,7 +328,7 @@ el local</y:NodeLabel>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e8" source="n8" target="n20">
+    <edge id="e8" source="n7" target="n19">
       <data key="d6">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -327,11 +338,11 @@ el local</y:NodeLabel>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e9" source="n3" target="n3">
+    <edge id="e9" source="n21" target="n21">
       <data key="d6">
         <y:ArcEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="312.2232666015625" y="65.0"/>
+            <y:Point x="970.071044921875" y="60.306251525878906"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
@@ -339,8 +350,7 @@ el local</y:NodeLabel>
         </y:ArcEdge>
       </data>
     </edge>
-    <edge id="e10" source="n3" target="n0">
-      <data key="d5"/>
+    <edge id="e10" source="n10" target="n0">
       <data key="d6">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -350,8 +360,7 @@ el local</y:NodeLabel>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e11" source="n11" target="n1">
-      <data key="d5"/>
+    <edge id="e11" source="n0" target="n1">
       <data key="d6">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -361,8 +370,17 @@ el local</y:NodeLabel>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e12" source="n0" target="n11">
-      <data key="d5"/>
+    <edge id="e12" source="n21" target="n22">
+      <data key="d6">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e13" source="n22" target="n10">
       <data key="d6">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
