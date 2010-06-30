@@ -67,13 +67,13 @@ En primera instancia, se opt\'o por realizar un diagrama conceptual a modo de co
 	\item	Def: Hay un repositor, un mozo, un encargado y un jefe de chef por local.
 	
 	$inv: self.empleados\rightarrow select(e | e.isTypeOf(Repositor de Stock))\rightarrow size() == 1 $ and $ \\
-	self.empleados\rightarrow select(e | e.isTypeOf(Mozo))\rightarrow size() == 1 $ and $	\\
-	self.empleados\rightarrow select(e | e.isTypeOf(Encargado))\rightarrow size() == 1 $ and $	\\
-	self.empleados\rightarrow select(e | e.isTypeOf(Jefe de Chef))\rightarrow size() == 1;$	\\
+	inv: self.empleados\rightarrow select(e | e.isTypeOf(Mozo))\rightarrow size() == 1 $ and $	\\
+	inv: self.empleados\rightarrow select(e | e.isTypeOf(Encargado))\rightarrow size() == 1 $ and $	\\
+	inv: self.empleados\rightarrow select(e | e.isTypeOf(Jefe de Chef))\rightarrow size() == 1;$	\\
 
 	\item	Def: No puede haber un mismo mozo en dos locales distintos.
 
-	local.AllInstances\rightarrowforAll (l1, l2 |  l1  == l2 implies l1.empleados.mozo != l2.empleados.mozo)$	\\
+$	inv: local.AllInstances\rightarrow forAll (l1, l2 |  l1  == l2 implies l1.empleados.mozo != l2.empleados.mozo)$	\\
 	
 	\item	Def: Todos los pedidos de un local son preparados por chefs del mismo local.
 	
@@ -434,16 +434,30 @@ Como se puede observar, el diagrama contiene a las actividades referenciadas en 
  \includegraphics[width=0.7\textwidth]{Diagramas/DiagramaActividadPedidoExterno.png}
 \end{center}
 
-En los diagramas presentados se puede notar referencias a una M\'aquina de Estado llamada \textit{Buscar local derivar}. Este diagrama tiene como objetivo mostrar el comportamiento en detalle de la b\'usqueda de los locales en donde se pueda derivar un pedido no realizable localmente. Al tratarse de una operaci\'on sincronizada realizada exclusivamente por las m\'aquinas de los locales, pareci\'o oportuno utilizar este tipo de esquema como se muestra a continuaci\'on:
+En los diagramas presentados se puede notar referencias a una M\'aquina de Estado llamada \textit{Buscar local derivar}. Este diagrama tiene como objetivo mostrar el comportamiento en detalle de la b\'usqueda de los locales en donde se pueda derivar un pedido no realizable localmente. Al tratarse de una operaci\'on sincronizada realizada por las m\'aquinas de los distintos locales y una máquina sincronizadora, pareci\'o oportuno utilizar este tipo de esquema como se muestra a continuaci\'on:
+
+
+\begin{center}
+ \textit{FSM: M\'aquina Sincronizadora}
+ \includegraphics[width=0.7\textwidth]{Diagramas/FSMSincronizador.png}
+\end{center}
+
 
 \begin{center}
  \textit{FSM: M\'aquina Derivadora}
- \includegraphics[width=0.7\textwidth]{Diagramas/FSMPrepararPedido.png}
+ \includegraphics[width=0.8\textwidth]{Diagramas/FSMPrepararPedido.png}
 \end{center}
+
+
 \begin{center}
  \textit{FSM: M\'aquina$_{i}$}
- \includegraphics[width=0.7\textwidth]{Diagramas/FSMPrepararPedidoi.png}
+ \includegraphics[width=0.9\textwidth]{Diagramas/FSMPrepararPedidoi.png}
 \end{center}
+
+Cabe aclarar que la m\'aquina derivadora podr\'ia estar modelando a cualquiera de los locales. En las m\'aquinas de estado se representa c\'omo al momento de ser el turno del local i, \'este puede actuar como el derivador y los dem\'as locales lo escuchan. En el siguiente turno ser\'a otro local el que act\'ue como maquina derivadora, y asi sucesivamente.
+
+Otro aspecto a mencionar es que puede suceder que se termine el turno de la m\'aquina derivadora en el medio del proceso de preguntarle a los distintos locales si puede preparar su pedido, como se puede apreciar en los graficos. Si \'esto sucede, la m\'aquina derivadora se queda con la informaci\'on guardada (de los locales que le contestaron que pueden preparar su pedido) hasta el momento del cambio de turno.
+
 
 Continuando con el diagrama de casos de uso, los siguientes casos analizados fueron los relativos al Jefe de Chef: \textit{Incorporando nueva variedad de pizza} y \textit{Cambiando datos variedad de pizza}. Al igual que antes, para profundizar lo vinculado a estos casos se decidi\'o hacer un diagrama de actividad que muestre que sucede al querer incorporar una nueva variedad de pizza. No se crey\'o necesario mostrar el caso en el que se cambian los datos porque resulta muy similar caso a continuaci\'on elaborado:
 
@@ -453,14 +467,28 @@ Continuando con el diagrama de casos de uso, los siguientes casos analizados fue
 
 Esta actividad tiene la particularidad de involucrar a la m\'aquina de todos los locales del sistema por lo cual, tal como se ve en la figura, se procedi\'o a confeccionar una M\'aquina de Estado. Como el caso anterior, de esta manera se puede reflejar como funciona operacionalmente el proceso de comunicacion y sincronizacion al momento de querer informar al resto de los locales de los cambios efectuados.
 
+
+\begin{center}
+ \textit{FSM: M\'aquina Sincronizadora}
+ \includegraphics[width=0.7\textwidth]{Diagramas/FSMSincronizador.png}
+\end{center}
+
+
+
+
 \begin{center}
  \textit{FSM: M\'aquina Actualizadora}
  \includegraphics[width=0.7\textwidth]{Diagramas/FSMActualizacionActualizadora.png}
 \end{center}
+
 \begin{center}
  \textit{FSM: M\'aquina$_{i}$}
- \includegraphics[width=0.7\textwidth]{Diagramas/FSMActualizacionMaquinai.png}
+ \includegraphics[width=0.9\textwidth]{Diagramas/FSMActualizacionMaquinai.png}
 \end{center}
+
+Nuevamente se debe aclarar que la m\'aquina actualizadora puede estar modelando cualquiera de los locales al igual de lo sucedido en el caso de la m\'aquina derivadora.
+
+Por otro lado, en el caso de que finalice el turno de la m\'aquina actualizadora en el medio del proceso, el men\'u no ser\'a actualizado. Es decir que si la m\'aquina actualizadora no confirma la actualizaci\'on (con la transici\'on MenuActualizado! ) antes que se termine el tiempo de su turno, todos los locales volver\'an a la versi\'on anterior (a\'un aquellos que ya guardaron la nueva versi\'on durante el proceso).
 
 Retornando nuevamente al diagrama principal de casos de uso, por \'ultimo interes\'o incluir un diagrama que muestre que ocurre al tener que realizar una reposici\'on de stock, de manera de mostrar interacciones no observables en el caso de uso en cuesti\'on. A continuaci\'on, se muestra este diagrama:
 
